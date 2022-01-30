@@ -1,17 +1,17 @@
 <div id="app">
   <div id="nav">
-      <a href="/"
+      <a href={Routes.page_path(@conn, :home)}
         ><span class="icon"><i class="fas fa-home"></i></span>
         <%= gettext "Home" %>
       </a>
       <%= if @is_logged do %>
         |
-        <a href="/"
+        <a href={Routes.page_path(@conn, :projects)}
           ><span class="icon"><i class="fas fa-server"></i></span>
           <%= gettext "Projects" %>
         </a>
         |
-        <a href="/"
+        <a href={Routes.page_path(@conn, :new_project)}
           ><span class="icon"><i class="fas fa-pen"></i></span>
           <%= gettext "New Project" %>
         </a>
@@ -25,14 +25,14 @@
       <% end %>
       <%= if @is_logged do %>
         |
-        <a href="/"
+        <a href={Routes.page_path(@conn, :logout)}
           ><span class="icon"><i class="fas fa-sign-out-alt"></i></span>
           <%= gettext "Logout" %>
         </a>
       <% end %>
       <%= if !@is_logged do %>
         |
-        <a href="/"
+        <a href={Routes.page_path(@conn, :login)}
           ><span class="icon"><i class="fas fa-sign-in-alt"></i></span>
           <%= gettext "Login" %>
         </a>

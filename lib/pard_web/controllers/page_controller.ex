@@ -9,6 +9,27 @@ defmodule PardWeb.PageController do
   use PardWeb, :controller
 
   alias Pard.Module.InstallModule
+  alias Pard.Service.AuthService
+
+  plug :auth
+
+  defp auth(conn, _opts) do
+    result =
+      AuthService.is_authenticated(
+        conn.req_cookies["_uid"],
+        conn.req_cookies["_token"]
+      )
+
+    case result do
+      false ->
+        conn = assign(conn, :is_logged, false)
+
+      {true, session} ->
+        conn = assign(conn, :is_logged, true)
+        conn = assign(conn, :user_id, session.user_id)
+        conn = assign(conn, :sess_token, session.value)
+    end
+  end
 
   @doc """
   Install Page
@@ -44,14 +65,23 @@ defmodule PardWeb.PageController do
   Login Page
   """
   def login(conn, _params) do
-    render(conn, "login.html", is_logged: false)
+    is_installed = InstallModule.is_installed()
+
+    case is_installed do
+      false ->
+        redirect(conn, to: "/install")
+
+      true ->
+        render(conn, "login.html", is_logged: conn.assigns[:is_logged])
+    end
   end
 
   @doc """
   Logout Action
   """
-  def logout(_conn, _params) do
-    nil
+  def logout(conn, _params) do
+    AuthService.logout(get_session(conn, :ses_uid))
+    redirect(conn, to: "/")
   end
 
   @doc """

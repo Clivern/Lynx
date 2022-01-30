@@ -44,6 +44,7 @@ defmodule Pard.Context.UserContext do
   def new_session(session \\ %{}) do
     %{
       value: session.value,
+      expire_at: session.expire_at,
       user_id: session.user_id
     }
   end
@@ -154,6 +155,14 @@ defmodule Pard.Context.UserContext do
   end
 
   @doc """
+  Update a user session
+  """
+  def update_user_session(user_session, attrs) do
+    UserSession.changeset(user_session, attrs)
+    |> Repo.update()
+  end
+
+  @doc """
   Delete a user meta
   """
   def delete_user_meta(user_meta) do
@@ -165,6 +174,17 @@ defmodule Pard.Context.UserContext do
   """
   def delete_user_session(user_session) do
     Repo.delete(user_session)
+  end
+
+  @doc """
+  Delete user sessions
+  """
+  def delete_user_sessions(user_id) do
+    from(
+      u in UserSession,
+      where: u.user_id == ^user_id
+    )
+    |> Repo.delete_all()
   end
 
   @doc """

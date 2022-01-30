@@ -12,6 +12,7 @@ defmodule Pard.Model.UserSession do
 
   schema "users_session" do
     field :value, :string
+    field :expire_at, :utc_datetime
     field :user_id, :id
 
     timestamps()
@@ -22,10 +23,12 @@ defmodule Pard.Model.UserSession do
     user_meta
     |> cast(attrs, [
       :value,
+      :expire_at,
       :user_id
     ])
     |> validate_required([
       :value,
+      :expire_at,
       :user_id
     ])
   end

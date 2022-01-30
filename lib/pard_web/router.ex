@@ -40,6 +40,7 @@ defmodule PardWeb.Router do
     get "/_health", HealthController, :health
     get "/_ready", ReadyController, :ready
     post "/_action/install", InstallController, :create
+    post "/_action/login", UserController, :auth
   end
 
   scope "/api/v1", PardWeb do

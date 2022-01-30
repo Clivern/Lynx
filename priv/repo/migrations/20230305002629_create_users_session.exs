@@ -8,6 +8,7 @@ defmodule Pard.Repo.Migrations.CreateUsersSession do
   def change do
     create table(:users_session) do
       add :value, :string
+      add :expire_at, :utc_datetime
       add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()

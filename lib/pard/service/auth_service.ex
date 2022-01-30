@@ -7,6 +7,8 @@ defmodule Pard.Service.AuthService do
   Auth Service Module
   """
 
+  alias Pard.Context.UserContext
+
   @doc """
   Hash password
   """
@@ -26,5 +28,130 @@ defmodule Pard.Service.AuthService do
   """
   def get_uuid() do
     Ecto.UUID.generate()
+  end
+
+  @doc """
+  Verify password
+  """
+  def verify_password(password, hash) do
+    Bcrypt.verify_pass(password, hash)
+  end
+
+  @doc """
+  Login
+  """
+  def login(email, password) when is_nil(email) == false and is_nil(password) == false do
+    user = UserContext.get_user_by_email(email)
+
+    case user do
+      nil ->
+        {:error, "Invalid email or password"}
+
+      user ->
+        case verify_password(password, user.password_hash) do
+          true ->
+            authenticate(user.id)
+
+          false ->
+            {:error, "Invalid email or password"}
+        end
+    end
+  end
+
+  def login(email, password) when is_nil(email) or is_nil(password) do
+    {:error, "Invalid email or password"}
+  end
+
+  @doc """
+  Refresh Session
+  """
+  def refresh_session(session) do
+    diff = DateTime.diff(session.expire_at, DateTime.utc_now(), :second)
+
+    # If expired
+    if diff < 1 do
+      result =
+        UserContext.update_user_session(session, %{
+          expire_at: DateTime.utc_now() |> DateTime.add(600, :second),
+          value: get_random_salt(30)
+        })
+
+      case result do
+        {:ok, session} ->
+          {true, session}
+
+        {:error, changeset} ->
+          messages =
+            changeset.errors()
+            |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+          {:error, Enum.at(messages, 0)}
+      end
+    else
+      {false, session}
+    end
+  end
+
+  @doc """
+  Is Authenticated
+  """
+  def is_authenticated(user_id, session_value)
+      when is_nil(user_id) == false and is_nil(session_value) == false do
+    result = UserContext.get_user_session_by_id_key(user_id, session_value)
+
+    case result do
+      nil ->
+        false
+
+      session ->
+        {true, session}
+    end
+  end
+
+  def is_authenticated(user_id, session_value) when is_nil(user_id) or is_nil(session_value) do
+    false
+  end
+
+  @doc """
+  Authenticate
+  """
+  def authenticate(user_id) when is_nil(user_id) == false do
+    # Clear old sessions
+    UserContext.delete_user_sessions(user_id)
+
+    item =
+      UserContext.new_session(%{
+        value: get_random_salt(30),
+        expire_at: DateTime.utc_now() |> DateTime.add(600, :second),
+        user_id: user_id
+      })
+
+    case UserContext.create_user_session(item) do
+      {:ok, session} ->
+        {:success, session}
+
+      {:error, changeset} ->
+        messages =
+          changeset.errors()
+          |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+        {:error, Enum.at(messages, 0)}
+    end
+  end
+
+  def authenticate(user_id) when is_nil(user_id) == true do
+    {:error, "Invalid user id"}
+  end
+
+  @doc """
+  Logout
+  """
+  def logout(user_id) when is_nil(user_id) == false do
+    # Clear old sessions
+    UserContext.delete_user_sessions(user_id)
+  end
+
+  def logout(user_id) when is_nil(user_id) do
+    nil
   end
 end
