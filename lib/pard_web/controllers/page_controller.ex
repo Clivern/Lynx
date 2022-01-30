@@ -11,9 +11,9 @@ defmodule PardWeb.PageController do
   alias Pard.Module.InstallModule
   alias Pard.Service.AuthService
 
-  plug :auth
+  plug :is_authenticated
 
-  defp auth(conn, _opts) do
+  defp is_authenticated(conn, _opts) do
     result =
       AuthService.is_authenticated(
         conn.req_cookies["_uid"],
