@@ -42,7 +42,7 @@ defmodule Pard.Module.LockModule do
 
         case LockContext.create_lock(lock) do
           {:ok, _} ->
-            {:ok, ""}
+            :success
 
           {:error, changeset} ->
             messages =
@@ -74,7 +74,7 @@ defmodule Pard.Module.LockModule do
 
         case lock do
           nil ->
-            {:ok, ""}
+            :success
 
           _ ->
             {:locked, lock}
@@ -102,7 +102,7 @@ defmodule Pard.Module.LockModule do
 
         case lock do
           nil ->
-            {:ok, ""}
+            :success
 
           _ ->
             result =
@@ -112,7 +112,7 @@ defmodule Pard.Module.LockModule do
 
             case result do
               {:ok, _} ->
-                {:ok, ""}
+                :success
 
               {:error, changeset} ->
                 messages =

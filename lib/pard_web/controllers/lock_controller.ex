@@ -74,7 +74,7 @@ defmodule PardWeb.LockController do
           message: msg
         })
 
-      {:ok, _} ->
+      :success ->
         action =
           LockModule.lock_action(%{
             project: ValidatorService.get_str(params["project"], ""),
@@ -88,7 +88,7 @@ defmodule PardWeb.LockController do
           })
 
         case action do
-          {:ok, _} ->
+          :success ->
             conn
             |> put_status(:ok)
             |> render("lock.json", %{})
@@ -121,7 +121,7 @@ defmodule PardWeb.LockController do
       })
 
     case action do
-      {:ok, _} ->
+      :success ->
         conn
         |> put_status(:ok)
         |> render("unlock.json", %{})

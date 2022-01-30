@@ -16,7 +16,6 @@ defmodule PardWeb.Router do
 
   pipeline :api do
     plug :accepts, ["json"]
-    plug CORSPlug
   end
 
   pipeline :pub do
@@ -26,6 +25,7 @@ defmodule PardWeb.Router do
   scope "/", PardWeb do
     pipe_through :browser
 
+    get "/install", PageController, :install
     get "/", PageController, :home
     get "/login", PageController, :login
     get "/logout", PageController, :logout
@@ -39,6 +39,7 @@ defmodule PardWeb.Router do
 
     get "/_health", HealthController, :health
     get "/_ready", ReadyController, :ready
+    post "/action/install", InstallController, :action
   end
 
   scope "/api/v1", PardWeb do

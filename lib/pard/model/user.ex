@@ -11,12 +11,14 @@ defmodule Pard.Model.User do
   import Ecto.Changeset
 
   schema "users" do
+    field :uuid, Ecto.UUID
     field :email, :string
     field :name, :string
     field :password_hash, :string
-    field :username, :string
     field :verified, :boolean, default: false
     field :last_seen, :utc_datetime
+    field :role, :string
+    field :api_key, :string
 
     timestamps()
   end
@@ -25,23 +27,29 @@ defmodule Pard.Model.User do
   def changeset(user, attrs) do
     user
     |> cast(attrs, [
+      :uuid,
       :name,
-      :username,
       :email,
       :password_hash,
       :verified,
-      :last_seen
+      :last_seen,
+      :role,
+      :api_key
     ])
     |> validate_required([
+      :uuid,
       :name,
-      :username,
       :email,
       :password_hash,
       :verified,
-      :last_seen
+      :last_seen,
+      :role,
+      :api_key
     ])
-    |> validate_length(:username, min: 3, max: 60)
     |> validate_length(:name, min: 3, max: 60)
     |> validate_length(:email, min: 3, max: 60)
+    |> validate_length(:role, min: 3, max: 60)
+    |> validate_length(:api_key, min: 3, max: 60)
+    |> validate_length(:password_hash, min: 3, max: 300)
   end
 end

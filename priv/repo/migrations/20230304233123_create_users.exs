@@ -7,17 +7,18 @@ defmodule Pard.Repo.Migrations.CreateUsers do
 
   def change do
     create table(:users) do
+      add :uuid, :uuid
       add :name, :string
-      add :username, :string, unique: true
       add :email, :string, unique: true
       add :password_hash, :string
       add :verified, :boolean, default: false
       add :last_seen, :utc_datetime
+      add :role, :string
+      add :api_key, :string
 
       timestamps()
     end
 
-    create index(:users, [:username])
     create index(:users, [:email])
   end
 end

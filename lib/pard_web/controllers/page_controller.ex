@@ -6,13 +6,40 @@ defmodule PardWeb.PageController do
   @moduledoc """
   Page Controller
   """
-
   use PardWeb, :controller
+  alias Pard.Module.InstallModule
+
+  @doc """
+  Install Page
+  """
+  def install(conn, _params) do
+    is_installed = InstallModule.is_installed()
+
+    case is_installed do
+      true ->
+        redirect(conn, to: "/")
+
+      false ->
+        nil
+    end
+
+    render(conn, "install.html", is_logged: false)
+  end
 
   @doc """
   Home Page
   """
   def home(conn, _params) do
+    is_installed = InstallModule.is_installed()
+
+    case is_installed do
+      false ->
+        redirect(conn, to: "/install")
+
+      true ->
+        nil
+    end
+
     render(conn, "home.html", is_logged: false)
   end
 
@@ -26,7 +53,7 @@ defmodule PardWeb.PageController do
   @doc """
   Logout Action
   """
-  def logout(conn, _params) do
+  def logout(_conn, _params) do
     nil
   end
 
@@ -48,6 +75,34 @@ defmodule PardWeb.PageController do
   New Project Page
   """
   def new_project(conn, _params) do
-    render(conn, "new_project.html", is_logged: false)
+    render(conn, "add_project.html", is_logged: false)
+  end
+
+  @doc """
+  List Users Page
+  """
+  def users(conn, _params) do
+    render(conn, "users.html", is_logged: false)
+  end
+
+  @doc """
+  Add User Page
+  """
+  def new_user(conn, _params) do
+    render(conn, "add_user.html", is_logged: false)
+  end
+
+  @doc """
+  Edit User Page
+  """
+  def edit_user(conn, _params) do
+    render(conn, "edit_user.html", is_logged: false)
+  end
+
+  @doc """
+  Settings Page
+  """
+  def settings(conn, _params) do
+    render(conn, "settings.html", is_logged: false)
   end
 end

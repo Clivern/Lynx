@@ -60,7 +60,7 @@ defmodule Pard.Module.StateModule do
 
         case StateContext.create_state(state) do
           {:ok, _} ->
-            {:ok, ""}
+            :success
 
           {:error, changeset} ->
             messages =

@@ -71,7 +71,7 @@ defmodule PardWeb.StateController do
           message: "Project not found"
         })
 
-      {:ok, _} ->
+      :success ->
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(200, body)

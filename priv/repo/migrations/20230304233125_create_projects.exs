@@ -13,6 +13,7 @@ defmodule Pard.Repo.Migrations.CreateProjects do
       add :environment, :string
       add :username, :string
       add :secret, :string
+      add :user_id, references(:users, on_delete: :delete_all)
 
       timestamps()
     end
