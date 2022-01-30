@@ -31,18 +31,12 @@ defmodule Octopus.Context.ConfigContextTest do
           value: "octopus"
         })
 
-      result = ConfigContext.create_config(item)
+      {:ok, result} = ConfigContext.create_config(item)
 
-      case result do
-        {:ok, co} ->
-          assert co.name == "app_name"
-          assert co.value == "octopus"
-          assert co.uuid != ""
-          assert co.id != ""
-
-        _ ->
-          nil
-      end
+      assert result.name == "app_name"
+      assert result.value == "octopus"
+      assert result.uuid != ""
+      assert result.id != ""
     end
 
     # get_config_by_id/1
@@ -53,23 +47,14 @@ defmodule Octopus.Context.ConfigContextTest do
           value: "octopus"
         })
 
-      result = ConfigContext.create_config(item)
+      {:ok, result} = ConfigContext.create_config(item)
 
-      case result do
-        {:ok, co} ->
-          conf = ConfigContext.get_config_by_id(co.id)
+      conf = ConfigContext.get_config_by_id(result.id)
 
-          case conf do
-            conf ->
-              assert conf.name == "app_name"
-              assert conf.value == "octopus"
-              assert conf.uuid != ""
-              assert conf.id != ""
-          end
-
-        _ ->
-          nil
-      end
+      assert conf.name == "app_name"
+      assert conf.value == "octopus"
+      assert conf.uuid != ""
+      assert conf.id != ""
     end
 
     # get_config_by_uuid/1
@@ -80,23 +65,14 @@ defmodule Octopus.Context.ConfigContextTest do
           value: "octopus"
         })
 
-      result = ConfigContext.create_config(item)
+      {:ok, result} = ConfigContext.create_config(item)
 
-      case result do
-        {:ok, co} ->
-          conf = ConfigContext.get_config_by_uuid(co.uuid)
+      conf = ConfigContext.get_config_by_uuid(result.uuid)
 
-          case conf do
-            conf ->
-              assert conf.name == "app_name"
-              assert conf.value == "octopus"
-              assert conf.uuid != ""
-              assert conf.id != ""
-          end
-
-        _ ->
-          nil
-      end
+      assert conf.name == "app_name"
+      assert conf.value == "octopus"
+      assert conf.uuid != ""
+      assert conf.id != ""
     end
 
     # get_config_by_name/1
@@ -107,23 +83,14 @@ defmodule Octopus.Context.ConfigContextTest do
           value: "octopus"
         })
 
-      result = ConfigContext.create_config(item)
+      {:ok, result} = ConfigContext.create_config(item)
 
-      case result do
-        {:ok, co} ->
-          conf = ConfigContext.get_config_by_name(co.name)
+      conf = ConfigContext.get_config_by_name(result.name)
 
-          case conf do
-            conf ->
-              assert conf.name == "app_name"
-              assert conf.value == "octopus"
-              assert conf.uuid != ""
-              assert conf.id != ""
-          end
-
-        _ ->
-          nil
-      end
+      assert conf.name == "app_name"
+      assert conf.value == "octopus"
+      assert conf.uuid != ""
+      assert conf.id != ""
     end
 
     # update_config/2
@@ -134,26 +101,17 @@ defmodule Octopus.Context.ConfigContextTest do
           value: "octopus"
         })
 
-      result = ConfigContext.create_config(item)
+      {:ok, result} = ConfigContext.create_config(item)
 
-      case result do
-        {:ok, co} ->
-          conf =
-            ConfigContext.update_config(co, %{
-              value: "timber"
-            })
+      {:ok, conf} =
+        ConfigContext.update_config(result, %{
+          value: "timber"
+        })
 
-          case conf do
-            {:ok, conf} ->
-              assert conf.name == "app_name"
-              assert conf.value == "timber"
-              assert conf.uuid != ""
-              assert conf.id != ""
-          end
-
-        _ ->
-          nil
-      end
+      assert conf.name == "app_name"
+      assert conf.value == "timber"
+      assert conf.uuid != ""
+      assert conf.id != ""
     end
 
     # delete_config/1
@@ -164,17 +122,12 @@ defmodule Octopus.Context.ConfigContextTest do
           value: "octopus"
         })
 
-      result = ConfigContext.create_config(item)
+      {:ok, result} = ConfigContext.create_config(item)
 
-      case result do
-        {:ok, co} ->
-          ConfigContext.delete_config(co)
-          conf = ConfigContext.get_config_by_name(co.name)
-          assert conf == nil
+      ConfigContext.delete_config(result)
+      conf = ConfigContext.get_config_by_name(result.name)
 
-        _ ->
-          nil
-      end
+      assert conf == nil
     end
   end
 end
