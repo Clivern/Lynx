@@ -42,7 +42,7 @@ test:
 .PHONY: build
 build:
 	@echo ">> ============= Build code ============= <<"
-	@$(mix) compile --warnings-as-errors
+	@$(mix) compile --warnings-as-errors --all-warnings
 
 
 ## release: Release the code
