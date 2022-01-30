@@ -6,7 +6,4 @@ defmodule Pard.Module.UserModule do
   @moduledoc """
   User Module
   """
-
-  alias Pard.Context.UserContext
-  alias Pard.Service.ValidatorService
 end
