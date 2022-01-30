@@ -63,6 +63,7 @@ defmodule Civet.Context.LockContext do
       u in Lock,
       where: u.uuid == ^uuid
     )
+    |> limit(1)
     |> Repo.one()
   end
 
@@ -75,7 +76,17 @@ defmodule Civet.Context.LockContext do
       where: u.project_id == ^project_id,
       where: u.is_active == true
     )
+    |> limit(1)
     |> Repo.one()
+  end
+
+  @doc """
+  Update a lock
+  """
+  def update_lock(lock, attrs) do
+    lock
+    |> Lock.changeset(attrs)
+    |> Repo.update()
   end
 
   @doc """

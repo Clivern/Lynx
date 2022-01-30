@@ -9,9 +9,9 @@ terraform {
   backend "http" {
     address = "http://localhost:4000/api/v1/civet/v1/state"
     lock_address = "http://localhost:4000/api/v1/civet/v1/lock"
-    unlock_address = "http://localhost:4000/api/v1/civet/v1/lock"
+    unlock_address = "http://localhost:4000/api/v1/civet/v1/unlock"
     lock_method = "POST"
-    unlock_method = "DELETE"
+    unlock_method = "POST"
   }
 
   required_version = "= 1.3.7"

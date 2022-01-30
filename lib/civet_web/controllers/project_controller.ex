@@ -39,7 +39,7 @@ defmodule CivetWeb.ProjectController do
       ProjectContext.new_project(%{
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
-        version: ValidatorService.get_str(params["version"], ""),
+        environment: ValidatorService.get_str(params["environment"], ""),
         username: ValidatorService.get_str(params["username"], ""),
         secret: ValidatorService.get_str(params["secret"], "")
       })
@@ -115,7 +115,7 @@ defmodule CivetWeb.ProjectController do
               ProjectContext.new_project(%{
                 name: ValidatorService.get_str(params["name"], project.name),
                 description: ValidatorService.get_str(params["description"], project.description),
-                version: ValidatorService.get_str(params["version"], project.version),
+                environment: ValidatorService.get_str(params["environment"], project.environment),
                 username: ValidatorService.get_str(params["username"], project.username),
                 secret: ValidatorService.get_str(params["secret"], project.secret)
               })

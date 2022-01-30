@@ -33,7 +33,7 @@ defmodule CivetWeb.ProjectView do
       id: project.id,
       name: project.name,
       description: project.description,
-      version: project.version,
+      environment: project.environment,
       username: project.username,
       secret: project.secret,
       createdAt: project.inserted_at,

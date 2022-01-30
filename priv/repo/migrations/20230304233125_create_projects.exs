@@ -10,7 +10,7 @@ defmodule Civet.Repo.Migrations.CreateProjects do
       add :uuid, :uuid
       add :name, :string
       add :description, :string
-      add :version, :string
+      add :environment, :string
       add :username, :string
       add :secret, :string
 
@@ -18,6 +18,6 @@ defmodule Civet.Repo.Migrations.CreateProjects do
     end
 
     create index(:projects, [:name])
-    create index(:projects, [:version])
+    create index(:projects, [:environment])
   end
 end

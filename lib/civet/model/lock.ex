@@ -44,5 +44,3 @@ defmodule Civet.Model.Lock do
     ])
   end
 end
-
-

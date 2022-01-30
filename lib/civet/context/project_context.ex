@@ -18,7 +18,7 @@ defmodule Civet.Context.ProjectContext do
     %{
       name: project.name,
       description: project.description,
-      version: project.version,
+      environment: project.environment,
       username: project.username,
       secret: project.secret,
       uuid: Ecto.UUID.generate()
@@ -60,18 +60,20 @@ defmodule Civet.Context.ProjectContext do
       u in Project,
       where: u.uuid == ^uuid
     )
+    |> limit(1)
     |> Repo.one()
   end
 
   @doc """
-  Get project by name and version
+  Get project by name and environment
   """
-  def get_project_by_name_version(name, version) do
+  def get_project_by_name_environment(name, environment) do
     from(
       u in Project,
       where: u.name == ^name,
-      where: u.version == ^version
+      where: u.environment == ^environment
     )
+    |> limit(1)
     |> Repo.one()
   end
 
@@ -84,6 +86,7 @@ defmodule Civet.Context.ProjectContext do
       where: u.username == ^username,
       where: u.secret == ^secret
     )
+    |> limit(1)
     |> Repo.one()
   end
 

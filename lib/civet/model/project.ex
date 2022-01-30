@@ -14,7 +14,7 @@ defmodule Civet.Model.Project do
     field :uuid, Ecto.UUID
     field :name, :string
     field :description, :string
-    field :version, :string
+    field :environment, :string
     field :username, :string
     field :secret, :string
 
@@ -28,14 +28,14 @@ defmodule Civet.Model.Project do
       :uuid,
       :name,
       :description,
-      :version,
+      :environment,
       :username,
       :secret
     ])
     |> validate_required([
       :uuid,
       :name,
-      :version,
+      :environment,
       :username,
       :secret
     ])

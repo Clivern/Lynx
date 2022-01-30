@@ -8,28 +8,101 @@ defmodule CivetWeb.LockController do
   """
 
   use CivetWeb, :controller
-  # alias Civet.Context.LockContext
-  # alias Civet.Service.ValidatorService
+  alias Civet.Module.LockModule
+  alias Civet.Service.ValidatorService
 
   @doc """
   Lock Endpoint
   """
-  def lock(conn, _params) do
-    body = Jason.encode!(%{status: "ok"})
+  def lock(conn, params) do
+    is_locked =
+      LockModule.is_locked(%{
+        project: ValidatorService.get_str(params["project"], ""),
+        environment: ValidatorService.get_str(params["environment"], "")
+      })
 
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(423, body)
+    case is_locked do
+      {:locked, lock} ->
+        conn
+        |> put_status(:locked)
+        |> render("lock_data.json", %{
+          lock: lock
+        })
+
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{
+          message: msg
+        })
+
+      {:ok, _} ->
+        nil
+    end
+
+    action =
+      LockModule.lock_action(%{
+        project: ValidatorService.get_str(params["project"], ""),
+        environment: ValidatorService.get_str(params["environment"], ""),
+        tf_uuid: ValidatorService.get_str(params["ID"], ""),
+        tf_operation: ValidatorService.get_str(params["Operation"], ""),
+        tf_info: ValidatorService.get_str(params["Info"], ""),
+        tf_who: ValidatorService.get_str(params["Who"], ""),
+        tf_version: ValidatorService.get_str(params["Version"], ""),
+        tf_path: ValidatorService.get_str(params["Path"], "")
+      })
+
+    case action do
+      {:ok, _} ->
+        conn
+        |> put_status(:ok)
+        |> render("lock.json", %{})
+
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{
+          message: msg
+        })
+
+      {:error, msg} ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{
+          message: msg
+        })
+    end
   end
 
   @doc """
   Unlock Endpoint
   """
-  def unlock(conn, _params) do
-    body = Jason.encode!(%{status: "ok"})
+  def unlock(conn, params) do
+    action =
+      LockModule.unlock_action(%{
+        project: ValidatorService.get_str(params["project"], ""),
+        environment: ValidatorService.get_str(params["environment"], "")
+      })
 
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, body)
+    case action do
+      {:ok, _} ->
+        conn
+        |> put_status(:ok)
+        |> render("unlock.json", %{})
+
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{
+          message: msg
+        })
+
+      {:error, msg} ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{
+          message: msg
+        })
+    end
   end
 end
