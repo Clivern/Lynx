@@ -6,8 +6,8 @@ const ApiService = {
 	getURL(endpoint) {
 		let apiURL = "";
 
-		if (process.env.CHAOS_DASHBOARD_URL) {
-			apiURL = process.env.CHAOS_DASHBOARD_URL.replace(/\/$/, "");
+		if (process.env.PARD_DASHBOARD_URL) {
+			apiURL = process.env.PARD_DASHBOARD_URL.replace(/\/$/, "");
 		}
 
 		return apiURL + endpoint;
