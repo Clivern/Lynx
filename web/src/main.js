@@ -1,14 +1,24 @@
-import { createApp } from 'vue'
-import { createPinia } from 'pinia'
+/** @format */
 
-import App from './App.vue'
-import router from './router'
+import Vue from "vue";
+import App from "./App.vue";
+import router from "./router";
+import axios from "axios";
+import Buefy from "buefy";
+import "buefy/dist/buefy.css";
+import Vuex from "vuex";
+import store from "./store";
 
-import './assets/main.css'
+Vue.use(Vuex);
 
-const app = createApp(App)
+Vue.use(Buefy, { defaultIconPack: "fas" });
 
-app.use(createPinia())
-app.use(router)
+Vue.config.productionTip = false;
 
-app.mount('#app')
+Vue.prototype.$http = axios;
+
+new Vue({
+	store: store,
+	router,
+	render: (h) => h(App),
+}).$mount("#app");
