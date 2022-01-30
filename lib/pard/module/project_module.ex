@@ -146,7 +146,7 @@ defmodule Pard.Module.ProjectModule do
 
           _ ->
             ProjectContext.delete_project(project)
-            {:success, "Project with ID #{id} not found"}
+            {:success, "Project with ID #{id} deleted successfully"}
         end
 
       false ->

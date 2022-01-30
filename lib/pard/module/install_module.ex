@@ -37,25 +37,26 @@ defmodule Pard.Module.InstallModule do
   Store Application Configs
   """
   def store_configs(configs \\ %{}) do
-    result =
-      ConfigContext.create_configs([
-        ConfigContext.new_config(%{name: "is_installed", value: "yes"}),
-        ConfigContext.new_config(%{name: "app_name", value: configs[:app_name]}),
-        ConfigContext.new_config(%{name: "app_url", value: configs[:app_url]}),
-        ConfigContext.new_config(%{name: "app_email", value: configs[:app_email]}),
-        ConfigContext.new_config(%{name: "app_key", value: configs[:app_key]})
-      ])
+    items = [
+      ConfigContext.new_config(%{name: "is_installed", value: "yes"}),
+      ConfigContext.new_config(%{name: "app_name", value: configs[:app_name]}),
+      ConfigContext.new_config(%{name: "app_url", value: configs[:app_url]}),
+      ConfigContext.new_config(%{name: "app_email", value: configs[:app_email]}),
+      ConfigContext.new_config(%{name: "app_key", value: configs[:app_key]})
+    ]
 
-    case result do
-      {:ok, _} ->
-        :success
+    for item <- items do
+      case ConfigContext.create_config(item) do
+        {:ok, _} ->
+          :success
 
-      {:error, changeset} ->
-        messages =
-          changeset.errors()
-          |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+        {:error, changeset} ->
+          messages =
+            changeset.errors()
+            |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
 
-        {:error, Enum.at(messages, 0)}
+          {:error, Enum.at(messages, 0)}
+      end
     end
   end
 

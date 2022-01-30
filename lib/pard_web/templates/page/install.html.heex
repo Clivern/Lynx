@@ -8,28 +8,28 @@
       <br /> <br />
     <div class="columns">
       <div class="column"></div>
-      <div class="column">
-        <form action="#" method="post">
+      <div class="column" id="app_install">
+        <form action={Routes.install_path(@conn, :create)} method="post" v-on:submit.prevent="installAction">
         <div class="control">
           <input class="input" name="app_name" type="text" placeholder="Application Name" required>
         </div>
-         <br />
+        <br />
         <div class="control">
           <input class="input" name="app_url" type="url" placeholder="Application URL" required>
         </div>
-         <br />
+        <br />
         <div class="control">
           <input class="input" name="app_email" type="email" placeholder="Application Email" required>
         </div>
-         <br />
+        <br />
         <div class="control">
           <input class="input" name="admin_name" type="text" placeholder="Admin Name" required>
         </div>
-         <br />
+        <br />
         <div class="control">
           <input class="input" name="admin_email" type="email" placeholder="Admin Email" required>
         </div>
-         <br />
+        <br />
         <div class="control">
           <input class="input" name="admin_password" type="password" placeholder="Admin Password" required>
         </div>
@@ -57,7 +57,3 @@
     </div>
   </div>
 </div>
-
-
-
-<%= gettext "Projects" %>

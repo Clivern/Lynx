@@ -32,13 +32,6 @@ defmodule Pard.Context.ConfigContext do
   end
 
   @doc """
-  Create a list of configs
-  """
-  def create_configs(configs \\ []) do
-    Repo.insert_all(Config, configs)
-  end
-
-  @doc """
   Get a config by id
   """
   def get_config_by_id(id) do
