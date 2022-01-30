@@ -2,10 +2,10 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Octopus.Context.StateContextTest do
+defmodule Octopus.Context.TeamContextTest do
   @moduledoc """
-  State Context Test Cases
+  Team Context Test Cases
   """
   use Octopus.DataCase
-  alias Octopus.Context.StateContext, as: StateContext
+  alias Octopus.Context.TeamContext, as: TeamContext
 end

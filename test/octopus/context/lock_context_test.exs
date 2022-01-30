@@ -7,5 +7,5 @@ defmodule Octopus.Context.LockContextTest do
   Lock Context Test Cases
   """
   use Octopus.DataCase
-  # alias Octopus.Context.LockContext, as: LockContext
+  alias Octopus.Context.LockContext, as: LockContext
 end

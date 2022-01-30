@@ -7,5 +7,5 @@ defmodule Octopus.Context.ProjectContextTest do
   Project Context Test Cases
   """
   use Octopus.DataCase
-  # alias Octopus.Context.ProjectContext, as: ProjectContext
+  alias Octopus.Context.ProjectContext, as: ProjectContext
 end
