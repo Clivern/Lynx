@@ -26,7 +26,12 @@ defmodule PardWeb.Router do
   scope "/", PardWeb do
     pipe_through :browser
 
-    get "/", PageController, :index
+    get "/", PageController, :home
+    get "/login", PageController, :login
+    get "/logout", PageController, :logout
+    get "/projects", PageController, :projects
+    get "/projects/:id", PageController, :project
+    get "/projects/new", PageController, :new_project
   end
 
   scope "/", PardWeb do

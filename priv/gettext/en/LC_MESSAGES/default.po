@@ -1,0 +1,72 @@
+## "msgid"s in this file come from POT (.pot) files.
+###
+### Do not add, change, or remove "msgid"s manually here as
+### they're tied to the ones in the corresponding POT file
+### (with the same domain).
+###
+### Use "mix gettext.extract --merge" or "mix gettext.merge"
+### to merge POT files into PO files.
+msgid ""
+msgstr ""
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+#: lib/pard_web/templates/page/index.html.heex:6
+#, elixir-autogen, elixir-format
+msgid "Home"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:50
+#, elixir-autogen, elixir-format
+msgid "If you have any suggestions, bug reports, or annoyances"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:24
+#, elixir-autogen, elixir-format
+msgid "Live"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:38
+#, elixir-autogen, elixir-format
+msgid "Login"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:31
+#, elixir-autogen, elixir-format
+msgid "Logout"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:56
+#, elixir-autogen, elixir-format
+msgid "Made with"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:17
+#, elixir-autogen, elixir-format
+msgid "New Project"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:12
+#, elixir-autogen, elixir-format
+msgid "Projects"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:47
+#, elixir-autogen, elixir-format
+msgid "Welcome to Pard"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:56
+#, elixir-autogen, elixir-format
+msgid "by"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:52
+#, elixir-autogen, elixir-format
+msgid "issue tracker"
+msgstr ""
+
+#: lib/pard_web/templates/page/index.html.heex:51
+#, elixir-autogen, elixir-format
+msgid "please report them to our"
+msgstr ""
