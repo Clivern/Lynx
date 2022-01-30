@@ -18,9 +18,8 @@ defmodule Octopus.Context.ProjectContext do
     %{
       name: project.name,
       description: project.description,
-      environment: project.environment,
-      username: project.username,
-      secret: project.secret,
+      slug: project.slug,
+      team_id: project.team_id,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -65,26 +64,12 @@ defmodule Octopus.Context.ProjectContext do
   end
 
   @doc """
-  Get project by name and environment
+  Get project by slug
   """
-  def get_project_by_name_environment(name, environment) do
+  def get_project_by_slug(slug) do
     from(
       u in Project,
-      where: u.name == ^name,
-      where: u.environment == ^environment
-    )
-    |> limit(1)
-    |> Repo.one()
-  end
-
-  @doc """
-  Get project by username and secret
-  """
-  def get_project_by_username_secret(username, secret) do
-    from(
-      u in Project,
-      where: u.username == ^username,
-      where: u.secret == ^secret
+      where: u.slug == ^slug
     )
     |> limit(1)
     |> Repo.one()

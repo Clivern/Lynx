@@ -9,7 +9,7 @@ defmodule Octopus.Context.UserContext do
 
   import Ecto.Query
   alias Octopus.Repo
-  alias Octopus.Model.{UserMeta, User, UserSession}
+  alias Octopus.Model.{Team, UserMeta, User, UserSession, UserTeam}
 
   @doc """
   Get a new user
@@ -231,5 +231,116 @@ defmodule Octopus.Context.UserContext do
       where: u.user_id == ^user_id
     )
     |> Repo.all()
+  end
+
+  @doc """
+  Add a user to a team
+  """
+  def add_user_to_team(user_id, team_id) do
+    %UserTeam{}
+    |> UserTeam.changeset(%{
+      user_id: user_id,
+      team_id: team_id,
+      uuid: Ecto.UUID.generate()
+    })
+    |> Repo.insert()
+  end
+
+  @doc """
+  Remove user from a team
+  """
+  def remove_user_from_team(user_id, team_id) do
+    from(
+      u in UserTeam,
+      where: u.user_id == ^user_id,
+      where: u.team_id == ^team_id
+    )
+    |> Repo.delete_all()
+  end
+
+  @doc """
+  Get user teams
+  """
+  def get_user_teams(user_id) do
+    teams = []
+
+    items =
+      from(
+        u in UserTeam,
+        where: u.user_id == ^user_id
+      )
+      |> Repo.all()
+
+    for item <- items do
+      team = Repo.get(Team, item.team_id)
+
+      case team do
+        nil ->
+          nil
+
+        _ ->
+          teams = teams ++ [team]
+      end
+    end
+
+    teams
+  end
+
+  @doc """
+  Get team users
+  """
+  def get_team_users(team_id) do
+    users = []
+
+    items =
+      from(
+        u in UserTeam,
+        where: u.team_id == ^team_id
+      )
+      |> Repo.all()
+
+    for item <- items do
+      user = Repo.get(User, item.user_id)
+
+      case user do
+        nil ->
+          nil
+
+        _ ->
+          users = users ++ [user]
+      end
+    end
+
+    users
+  end
+
+  @doc """
+  Validate user id
+  """
+  def validate_user_id(user_id) do
+    user = Repo.get(User, user_id)
+
+    case user do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
+  end
+
+  @doc """
+  Validate team id
+  """
+  def validate_team_id(team_id) do
+    team = Repo.get(Team, team_id)
+
+    case team do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
   end
 end
