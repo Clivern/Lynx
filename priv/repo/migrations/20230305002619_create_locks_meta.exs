@@ -2,19 +2,19 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Repo.Migrations.CreateMessagesMeta do
+defmodule Civet.Repo.Migrations.CreateLocksMeta do
   use Ecto.Migration
 
   def change do
-    create table(:messages_meta) do
+    create table(:locks_meta) do
       add :key, :string
       add :value, :text
-      add :message_id, references(:messages, on_delete: :delete_all)
+      add :lock_id, references(:locks, on_delete: :delete_all)
 
       timestamps()
     end
 
-    create index(:messages_meta, [:key])
-    create index(:messages_meta, [:message_id])
+    create index(:locks_meta, [:key])
+    create index(:locks_meta, [:lock_id])
   end
 end

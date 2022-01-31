@@ -2,34 +2,31 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Model.MessageMeta do
+defmodule Civet.Model.Lock do
   @moduledoc """
-  MessageMeta Model
+  Lock Model
   """
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "messages_meta" do
-    field :key, :string
-    field :value, :string
-    field :message_id, :id
+  schema "locks" do
+    field :uuid, Ecto.UUID
+    field :project_id, :id
 
     timestamps()
   end
 
   @doc false
-  def changeset(message_meta, attrs) do
-    message_meta
+  def changeset(lock, attrs) do
+    lock
     |> cast(attrs, [
-      :key,
-      :value,
-      :message_id
+      :uuid,
+      :project_id
     ])
     |> validate_required([
-      :key,
-      :value,
-      :message_id
+      :uuid,
+      :project_id
     ])
   end
 end

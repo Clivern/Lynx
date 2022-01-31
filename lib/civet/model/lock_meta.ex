@@ -2,34 +2,34 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Model.Channel do
+defmodule Civet.Model.LockMeta do
   @moduledoc """
-  Channel Model
+  LockMeta Model
   """
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "channels" do
-    field :uuid, Ecto.UUID
-    field :first_user_id, :id
-    field :second_user_id, :id
+  schema "locks_meta" do
+    field :key, :string
+    field :value, :string
+    field :lock_id, :id
 
     timestamps()
   end
 
   @doc false
-  def changeset(channel, attrs) do
-    channel
+  def changeset(lock_meta, attrs) do
+    lock_meta
     |> cast(attrs, [
-      :uuid,
-      :first_user_id,
-      :second_user_id
+      :key,
+      :value,
+      :lock_id
     ])
     |> validate_required([
-      :uuid,
-      :first_user_id,
-      :second_user_id
+      :key,
+      :value,
+      :lock_id
     ])
   end
 end

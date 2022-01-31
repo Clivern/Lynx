@@ -2,14 +2,14 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Context.ChannelContext do
+defmodule Civet.Context.ProjectContext do
   @moduledoc """
-  Channel Context Module
+  Project Context Module
   """
 
   import Ecto.Query
   alias Civet.Repo
-  alias Civet.Model.{ChannelMeta, Channel}
+  alias Civet.Model.{ProjectMeta, Project}
 
   @doc """
   Get a channel map
@@ -37,8 +37,8 @@ defmodule Civet.Context.ChannelContext do
   Create a new channel
   """
   def create_channel(attrs \\ %{}) do
-    %Channel{}
-    |> Channel.changeset(attrs)
+    %Project{}
+    |> Project.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -46,7 +46,7 @@ defmodule Civet.Context.ChannelContext do
   Retrieve a channel by ID
   """
   def get_channel_by_id(id) do
-    Repo.get(Channel, id)
+    Repo.get(Project, id)
   end
 
   @doc """
@@ -54,7 +54,7 @@ defmodule Civet.Context.ChannelContext do
   """
   def get_channel_by_uuid(uuid) do
     from(
-      u in Channel,
+      u in Project,
       where: u.uuid == ^uuid
     )
     |> Repo.one()
@@ -65,7 +65,7 @@ defmodule Civet.Context.ChannelContext do
   """
   def get_channel_by_users(first_user_id, second_user_id) do
     from(
-      u in Channel,
+      u in Project,
       where: u.first_user_id == ^first_user_id,
       where: u.second_user_id == ^second_user_id
     )
@@ -77,7 +77,7 @@ defmodule Civet.Context.ChannelContext do
   """
   def update_channel(channel, attrs) do
     channel
-    |> Channel.changeset(attrs)
+    |> Project.changeset(attrs)
     |> Repo.update()
   end
 
@@ -92,14 +92,14 @@ defmodule Civet.Context.ChannelContext do
   Retrieve all channels
   """
   def get_channels() do
-    Repo.all(Channel)
+    Repo.all(Project)
   end
 
   @doc """
   Retrieve channels
   """
   def get_channels(offset, limit) do
-    from(u in Channel,
+    from(u in Project,
       limit: ^limit,
       offset: ^offset
     )
@@ -110,8 +110,8 @@ defmodule Civet.Context.ChannelContext do
   Create a new channel meta attribute
   """
   def create_channel_meta(attrs \\ %{}) do
-    %ChannelMeta{}
-    |> ChannelMeta.changeset(attrs)
+    %ProjectMeta{}
+    |> ProjectMeta.changeset(attrs)
     |> Repo.insert()
   end
 
@@ -119,14 +119,14 @@ defmodule Civet.Context.ChannelContext do
   Retrieve a channel meta attribute by ID
   """
   def get_channel_meta_by_id(id) do
-    Repo.get(ChannelMeta, id)
+    Repo.get(ProjectMeta, id)
   end
 
   @doc """
   Update a channel meta attribute
   """
   def update_channel_meta(channel_meta, attrs) do
-    ChannelMeta.changeset(channel_meta, attrs)
+    ProjectMeta.changeset(channel_meta, attrs)
     |> Repo.update()
   end
 
@@ -142,7 +142,7 @@ defmodule Civet.Context.ChannelContext do
   """
   def get_channel_meta_by_key(channel_id, meta_key) do
     from(
-      u in ChannelMeta,
+      u in ProjectMeta,
       where: u.channel_id == ^channel_id,
       where: u.key == ^meta_key
     )
@@ -154,7 +154,7 @@ defmodule Civet.Context.ChannelContext do
   """
   def get_channel_metas(channel_id) do
     from(
-      u in ChannelMeta,
+      u in ProjectMeta,
       where: u.channel_id == ^channel_id
     )
     |> Repo.all()

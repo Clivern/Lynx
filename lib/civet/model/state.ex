@@ -2,34 +2,34 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Model.ChannelMeta do
+defmodule Civet.Model.State do
   @moduledoc """
-  ChannelMeta Model
+  State Model
   """
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "channels_meta" do
-    field :key, :string
-    field :value, :string
-    field :channel_id, :id
+  schema "states" do
+    field :uuid, Ecto.UUID
+    field :name, :string
+    field :value, :text
 
     timestamps()
   end
 
   @doc false
-  def changeset(channel_meta, attrs) do
-    channel_meta
+  def changeset(state, attrs) do
+    state
     |> cast(attrs, [
-      :key,
-      :value,
-      :channel_id
+      :uuid,
+      :name,
+      :value
     ])
     |> validate_required([
-      :key,
-      :value,
-      :channel_id
+      :uuid,
+      :name,
+      :value
     ])
   end
 end

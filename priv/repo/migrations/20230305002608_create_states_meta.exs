@@ -2,19 +2,19 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Repo.Migrations.CreateUsersMeta do
+defmodule Civet.Repo.Migrations.CreateStatesMeta do
   use Ecto.Migration
 
   def change do
-    create table(:users_meta) do
+    create table(:states_meta) do
       add :key, :string
       add :value, :text
-      add :user_id, references(:users, on_delete: :delete_all)
+      add :state_id, references(:states, on_delete: :delete_all)
 
       timestamps()
     end
 
-    create index(:users_meta, [:key])
-    create index(:users_meta, [:user_id])
+    create index(:states_meta, [:key])
+    create index(:states_meta, [:state_id])
   end
 end

@@ -2,8 +2,8 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Service.ChannelService do
+defmodule Civet.Service.StateService do
   @moduledoc """
-  Channel Service Module
+  State Service Module
   """
 end

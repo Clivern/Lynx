@@ -2,34 +2,34 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Model.ClientMeta do
+defmodule Civet.Model.StateMeta do
   @moduledoc """
-  ClientMeta Model
+  StateMeta Model
   """
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "clients_meta" do
+  schema "states_meta" do
     field :key, :string
     field :value, :string
-    field :client_id, :id
+    field :state_id, :id
 
     timestamps()
   end
 
   @doc false
-  def changeset(client_meta, attrs) do
-    client_meta
+  def changeset(state_meta, attrs) do
+    state_meta
     |> cast(attrs, [
       :key,
       :value,
-      :client_id
+      :state_id
     ])
     |> validate_required([
       :key,
       :value,
-      :client_id
+      :state_id
     ])
   end
 end

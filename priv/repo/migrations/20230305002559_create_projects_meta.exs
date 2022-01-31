@@ -2,19 +2,19 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Repo.Migrations.CreateChannelsMeta do
+defmodule Civet.Repo.Migrations.CreateProjectsMeta do
   use Ecto.Migration
 
   def change do
-    create table(:channels_meta) do
+    create table(:projects_meta) do
       add :key, :string
       add :value, :text
-      add :channel_id, references(:channels, on_delete: :delete_all)
+      add :project_id, references(:projects, on_delete: :delete_all)
 
       timestamps()
     end
 
-    create index(:channels_meta, [:key])
-    create index(:channels_meta, [:channel_id])
+    create index(:projects_meta, [:key])
+    create index(:projects_meta, [:project_id])
   end
 end

@@ -76,11 +76,4 @@ defmodule Civet.Service.ValidatorService do
       false -> value
     end
   end
-
-  @doc """
-  Validate a Gender
-  """
-  def is_gender(gender) do
-    gender in ["male", "female"]
-  end
 end
