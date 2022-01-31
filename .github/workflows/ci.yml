@@ -35,14 +35,14 @@ jobs:
           otp-version: ${{matrix.otp}}
           elixir-version: ${{matrix.elixir}}
 
-      - name: Get dependencies
+      - name: Get Dependencies
         run: make deps
 
-      - name: Check pard format
+      - name: Check Pard Format
         run: make fmt_check
 
-      - name: Test pard
+      - name: Test Pard
         run: make ci
 
-      - name: Build pard
+      - name: Build Pard
         run: make build
