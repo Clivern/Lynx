@@ -77,6 +77,17 @@ defmodule Campfire.Context.UserContext do
   end
 
   @doc """
+  Get user by API Key
+  """
+  def get_user_by_api_key(api_key) do
+    from(
+      u in User,
+      where: u.api_key == ^api_key
+    )
+    |> Repo.one()
+  end
+
+  @doc """
   Get user by email
   """
   def get_user_by_email(email) do
@@ -119,6 +130,16 @@ defmodule Campfire.Context.UserContext do
       offset: ^offset
     )
     |> Repo.all()
+  end
+
+  @doc """
+  Count all users
+  """
+  def count_users() do
+    from(u in User,
+      select: count(u.id)
+    )
+    |> Repo.one()
   end
 
   @doc """

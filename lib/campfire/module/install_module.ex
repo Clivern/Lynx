@@ -71,7 +71,7 @@ defmodule Campfire.Module.InstallModule do
         password_hash: AuthService.hash_password(data[:admin_password], data[:app_key]),
         verified: false,
         last_seen: DateTime.utc_now(),
-        role: "super_admin",
+        role: "super",
         api_key: AuthService.get_uuid()
       })
 

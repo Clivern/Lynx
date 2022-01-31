@@ -140,7 +140,7 @@ defmodule Campfire.Service.AuthService do
   end
 
   def authenticate(user_id) when is_nil(user_id) == true do
-    {:error, "Invalid user id"}
+    {:error, "Invalid User ID"}
   end
 
   @doc """
@@ -153,5 +153,22 @@ defmodule Campfire.Service.AuthService do
 
   def logout(user_id) when is_nil(user_id) do
     nil
+  end
+
+  @doc """
+  Get User By API Key
+  """
+  def get_user_by_api(api_key) when is_nil(api_key) == false do
+    case UserContext.get_user_by_api_key(api_key) do
+      nil ->
+        {:not_found, "Invalid API Key"}
+
+      user ->
+        {:ok, user}
+    end
+  end
+
+  def get_user_by_api(api_key) when is_nil(api_key) do
+    {:not_found, "Invalid API Key"}
   end
 end

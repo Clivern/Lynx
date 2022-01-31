@@ -9,7 +9,7 @@ defmodule Campfire.Context.ConfigContextTest do
   use Campfire.DataCase
   alias Campfire.Context.ConfigContext, as: ConfigContext
 
-  describe "config" do
+  describe "new_config/1" do
     # new_config/1
     test "new_config/1 test cases" do
       item =
@@ -22,7 +22,9 @@ defmodule Campfire.Context.ConfigContextTest do
       assert item.value == "campfire"
       assert item.uuid != ""
     end
+  end
 
+  describe "create_config/1" do
     # create_config/1
     test "create_config/1 test cases" do
       item =
@@ -38,7 +40,9 @@ defmodule Campfire.Context.ConfigContextTest do
       assert result.uuid != ""
       assert result.id != ""
     end
+  end
 
+  describe "get_config_by_id/1" do
     # get_config_by_id/1
     test "get_config_by_id/1 test cases" do
       item =
@@ -56,7 +60,9 @@ defmodule Campfire.Context.ConfigContextTest do
       assert conf.uuid != ""
       assert conf.id != ""
     end
+  end
 
+  describe "get_config_by_uuid/1" do
     # get_config_by_uuid/1
     test "get_config_by_uuid/1 test cases" do
       item =
@@ -74,7 +80,9 @@ defmodule Campfire.Context.ConfigContextTest do
       assert conf.uuid != ""
       assert conf.id != ""
     end
+  end
 
+  describe "get_config_by_name/1" do
     # get_config_by_name/1
     test "get_config_by_name/1 test cases" do
       item =
@@ -92,7 +100,9 @@ defmodule Campfire.Context.ConfigContextTest do
       assert conf.uuid != ""
       assert conf.id != ""
     end
+  end
 
+  describe "update_config/2" do
     # update_config/2
     test "update_config/2 test cases" do
       item =
@@ -113,7 +123,9 @@ defmodule Campfire.Context.ConfigContextTest do
       assert conf.uuid != ""
       assert conf.id != ""
     end
+  end
 
+  describe "delete_config/1" do
     # delete_config/1
     test "delete_config/1 test cases" do
       item =
