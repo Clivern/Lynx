@@ -45,10 +45,10 @@ window.liveSocket = liveSocket
 
 import socket from "./user_socket"
 
-var octopus_app = octopus_app || {};
+var campfire_app = campfire_app || {};
 
 // Install Page
-octopus_app.install_screen = (Vue, axios, $) => {
+campfire_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -92,7 +92,7 @@ octopus_app.install_screen = (Vue, axios, $) => {
 }
 
 // Login Page
-octopus_app.login_screen = (Vue, axios, $) => {
+campfire_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -144,7 +144,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_install")) {
-        octopus_app.install_screen(
+        campfire_app.install_screen(
             Vue,
             axios,
             $
@@ -152,7 +152,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_login")) {
-        octopus_app.login_screen(
+        campfire_app.login_screen(
             Vue,
             axios,
             $

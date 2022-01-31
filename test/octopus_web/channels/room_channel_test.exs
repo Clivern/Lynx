@@ -1,11 +1,11 @@
-defmodule OctopusWeb.RoomChannelTest do
-  use OctopusWeb.ChannelCase
+defmodule CampfireWeb.RoomChannelTest do
+  use CampfireWeb.ChannelCase
 
   setup do
     {:ok, _, socket} =
-      OctopusWeb.UserSocket
+      CampfireWeb.UserSocket
       |> socket("user_id", %{some: :assign})
-      |> subscribe_and_join(OctopusWeb.RoomChannel, "room:lobby")
+      |> subscribe_and_join(CampfireWeb.RoomChannel, "room:lobby")
 
     %{socket: socket}
   end

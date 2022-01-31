@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :octopus,
-  ecto_repos: [Octopus.Repo]
+config :campfire,
+  ecto_repos: [Campfire.Repo]
 
 # Configures the endpoint
-config :octopus, OctopusWeb.Endpoint,
+config :campfire, CampfireWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: OctopusWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Octopus.PubSub,
+  render_errors: [view: CampfireWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Campfire.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :octopus, OctopusWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :octopus, Octopus.Mailer, adapter: Swoosh.Adapters.Local
+config :campfire, Campfire.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

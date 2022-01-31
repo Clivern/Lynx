@@ -2,9 +2,9 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Octopus do
+defmodule Campfire do
   @moduledoc """
-  Octopus keeps the contexts that define your domain
+  Campfire keeps the contexts that define your domain
   and business logic.
 
   Contexts are also responsible for managing your data, regardless

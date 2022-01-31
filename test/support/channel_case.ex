@@ -1,4 +1,4 @@
-defmodule OctopusWeb.ChannelCase do
+defmodule CampfireWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule OctopusWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use OctopusWeb.ChannelCase, async: true`, although
+  by setting `use CampfireWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,15 +21,15 @@ defmodule OctopusWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import OctopusWeb.ChannelCase
+      import CampfireWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint OctopusWeb.Endpoint
+      @endpoint CampfireWeb.Endpoint
     end
   end
 
   setup tags do
-    Octopus.DataCase.setup_sandbox(tags)
+    Campfire.DataCase.setup_sandbox(tags)
     :ok
   end
 end

@@ -11,62 +11,62 @@
 msgid ""
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:6
+#: lib/campfire_web/templates/page/index.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:50
+#: lib/campfire_web/templates/page/index.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "If you have any suggestions, bug reports, or annoyances"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:24
+#: lib/campfire_web/templates/page/index.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Live"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:38
+#: lib/campfire_web/templates/page/index.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Login"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:31
+#: lib/campfire_web/templates/page/index.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:56
+#: lib/campfire_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Made with"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:17
+#: lib/campfire_web/templates/page/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "New Project"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:12
+#: lib/campfire_web/templates/page/index.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Projects"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:47
+#: lib/campfire_web/templates/page/index.html.heex:47
 #, elixir-autogen, elixir-format
-msgid "Welcome to Octopus"
+msgid "Welcome to Campfire"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:56
+#: lib/campfire_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "by"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:52
+#: lib/campfire_web/templates/page/index.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "issue tracker"
 msgstr ""
 
-#: lib/octopus_web/templates/page/index.html.heex:51
+#: lib/campfire_web/templates/page/index.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "please report them to our"
 msgstr ""

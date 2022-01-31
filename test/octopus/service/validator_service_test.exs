@@ -2,12 +2,12 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Octopus.Service.ValidatorServiceTest do
+defmodule Campfire.Service.ValidatorServiceTest do
   @moduledoc """
   Validator Service Test Cases
   """
-  use Octopus.DataCase
-  alias Octopus.Service.ValidatorService, as: ValidatorService
+  use Campfire.DataCase
+  alias Campfire.Service.ValidatorService, as: ValidatorService
 
   describe "validator" do
     test "validate_int/1 test cases" do

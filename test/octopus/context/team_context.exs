@@ -2,10 +2,10 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Octopus.Context.TeamContextTest do
+defmodule Campfire.Context.TeamContextTest do
   @moduledoc """
   Team Context Test Cases
   """
-  use Octopus.DataCase
-  alias Octopus.Context.TeamContext, as: TeamContext
+  use Campfire.DataCase
+  alias Campfire.Context.TeamContext, as: TeamContext
 end

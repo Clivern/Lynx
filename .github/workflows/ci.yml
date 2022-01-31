@@ -28,9 +28,9 @@ jobs:
         image: postgres:latest
         ports: ['5432:5432']
         env:
-          POSTGRES_DB: octopus_dev
-          POSTGRES_USER: octopus
-          POSTGRES_PASSWORD: octopus
+          POSTGRES_DB: campfire_dev
+          POSTGRES_USER: campfire
+          POSTGRES_PASSWORD: campfire
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -42,14 +42,14 @@ jobs:
       - name: Get Dependencies
         run: make deps
 
-      - name: Check Octopus Format
+      - name: Check Campfire Format
         run: make fmt_check
 
       - name: Get Version
         run: make v
 
-      - name: Test Octopus
+      - name: Test Campfire
         run: make ci
 
-      - name: Build Octopus
+      - name: Build Campfire
         run: make build

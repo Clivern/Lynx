@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-octopus-*.tar
+campfire-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ octopus-*.tar
 npm-debug.log
 /assets/node_modules/
 
-octopus_test*
-octopus_dev*
+campfire_test*
+campfire_dev*
 .vscode
 
 .terraform

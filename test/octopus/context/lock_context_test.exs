@@ -2,10 +2,10 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Octopus.Context.LockContextTest do
+defmodule Campfire.Context.LockContextTest do
   @moduledoc """
   Lock Context Test Cases
   """
-  use Octopus.DataCase
-  alias Octopus.Context.LockContext, as: LockContext
+  use Campfire.DataCase
+  alias Campfire.Context.LockContext, as: LockContext
 end

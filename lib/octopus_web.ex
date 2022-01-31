@@ -2,15 +2,15 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule OctopusWeb do
+defmodule CampfireWeb do
   @moduledoc """
   The entrypoint for defining your web interface, such
   as controllers, views, channels and so on.
 
   This can be used in your application as:
 
-      use OctopusWeb, :controller
-      use OctopusWeb, :view
+      use CampfireWeb, :controller
+      use CampfireWeb, :view
 
   The definitions below will be executed for every view,
   controller, etc, so keep them short and clean, focused
@@ -23,19 +23,19 @@ defmodule OctopusWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: OctopusWeb
+      use Phoenix.Controller, namespace: CampfireWeb
 
       import Plug.Conn
-      import OctopusWeb.Gettext
-      alias OctopusWeb.Router.Helpers, as: Routes
+      import CampfireWeb.Gettext
+      alias CampfireWeb.Router.Helpers, as: Routes
     end
   end
 
   def view do
     quote do
       use Phoenix.View,
-        root: "lib/octopus_web/templates",
-        namespace: OctopusWeb
+        root: "lib/campfire_web/templates",
+        namespace: CampfireWeb
 
       # Import convenience functions from controllers
       import Phoenix.Controller,
@@ -49,7 +49,7 @@ defmodule OctopusWeb do
   def live_view do
     quote do
       use Phoenix.LiveView,
-        layout: {OctopusWeb.LayoutView, "live.html"}
+        layout: {CampfireWeb.LayoutView, "live.html"}
 
       unquote(view_helpers())
     end
@@ -84,7 +84,7 @@ defmodule OctopusWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import OctopusWeb.Gettext
+      import CampfireWeb.Gettext
     end
   end
 
@@ -99,9 +99,9 @@ defmodule OctopusWeb do
       # Import basic rendering functionality (render, render_layout, etc)
       import Phoenix.View
 
-      import OctopusWeb.ErrorHelpers
-      import OctopusWeb.Gettext
-      alias OctopusWeb.Router.Helpers, as: Routes
+      import CampfireWeb.ErrorHelpers
+      import CampfireWeb.Gettext
+      alias CampfireWeb.Router.Helpers, as: Routes
     end
   end
 

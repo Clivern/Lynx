@@ -2,6 +2,6 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule OctopusWeb.PageViewTest do
-  use OctopusWeb.ConnCase, async: true
+defmodule CampfireWeb.PageViewTest do
+  use CampfireWeb.ConnCase, async: true
 end

@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :octopus, Octopus.Repo,
-  username: "octopus",
-  password: "octopus",
+config :campfire, Campfire.Repo,
+  username: "campfire",
+  password: "campfire",
   hostname: "localhost",
-  database: "octopus_dev",
+  database: "campfire_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :octopus, Octopus.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :octopus, OctopusWeb.Endpoint,
+config :campfire, CampfireWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -54,13 +54,13 @@ config :octopus, OctopusWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :octopus, OctopusWeb.Endpoint,
+config :campfire, CampfireWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/octopus_web/(live|views)/.*(ex)$",
-      ~r"lib/octopus_web/templates/.*(eex)$"
+      ~r"lib/campfire_web/(live|views)/.*(ex)$",
+      ~r"lib/campfire_web/templates/.*(eex)$"
     ]
   ]
 

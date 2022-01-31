@@ -2,12 +2,12 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Octopus.Context.ConfigContextTest do
+defmodule Campfire.Context.ConfigContextTest do
   @moduledoc """
   Lock Context Test Cases
   """
-  use Octopus.DataCase
-  alias Octopus.Context.ConfigContext, as: ConfigContext
+  use Campfire.DataCase
+  alias Campfire.Context.ConfigContext, as: ConfigContext
 
   describe "config" do
     # new_config/1
@@ -15,11 +15,11 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       assert item.name == "app_name"
-      assert item.value == "octopus"
+      assert item.value == "campfire"
       assert item.uuid != ""
     end
 
@@ -28,13 +28,13 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
 
       assert result.name == "app_name"
-      assert result.value == "octopus"
+      assert result.value == "campfire"
       assert result.uuid != ""
       assert result.id != ""
     end
@@ -44,7 +44,7 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -52,7 +52,7 @@ defmodule Octopus.Context.ConfigContextTest do
       conf = ConfigContext.get_config_by_id(result.id)
 
       assert conf.name == "app_name"
-      assert conf.value == "octopus"
+      assert conf.value == "campfire"
       assert conf.uuid != ""
       assert conf.id != ""
     end
@@ -62,7 +62,7 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -70,7 +70,7 @@ defmodule Octopus.Context.ConfigContextTest do
       conf = ConfigContext.get_config_by_uuid(result.uuid)
 
       assert conf.name == "app_name"
-      assert conf.value == "octopus"
+      assert conf.value == "campfire"
       assert conf.uuid != ""
       assert conf.id != ""
     end
@@ -80,7 +80,7 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -88,7 +88,7 @@ defmodule Octopus.Context.ConfigContextTest do
       conf = ConfigContext.get_config_by_name(result.name)
 
       assert conf.name == "app_name"
-      assert conf.value == "octopus"
+      assert conf.value == "campfire"
       assert conf.uuid != ""
       assert conf.id != ""
     end
@@ -98,7 +98,7 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -119,7 +119,7 @@ defmodule Octopus.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "octopus"
+          value: "campfire"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
