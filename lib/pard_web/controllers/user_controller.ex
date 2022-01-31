@@ -40,6 +40,42 @@ defmodule PardWeb.UserController do
   end
 
   @doc """
+  Renew Token Endpoint
+  """
+  def renew_token(conn, params) do
+    result = AuthService.is_authenticated(params["user_id"], params["token"])
+
+    case result do
+      false ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{error: "Invalid request"})
+        |> halt()
+
+      {true, session} ->
+        case AuthService.refresh_session(session) do
+          {:error, message} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{error: message})
+            |> halt()
+
+          {_, sess} ->
+            conn
+            |> put_status(:ok)
+            |> render(
+              "token_success.json",
+              %{
+                token: sess.value,
+                user: sess.user_id
+              }
+            )
+            |> halt()
+        end
+    end
+  end
+
+  @doc """
   List Action Endpoint
   """
   def list(conn, _params) do
