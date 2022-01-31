@@ -13,6 +13,13 @@ defmodule Civet.Model.Lock do
   schema "locks" do
     field :uuid, Ecto.UUID
     field :project_id, :id
+    field :tf_uuid, :string
+    field :tf_operation, :string
+    field :tf_info, :string
+    field :tf_who, :string
+    field :tf_version, :string
+    field :tf_path, :string
+    field :is_active, :boolean
 
     timestamps()
   end
@@ -22,7 +29,14 @@ defmodule Civet.Model.Lock do
     lock
     |> cast(attrs, [
       :uuid,
-      :project_id
+      :project_id,
+      :tf_uuid,
+      :tf_operation,
+      :tf_info,
+      :tf_who,
+      :tf_version,
+      :tf_path,
+      :is_active
     ])
     |> validate_required([
       :uuid,
@@ -30,3 +44,5 @@ defmodule Civet.Model.Lock do
     ])
   end
 end
+
+

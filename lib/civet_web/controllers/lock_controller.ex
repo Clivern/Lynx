@@ -19,7 +19,7 @@ defmodule CivetWeb.LockController do
 
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, body)
+    |> send_resp(423, body)
   end
 
   @doc """

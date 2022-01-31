@@ -45,12 +45,13 @@ defmodule CivetWeb.Router do
     put "/project/:id", ProjectController, :update
     delete "/project/:id", ProjectController, :delete
 
-    put "/:project/:version/lock", LockController, :lock
-    put "/:project/:version/unlock", LockController, :unlock
+    # {"ID":"06c04ecf-24a2-e31a-6173-cf727b696837","Operation":"OperationTypeApply","Info":"","Who":"grzesiek@debian","Version":"0.12.19","Created":"2020-04-01T10:12:21.670141181Z","Path":""}
+    post "/:project/:version/lock", LockController, :lock
+    delete "/:project/:version/lock", LockController, :unlock
 
     get "/:project/:version/state", StateController, :index
     post "/:project/:version/state", StateController, :create
-    delete "/:project/:version/state", StateController, :delete
+    #delete "/:project/:version/state", StateController, :delete
   end
 
   # Enables LiveDashboard only for development

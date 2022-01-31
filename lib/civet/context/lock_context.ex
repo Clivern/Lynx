@@ -17,7 +17,14 @@ defmodule Civet.Context.LockContext do
   def new_lock(lock \\ %{}) do
     %{
       project_id: lock.project_id,
-      uuid: Ecto.UUID.generate()
+      uuid: Ecto.UUID.generate(),
+      tf_uuid: lock.tf_uuid,
+      tf_operation: lock.tf_operation,
+      tf_info: lock.tf_info,
+      tf_who: lock.tf_who,
+      tf_version: lock.tf_version,
+      tf_path: lock.tf_path,
+      is_active: lock.is_active
     }
   end
 
@@ -60,12 +67,13 @@ defmodule Civet.Context.LockContext do
   end
 
   @doc """
-  Get a lock by project id
+  Get active lock by project id
   """
-  def get_lock_by_project_id(project_id) do
+  def get_active_lock_by_project_id(project_id) do
     from(
       u in Lock,
-      where: u.project_id == ^project_id
+      where: u.project_id == ^project_id,
+      where: u.is_active == true
     )
     |> Repo.one()
   end
