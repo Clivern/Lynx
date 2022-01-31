@@ -8,6 +8,7 @@ defmodule PardWeb.LockController do
   """
 
   use PardWeb, :controller
+
   alias Pard.Module.LockModule
   alias Pard.Module.ProjectModule
   alias Pard.Service.ValidatorService

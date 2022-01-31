@@ -8,6 +8,7 @@ defmodule PardWeb.InstallController do
   """
 
   use PardWeb, :controller
+
   alias Pard.Module.InstallModule
   alias Pard.Service.ValidatorService
 
@@ -15,6 +16,7 @@ defmodule PardWeb.InstallController do
   Install Action Endpoint
   """
   def action(conn, params) do
+    # Check if application is installed
     is_installed = InstallModule.is_installed()
 
     case is_installed do
@@ -30,6 +32,7 @@ defmodule PardWeb.InstallController do
 
     app_key = InstallModule.get_app_key()
 
+    # Store configs
     config_result =
       InstallModule.store_configs(%{
         app_name: ValidatorService.get_str(params["app_name"], "Prad"),
@@ -44,8 +47,12 @@ defmodule PardWeb.InstallController do
         |> put_status(:bad_request)
         |> render("error.json", %{error: msg})
         |> halt()
+
+      :success ->
+        nil
     end
 
+    # Create admin account
     admin_result =
       InstallModule.create_admin(%{
         admin_name: ValidatorService.get_str(params["admin_name"], ""),
@@ -60,8 +67,12 @@ defmodule PardWeb.InstallController do
         |> put_status(:bad_request)
         |> render("error.json", %{error: msg})
         |> halt()
+
+      :success ->
+        nil
     end
 
+    # Installation succeeded
     conn
     |> put_status(:ok)
     |> render("success.json", %{message: "Application installed successfully"})

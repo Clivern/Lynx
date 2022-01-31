@@ -8,6 +8,7 @@ defmodule PardWeb.ProjectController do
   """
 
   use PardWeb, :controller
+
   alias Pard.Context.ProjectContext
   alias Pard.Module.ProjectModule
   alias Pard.Service.ValidatorService

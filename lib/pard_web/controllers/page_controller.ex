@@ -7,6 +7,7 @@ defmodule PardWeb.PageController do
   Page Controller
   """
   use PardWeb, :controller
+
   alias Pard.Module.InstallModule
 
   @doc """
@@ -20,10 +21,8 @@ defmodule PardWeb.PageController do
         redirect(conn, to: "/")
 
       false ->
-        nil
+        render(conn, "install.html")
     end
-
-    render(conn, "install.html", is_logged: false)
   end
 
   @doc """
@@ -37,10 +36,8 @@ defmodule PardWeb.PageController do
         redirect(conn, to: "/install")
 
       true ->
-        nil
+        render(conn, "home.html", is_logged: false)
     end
-
-    render(conn, "home.html", is_logged: false)
   end
 
   @doc """
