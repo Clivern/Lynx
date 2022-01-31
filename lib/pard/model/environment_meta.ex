@@ -2,17 +2,16 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Pard.Model.State do
+defmodule Pard.Model.EnvironmentMeta do
   @moduledoc """
-  State Model
+  EnvironmentMeta Model
   """
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "states" do
-    field :uuid, Ecto.UUID
-    field :name, :string
+  schema "environments_meta" do
+    field :key, :string
     field :value, :string
     field :environment_id, :id
 
@@ -20,17 +19,15 @@ defmodule Pard.Model.State do
   end
 
   @doc false
-  def changeset(state, attrs) do
-    state
+  def changeset(lock_meta, attrs) do
+    lock_meta
     |> cast(attrs, [
-      :uuid,
-      :name,
+      :key,
       :value,
       :environment_id
     ])
     |> validate_required([
-      :uuid,
-      :name,
+      :key,
       :value,
       :environment_id
     ])

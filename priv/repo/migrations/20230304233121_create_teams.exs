@@ -2,19 +2,19 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Pard.Repo.Migrations.CreateStates do
+defmodule Pard.Repo.Migrations.CreateTeams do
   use Ecto.Migration
 
   def change do
-    create table(:states) do
+    create table(:teams) do
       add :uuid, :uuid
       add :name, :string
-      add :value, :text
-      add :environment_id, references(:environments, on_delete: :delete_all)
+      add :slug, :string, unique: true
+      add :description, :string
 
       timestamps()
     end
 
-    create index(:states, [:name])
+    create index(:teams, [:slug])
   end
 end

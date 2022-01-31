@@ -12,7 +12,7 @@ defmodule Pard.Model.Lock do
 
   schema "locks" do
     field :uuid, Ecto.UUID
-    field :project_id, :id
+    field :environment_id, :id
     field :tf_uuid, :string
     field :tf_operation, :string
     field :tf_info, :string
@@ -29,7 +29,7 @@ defmodule Pard.Model.Lock do
     lock
     |> cast(attrs, [
       :uuid,
-      :project_id,
+      :environment_id,
       :tf_uuid,
       :tf_operation,
       :tf_info,
@@ -40,7 +40,7 @@ defmodule Pard.Model.Lock do
     ])
     |> validate_required([
       :uuid,
-      :project_id
+      :environment_id
     ])
   end
 end

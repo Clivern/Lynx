@@ -2,40 +2,37 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Pard.Model.Project do
+defmodule Pard.Model.Team do
   @moduledoc """
-  Project Model
+  Team Model
   """
 
   use Ecto.Schema
   import Ecto.Changeset
 
-  schema "projects" do
+  schema "teams" do
     field :uuid, Ecto.UUID
     field :name, :string
     field :slug, :string
     field :description, :string
-    field :team_id, :id
 
     timestamps()
   end
 
   @doc false
-  def changeset(project, attrs) do
-    project
+  def changeset(state, attrs) do
+    state
     |> cast(attrs, [
       :uuid,
       :name,
       :slug,
-      :description,
-      :team_id
+      :description
     ])
     |> validate_required([
       :uuid,
       :name,
       :slug,
-      :description,
-      :team_id
+      :description
     ])
   end
 end

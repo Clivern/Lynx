@@ -8,7 +8,7 @@ defmodule Pard.Repo.Migrations.CreateConfigs do
   def change do
     create table(:configs) do
       add :uuid, :uuid
-      add :name, :string
+      add :name, :string, unique: true
       add :value, :text
 
       timestamps()

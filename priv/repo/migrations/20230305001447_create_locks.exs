@@ -8,7 +8,6 @@ defmodule Pard.Repo.Migrations.CreateLocks do
   def change do
     create table(:locks) do
       add :uuid, :uuid
-      add :project_id, references(:projects, on_delete: :delete_all)
       add :tf_uuid, :string
       add :tf_operation, :string
       add :tf_info, :string
@@ -16,11 +15,11 @@ defmodule Pard.Repo.Migrations.CreateLocks do
       add :tf_version, :string
       add :tf_path, :string
       add :is_active, :boolean, default: true
+      add :environment_id, references(:environments, on_delete: :delete_all)
 
       timestamps()
     end
 
-    create index(:locks, [:project_id])
-    create index(:locks, [:tf_uuid])
+    create index(:locks, [:environment_id])
   end
 end
