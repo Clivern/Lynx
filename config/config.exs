@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :civet,
-  ecto_repos: [Civet.Repo]
+config :leopard,
+  ecto_repos: [Leopard.Repo]
 
 # Configures the endpoint
-config :civet, CivetWeb.Endpoint,
+config :leopard, LeopardWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: CivetWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Civet.PubSub,
+  render_errors: [view: LeopardWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Leopard.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :civet, CivetWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :civet, Civet.Mailer, adapter: Swoosh.Adapters.Local
+config :leopard, Leopard.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

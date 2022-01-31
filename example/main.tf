@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "http" {
-    address = "http://localhost:4000/api/v1/civet/v1/state"
-    lock_address = "http://localhost:4000/api/v1/civet/v1/lock"
-    unlock_address = "http://localhost:4000/api/v1/civet/v1/unlock"
+    address = "http://localhost:4000/api/v1/leopard/prod/state"
+    lock_address = "http://localhost:4000/api/v1/leopard/prod/lock"
+    unlock_address = "http://localhost:4000/api/v1/leopard/prod/unlock"
     lock_method = "POST"
     unlock_method = "POST"
   }
@@ -29,16 +29,4 @@ variable "app_version" {
   type        = string
   description = "The docker image version"
   default     = "latest"
-}
-
-variable "app_name" {
-  type        = string
-  description = "The container name"
-  default     = "app_dev"
-}
-
-variable "app_port" {
-  type        = string
-  description = "The external port"
-  default     = 8001
 }

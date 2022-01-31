@@ -7,7 +7,7 @@ services:
     environment:
       PGUSER: root
       PGPASSWORD: D1q9f0C2&PEW
-      PGDATABASE: civet
+      PGDATABASE: leopard
       PGPORT: 5432
       PGHOST: db
     restart: unless-stopped
@@ -18,7 +18,7 @@ services:
  db:
     image: postgres:15.2
     environment:
-      POSTGRES_DB: civet
+      POSTGRES_DB: leopard
       POSTGRES_USER: root
       POSTGRES_PASSWORD: D1q9f0C2&PEW
     restart: unless-stopped

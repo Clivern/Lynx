@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.MixProject do
+defmodule Leopard.MixProject do
   use Mix.Project
 
   @version "0.1.0"
@@ -11,7 +11,7 @@ defmodule Civet.MixProject do
 
   def project do
     [
-      app: :civet,
+      app: :leopard,
       version: @version,
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -27,7 +27,7 @@ defmodule Civet.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Civet.Application, []},
+      mod: {Leopard.Application, []},
       extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
@@ -84,6 +84,6 @@ defmodule Mix.Tasks.Version do
   use Mix.Task
 
   def run(_) do
-    Mix.shell().info("Currnt Version: v#{Civet.MixProject.get_version()}")
+    Mix.shell().info("Currnt Version: v#{Leopard.MixProject.get_version()}")
   end
 end

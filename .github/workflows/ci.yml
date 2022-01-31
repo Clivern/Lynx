@@ -24,9 +24,9 @@ jobs:
         image: postgres:latest
         ports: ['5432:5432']
         env:
-          POSTGRES_DB: civet_dev
-          POSTGRES_USER: civet
-          POSTGRES_PASSWORD: civet
+          POSTGRES_DB: leopard_dev
+          POSTGRES_USER: leopard
+          POSTGRES_PASSWORD: leopard
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -38,11 +38,11 @@ jobs:
       - name: Get dependencies
         run: make deps
 
-      - name: Check civet format
+      - name: Check leopard format
         run: make fmt_check
 
-      - name: Test civet
+      - name: Test leopard
         run: make ci
 
-      - name: Build civet
+      - name: Build leopard
         run: make build

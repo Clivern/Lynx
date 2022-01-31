@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :civet, Civet.Repo,
-  username: "civet",
-  password: "civet",
+config :leopard, Leopard.Repo,
+  username: "leopard",
+  password: "leopard",
   hostname: "localhost",
-  database: "civet_dev",
+  database: "leopard_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :civet, Civet.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :civet, CivetWeb.Endpoint,
+config :leopard, LeopardWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -54,13 +54,13 @@ config :civet, CivetWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :civet, CivetWeb.Endpoint,
+config :leopard, LeopardWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/civet_web/(live|views)/.*(ex)$",
-      ~r"lib/civet_web/templates/.*(eex)$"
+      ~r"lib/leopard_web/(live|views)/.*(ex)$",
+      ~r"lib/leopard_web/templates/.*(eex)$"
     ]
   ]
 

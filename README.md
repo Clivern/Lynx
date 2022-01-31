@@ -1,15 +1,15 @@
 <p align="center">
-    <img alt="Civet Logo" src="/assets/img/logo.jpeg" width="300" />
-    <h3 align="center">Civet</h3>
+    <img alt="Leopard Logo" src="/assets/img/logo.jpeg" width="300" />
+    <h3 align="center">Leopard</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
-        <a href="https://github.com/Clivern/Civet/actions/workflows/ci.yml">
-            <img src="https://github.com/Clivern/Civet/actions/workflows/ci.yml/badge.svg"/>
+        <a href="https://github.com/Clivern/Leopard/actions/workflows/ci.yml">
+            <img src="https://github.com/Clivern/Leopard/actions/workflows/ci.yml/badge.svg"/>
         </a>
-        <a href="https://github.com/Clivern/Civet/releases">
+        <a href="https://github.com/Clivern/Leopard/releases">
             <img src="https://img.shields.io/badge/Version-0.2.0-1abc9c.svg">
         </a>
-        <a href="https://github.com/Clivern/Civet/blob/master/LICENSE">
+        <a href="https://github.com/Clivern/Leopard/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
@@ -54,9 +54,9 @@ To run `postgresql` with `docker`
 
 ```zsh
 $ docker run -itd \
-    -e POSTGRES_USER=civet \
-    -e POSTGRES_PASSWORD=civet \
-    -e POSTGRES_DB=civet_dev \
+    -e POSTGRES_USER=leopard \
+    -e POSTGRES_PASSWORD=leopard \
+    -e POSTGRES_DB=leopard_dev \
     -p 5432:5432 \
     --name postgresql \
     postgres:15.2
@@ -65,19 +65,19 @@ $ docker run -itd \
 
 ### Versioning
 
-For transparency into our release cycle and in striving to maintain backward compatibility, `Civet` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
+For transparency into our release cycle and in striving to maintain backward compatibility, `Leopard` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
 
-See the [Releases section of our GitHub project](https://github.com/clivern/civet/releases) for changelogs for each release version of `Civet`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/civet/milestones) for the future roadmap.
+See the [Releases section of our GitHub project](https://github.com/clivern/leopard/releases) for changelogs for each release version of `Leopard`. It contains summaries of the most noteworthy changes made in each release. Also see the [Milestones section](https://github.com/clivern/leopard/milestones) for the future roadmap.
 
 
 ### Bug tracker
 
-If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/civet/issues
+If you have any suggestions, bug reports, or annoyances please report them to our issue tracker at https://github.com/clivern/leopard/issues
 
 
 ### Security Issues
 
-If you discover a security vulnerability within `Civet`, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
+If you discover a security vulnerability within `Leopard`, please send an email to [hello@clivern.com](mailto:hello@clivern.com)
 
 
 ### Contributing
@@ -89,4 +89,4 @@ We are an open source, community-driven project so please feel free to join us. 
 
 © 2022, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
-**Civet** is authored and maintained by [@clivern](http://github.com/clivern).
+**Leopard** is authored and maintained by [@clivern](http://github.com/clivern).

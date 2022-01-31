@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-civet-*.tar
+leopard-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ civet-*.tar
 npm-debug.log
 /assets/node_modules/
 
-civet_test*
-civet_dev*
+leopard_test*
+leopard_dev*
 .vscode
 
 .terraform
