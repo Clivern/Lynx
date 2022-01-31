@@ -6,7 +6,7 @@ defmodule OctopusWeb.PageControllerTest do
   use OctopusWeb.ConnCase
 
   test "GET /", %{conn: conn} do
-    conn = get(conn, "/")
+    conn = get(conn, "/install")
     assert html_response(conn, 200) =~ "Clivern"
   end
 end
