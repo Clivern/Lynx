@@ -9,7 +9,45 @@ defmodule PardWeb.LockController do
 
   use PardWeb, :controller
   alias Pard.Module.LockModule
+  alias Pard.Module.ProjectModule
   alias Pard.Service.ValidatorService
+
+  plug :auth
+
+  defp auth(conn, _opts) do
+    with {user, pass} <- Plug.BasicAuth.parse_basic_auth(conn) do
+      result =
+        ProjectModule.is_allowed(%{
+          project: conn.params["project"],
+          environment: conn.params["environment"],
+          username: user,
+          secret: pass
+        })
+
+      case result do
+        {:not_found, msg} ->
+          conn
+          |> put_status(:not_found)
+          |> render("error.json", %{
+            message: msg
+          })
+          |> halt()
+
+        {:failed, msg} ->
+          conn
+          |> put_status(:forbidden)
+          |> render("error.json", %{
+            message: msg
+          })
+          |> halt()
+
+        {:success, _} ->
+          conn
+      end
+    else
+      _ -> conn |> Plug.BasicAuth.request_basic_auth() |> halt()
+    end
+  end
 
   @doc """
   Lock Endpoint
