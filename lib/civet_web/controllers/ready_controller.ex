@@ -13,10 +13,8 @@ defmodule CivetWeb.ReadyController do
   Ready Endpoint
   """
   def ready(conn, _params) do
-    body = Jason.encode!(%{status: "ok"})
-
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, body)
+    |> send_resp(200, Jason.encode!(%{status: "ok"}))
   end
 end

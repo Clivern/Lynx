@@ -37,40 +37,38 @@ defmodule CivetWeb.LockController do
         })
 
       {:ok, _} ->
-        nil
-    end
+        action =
+          LockModule.lock_action(%{
+            project: ValidatorService.get_str(params["project"], ""),
+            environment: ValidatorService.get_str(params["environment"], ""),
+            tf_uuid: ValidatorService.get_str(params["ID"], ""),
+            tf_operation: ValidatorService.get_str(params["Operation"], ""),
+            tf_info: ValidatorService.get_str(params["Info"], ""),
+            tf_who: ValidatorService.get_str(params["Who"], ""),
+            tf_version: ValidatorService.get_str(params["Version"], ""),
+            tf_path: ValidatorService.get_str(params["Path"], "")
+          })
 
-    action =
-      LockModule.lock_action(%{
-        project: ValidatorService.get_str(params["project"], ""),
-        environment: ValidatorService.get_str(params["environment"], ""),
-        tf_uuid: ValidatorService.get_str(params["ID"], ""),
-        tf_operation: ValidatorService.get_str(params["Operation"], ""),
-        tf_info: ValidatorService.get_str(params["Info"], ""),
-        tf_who: ValidatorService.get_str(params["Who"], ""),
-        tf_version: ValidatorService.get_str(params["Version"], ""),
-        tf_path: ValidatorService.get_str(params["Path"], "")
-      })
+        case action do
+          {:ok, _} ->
+            conn
+            |> put_status(:ok)
+            |> render("lock.json", %{})
 
-    case action do
-      {:ok, _} ->
-        conn
-        |> put_status(:ok)
-        |> render("lock.json", %{})
+          {:not_found, msg} ->
+            conn
+            |> put_status(:not_found)
+            |> render("error.json", %{
+              message: msg
+            })
 
-      {:not_found, msg} ->
-        conn
-        |> put_status(:not_found)
-        |> render("error.json", %{
-          message: msg
-        })
-
-      {:error, msg} ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{
-          message: msg
-        })
+          {:error, msg} ->
+            conn
+            |> put_status(:internal_server_error)
+            |> render("error.json", %{
+              message: msg
+            })
+        end
     end
   end
 
