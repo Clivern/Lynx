@@ -14,35 +14,35 @@ help: Makefile
 .PHONY: fmt
 fmt:
 	@echo ">> ============= Format code ============= <<"
-	$(mix) format mix.exs "lib/**/*.{ex,exs}" "test/**/*.{ex,exs}"
+	@$(mix) format mix.exs "lib/**/*.{ex,exs}" "test/**/*.{ex,exs}"
 
 
 ## fmt_check: Check code format.
 .PHONY: fmt_check
 fmt_check:
 	@echo ">> ============= Check code format ============= <<"
-	$(mix) format mix.exs "lib/**/*.{ex,exs}" "test/**/*.{ex,exs}" --check-formatted
+	@$(mix) format mix.exs "lib/**/*.{ex,exs}" "test/**/*.{ex,exs}" --check-formatted
 
 
 ## deps: Fetch dependencies
 .PHONY: deps
 deps:
 	@echo ">> ============= Fetch dependencies ============= <<"
-	$(mix) deps.get
+	@$(mix) deps.get
 
 
 ## test: Test code
 .PHONY: test
 test:
 	@echo ">> ============= Test code ============= <<"
-	$(mix) test
+	@$(mix) test
 
 
 ## build: Build code
 .PHONY: build
 build:
 	@echo ">> ============= Build code ============= <<"
-	$(mix) compile --warnings-as-errors
+	@$(mix) compile --warnings-as-errors
 
 
 ## release: Release the code
@@ -57,35 +57,35 @@ release:
 .PHONY: i
 i:
 	@echo ">> ============= Interactive shell ============= <<"
-	$(iex) -S mix phx.server
+	@$(iex) -S mix phx.server
 
 
 ## migrate: Create database
 .PHONY: migrate
 migrate:
 	@echo ">> ============= Create database ============= <<"
-	$(mix) ecto.setup
+	@$(mix) ecto.setup
 
 
 ## run: Run pard
 .PHONY: run
 run:
 	@echo ">> ============= Run pard ============= <<"
-	$(mix) phx.server
+	@$(mix) phx.server
 
 
 ## ecto: Run ecto
 .PHONY: ecto
 ecto:
 	@echo ">> ============= Run ecto ============= <<"
-	$(mix) ecto
+	@$(mix) ecto
 
 
 ## v: Get version
 .PHONY: v
 v:
 	@echo ">> ============= Get application version ============= <<"
-	$(mix) version
+	@$(mix) version
 
 
 ## ci: Run ci
