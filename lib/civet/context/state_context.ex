@@ -12,88 +12,47 @@ defmodule Civet.Context.StateContext do
   alias Civet.Model.{StateMeta, State}
 
   @doc """
-  Get a client map
+  Get a new state
   """
-  def new_client(client \\ %{}) do
+  def new_state(state \\ %{}) do
     %{
-      age: client.age,
-      country: client.country,
-      gender: client.gender,
-      last_seen: DateTime.utc_now(),
-      secret: Ecto.UUID.generate(),
-      state: client.state,
-      username: client.username,
-      uuid: Ecto.UUID.generate(),
-      user_id: client.user_id
+      name: state.name,
+      value: state.value,
+      uuid: Ecto.UUID.generate()
     }
   end
 
   @doc """
-  Get a client meta map
+  Get a state meta
   """
   def new_meta(meta \\ %{}) do
     %{
       key: meta.key,
       value: meta.value,
-      client_id: meta.client_id
+      state_id: meta.state_id
     }
   end
 
   @doc """
-  Create a new client
+  Create a new state
   """
-  def create_client(attrs \\ %{}) do
+  def create_state(attrs \\ %{}) do
     %State{}
     |> State.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Count all clients
+  Retrieve a state by ID
   """
-  def count_clients(country, gender) do
-    case {country, gender} do
-      {country, gender} when country != "" and gender != "" ->
-        from(u in State,
-          select: count(u.id),
-          where: u.country == ^country,
-          where: u.gender == ^gender
-        )
-        |> Repo.one()
-
-      {country, gender} when country == "" and gender == "" ->
-        from(u in State,
-          select: count(u.id)
-        )
-        |> Repo.one()
-
-      {country, gender} when country != "" and gender == "" ->
-        from(u in State,
-          select: count(u.id),
-          where: u.country == ^country
-        )
-        |> Repo.one()
-
-      {country, gender} when country == "" and gender != "" ->
-        from(u in State,
-          select: count(u.id),
-          where: u.gender == ^gender
-        )
-        |> Repo.one()
-    end
-  end
-
-  @doc """
-  Retrieve a client by ID
-  """
-  def get_client_by_id(id) do
+  def get_state_by_id(id) do
     Repo.get(State, id)
   end
 
   @doc """
-  Get client by UUID
+  Get state by UUID
   """
-  def get_client_by_uuid(uuid) do
+  def get_state_by_uuid(uuid) do
     from(
       u in State,
       where: u.uuid == ^uuid
@@ -102,128 +61,100 @@ defmodule Civet.Context.StateContext do
   end
 
   @doc """
-  Get client by username
+  Get state by name
   """
-  def get_client_by_username(username) do
+  def get_state_by_name(name) do
     from(
       u in State,
-      where: u.username == ^username
+      where: u.name == ^name
     )
     |> Repo.one()
   end
 
   @doc """
-  Update a client
+  Update a state
   """
-  def update_client(client, attrs) do
-    client
+  def update_state(state, attrs) do
+    state
     |> State.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Delete a client
+  Delete a state
   """
-  def delete_client(client) do
-    Repo.delete(client)
+  def delete_state(state) do
+    Repo.delete(state)
   end
 
   @doc """
-  Retrieve all clients
+  Retrieve all states
   """
-  def get_clients() do
+  def get_states() do
     Repo.all(State)
   end
 
   @doc """
-  Retrieve clients
+  Retrieve states
   """
-  def get_clients(country, gender, offset, limit) do
-    case {country, gender, offset, limit} do
-      {country, gender, offset, limit} when country != "" and gender != "" ->
-        from(u in State,
-          where: u.country == ^country,
-          where: u.gender == ^gender,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-
-      {country, gender, offset, limit} when country == "" and gender == "" ->
-        from(u in State,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-
-      {country, gender, offset, limit} when country != "" and gender == "" ->
-        from(u in State,
-          where: u.country == ^country,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-
-      {country, gender, offset, limit} when country == "" and gender != "" ->
-        from(u in State,
-          where: u.gender == ^gender,
-          limit: ^limit,
-          offset: ^offset
-        )
-        |> Repo.all()
-    end
+  def get_states(offset, limit) do
+    from(u in State,
+      limit: ^limit,
+      offset: ^offset
+    )
+    |> Repo.all()
   end
 
   @doc """
-  Create a new client meta attribute
+  Create a new state meta attribute
   """
-  def create_client_meta(attrs \\ %{}) do
+  def create_state_meta(attrs \\ %{}) do
     %StateMeta{}
     |> StateMeta.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Retrieve a client meta attribute by ID
+  Retrieve a state meta by id
   """
-  def get_client_meta_by_id(id) do
+  def get_state_meta_by_id(id) do
     Repo.get(StateMeta, id)
   end
 
   @doc """
-  Update a client meta attribute
+  Update a state meta
   """
-  def update_client_meta(client_meta, attrs) do
-    StateMeta.changeset(client_meta, attrs)
+  def update_state_meta(state_meta, attrs) do
+    StateMeta.changeset(state_meta, attrs)
     |> Repo.update()
   end
 
   @doc """
-  Delete a client meta attribute
+  Delete a state meta
   """
-  def delete_client_meta(client_meta) do
-    Repo.delete(client_meta)
+  def delete_state_meta(state_meta) do
+    Repo.delete(state_meta)
   end
 
   @doc """
-  Get client meta by client and key
+  Get state meta by state id and key
   """
-  def get_client_meta_by_key(client_id, meta_key) do
+  def get_state_meta_by_id_key(state_id, meta_key) do
     from(
       u in StateMeta,
-      where: u.client_id == ^client_id,
+      where: u.state_id == ^state_id,
       where: u.key == ^meta_key
     )
     |> Repo.one()
   end
 
   @doc """
-  Get client metas
+  Get state metas
   """
-  def get_client_metas(client_id) do
+  def get_state_metas(state_id) do
     from(
       u in StateMeta,
-      where: u.client_id == ^client_id
+      where: u.state_id == ^state_id
     )
     |> Repo.all()
   end

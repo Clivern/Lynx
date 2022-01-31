@@ -11,6 +11,13 @@ defmodule Civet.Context.LockContext do
   alias Civet.Repo
   alias Civet.Model.{LockMeta, Lock}
 
+  field :uuid, Ecto.UUID
+  field :name, :string
+  field :description, :string
+  field :version, :string
+  field :username, :string
+  field :secret, :string
+
   @doc """
   Get a new lock
   """
@@ -78,7 +85,7 @@ defmodule Civet.Context.LockContext do
   end
 
   @doc """
-  Retrieve all messages
+  Retrieve all locks
   """
   def get_locks() do
     Repo.all(Lock)
@@ -118,7 +125,7 @@ defmodule Civet.Context.LockContext do
   @doc """
   Get lock meta by id and key
   """
-  def get_lock_meta_by_key(lock_id, meta_key) do
+  def get_lock_meta_by_id_key(lock_id, meta_key) do
     from(
       u in LockMeta,
       where: u.lock_id == ^lock_id,

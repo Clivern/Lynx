@@ -2,8 +2,10 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Civet.Service.LockService do
+defmodule Civet.Context.LockContextTest do
   @moduledoc """
-  Lock Service Module
+  Lock Context Test Cases
   """
+  use Civet.DataCase
+  alias Civet.Context.LockContext, as: LockContext
 end

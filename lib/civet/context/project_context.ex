@@ -12,47 +12,50 @@ defmodule Civet.Context.ProjectContext do
   alias Civet.Model.{ProjectMeta, Project}
 
   @doc """
-  Get a channel map
+  Get a new project
   """
-  def new_channel(channel \\ %{}) do
+  def new_project(project \\ %{}) do
     %{
-      first_user_id: channel.first_user_id,
-      second_user_id: channel.second_user_id,
+      name: project.name,
+      description: project.description,
+      version: project.version,
+      username: project.username,
+      secret: project.secret,
       uuid: Ecto.UUID.generate()
     }
   end
 
   @doc """
-  Get a channel meta map
+  Get a project meta
   """
   def new_meta(meta \\ %{}) do
     %{
       key: meta.key,
       value: meta.value,
-      channel_id: meta.channel_id
+      project_id: meta.project_id
     }
   end
 
   @doc """
-  Create a new channel
+  Create a new project
   """
-  def create_channel(attrs \\ %{}) do
+  def create_project(attrs \\ %{}) do
     %Project{}
     |> Project.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Retrieve a channel by ID
+  Retrieve a project by ID
   """
-  def get_channel_by_id(id) do
+  def get_project_by_id(id) do
     Repo.get(Project, id)
   end
 
   @doc """
-  Get channel by UUID
+  Get project by UUID
   """
-  def get_channel_by_uuid(uuid) do
+  def get_project_by_uuid(uuid) do
     from(
       u in Project,
       where: u.uuid == ^uuid
@@ -61,44 +64,56 @@ defmodule Civet.Context.ProjectContext do
   end
 
   @doc """
-  Get channel by users
+  Get project by name and version
   """
-  def get_channel_by_users(first_user_id, second_user_id) do
+  def get_project_by_name_version(name, version) do
     from(
       u in Project,
-      where: u.first_user_id == ^first_user_id,
-      where: u.second_user_id == ^second_user_id
+      where: u.name == ^name,
+      where: u.version == ^version
     )
     |> Repo.one()
   end
 
   @doc """
-  Update a channel
+  Get project by username and secret
   """
-  def update_channel(channel, attrs) do
-    channel
+  def get_project_by_username_secret(username, secret) do
+    from(
+      u in Project,
+      where: u.username == ^username,
+      where: u.secret == ^secret
+    )
+    |> Repo.one()
+  end
+
+  @doc """
+  Update a project
+  """
+  def update_project(project, attrs) do
+    project
     |> Project.changeset(attrs)
     |> Repo.update()
   end
 
   @doc """
-  Delete a channel
+  Delete a project
   """
-  def delete_channel(channel) do
-    Repo.delete(channel)
+  def delete_project(project) do
+    Repo.delete(project)
   end
 
   @doc """
-  Retrieve all channels
+  Retrieve all projects
   """
-  def get_channels() do
+  def get_projects() do
     Repo.all(Project)
   end
 
   @doc """
-  Retrieve channels
+  Retrieve projects
   """
-  def get_channels(offset, limit) do
+  def get_projects(offset, limit) do
     from(u in Project,
       limit: ^limit,
       offset: ^offset
@@ -107,55 +122,55 @@ defmodule Civet.Context.ProjectContext do
   end
 
   @doc """
-  Create a new channel meta attribute
+  Create a new project meta attribute
   """
-  def create_channel_meta(attrs \\ %{}) do
+  def create_project_meta(attrs \\ %{}) do
     %ProjectMeta{}
     |> ProjectMeta.changeset(attrs)
     |> Repo.insert()
   end
 
   @doc """
-  Retrieve a channel meta attribute by ID
+  Retrieve a project meta by id
   """
-  def get_channel_meta_by_id(id) do
+  def get_project_meta_by_id(id) do
     Repo.get(ProjectMeta, id)
   end
 
   @doc """
-  Update a channel meta attribute
+  Update a project meta
   """
-  def update_channel_meta(channel_meta, attrs) do
-    ProjectMeta.changeset(channel_meta, attrs)
+  def update_project_meta(project_meta, attrs) do
+    ProjectMeta.changeset(project_meta, attrs)
     |> Repo.update()
   end
 
   @doc """
-  Delete a channel meta attribute
+  Delete a project meta
   """
-  def delete_channel_meta(channel_meta) do
-    Repo.delete(channel_meta)
+  def delete_project_meta(project_meta) do
+    Repo.delete(project_meta)
   end
 
   @doc """
-  Get channel meta by channel and key
+  Get project meta by project id and key
   """
-  def get_channel_meta_by_key(channel_id, meta_key) do
+  def get_project_meta_by_id_key(project_id, meta_key) do
     from(
       u in ProjectMeta,
-      where: u.channel_id == ^channel_id,
+      where: u.project_id == ^project_id,
       where: u.key == ^meta_key
     )
     |> Repo.one()
   end
 
   @doc """
-  Get channel metas
+  Get project metas
   """
-  def get_channel_metas(channel_id) do
+  def get_project_metas(project_id) do
     from(
       u in ProjectMeta,
-      where: u.channel_id == ^channel_id
+      where: u.project_id == ^project_id
     )
     |> Repo.all()
   end
