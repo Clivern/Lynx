@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-leopard-*.tar
+pard-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ leopard-*.tar
 npm-debug.log
 /assets/node_modules/
 
-leopard_test*
-leopard_dev*
+pard_test*
+pard_dev*
 .vscode
 
 .terraform

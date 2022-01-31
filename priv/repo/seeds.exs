@@ -9,7 +9,7 @@
 # Inside the script, you can read and write to any of your
 # repositories directly:
 #
-#     Leopard.Repo.insert!(%Leopard.SomeSchema{})
+#     Pard.Repo.insert!(%Pard.SomeSchema{})
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.

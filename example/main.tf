@@ -7,9 +7,9 @@ terraform {
   }
 
   backend "http" {
-    address = "http://localhost:4000/api/v1/leopard/prod/state"
-    lock_address = "http://localhost:4000/api/v1/leopard/prod/lock"
-    unlock_address = "http://localhost:4000/api/v1/leopard/prod/unlock"
+    address = "http://localhost:4000/api/v1/pard/prod/state"
+    lock_address = "http://localhost:4000/api/v1/pard/prod/lock"
+    unlock_address = "http://localhost:4000/api/v1/pard/prod/unlock"
     lock_method = "POST"
     unlock_method = "POST"
   }

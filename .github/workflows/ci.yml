@@ -24,9 +24,9 @@ jobs:
         image: postgres:latest
         ports: ['5432:5432']
         env:
-          POSTGRES_DB: leopard_dev
-          POSTGRES_USER: leopard
-          POSTGRES_PASSWORD: leopard
+          POSTGRES_DB: pard_dev
+          POSTGRES_USER: pard
+          POSTGRES_PASSWORD: pard
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -38,11 +38,11 @@ jobs:
       - name: Get dependencies
         run: make deps
 
-      - name: Check leopard format
+      - name: Check pard format
         run: make fmt_check
 
-      - name: Test leopard
+      - name: Test pard
         run: make ci
 
-      - name: Build leopard
+      - name: Build pard
         run: make build

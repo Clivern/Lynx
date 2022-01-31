@@ -1,4 +1,4 @@
-defmodule LeopardWeb.ChannelCase do
+defmodule PardWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule LeopardWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use LeopardWeb.ChannelCase, async: true`, although
+  by setting `use PardWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,15 +21,15 @@ defmodule LeopardWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import LeopardWeb.ChannelCase
+      import PardWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint LeopardWeb.Endpoint
+      @endpoint PardWeb.Endpoint
     end
   end
 
   setup tags do
-    Leopard.DataCase.setup_sandbox(tags)
+    Pard.DataCase.setup_sandbox(tags)
     :ok
   end
 end

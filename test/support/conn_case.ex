@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule LeopardWeb.ConnCase do
+defmodule PardWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -15,7 +15,7 @@ defmodule LeopardWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use LeopardWeb.ConnCase, async: true`, although
+  by setting `use PardWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -26,17 +26,17 @@ defmodule LeopardWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import LeopardWeb.ConnCase
+      import PardWeb.ConnCase
 
-      alias LeopardWeb.Router.Helpers, as: Routes
+      alias PardWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint LeopardWeb.Endpoint
+      @endpoint PardWeb.Endpoint
     end
   end
 
   setup tags do
-    Leopard.DataCase.setup_sandbox(tags)
+    Pard.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

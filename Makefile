@@ -4,7 +4,7 @@ iex          ?= iex
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Leopard:"
+	@echo " Choose a command run in Pard:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
@@ -67,10 +67,10 @@ migrate:
 	$(mix) ecto.setup
 
 
-## run: Run leopard
+## run: Run pard
 .PHONY: run
 run:
-	@echo ">> ============= Run leopard ============= <<"
+	@echo ">> ============= Run pard ============= <<"
 	$(mix) phx.server
 
 

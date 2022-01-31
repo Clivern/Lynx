@@ -1,11 +1,11 @@
 import Config
 
 # Configure your database
-config :leopard, Leopard.Repo,
-  username: "leopard",
-  password: "leopard",
+config :pard, Pard.Repo,
+  username: "pard",
+  password: "pard",
   hostname: "localhost",
-  database: "leopard_dev",
+  database: "pard_dev",
   stacktrace: true,
   show_sensitive_data_on_connection_error: true,
   pool_size: 10
@@ -16,7 +16,7 @@ config :leopard, Leopard.Repo,
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :leopard, LeopardWeb.Endpoint,
+config :pard, PardWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: 4000],
@@ -54,13 +54,13 @@ config :leopard, LeopardWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :leopard, LeopardWeb.Endpoint,
+config :pard, PardWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/leopard_web/(live|views)/.*(ex)$",
-      ~r"lib/leopard_web/templates/.*(eex)$"
+      ~r"lib/pard_web/(live|views)/.*(ex)$",
+      ~r"lib/pard_web/templates/.*(eex)$"
     ]
   ]
 

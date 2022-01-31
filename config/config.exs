@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :leopard,
-  ecto_repos: [Leopard.Repo]
+config :pard,
+  ecto_repos: [Pard.Repo]
 
 # Configures the endpoint
-config :leopard, LeopardWeb.Endpoint,
+config :pard, PardWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: LeopardWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Leopard.PubSub,
+  render_errors: [view: PardWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Pard.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :leopard, LeopardWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :leopard, Leopard.Mailer, adapter: Swoosh.Adapters.Local
+config :pard, Pard.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
