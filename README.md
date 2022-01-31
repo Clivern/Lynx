@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Pard Logo" src="/assets/img/logo.png?v=0.3.0" width="250" />
+    <img alt="Pard Logo" src="/assets/img/logo.png?v=0.3.0" width="200" />
     <h3 align="center">Pard</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
