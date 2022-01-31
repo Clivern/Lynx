@@ -50,7 +50,6 @@ defmodule PardWeb.Router do
 
     get "/:project/:environment/state", StateController, :index
     post "/:project/:environment/state", StateController, :create
-    delete "/:project/:environment/state", StateController, :delete
   end
 
   # Enables LiveDashboard only for development

@@ -116,15 +116,4 @@ defmodule PardWeb.StateController do
         |> send_resp(200, state.value)
     end
   end
-
-  @doc """
-  Delete State Endpoint
-  """
-  def delete(conn, _params) do
-    body = Jason.encode!(%{status: "ok"})
-
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, body)
-  end
 end
