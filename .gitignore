@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-pard-*.tar
+octopus-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ pard-*.tar
 npm-debug.log
 /assets/node_modules/
 
-pard_test*
-pard_dev*
+octopus_test*
+octopus_dev*
 .vscode
 
 .terraform

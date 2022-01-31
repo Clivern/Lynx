@@ -11,62 +11,62 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/pard_web/templates/page/index.html.heex:6
+#: lib/octopus_web/templates/page/index.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:50
+#: lib/octopus_web/templates/page/index.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "If you have any suggestions, bug reports, or annoyances"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:24
+#: lib/octopus_web/templates/page/index.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Live"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:38
+#: lib/octopus_web/templates/page/index.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Login"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:31
+#: lib/octopus_web/templates/page/index.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:56
+#: lib/octopus_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Made with"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:17
+#: lib/octopus_web/templates/page/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "New Project"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:12
+#: lib/octopus_web/templates/page/index.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Projects"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:47
+#: lib/octopus_web/templates/page/index.html.heex:47
 #, elixir-autogen, elixir-format
-msgid "Welcome to Pard"
+msgid "Welcome to Octopus"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:56
+#: lib/octopus_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "by"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:52
+#: lib/octopus_web/templates/page/index.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "issue tracker"
 msgstr ""
 
-#: lib/pard_web/templates/page/index.html.heex:51
+#: lib/octopus_web/templates/page/index.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "please report them to our"
 msgstr ""

@@ -4,7 +4,7 @@
 // Bring in Phoenix channels client library:
 import {Socket} from "phoenix"
 
-// And connect to the path in "lib/pard_web/endpoint.ex". We pass the
+// And connect to the path in "lib/octopus_web/endpoint.ex". We pass the
 // token for authentication. Read below how it should be used.
 let socket = new Socket("/socket", {params: {token: window.userToken}})
 
@@ -14,7 +14,7 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 // If the current user exists you can assign the user's token in
 // the connection for use in the layout.
 //
-// In your "lib/pard_web/router.ex":
+// In your "lib/octopus_web/router.ex":
 //
 //     pipeline :browser do
 //       ...
@@ -32,12 +32,12 @@ let socket = new Socket("/socket", {params: {token: window.userToken}})
 //     end
 //
 // Now you need to pass this token to JavaScript. You can do so
-// inside a script tag in "lib/pard_web/templates/layout/app.html.heex":
+// inside a script tag in "lib/octopus_web/templates/layout/app.html.heex":
 //
 //     <script>window.userToken = "<%= assigns[:user_token] %>";</script>
 //
 // You will need to verify the user token in the "connect/3" function
-// in "lib/pard_web/channels/user_socket.ex":
+// in "lib/octopus_web/channels/user_socket.ex":
 //
 //     def connect(%{"token" => token}, socket, _connect_info) do
 //       # max_age: 1209600 is equivalent to two weeks in seconds

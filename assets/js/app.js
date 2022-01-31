@@ -45,10 +45,10 @@ window.liveSocket = liveSocket
 
 import socket from "./user_socket"
 
-var pard_app = pard_app || {};
+var octopus_app = octopus_app || {};
 
 // Install Page
-pard_app.install_screen = (Vue, axios, $) => {
+octopus_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -92,7 +92,7 @@ pard_app.install_screen = (Vue, axios, $) => {
 }
 
 // Login Page
-pard_app.login_screen = (Vue, axios, $) => {
+octopus_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -144,7 +144,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_install")) {
-        pard_app.install_screen(
+        octopus_app.install_screen(
             Vue,
             axios,
             $
@@ -152,7 +152,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_login")) {
-        pard_app.login_screen(
+        octopus_app.login_screen(
             Vue,
             axios,
             $

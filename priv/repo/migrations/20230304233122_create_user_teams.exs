@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Pard.Repo.Migrations.CreateUserTeams do
+defmodule Octopus.Repo.Migrations.CreateUserTeams do
   use Ecto.Migration
 
   def change do

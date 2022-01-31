@@ -5,23 +5,23 @@ import Config
 # The MIX_TEST_PARTITION environment variable can be used
 # to provide built-in test partitioning in CI environment.
 # Run `mix help test` for more information.
-config :pard, Pard.Repo,
-  username: "pard",
-  password: "pard",
+config :octopus, Octopus.Repo,
+  username: "octopus",
+  password: "octopus",
   hostname: "localhost",
-  database: "pard_test#{System.get_env("MIX_TEST_PARTITION")}",
+  database: "octopus_test#{System.get_env("MIX_TEST_PARTITION")}",
   pool: Ecto.Adapters.SQL.Sandbox,
   pool_size: 10
 
 # We don't run a server during test. If one is required,
 # you can enable the server option below.
-config :pard, PardWeb.Endpoint,
+config :octopus, OctopusWeb.Endpoint,
   http: [ip: {127, 0, 0, 1}, port: 4002],
   secret_key_base: "cBGndC+ZgHOIrWppfj45v3LYq7jFdXov339MuebP6HCEAEscZOUSkgC9y1YIZLmh",
   server: false
 
 # In test we don't send emails.
-config :pard, Pard.Mailer, adapter: Swoosh.Adapters.Test
+config :octopus, Octopus.Mailer, adapter: Swoosh.Adapters.Test
 
 # Print only warnings and errors during test
 config :logger, level: :warn

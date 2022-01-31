@@ -4,7 +4,7 @@ iex          ?= iex
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Pard:"
+	@echo " Choose a command run in Octopus:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
@@ -67,10 +67,10 @@ migrate:
 	@$(mix) ecto.setup
 
 
-## run: Run pard
+## run: Run octopus
 .PHONY: run
 run:
-	@echo ">> ============= Run pard ============= <<"
+	@echo ">> ============= Run octopus ============= <<"
 	@$(mix) phx.server
 
 

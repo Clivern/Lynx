@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :pard,
-  ecto_repos: [Pard.Repo]
+config :octopus,
+  ecto_repos: [Octopus.Repo]
 
 # Configures the endpoint
-config :pard, PardWeb.Endpoint,
+config :octopus, OctopusWeb.Endpoint,
   url: [host: "localhost"],
-  render_errors: [view: PardWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Pard.PubSub,
+  render_errors: [view: OctopusWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Octopus.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :pard, PardWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :pard, Pard.Mailer, adapter: Swoosh.Adapters.Local
+config :octopus, Octopus.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false
