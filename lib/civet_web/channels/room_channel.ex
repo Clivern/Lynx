@@ -9,6 +9,7 @@ defmodule CivetWeb.RoomChannel do
   @impl true
   def join("room:lobby", payload, socket) do
     Logger.debug(payload)
+
     if authorized?(payload) do
       {:ok, socket}
     else

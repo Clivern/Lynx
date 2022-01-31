@@ -3,7 +3,6 @@
 # license that can be found in the LICENSE file.
 
 defmodule CivetWeb.UserSocket do
-
   use Phoenix.Socket
 
   # A Socket handler
