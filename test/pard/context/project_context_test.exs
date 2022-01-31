@@ -7,5 +7,5 @@ defmodule Pard.Context.ProjectContextTest do
   Project Context Test Cases
   """
   use Pard.DataCase
-  alias Pard.Context.ProjectContext, as: ProjectContext
+  # alias Pard.Context.ProjectContext, as: ProjectContext
 end

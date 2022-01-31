@@ -7,5 +7,5 @@ defmodule Pard.Context.LockContextTest do
   Lock Context Test Cases
   """
   use Pard.DataCase
-  alias Pard.Context.LockContext, as: LockContext
+  # alias Pard.Context.LockContext, as: LockContext
 end

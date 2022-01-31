@@ -9,6 +9,7 @@ defmodule PardWeb.ProjectController do
 
   use PardWeb, :controller
   alias Pard.Context.ProjectContext
+  alias Pard.Module.ProjectModule
   alias Pard.Service.ValidatorService
 
   @default_list_limit "10"
@@ -35,8 +36,8 @@ defmodule PardWeb.ProjectController do
   Create Project Endpoint
   """
   def create(conn, params) do
-    project =
-      ProjectContext.new_project(%{
+    result =
+      ProjectModule.create_project(%{
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
         environment: ValidatorService.get_str(params["environment"], ""),
@@ -44,20 +45,16 @@ defmodule PardWeb.ProjectController do
         secret: ValidatorService.get_str(params["secret"], "")
       })
 
-    case ProjectContext.create_project(project) do
+    case result do
       {:ok, project} ->
         conn
         |> put_status(:created)
         |> render("index.json", %{project: project})
 
-      {:error, changeset} ->
-        messages =
-          changeset.errors()
-          |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
-
+      {:error, msg} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: Enum.at(messages, 0)})
+        |> render("error.json", %{error: msg})
     end
   end
 
@@ -65,29 +62,23 @@ defmodule PardWeb.ProjectController do
   View Project Endpoint
   """
   def index(conn, %{"id" => id}) do
-    case ValidatorService.validate_int(id) do
-      {_, ""} ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
+    result = ProjectModule.get_project(id)
 
-        case project do
-          nil ->
-            conn
-            |> put_status(:not_found)
-            |> render("error.json", %{error: "Project with ID #{id} not found"})
+    case result do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{error: msg})
 
-          _ ->
-            conn
-            |> put_status(:ok)
-            |> render("index.json", %{project: project})
-        end
+      {:exist, project} ->
+        conn
+        |> put_status(:ok)
+        |> render("index.json", %{project: project})
 
-      :error ->
+      {:error, msg} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: "Invalid Project ID"})
+        |> render("error.json", %{error: msg})
     end
   end
 
@@ -95,52 +86,31 @@ defmodule PardWeb.ProjectController do
   Update Project Endpoint
   """
   def update(conn, params) do
-    id = params["id"]
+    result =
+      ProjectModule.update_project(%{
+        id: ValidatorService.get_int(params["id"], 0),
+        name: ValidatorService.get_str(params["name"], ""),
+        description: ValidatorService.get_str(params["description"], ""),
+        environment: ValidatorService.get_str(params["environment"], ""),
+        username: ValidatorService.get_str(params["username"], ""),
+        secret: ValidatorService.get_str(params["secret"], "")
+      })
 
-    case ValidatorService.validate_int(id) do
-      true ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
+    case result do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{error: msg})
 
-        case project do
-          nil ->
-            conn
-            |> put_status(:not_found)
-            |> render("error.json", %{error: "Project with ID #{id} not found"})
-
-          _ ->
-            new_project =
-              ProjectContext.new_project(%{
-                name: ValidatorService.get_str(params["name"], project.name),
-                description: ValidatorService.get_str(params["description"], project.description),
-                environment: ValidatorService.get_str(params["environment"], project.environment),
-                username: ValidatorService.get_str(params["username"], project.username),
-                secret: ValidatorService.get_str(params["secret"], project.secret)
-              })
-
-            case ProjectContext.update_project(project, new_project) do
-              {:ok, project} ->
-                conn
-                |> put_status(:ok)
-                |> render("index.json", %{project: project})
-
-              {:error, changeset} ->
-                messages =
-                  changeset.errors()
-                  |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
-
-                conn
-                |> put_status(:bad_request)
-                |> render("error.json", %{error: Enum.at(messages, 0)})
-            end
-        end
-
-      false ->
+      {:error, msg} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: "Invalid Project ID"})
+        |> render("error.json", %{error: msg})
+
+      {:ok, project} ->
+        conn
+        |> put_status(:ok)
+        |> render("index.json", %{project: project})
     end
   end
 
@@ -148,30 +118,22 @@ defmodule PardWeb.ProjectController do
   Delete Project Endpoint
   """
   def delete(conn, %{"id" => id}) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
+    result = ProjectModule.delete_project(id)
 
-        case project do
-          nil ->
-            conn
-            |> put_status(:not_found)
-            |> render("error.json", %{error: "Project with ID #{id} not found"})
+    case result do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{error: msg})
 
-          _ ->
-            ProjectContext.delete_project(project)
+      {:success, _} ->
+        conn
+        |> send_resp(:no_content, "")
 
-            conn
-            |> send_resp(:no_content, "")
-        end
-
-      false ->
+      {:error, msg} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: "Invalid Project ID"})
+        |> render("error.json", %{error: msg})
     end
   end
 end

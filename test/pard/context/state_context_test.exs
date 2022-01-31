@@ -7,5 +7,5 @@ defmodule Pard.Context.StateContextTest do
   State Context Test Cases
   """
   use Pard.DataCase
-  alias Pard.Context.StateContext, as: StateContext
+  # alias Pard.Context.StateContext, as: StateContext
 end
