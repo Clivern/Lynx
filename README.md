@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Octopus Logo" src="/assets/img/logo.png?v=0.4.0" width="300" />
+    <img alt="Octopus Logo" src="/assets/img/logo.png?v=0.4.0" width="280" />
     <h3 align="center">Octopus</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
