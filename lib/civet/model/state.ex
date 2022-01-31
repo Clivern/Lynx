@@ -14,6 +14,7 @@ defmodule Civet.Model.State do
     field :uuid, Ecto.UUID
     field :name, :string
     field :value, :string
+    field :project_id, :id
 
     timestamps()
   end
@@ -24,12 +25,14 @@ defmodule Civet.Model.State do
     |> cast(attrs, [
       :uuid,
       :name,
-      :value
+      :value,
+      :project_id
     ])
     |> validate_required([
       :uuid,
       :name,
-      :value
+      :value,
+      :project_id
     ])
   end
 end

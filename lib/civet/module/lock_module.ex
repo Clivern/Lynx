@@ -107,7 +107,7 @@ defmodule Civet.Module.LockModule do
           _ ->
             result =
               LockContext.update_lock(lock, %{
-                action: false
+                is_active: false
               })
 
             case result do

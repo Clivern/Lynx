@@ -18,6 +18,7 @@ defmodule Civet.Context.StateContext do
     %{
       name: state.name,
       value: state.value,
+      project_id: state.project_id,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -68,6 +69,18 @@ defmodule Civet.Context.StateContext do
       u in State,
       where: u.name == ^name
     )
+    |> Repo.one()
+  end
+
+  @doc """
+  Get latest state by project id
+  """
+  def get_latest_state_by_project_id(project_id) do
+    from(
+      u in State,
+      where: u.project_id == ^project_id
+    )
+    |> last(:inserted_at)
     |> Repo.one()
   end
 
