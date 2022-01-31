@@ -13,7 +13,7 @@ defmodule Civet.Model.State do
   schema "states" do
     field :uuid, Ecto.UUID
     field :name, :string
-    field :value, :text
+    field :value, :string
 
     timestamps()
   end

@@ -11,19 +11,12 @@ defmodule Civet.Context.LockContext do
   alias Civet.Repo
   alias Civet.Model.{LockMeta, Lock}
 
-  field :uuid, Ecto.UUID
-  field :name, :string
-  field :description, :string
-  field :version, :string
-  field :username, :string
-  field :secret, :string
-
   @doc """
   Get a new lock
   """
   def new_lock(lock \\ %{}) do
     %{
-      project_id: message.project_id,
+      project_id: lock.project_id,
       uuid: Ecto.UUID.generate()
     }
   end

@@ -10,7 +10,6 @@ defmodule Civet.Repo.Migrations.CreateStates do
       add :uuid, :uuid
       add :name, :string
       add :value, :text
-
       add :project_id, references(:projects, on_delete: :delete_all)
 
       timestamps()

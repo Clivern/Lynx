@@ -8,6 +8,8 @@ defmodule CivetWeb.LockController do
   """
 
   use CivetWeb, :controller
+  # alias Civet.Context.LockContext
+  # alias Civet.Service.ValidatorService
 
   @doc """
   Lock Endpoint

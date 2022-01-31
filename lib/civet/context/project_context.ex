@@ -122,6 +122,16 @@ defmodule Civet.Context.ProjectContext do
   end
 
   @doc """
+  Count all projects
+  """
+  def count_projects() do
+    from(u in Project,
+      select: count(u.id)
+    )
+    |> Repo.one()
+  end
+
+  @doc """
   Create a new project meta attribute
   """
   def create_project_meta(attrs \\ %{}) do
