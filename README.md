@@ -7,7 +7,7 @@
             <img src="https://github.com/Clivern/Civet/actions/workflows/ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Civet/releases">
-            <img src="https://img.shields.io/badge/Version-0.1.0-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.2.0-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/Civet/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
