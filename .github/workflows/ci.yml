@@ -17,7 +17,11 @@ jobs:
           '1.13.3',
           '1.13.4',
           '1.14.0',
-          '1.14.1'
+          '1.14.1',
+          '1.14.2',
+          '1.14.3',
+          '1.14.4',
+          '1.14.5'
         ]
     services:
       db:
@@ -40,6 +44,9 @@ jobs:
 
       - name: Check Pard Format
         run: make fmt_check
+
+      - name: Get Version
+        run: make v
 
       - name: Test Pard
         run: make ci
