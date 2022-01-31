@@ -1,0 +1,48 @@
+name: CI
+
+on: push
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    name: OTP ${{matrix.otp}} / Elixir ${{matrix.elixir}}
+    strategy:
+      fail-fast: false
+      matrix:
+        otp: ['25.1']
+        elixir: [
+          '1.13.0',
+          '1.13.1',
+          '1.13.2',
+          '1.13.3',
+          '1.13.4',
+          '1.14.0',
+          '1.14.1'
+        ]
+    services:
+      db:
+        image: postgres:latest
+        ports: ['5432:5432']
+        env:
+          POSTGRES_DB: civet_dev
+          POSTGRES_USER: civet
+          POSTGRES_PASSWORD: civet
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+    steps:
+      - uses: actions/checkout@v3
+      - uses: erlef/setup-beam@v1
+        with:
+          otp-version: ${{matrix.otp}}
+          elixir-version: ${{matrix.elixir}}
+
+      - name: Get dependencies
+        run: make deps
+
+      - name: Check civet format
+        run: make fmt_check
+
+      - name: Test civet
+        run: make ci
+
+      - name: Build civet
+        run: make build

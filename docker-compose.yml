@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+ app:
+    build:
+      context: .
+    environment:
+      PGUSER: root
+      PGPASSWORD: D1q9f0C2&PEW
+      PGDATABASE: civet
+      PGPORT: 5432
+      PGHOST: db
+    restart: unless-stopped
+    ports:
+      - '4000:4000'
+    depends_on:
+      - db
+ db:
+    image: postgres:15.2
+    environment:
+      POSTGRES_DB: civet
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: D1q9f0C2&PEW
+    restart: unless-stopped
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
+  app:
+    driver: local
