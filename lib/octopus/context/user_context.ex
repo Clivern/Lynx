@@ -259,6 +259,17 @@ defmodule Octopus.Context.UserContext do
   end
 
   @doc """
+  Remove user from a team by UUID
+  """
+  def remove_user_from_team_by_uuid(uuid) do
+    from(
+      u in UserTeam,
+      where: u.uuid == ^uuid
+    )
+    |> Repo.delete_all()
+  end
+
+  @doc """
   Get user teams
   """
   def get_user_teams(user_id) do
