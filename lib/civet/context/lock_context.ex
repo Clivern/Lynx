@@ -76,6 +76,7 @@ defmodule Civet.Context.LockContext do
       where: u.project_id == ^project_id,
       where: u.is_active == true
     )
+    |> lock("FOR UPDATE")
     |> limit(1)
     |> Repo.one()
   end
