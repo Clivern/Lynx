@@ -1,7 +1,7 @@
 <p align="center">
     <img alt="Civet Logo" src="/assets/img/logo.png" width="200" />
     <h3 align="center">Civet</h3>
-    <p align="center">Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
+    <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
         <a href="https://github.com/Clivern/Civet/actions/workflows/ci.yml">
             <img src="https://github.com/Clivern/Civet/actions/workflows/ci.yml/badge.svg"/>
