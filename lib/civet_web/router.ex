@@ -1,4 +1,4 @@
-# Copyright 2022 Clivern. All rights reserved.
+# Copyright 2023 Clivern. All rights reserved.
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
@@ -39,32 +39,18 @@ defmodule CivetWeb.Router do
   scope "/api/v1", CivetWeb do
     pipe_through :api
 
-    get "/user", UserController, :list
-    post "/user", UserController, :create
-    get "/user/:id", UserController, :index
-    put "/user/:id", UserController, :update
-    delete "/user/:id", UserController, :delete
+    get "/project", ProjectController, :list
+    post "/project", ProjectController, :create
+    get "/project/:id", ProjectController, :index
+    put "/project/:id", ProjectController, :update
+    delete "/project/:id", ProjectController, :delete
 
-    get "/client", ClientController, :list
-    post "/client", ClientController, :create
-    get "/client/:id", ClientController, :index
-    put "/client/:id", ClientController, :update
-    delete "/client/:id", ClientController, :delete
+    put "/:project/:version/lock", LockController, :lock
+    put "/:project/:version/unlock", LockController, :unlock
 
-    get "/channel", ChannelController, :list
-    post "/channel", ChannelController, :create
-    get "/channel/:id", ChannelController, :index
-    put "/channel/:id", ChannelController, :update
-    delete "/channel/:id", ChannelController, :delete
-  end
-
-  scope "/action/v1", CivetWeb do
-    pipe_through :api
-
-    post "/join", ActionController, :join
-    post "/signup", ActionController, :signup
-    post "/login", ActionController, :login
-    post "/reset-password", ActionController, :reset_password
+    get "/:project/:version/state", StateController, :index
+    post "/:project/:version/state", StateController, :create
+    delete "/:project/:version/state", StateController, :delete
   end
 
   # Enables LiveDashboard only for development

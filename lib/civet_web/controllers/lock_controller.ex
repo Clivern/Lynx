@@ -2,17 +2,28 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule CivetWeb.HealthController do
+defmodule CivetWeb.LockController do
   @moduledoc """
-  Health Controller
+  Lock Controller
   """
 
   use CivetWeb, :controller
 
   @doc """
-  Health Endpoint
+  Lock Endpoint
   """
-  def health(conn, _params) do
+  def lock(conn, _params) do
+    body = Jason.encode!(%{status: "ok"})
+
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(200, body)
+  end
+
+  @doc """
+  Unlock Endpoint
+  """
+  def unlock(conn, _params) do
     body = Jason.encode!(%{status: "ok"})
 
     conn
