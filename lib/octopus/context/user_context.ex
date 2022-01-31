@@ -290,11 +290,9 @@ defmodule Octopus.Context.UserContext do
           nil
 
         _ ->
-          teams = teams ++ [team]
+          teams ++ team
       end
     end
-
-    teams
   end
 
   @doc """
@@ -318,11 +316,9 @@ defmodule Octopus.Context.UserContext do
           nil
 
         _ ->
-          users = users ++ [user]
+          users ++ user
       end
     end
-
-    users
   end
 
   @doc """

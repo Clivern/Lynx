@@ -101,10 +101,11 @@ defmodule Octopus.Context.ProjectContext do
   @doc """
   Retrieve projects
   """
-  def get_projects(offset, limit) do
+  def get_team_projects(team_id, offset, limit) do
     from(u in Project,
       limit: ^limit,
-      offset: ^offset
+      offset: ^offset,
+      where: u.team_id == ^team_id
     )
     |> Repo.all()
   end
@@ -112,9 +113,10 @@ defmodule Octopus.Context.ProjectContext do
   @doc """
   Count all projects
   """
-  def count_projects() do
+  def count_team_projects(team_id) do
     from(u in Project,
-      select: count(u.id)
+      select: count(u.id),
+      where: u.team_id == ^team_id
     )
     |> Repo.one()
   end
