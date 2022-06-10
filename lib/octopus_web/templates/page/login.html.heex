@@ -38,7 +38,7 @@
     <div class="columns">
       <div class="column"></div>
       <div class="column" id="app_login">
-        <form action={Routes.user_path(@conn, :auth)} method="post" v-on:submit.prevent="loginAction">
+        <form action={Routes.misc_path(@conn, :auth)} method="post" v-on:submit.prevent="loginAction">
         <div class="control">
           <input class="input" name="email" type="email" placeholder="Insert email address" required>
         </div>

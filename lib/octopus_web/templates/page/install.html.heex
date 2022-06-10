@@ -1,15 +1,15 @@
 <div id="app">
   <div class="home">
     <br /><br /><br />
-    <img alt="logo" src={Routes.static_path(@conn, "/images/logo.png")} width="150" />
+    <img alt="logo" src={Routes.static_path(@conn, "/images/logo.png")} width="200" />
     <div class="hello">
       <br />
-      <strong><%= gettext "Let's Install Octopus" %></strong>
+      <strong><%= gettext "Install Octopus" %></strong>
       <br /> <br />
     <div class="columns">
       <div class="column"></div>
       <div class="column" id="app_install">
-        <form action={Routes.install_path(@conn, :create)} method="post" v-on:submit.prevent="installAction">
+        <form action={Routes.misc_path(@conn, :install)} method="post" v-on:submit.prevent="installAction">
         <div class="control">
           <input class="input" name="app_name" type="text" placeholder="Application Name" required>
         </div>
