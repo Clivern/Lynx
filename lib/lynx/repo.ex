@@ -5,5 +5,6 @@
 defmodule Lynx.Repo do
   use Ecto.Repo,
     otp_app: :lynx,
-    adapter: Ecto.Adapters.Postgres
+    adapter: Ecto.Adapters.Postgres,
+    prepare: :unnamed
 end

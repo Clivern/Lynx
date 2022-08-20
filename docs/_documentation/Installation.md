@@ -146,6 +146,8 @@ $ cp .env.example .env.local # Adjust the database configs and application port 
 - Install dependencies and migrate the database
 
 ```zsh
+# Make sure to load all env vars
+$ export $(cat .env.local | xargs)
 $ make deps
 $ make migrate
 ```
