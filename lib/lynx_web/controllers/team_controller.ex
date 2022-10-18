@@ -72,8 +72,8 @@ defmodule LynxWeb.TeamController do
       if conn.assigns[:is_super] do
         {TeamModule.get_teams(offset, limit), TeamModule.count_teams()}
       else
-        {TeamModule.get_teams(conn.assigns[:user_id], offset, limit),
-         TeamModule.count_teams(conn.assigns[:user_id])}
+        {TeamModule.get_user_teams(conn.assigns[:user_id], offset, limit),
+         TeamModule.count_user_teams(conn.assigns[:user_id])}
       end
 
     render(conn, "list.json", %{

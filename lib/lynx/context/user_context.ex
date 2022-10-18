@@ -348,6 +348,17 @@ defmodule Lynx.Context.UserContext do
   end
 
   @doc """
+  Count user teams
+  """
+  def count_user_teams(user_id) do
+    from(u in UserTeam,
+      select: count(u.id),
+      where: u.user_id == ^user_id
+    )
+    |> Repo.one()
+  end
+
+  @doc """
   Get team users
   """
   def get_team_users(team_id) do
