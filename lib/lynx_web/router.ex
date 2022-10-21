@@ -82,16 +82,16 @@ defmodule LynxWeb.Router do
     delete "/team/:uuid", TeamController, :delete
 
     # Settings Endpoints
-    put "/settings", SettingsController, :update
+    put "/action/update_settings", SettingsController, :update
 
     # Profile Endpoints
-    post "/profile", ProfileController, :update
+    post "/action/update_profile", ProfileController, :update
 
     # Fetch API Key Endpoint
-    post "/api_key/fetch", ProfileController, :fetch_api_key
+    get "/action/fetch_api_key", ProfileController, :fetch_api_key
 
     # Rotate API Key Endpoint
-    post "/api_key/rotate", ProfileController, :rotate_api_key
+    post "/action/rotate_api_key", ProfileController, :rotate_api_key
 
     # Task Endpoints
     get "/task/:uuid", TaskController, :index

@@ -1,3 +1,10 @@
+<script type="text/javascript">
+  var _globals = {
+    fetch_api_key_endpoint: '<%= Routes.profile_path(@conn, :fetch_api_key) %>',
+    rotate_api_key_endpoint: '<%= Routes.profile_path(@conn, :rotate_api_key) %>'
+  }
+</script>
+
 <main class="hp-bg-color-dark-90 d-flex min-vh-100">
     <div class="hp-main-layout hp-main-layout-horizontal">
         <header>
@@ -286,7 +293,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-4">
+                <div class="col-4" id="app_api_key">
                     <div class="card">
                         <div class="card-body">
                             <div class="row justify-content-between">
@@ -295,12 +302,12 @@
                                 </div>
                                 <div class="col-12 mt-16">
                                     <div class="mb-24">
-                                        <input class="form-control" name="api_key" type="text" value="**************************" disabled>
+                                        <input class="form-control" name="api_key" type="text" v-model="apiKey" disabled>
                                     </div>
-								    <button id="show_api_key" type="submit" class="btn btn-sm btn-dark">
+								    <button @click="showApiKeyAction" class="btn btn-sm btn-primary">
                                         <%= gettext "Show the Key" %>
                                     </button>
-                                    <button id="rotate_api_key" type="submit" class="btn btn-sm btn-dark">
+                                    <button @click="rotateApiKeyAction" class="btn btn-sm btn-primary">
                                         <%= gettext "Rotate the Key" %>
                                     </button>
                                 </div>

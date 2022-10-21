@@ -45,17 +45,17 @@ function format_datetime(datetime) {
 }
 
 function snapshot_restore_followup(id) {
-    axios.get(i18n_globals.task_status_endpoint.replace("UUID", id))
+    axios.get(_globals.task_status_endpoint.replace("UUID", id))
         .then((response) => {
             if (response.status >= 200) {
                 show_notification(response.data.status);
 
                 if (response.data.status == 'success') {
-                    show_notification(i18n_globals.restore_snapshot_success_message);
+                    show_notification(_globals.restore_snapshot_success_message);
                 } else if (response.data.status === 'failure') {
-                    show_notification(i18n_globals.restore_snapshot_failed_message);
+                    show_notification(_globals.restore_snapshot_failed_message);
                 } else {
-                    show_notification(i18n_globals.restore_snapshot_pending_message);
+                    show_notification(_globals.restore_snapshot_pending_message);
                     setTimeout(() => { snapshot_restore_followup(id) }, 6000);
                 }
             }
@@ -232,6 +232,67 @@ lynx_app.profile_screen = (Vue, axios, $) => {
 
 }
 
+// Profile Page
+lynx_app.profile_api_screen = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#app_api_key',
+        data() {
+            return {
+                apiKey: "*********************",
+                isInProgress: false,
+            }
+        },
+        methods: {
+            showApiKeyAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                axios.get(_globals.fetch_api_key_endpoint)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.apiKey = response.data.apiKey;
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            rotateApiKeyAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.post(_globals.rotate_api_key_endpoint, {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.apiKey = response.data.apiKey;
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+
+}
+
+
+
 // Add User Modal
 lynx_app.add_user_modal = (Vue, axios, $) => {
 
@@ -259,7 +320,7 @@ lynx_app.add_user_modal = (Vue, axios, $) => {
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.new_user);
+                            show_notification(_globals.new_user);
                             setTimeout(() => {
                                 location.reload();
                             }, 2000);
@@ -330,7 +391,7 @@ lynx_app.add_team_modal = (Vue, axios, $) => {
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.new_team);
+                            show_notification(_globals.new_team);
                             setTimeout(() => {
                                 location.reload();
                             }, 2000);
@@ -379,14 +440,14 @@ lynx_app.teams_list = (Vue, axios, $) => {
             },
 
             deleteTeamAction(id) {
-                if (confirm(i18n_globals.delete_team_alert) != true) {
+                if (confirm(_globals.delete_team_alert) != true) {
                     return;
                 }
 
-                axios.delete(i18n_globals.delete_team_endpoint.replace("UUID", id), {})
+                axios.delete(_globals.delete_team_endpoint.replace("UUID", id), {})
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.delete_team_message);
+                            show_notification(_globals.delete_team_message);
                             setTimeout(() => { location.reload(); }, 2000);
                         }
                     })
@@ -467,14 +528,14 @@ lynx_app.users_list = (Vue, axios, $) => {
             },
 
             deleteUserAction(id) {
-                if (confirm(i18n_globals.delete_user_alert) != true) {
+                if (confirm(_globals.delete_user_alert) != true) {
                     return;
                 }
 
-                axios.delete(i18n_globals.delete_user_endpoint.replace("UUID", id), {})
+                axios.delete(_globals.delete_user_endpoint.replace("UUID", id), {})
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.delete_user_message);
+                            show_notification(_globals.delete_user_message);
                             setTimeout(() => { location.reload(); }, 2000);
                         }
                     })
@@ -556,18 +617,18 @@ lynx_app.projects_list = (Vue, axios, $) => {
             },
 
             viewProjectAction(id) {
-                window.location.href = i18n_globals.project_view_page.replace("UUID", id);
+                window.location.href = _globals.project_view_page.replace("UUID", id);
             },
 
             deleteProjectAction(id) {
-                if (confirm(i18n_globals.delete_project_alert) != true) {
+                if (confirm(_globals.delete_project_alert) != true) {
                     return;
                 }
 
-                axios.delete(i18n_globals.delete_project_endpoint.replace("UUID", id), {})
+                axios.delete(_globals.delete_project_endpoint.replace("UUID", id), {})
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.delete_project_message);
+                            show_notification(_globals.delete_project_message);
                             setTimeout(() => { location.reload(); }, 2000);
                         }
                     })
@@ -669,7 +730,7 @@ lynx_app.add_project_modal = (Vue, axios, $) => {
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.new_project);
+                            show_notification(_globals.new_project);
                             setTimeout(() => {
                                 location.reload();
                             }, 2000);
@@ -730,7 +791,7 @@ lynx_app.add_environment_modal = (Vue, axios, $) => {
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.new_environment);
+                            show_notification(_globals.new_environment);
                             setTimeout(() => {
                                 location.reload();
                             }, 2000);
@@ -771,13 +832,13 @@ lynx_app.environments_list = (Vue, axios, $) => {
             },
 
             downloadEnvironmentStateAction(id) {
-                window.location.href = i18n_globals.download_environment_state_endpoint.replace("UUID", id);
+                window.location.href = _globals.download_environment_state_endpoint.replace("UUID", id);
             },
 
             viewEnvironmentAction(id) {
                 let data = $("#proto_env_data").text();
-                let env_endpoint = i18n_globals.get_environment_endpoint.replaceAll("UUID", id);
-                let project_endpoint = i18n_globals.get_project_endpoint.replaceAll("UUID", i18n_globals.project_uuid);
+                let env_endpoint = _globals.get_environment_endpoint.replaceAll("UUID", id);
+                let project_endpoint = _globals.get_project_endpoint.replaceAll("UUID", _globals.project_uuid);
 
                 axios.get(env_endpoint, {})
                     .then((response) => {
@@ -816,14 +877,14 @@ lynx_app.environments_list = (Vue, axios, $) => {
             },
 
             deleteEnvironmentAction(id) {
-                if (confirm(i18n_globals.delete_environment_alert) != true) {
+                if (confirm(_globals.delete_environment_alert) != true) {
                     return;
                 }
 
-                axios.delete(i18n_globals.delete_environment_endpoint.replace("UUID", id), {})
+                axios.delete(_globals.delete_environment_endpoint.replace("UUID", id), {})
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.delete_environment_message);
+                            show_notification(_globals.delete_environment_message);
                             setTimeout(() => { location.reload(); }, 2000);
                         }
                     })
@@ -880,14 +941,14 @@ lynx_app.snapshots_list = (Vue, axios, $) => {
             },
 
             deleteSnapshotAction(id) {
-                if (confirm(i18n_globals.delete_snapshot_alert) != true) {
+                if (confirm(_globals.delete_snapshot_alert) != true) {
                     return;
                 }
 
-                axios.delete(i18n_globals.delete_snapshot_endpoint.replace("UUID", id), {})
+                axios.delete(_globals.delete_snapshot_endpoint.replace("UUID", id), {})
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.delete_snapshot_message);
+                            show_notification(_globals.delete_snapshot_message);
                             setTimeout(() => { location.reload(); }, 2000);
                         }
                     })
@@ -897,11 +958,11 @@ lynx_app.snapshots_list = (Vue, axios, $) => {
             },
 
             restoreSnapshotAction(id) {
-                if (confirm(i18n_globals.restore_snapshot_alert) != true) {
+                if (confirm(_globals.restore_snapshot_alert) != true) {
                     return;
                 }
 
-                axios.post(i18n_globals.restore_snapshot_endpoint.replace("UUID", id), {})
+                axios.post(_globals.restore_snapshot_endpoint.replace("UUID", id), {})
                     .then((response) => {
                         if (response.status >= 200) {
                             show_notification(response.data.successMessage);
@@ -1045,7 +1106,7 @@ lynx_app.add_snapshot_modal = (Vue, axios, $) => {
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.new_snapshot);
+                            show_notification(_globals.new_snapshot);
                             setTimeout(() => {
                                 location.reload();
                             }, 2000);
@@ -1174,6 +1235,15 @@ $(document).ready(() => {
 
     if (document.getElementById("add_snapshot_modal")) {
         lynx_app.add_snapshot_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+
+    if (document.getElementById("app_api_key")) {
+        lynx_app.profile_api_screen(
             Vue,
             axios,
             $

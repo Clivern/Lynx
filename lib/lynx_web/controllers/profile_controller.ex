@@ -80,12 +80,14 @@ defmodule LynxWeb.ProfileController do
   """
   def fetch_api_key(conn, _params) do
     case UserModule.get_user_by_uuid(conn.assigns[:user_uuid]) do
-      nil ->
+      {:not_found, msg} ->
+        Logger.info(msg)
+
         conn
         |> put_status(:not_found)
         |> render("error.json", %{message: "Profile not found"})
 
-      user ->
+      {:ok, user} ->
         conn
         |> put_status(:ok)
         |> render("user.json", %{api_key: user.api_key})
@@ -98,7 +100,7 @@ defmodule LynxWeb.ProfileController do
   def rotate_api_key(conn, _params) do
     api_key = AuthService.get_uuid()
 
-    case UserModule.rotate_api_key(conn.assigns[:user_uuid], AuthService.get_uuid()) do
+    case UserModule.rotate_api_key(conn.assigns[:user_uuid], api_key) do
       {:not_found, msg} ->
         Logger.info(msg)
 

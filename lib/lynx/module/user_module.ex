@@ -30,7 +30,7 @@ defmodule Lynx.Module.UserModule do
   def get_user_by_uuid(uuid) do
     case UserContext.get_user_by_uuid(uuid) do
       nil ->
-        {:not_found, "Team with ID #{uuid} not found"}
+        {:not_found, "User with ID #{uuid} not found"}
 
       user ->
         {:ok, user}
