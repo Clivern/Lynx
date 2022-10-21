@@ -12,4 +12,8 @@ defmodule LynxWeb.ProfileView do
   def render("error.json", %{message: message}) do
     %{errorMessage: message}
   end
+
+  def render("user.json", %{api_key: api_key}) do
+    %{apiKey: api_key}
+  end
 end

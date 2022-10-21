@@ -87,6 +87,12 @@ defmodule LynxWeb.Router do
     # Profile Endpoints
     post "/profile", ProfileController, :update
 
+    # Fetch API Key Endpoint
+    post "/api_key/fetch", ProfileController, :fetch_api_key
+
+    # Rotate API Key Endpoint
+    post "/api_key/rotate", ProfileController, :rotate_api_key
+
     # Task Endpoints
     get "/task/:uuid", TaskController, :index
 

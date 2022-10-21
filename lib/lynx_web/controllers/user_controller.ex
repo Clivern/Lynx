@@ -84,7 +84,7 @@ defmodule LynxWeb.UserController do
           UserModule.create_user(%{
             name: params["name"],
             email: params["email"],
-            api_key: AuthService.get_random_salt(),
+            api_key: AuthService.get_uuid(),
             role: params["role"],
             password: params["password"]
           })

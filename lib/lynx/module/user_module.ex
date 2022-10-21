@@ -127,6 +127,31 @@ defmodule Lynx.Module.UserModule do
   end
 
   @doc """
+  Rotate User API Key
+  """
+  def rotate_api_key(user_uuid, new_api_key) do
+    user = UserContext.get_user_by_uuid(user_uuid)
+
+    case user do
+      nil ->
+        {:not_found, "User with ID #{user_uuid} not found"}
+
+      _ ->
+        case UserContext.update_user(user, %{api_key: new_api_key}) do
+          {:ok, user} ->
+            {:ok, user}
+
+          {:error, changeset} ->
+            messages =
+              changeset.errors()
+              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+            {:error, Enum.at(messages, 0)}
+        end
+    end
+  end
+
+  @doc """
   Delete User by UUID
   """
   def delete_user_by_uuid(uuid) do

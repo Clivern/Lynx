@@ -295,8 +295,14 @@
                                 </div>
                                 <div class="col-12 mt-16">
                                     <div class="mb-24">
-                                        <input class="form-control" name="api_key" type="text" value={@data.user_api_key} disabled>
+                                        <input class="form-control" name="api_key" type="text" value="**************************" disabled>
                                     </div>
+								    <button id="show_api_key" type="submit" class="btn btn-sm btn-dark">
+                                        <%= gettext "Show the Key" %>
+                                    </button>
+                                    <button id="rotate_api_key" type="submit" class="btn btn-sm btn-dark">
+                                        <%= gettext "Rotate the Key" %>
+                                    </button>
                                 </div>
                             </div>
                         </div>
