@@ -286,6 +286,11 @@
                                             <input class="form-control" name="email" type="email" value={@data.user_email} required="required">
                                         </div>
 
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "New Password" %></label>
+                                            <input class="form-control" name="password" type="password" placeholder="*************">
+                                        </div>
+
                                         <button type="submit" class="btn btn-primary"><%= gettext "Submit" %></button>
                                     </form>
                                 </div>
