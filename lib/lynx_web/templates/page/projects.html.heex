@@ -2,6 +2,7 @@
   var _globals = {
     new_project: '<%= gettext "Project created successfully!" %>',
     delete_project_message: '<%= gettext "Project deleted successfully!" %>',
+    update_project_message: '<%= gettext "Project updated successfully!" %>',
     delete_project_alert: '<%= gettext "You are trying to delete a project! are you sure?" %>',
     delete_project_endpoint: '<%= Routes.project_path(@conn, :delete, "UUID") %>',
     project_view_page: '<%= Routes.page_path(@conn, :project, "UUID") %>'
@@ -161,7 +162,6 @@
                                 <ul>
                                     <li>
                                         <a href={Routes.page_path(@conn, :projects)}>
-                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                             <span>
                                                 <i class="iconly-Curved-PaperPlus"></i>
                                                 <span><%= gettext "Projects" %></span>
@@ -170,7 +170,6 @@
                                     </li>
                                     <li>
                                         <a href={Routes.page_path(@conn, :snapshots)}>
-                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                             <span>
                                                 <i class="iconly-Curved-PaperPlus"></i>
                                                 <span><%= gettext "Snapshots" %></span>
@@ -180,7 +179,6 @@
                                     <%= if @data.is_super do %>
                                         <li>
                                             <a href={Routes.page_path(@conn, :teams)}>
-                                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                                 <span>
                                                     <i class="iconly-Curved-PaperPlus"></i>
                                                     <span><%= gettext "Teams" %></span>
@@ -189,7 +187,6 @@
                                         </li>
                                         <li>
                                             <a href={Routes.page_path(@conn, :users)}>
-                                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                                 <span>
                                                     <i class="iconly-Curved-PaperPlus"></i>
                                                     <span><%= gettext "Users" %></span>
@@ -198,7 +195,6 @@
                                         </li>
                                         <li>
                                             <a href={Routes.page_path(@conn, :settings)}>
-                                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                                 <span>
                                                     <i class="iconly-Curved-PaperPlus"></i>
                                                     <span><%= gettext "Settings" %></span>
@@ -295,7 +291,7 @@
                                         <td style="text-align: center">${formatDatetime(project.createdAt)}</td>
                                         <td>
                                             <button @click="viewProjectAction(project.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "View" %></button>
-                                            <!--<button @click="editProjectAction(project.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>-->
+                                            <button @click="editProjectAction(project.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#edit_project_modal"><%= gettext "Edit" %></button>
                                             <button @click="deleteProjectAction(project.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>
                                       </tr>
@@ -393,6 +389,64 @@
                 </div>
             </div>
 
+            <div class="modal fade" id="edit_project_modal" tabindex="-1" aria-labelledby="editProjectLabel" aria-hidden="true" data-action={Routes.team_path(@conn, :list)}>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header py-16 px-24">
+                            <h5 class="modal-title" id="editProjectLabel"><%= gettext "Edit Project" %></h5>
+                            <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="divider m-0"></div>
+
+                        <form id="update_project_form" action={Routes.project_path(@conn, :update, "UUID")} method="post" v-on:submit.prevent="updateProjectAction">
+                            <input type="hidden" value="" name="uuid">
+                            <div class="modal-body">
+                                <div class="row gx-8">
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Name" %></label>
+                                            <input type="text" class="form-control" name="name" required="required"  minlength="2" maxlength="60">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Slug" %></label>
+                                            <input type="text" class="form-control" name="slug" required="required"  minlength="2" maxlength="60">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Description" %></label>
+                                            <textarea name="description" class="form-control" required="required"  minlength="2" maxlength="250"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Team" %></label>
+                                            <select class="form-select" name="team_id" required="required">
+                                                <template v-for="team in teams">
+                                                    <option :value="team.id">${team.name}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer pt-0 px-24 pb-24">
+                                <div class="divider"></div>
+                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
 
         <footer class="w-100 py-18 px-16 py-sm-24 px-sm-32 hp-bg-color-black-20 hp-bg-color-dark-90">

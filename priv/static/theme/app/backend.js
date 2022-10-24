@@ -750,7 +750,24 @@ lynx_app.projects_list = (Vue, axios, $) => {
         },
         methods: {
             editProjectAction(id) {
-                console.log("Edit project with ID:", id);
+                $('form#update_project_form input[name="uuid"]').val(id);
+
+                $('form#update_project_form').attr('action', function(i, val) {
+                    return val.replace('UUID', id);
+                });
+
+                axios.get($("#update_project_form").attr("action"))
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            $('form#update_project_form input[name="name"]').val(response.data.name);
+                            $('form#update_project_form input[name="slug"]').val(response.data.slug);
+                            $('form#update_project_form textarea[name="description"]').val(response.data.description);
+                            $('form#update_project_form select[name="team_id"]').val(response.data.team.id);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
             },
 
             formatDatetime(datatime) {
@@ -814,6 +831,70 @@ lynx_app.projects_list = (Vue, axios, $) => {
                     this.currentPage++;
                     this.loadDataAction();
                 }
+            }
+        }
+    });
+}
+
+
+lynx_app.edit_project_modal = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#edit_project_modal',
+        data() {
+            return {
+                isInProgress: false,
+                teams: []
+            }
+        },
+        mounted() {
+            this.loadDataAction();
+        },
+        methods: {
+            loadDataAction() {
+                axios.get($("#edit_project_modal").attr("data-action"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.teams = response.data.teams;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+            updateProjectAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.put(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(_globals.update_project_message);
+
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
             }
         }
     });
@@ -1401,6 +1482,14 @@ $(document).ready(() => {
 
     if (document.getElementById("edit_team_modal")) {
         lynx_app.edit_team_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("edit_project_modal")) {
+        lynx_app.edit_project_modal(
             Vue,
             axios,
             $
