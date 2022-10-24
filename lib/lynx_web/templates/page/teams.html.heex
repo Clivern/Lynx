@@ -2,6 +2,7 @@
   var _globals = {
     new_team: '<%= gettext "Team created successfully!" %>',
     delete_team_message: '<%= gettext "Team deleted successfully!" %>',
+    update_team_message: '<%= gettext "Team updated successfully!" %>',
     delete_team_alert: '<%= gettext "You are trying to delete a team! are you sure?" %>',
     delete_team_endpoint: '<%= Routes.team_path(@conn, :delete, "UUID") %>',
     update_team_endpoint: '<%= Routes.team_path(@conn, :update, "UUID") %>'
@@ -294,10 +295,8 @@
                                         <td style="text-align: center">${team.projectsCount}</td>
                                         <td style="text-align: center">${formatDatetime(team.createdAt)}</td>
                                         <td>
-                                            <!--
                                             <button @click="editTeamAction(team.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#edit_team_modal"><%= gettext "Edit" %></button>
-                                            -->
-                                          <button @click="deleteTeamAction(team.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
+                                            <button @click="deleteTeamAction(team.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>
                                       </tr>
                                       <tr v-if="teams.length == 0">
@@ -348,7 +347,7 @@
 
                         <div class="divider m-0"></div>
 
-                        <form action={Routes.team_path(@conn, :create)} method="post" v-on:submit.prevent="addTeamAction">
+                        <form id="add_team_form" action={Routes.team_path(@conn, :create)} method="post" v-on:submit.prevent="addTeamAction">
                             <div class="modal-body">
                                 <div class="row gx-8">
                                     <div class="col-12">
@@ -393,7 +392,7 @@
                     </div>
                 </div>
             </div>
-            <!--
+
             <div class="modal fade" id="edit_team_modal" tabindex="-1" aria-labelledby="editTeamLabel" aria-hidden="true" data-action={Routes.user_path(@conn, :list)}>
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
@@ -413,14 +412,14 @@
                                     <div class="col-12">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Name" %></label>
-                                            <input type="text" v-model="teamName" @input="slugifyTeamName" class="form-control" name="name" required="required" minlength="2" maxlength="60">
+                                            <input type="text" class="form-control" name="name" required="required" minlength="2" maxlength="60">
                                         </div>
                                     </div>
 
                                     <div class="col-12">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Slug" %></label>
-                                            <input type="text" v-model="teamSlug" class="form-control" name="slug" required="required" minlength="2" maxlength="60">
+                                            <input type="text" class="form-control" name="slug" required="required" minlength="2" maxlength="60">
                                         </div>
                                     </div>
 
@@ -452,7 +451,6 @@
                     </div>
                 </div>
             </div>
-            -->
         </div>
 
         <footer class="w-100 py-18 px-16 py-sm-24 px-sm-32 hp-bg-color-black-20 hp-bg-color-dark-90">

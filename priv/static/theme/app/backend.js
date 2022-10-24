@@ -386,7 +386,7 @@ lynx_app.add_team_modal = (Vue, axios, $) => {
                     inputs[item.name] = item.value;
                 });
 
-                inputs["members"] = $("[name='members']").val();
+                inputs["members"] = $("form#add_team_form select[name='members']").val();
 
                 axios.post(_form.attr('action'), inputs)
                     .then((response) => {
@@ -432,11 +432,24 @@ lynx_app.teams_list = (Vue, axios, $) => {
         },
         methods: {
             editTeamAction(id) {
-                console.log("Edit team with ID:", id);
-                //$('input[name="uuid"]').val(id);
-                //$('form#update_team_form').attr('action', function(i, val) {
-                //    return val.replace('UUID', id);
-                //});
+                $('input[name="uuid"]').val(id);
+
+                $('form#update_team_form').attr('action', function(i, val) {
+                    return val.replace('UUID', id);
+                });
+
+                axios.get($("#update_team_form").attr("action"))
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            $('form#update_team_form input[name="name"]').val(response.data.name);
+                            $('form#update_team_form input[name="slug"]').val(response.data.slug);
+                            $('form#update_team_form textarea[name="description"]').val(response.data.description);
+                            $('form#update_team_form select[name="members"]').val(response.data.members);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
             },
 
             formatDatetime(datatime) {
@@ -500,6 +513,71 @@ lynx_app.teams_list = (Vue, axios, $) => {
     });
 }
 
+lynx_app.edit_team_modal = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#edit_team_modal',
+        data() {
+            return {
+                isInProgress: false,
+                users: []
+            }
+        },
+        mounted() {
+            this.loadData();
+        },
+        methods: {
+            loadData() {
+                axios.get($("#edit_team_modal").attr("data-action"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.users = response.data.users;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+            updateTeamAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                inputs["members"] = $("form#update_team_form select[name='members']").val();
+
+                axios.put(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(_globals.update_team_message);
+
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+}
+
 // Users list
 lynx_app.users_list = (Vue, axios, $) => {
 
@@ -528,6 +606,7 @@ lynx_app.users_list = (Vue, axios, $) => {
                 $('form#update_user_form').attr('action', function(i, val) {
                     return val.replace('UUID', id);
                 });
+
                 axios.get($("#update_user_form").attr("action"))
                     .then((response) => {
                         if (response.status >= 200) {
@@ -1314,6 +1393,14 @@ $(document).ready(() => {
 
     if (document.getElementById("edit_user_modal")) {
         lynx_app.edit_user_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("edit_team_modal")) {
+        lynx_app.edit_team_modal(
             Vue,
             axios,
             $
