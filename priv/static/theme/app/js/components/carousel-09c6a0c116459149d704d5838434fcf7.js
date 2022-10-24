@@ -1,2 +1,0 @@
-// Carousel
-new bootstrap.Carousel()

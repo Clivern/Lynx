@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app1:
-    image: clivern/lynx:0.11.12
+    image: clivern/lynx:0.11.13
     environment:
       APP_NAME: Lynx
       APP_PORT: 4001
@@ -18,12 +18,16 @@ services:
       DB_CA_CERTFILE_PATH: null
       MIX_ENV: prod
     command: sh -c "/app/bin/migrate && /app/bin/server"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:4001/_health"]
+      interval: 30s
+      retries: 3
     restart: unless-stopped
     depends_on:
       - db
 
   app2:
-    image: clivern/lynx:0.11.12
+    image: clivern/lynx:0.11.13
     environment:
       APP_NAME: Lynx
       APP_PORT: 4002
@@ -39,12 +43,16 @@ services:
       DB_CA_CERTFILE_PATH: null
       MIX_ENV: prod
     command: sh -c "/app/bin/migrate && /app/bin/server"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:4002/_health"]
+      interval: 30s
+      retries: 3
     restart: unless-stopped
     depends_on:
       - db
 
   app3:
-    image: clivern/lynx:0.11.12
+    image: clivern/lynx:0.11.13
     environment:
       APP_NAME: Lynx
       APP_PORT: 4003
@@ -60,6 +68,10 @@ services:
       DB_CA_CERTFILE_PATH: null
       MIX_ENV: prod
     command: sh -c "/app/bin/migrate && /app/bin/server"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:4003/_health"]
+      interval: 30s
+      retries: 3
     restart: unless-stopped
     depends_on:
       - db
@@ -79,7 +91,7 @@ services:
     ports:
       - '80:80'
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost/_ready"]
+      test: ["CMD", "curl", "--fail", "http://localhost/_health"]
       interval: 30s
       retries: 3
     restart: unless-stopped

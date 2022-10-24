@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: clivern/lynx:0.11.12
+    image: clivern/lynx:0.11.13
     environment:
       APP_NAME: Lynx
       APP_PORT: 4000
@@ -18,6 +18,10 @@ services:
       DB_CA_CERTFILE_PATH: null
       MIX_ENV: prod
     command: sh -c "/app/bin/migrate && /app/bin/server"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:4000/_health"]
+      interval: 30s
+      retries: 3
     restart: unless-stopped
     depends_on:
       - db
@@ -37,7 +41,7 @@ services:
     ports:
       - '80:80'
     healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost/_ready"]
+      test: ["CMD", "curl", "--fail", "http://localhost/_health"]
       interval: 30s
       retries: 3
     restart: unless-stopped

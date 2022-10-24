@@ -50,7 +50,7 @@ build:
 release:
 	@echo ">> ============= Release the code ============= <<"
 	-rm -rf _build
-	mix phx.digest
+	# mix phx.digest
 	MIX_ENV=prod mix release
 
 

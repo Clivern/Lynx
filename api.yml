@@ -7,7 +7,7 @@ info:
   license:
     name: MIT License
     url: https://github.com/Clivern/Lynx/blob/main/LICENSE
-  version: 0.11.0
+  version: 0.11.13
 externalDocs:
   description: Find out more about lynx
   url: https://github.com/Clivern/Lynx

@@ -1,1 +1,0 @@
-var varyingModal=document.getElementById("varyingModal");varyingModal&&varyingModal.addEventListener("show.bs.modal",(function(e){var a=e.relatedTarget.getAttribute("data-bs-whatever"),t=varyingModal.querySelector(".modal-title"),o=varyingModal.querySelector(".modal-body input");t.textContent="New message to "+a,o.value=a}));

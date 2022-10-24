@@ -12,23 +12,27 @@ defmodule LynxWeb.Router do
     plug :put_root_layout, {LynxWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug :add_server_header
     plug Lynx.Middleware.Logger
     plug Lynx.Middleware.UIAuthMiddleware
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug :add_server_header
     plug Lynx.Middleware.Logger
     plug Lynx.Middleware.APIAuthMiddleware
   end
 
   pipeline :pub do
     plug :accepts, ["json"]
+    plug :add_server_header
     plug Lynx.Middleware.Logger
   end
 
   pipeline :client do
     plug :accepts, ["json"]
+    plug :add_server_header
     plug Lynx.Middleware.Logger
   end
 
@@ -119,6 +123,11 @@ defmodule LynxWeb.Router do
     # State API Endpoints
     get "/:t_slug/:p_slug/:e_slug/state", StateController, :index
     post "/:t_slug/:p_slug/:e_slug/state", StateController, :create
+  end
+
+  defp add_server_header(conn, _opts) do
+    conn
+    |> put_resp_header("x-server-version", "lynx/0.11.13")
   end
 
   # Enables LiveDashboard only for development
