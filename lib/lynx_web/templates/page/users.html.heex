@@ -2,8 +2,10 @@
   var _globals = {
     new_user: '<%= gettext "User created successfully!" %>',
     delete_user_message: '<%= gettext "User deleted successfully!" %>',
+    update_user_message: '<%= gettext "User updated successfully!" %>',
     delete_user_alert: '<%= gettext "You are trying to delete a user! are you sure?" %>',
-    delete_user_endpoint: '<%= Routes.user_path(@conn, :delete, "UUID") %>'
+    delete_user_endpoint: '<%= Routes.user_path(@conn, :delete, "UUID") %>',
+    update_user_endpoint: '<%= Routes.user_path(@conn, :update, "UUID") %>'
   }
 </script>
 
@@ -293,8 +295,7 @@
                                         <td style="text-align: center">${user.role}</td>
                                         <td style="text-align: center">${formatDatetime(user.createdAt)}</td>
                                         <td>
-                                        <!--
-                                          <button @click="editUserAction(user.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>-->
+                                          <button @click="editUserAction(user.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#edit_user_modal"><%= gettext "Edit" %></button>
                                           <button @click="deleteUserAction(user.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>
                                       </tr>
@@ -376,6 +377,64 @@
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Password" %></label>
                                             <input type="password" class="form-control" name="password" required="required" minlength="6" maxlength="60">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer pt-0 px-24 pb-24">
+                                <div class="divider"></div>
+                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="edit_user_modal" tabindex="-1" aria-labelledby="editUserLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header py-16 px-24">
+                            <h5 class="modal-title" id="editUserLabel"><%= gettext "Edit User" %></h5>
+                            <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="divider m-0"></div>
+
+                        <form id="update_user_form" action={Routes.user_path(@conn, :update, "UUID")} method="post" v-on:submit.prevent="updateUserAction">
+                            <input type="hidden" value="" name="uuid">
+                            <div class="modal-body">
+                                <div class="row gx-8">
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Nick Name" %></label>
+                                            <input type="text" class="form-control" name="name" required="required" minlength="2" maxlength="60">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Role" %></label>
+                                            <select class="form-select" name="role" required="required">
+                                                <option value="regular" selected><%= gettext "Regular" %></option>
+                                                <option value="super"><%= gettext "Super" %></option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Email" %></label>
+                                            <input type="email" class="form-control" name="email" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "New Password" %></label>
+                                            <input type="password" class="form-control" name="password">
                                         </div>
                                     </div>
                                 </div>
