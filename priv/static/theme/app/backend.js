@@ -432,8 +432,14 @@ lynx_app.teams_list = (Vue, axios, $) => {
         },
         methods: {
             editTeamAction(id) {
-                $('input[name="uuid"]').val(id);
+                let current = $('form#update_team_form input[name="uuid"]').val()
+                if (current != "") {
+                    $('form#update_team_form').attr('action', function(i, val) {
+                        return val.replace(current, "UUID");
+                    });
+                }
 
+                $('form#update_team_form input[name="uuid"]').val(id);
                 $('form#update_team_form').attr('action', function(i, val) {
                     return val.replace('UUID', id);
                 });
@@ -602,7 +608,14 @@ lynx_app.users_list = (Vue, axios, $) => {
         },
         methods: {
             editUserAction(id) {
-                $('input[name="uuid"]').val(id);
+                let current = $('form#update_user_form input[name="uuid"]').val()
+                if (current != "") {
+                    $('form#update_user_form').attr('action', function(i, val) {
+                        return val.replace(current, "UUID");
+                    });
+                }
+
+                $('form#update_user_form input[name="uuid"]').val(id);
                 $('form#update_user_form').attr('action', function(i, val) {
                     return val.replace('UUID', id);
                 });
@@ -750,8 +763,14 @@ lynx_app.projects_list = (Vue, axios, $) => {
         },
         methods: {
             editProjectAction(id) {
-                $('form#update_project_form input[name="uuid"]').val(id);
+                let current = $('form#update_project_form input[name="uuid"]').val()
+                if (current != "") {
+                    $('form#update_project_form').attr('action', function(i, val) {
+                        return val.replace(current, "UUID");
+                    });
+                }
 
+                $('form#update_project_form input[name="uuid"]').val(id);
                 $('form#update_project_form').attr('action', function(i, val) {
                     return val.replace('UUID', id);
                 });
@@ -1046,7 +1065,30 @@ lynx_app.environments_list = (Vue, axios, $) => {
         },
         methods: {
             editEnvironmentAction(id) {
-                console.log("Edit environment with ID:", id);
+                let current = $('form#update_environment_form input[name="uuid"]').val()
+                if (current != "") {
+                    $('form#update_environment_form').attr('action', function(i, val) {
+                        return val.replace(current, "UUID");
+                    });
+                }
+
+                $('form#update_environment_form input[name="uuid"]').val(id);
+                $('form#update_environment_form').attr('action', function(i, val) {
+                    return val.replace('UUID', id);
+                });
+
+                axios.get($("#update_environment_form").attr("action"))
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            $('form#update_environment_form input[name="name"]').val(response.data.name);
+                            $('form#update_environment_form input[name="slug"]').val(response.data.slug);
+                            $('form#update_environment_form input[name="username"]').val(response.data.username);
+                            $('form#update_environment_form input[name="secret"]').val(response.data.secret);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
             },
 
             formatDatetime(datatime) {
@@ -1128,6 +1170,49 @@ lynx_app.environments_list = (Vue, axios, $) => {
                         }
                     })
                     .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+}
+
+lynx_app.edit_environment_modal = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#edit_environment_modal',
+        data() {
+            return {
+                isInProgress: false
+            }
+        },
+        methods: {
+            updateEnvironmentAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.put(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(_globals.update_environment_message);
+
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
                         show_notification(error.response.data.errorMessage);
                     });
             }
@@ -1490,6 +1575,14 @@ $(document).ready(() => {
 
     if (document.getElementById("edit_project_modal")) {
         lynx_app.edit_project_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("edit_environment_modal")) {
+        lynx_app.edit_environment_modal(
             Vue,
             axios,
             $
