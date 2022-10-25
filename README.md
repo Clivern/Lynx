@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.12.3" width="250" />
+    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.12.3" width="400" />
     <h3 align="center">Lynx</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
@@ -14,9 +14,6 @@
         </a>
         <a href="https://github.com/Clivern/terraform-provider-lynx">
             <img src="https://img.shields.io/badge/Terraform-Provider-yellow.svg">
-        </a>
-        <a href="https://github.com/Clivern/Lynx/actions/workflows/docker.yml">
-            <img src="https://github.com/Clivern/Lynx/actions/workflows/docker.yml/badge.svg">
         </a>
         <a href="https://github.com/Clivern/Lynx/blob/main/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
