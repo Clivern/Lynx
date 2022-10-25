@@ -313,6 +313,7 @@
                                         <td style="text-align: center">${snapshot.team.name}</td>
                                         <td style="text-align: center">${formatDatetime(snapshot.createdAt)}</td>
                                         <td>
+                                            <button @click="showSnapshotInfoAction(snapshot.description)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#show_snapshot_info_modal"><%= gettext "Info" %></button>
                                             <button @click="restoreSnapshotAction(snapshot.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "Restore" %></button>
                                             <button @click="deleteSnapshotAction(snapshot.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>
@@ -348,6 +349,29 @@
                                 </ul>
                             </nav>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="show_snapshot_info_modal" tabindex="-1" aria-labelledby="showSnapshotInfoLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header py-16 px-24">
+                            <h5 class="modal-title" id="showSnapshotInfoLabel"><%= gettext "Snapshot Info" %></h5>
+                            <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="divider m-0"></div>
+
+                        <div class="modal-body">
+                            <div class="row gx-8">
+                                <div class="col-12">
+                                    <div class="mb-24" id="snapshot_info_modal_content"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>

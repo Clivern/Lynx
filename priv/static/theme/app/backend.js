@@ -431,6 +431,10 @@ lynx_app.teams_list = (Vue, axios, $) => {
             }
         },
         methods: {
+            showTeamInfoAction(description) {
+                $("div#team_info_modal_content").text(description);
+            },
+
             editTeamAction(id) {
                 let current = $('form#update_team_form input[name="uuid"]').val()
                 if (current != "") {
@@ -762,6 +766,10 @@ lynx_app.projects_list = (Vue, axios, $) => {
             }
         },
         methods: {
+            showProjectInfoAction(description) {
+                $("div#project_info_modal_content").text(description);
+            },
+
             editProjectAction(id) {
                 let current = $('form#update_project_form input[name="uuid"]').val()
                 if (current != "") {
@@ -1243,6 +1251,10 @@ lynx_app.snapshots_list = (Vue, axios, $) => {
             }
         },
         methods: {
+            showSnapshotInfoAction(description) {
+                $("div#snapshot_info_modal_content").text(description);
+            },
+
             formatDatetime(datatime) {
                 return format_datetime(datatime);
             },

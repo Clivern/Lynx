@@ -290,6 +290,7 @@
                                         <td style="text-align: center">${team.projectsCount}</td>
                                         <td style="text-align: center">${formatDatetime(team.createdAt)}</td>
                                         <td>
+                                            <button @click="showTeamInfoAction(team.description)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#show_team_info_modal"><%= gettext "Info" %></button>
                                             <button @click="editTeamAction(team.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#edit_team_modal"><%= gettext "Edit" %></button>
                                             <button @click="deleteTeamAction(team.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>
@@ -325,6 +326,29 @@
                                 </ul>
                             </nav>
 
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="show_team_info_modal" tabindex="-1" aria-labelledby="showTeamInfoLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header py-16 px-24">
+                            <h5 class="modal-title" id="showTeamInfoLabel"><%= gettext "Team Info" %></h5>
+                            <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="divider m-0"></div>
+
+                        <div class="modal-body">
+                            <div class="row gx-8">
+                                <div class="col-12">
+                                    <div class="mb-24" id="team_info_modal_content"></div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
