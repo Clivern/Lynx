@@ -48,7 +48,7 @@ defmodule Brangus.Module.InstallModule do
     for item <- items do
       case ConfigContext.create_config(item) do
         {:ok, _} ->
-          :success
+          {:success, nil}
 
         {:error, changeset} ->
           messages =
@@ -79,7 +79,7 @@ defmodule Brangus.Module.InstallModule do
 
     case result do
       {:ok, _} ->
-        :success
+        {:success, nil}
 
       {:error, changeset} ->
         messages =

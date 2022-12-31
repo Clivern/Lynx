@@ -50,7 +50,7 @@ defmodule BrangusWeb.MiscController do
           |> render("error.json", %{error: msg})
           |> halt()
 
-        :success ->
+        {:success, nil} ->
           nil
       end
     end
@@ -71,7 +71,7 @@ defmodule BrangusWeb.MiscController do
         |> render("error.json", %{error: msg})
         |> halt()
 
-      :success ->
+      {:success, nil} ->
         nil
     end
 
