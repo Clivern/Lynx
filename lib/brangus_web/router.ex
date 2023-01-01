@@ -12,20 +12,24 @@ defmodule BrangusWeb.Router do
     plug :put_root_layout, {BrangusWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Brangus.Middleware.Logger
     plug Brangus.Middleware.UIAuthMiddleware
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Brangus.Middleware.Logger
     plug Brangus.Middleware.APIAuthMiddleware
   end
 
   pipeline :pub do
     plug :accepts, ["json"]
+    plug Brangus.Middleware.Logger
   end
 
   pipeline :client do
     plug :accepts, ["json"]
+    plug Brangus.Middleware.Logger
   end
 
   scope "/", BrangusWeb do

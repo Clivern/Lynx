@@ -8,21 +8,24 @@ defmodule BrangusWeb.UserController do
   """
 
   use BrangusWeb, :controller
+
   alias Brangus.Module.UserModule
   alias Brangus.Service.ValidatorService
+
   require Logger
 
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :auth, only: [:list, :get, :add, :edit, :delete]
+  plug :only_super_users, only: [:list, :get, :add, :edit, :delete]
 
-  defp auth(conn, _opts) do
-    Logger.info("Validate user permissions")
+  defp only_super_users(conn, _opts) do
+
+    Logger.info("Validate user permissions. requestId is #{conn.assigns[:request_id]}")
 
     # If user not authenticated, return forbidden access
     if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated")
+      Logger.info("User is not authenticated. requestId is #{conn.assigns[:request_id]}")
 
       conn
       |> put_status(:forbidden)
@@ -31,16 +34,20 @@ defmodule BrangusWeb.UserController do
     else
       # If user not super, return forbidden access
       if conn.assigns[:user_role] != :super do
-        Logger.info("User doesn't have a super permission")
+        Logger.info(
+          "User doesn't have a super permission. requestId is #{conn.assigns[:request_id]}"
+        )
 
         conn
         |> put_status(:forbidden)
         |> render("error.json", %{error: "Forbidden Access"})
         |> halt()
+      else
+        Logger.info(
+          "User with id #{conn.assigns[:user_id]} can access this endpoint. requestId is #{conn.assigns[:request_id]}"
+        )
       end
     end
-
-    Logger.info("User with id #{conn.assigns[:user_id]} can access this endpoint")
 
     conn
   end
@@ -63,27 +70,27 @@ defmodule BrangusWeb.UserController do
   end
 
   @doc """
-  Get Action Endpoint
+  Create Action Endpoint
   """
-  def get(conn, _params) do
+  def create(conn, _params) do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%{status: "ok"}))
   end
 
   @doc """
-  Add Action Endpoint
+  Index Action Endpoint
   """
-  def add(conn, _params) do
+  def index(conn, _params) do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%{status: "ok"}))
   end
 
   @doc """
-  Edit Action Endpoint
+  Update Action Endpoint
   """
-  def edit(conn, _params) do
+  def update(conn, _params) do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%{status: "ok"}))

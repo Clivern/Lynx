@@ -60,7 +60,7 @@ defmodule BrangusWeb.ProjectController do
   end
 
   @doc """
-  View Project Endpoint
+  Index Project Endpoint
   """
   def index(conn, params) do
     result = ProjectModule.get_project(params["pid"])

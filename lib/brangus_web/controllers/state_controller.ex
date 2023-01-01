@@ -13,7 +13,7 @@ defmodule BrangusWeb.StateController do
   alias Brangus.Service.ValidatorService
   alias Brangus.Module.ProjectModule
 
-  plug :auth
+  plug :auth, only: [:create, :index]
 
   defp auth(conn, _opts) do
     with {user, pass} <- Plug.BasicAuth.parse_basic_auth(conn) do
