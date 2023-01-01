@@ -126,7 +126,8 @@ defmodule Campfire.Context.TeamContext do
   Update a team meta
   """
   def update_team_meta(team_meta, attrs) do
-    TeamMeta.changeset(team_meta, attrs)
+    team_meta
+    |> TeamMeta.changeset(attrs)
     |> Repo.update()
   end
 

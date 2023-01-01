@@ -171,7 +171,8 @@ defmodule Campfire.Context.UserContext do
   Update a user meta
   """
   def update_user_meta(user_meta, attrs) do
-    UserMeta.changeset(user_meta, attrs)
+    user_meta
+    |> UserMeta.changeset(attrs)
     |> Repo.update()
   end
 
@@ -179,7 +180,8 @@ defmodule Campfire.Context.UserContext do
   Update a user session
   """
   def update_user_session(user_session, attrs) do
-    UserSession.changeset(user_session, attrs)
+    user_session
+    |> UserSession.changeset(attrs)
     |> Repo.update()
   end
 
