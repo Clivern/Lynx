@@ -36,9 +36,9 @@ defmodule CampfireWeb.MiscController do
     # Store configs
     config_results =
       InstallModule.store_configs(%{
-        app_name: ValidatorService.get_str(params["app_name"], "Prad"),
-        app_url: ValidatorService.get_str(params["app_url"], "http://prad.sh"),
-        app_email: ValidatorService.get_str(params["app_email"], "no_reply@prad.sh"),
+        app_name: ValidatorService.get_str(params["app_name"], "Campfire"),
+        app_url: ValidatorService.get_str(params["app_url"], "http://campfire.sh"),
+        app_email: ValidatorService.get_str(params["app_email"], "no_reply@campfire.sh"),
         app_key: app_key
       })
 
