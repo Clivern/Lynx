@@ -9,6 +9,8 @@ defmodule BrangusWeb.ProjectController do
 
   use BrangusWeb, :controller
 
+  require Logger
+
   alias Brangus.Context.ProjectContext
   alias Brangus.Module.ProjectModule
   alias Brangus.Service.ValidatorService

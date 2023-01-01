@@ -98,8 +98,8 @@ defmodule BrangusWeb.UserController do
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{"id" => id}) do
-    result = UserModule.delete_user(id)
+  def delete(conn, %{"uid" => uid}) do
+    result = UserModule.delete_user(uid)
 
     case result do
       {:not_found, msg} ->

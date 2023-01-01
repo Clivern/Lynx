@@ -8,6 +8,7 @@ defmodule Brangus.Middleware.APIAuthMiddleware do
   """
 
   import Plug.Conn
+
   require Logger
 
   alias Brangus.Service.AuthService

@@ -9,6 +9,9 @@ defmodule Brangus.Middleware.UIAuthMiddleware do
 
   import Plug.Conn
 
+  require Logger
+
+  alias Brangus.Module.UserModule
   alias Brangus.Service.AuthService
 
   def init(_opts), do: nil

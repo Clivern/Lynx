@@ -8,6 +8,7 @@ defmodule Brangus.Module.TeamModule do
   """
 
   alias Brangus.Context.TeamContext
+  alias Brangus.Context.UserContext
   alias Brangus.Service.ValidatorService
 
   @doc """
@@ -129,7 +130,7 @@ defmodule Brangus.Module.TeamModule do
   Get user teams
   """
   def get_user_teams(user_id) do
-    TeamContext.get_user_teams(user_id)
+    UserContext.get_user_teams(user_id)
   end
 
   @doc """

@@ -54,7 +54,7 @@ defmodule BrangusWeb.TeamController do
   @doc """
   List Action Endpoint
   """
-  def list(conn, _params) do
+  def list(conn, params) do
     limit = ValidatorService.get_int(params["limit"], @default_list_limit)
     offset = ValidatorService.get_int(params["offset"], @default_list_offset)
 
@@ -63,7 +63,7 @@ defmodule BrangusWeb.TeamController do
       metadata: %{
         limit: limit,
         offset: offset,
-        totalCount: TeamModule.count_users()
+        totalCount: TeamModule.count_teams()
       }
     })
   end
@@ -98,9 +98,23 @@ defmodule BrangusWeb.TeamController do
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+  def delete(conn, %{"tid" => tid}) do
+    result = TeamModule.delete_team(tid)
+
+    case result do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{error: msg})
+
+      {:ok, _} ->
+        conn
+        |> send_resp(:no_content, "")
+
+      {:error, msg} ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{error: msg})
+    end
   end
 end
