@@ -1,0 +1,59 @@
+<div id="app">
+  <div id="nav">
+      <a href={Routes.page_path(@conn, :home)}
+        ><span class="icon"><i class="fas fa-home"></i></span>
+        <%= gettext "Home" %>
+      </a>
+      <%= if @is_logged do %>
+        |
+        <a href={Routes.page_path(@conn, :projects)}
+          ><span class="icon"><i class="fas fa-server"></i></span>
+          <%= gettext "Projects" %>
+        </a>
+        |
+        <a href={Routes.page_path(@conn, :new_project)}
+          ><span class="icon"><i class="fas fa-pen"></i></span>
+          <%= gettext "New Project" %>
+        </a>
+      <% end %>
+      <%= if function_exported?(Routes, :live_dashboard_path, 2) do %>
+        |
+        <a href={Routes.live_dashboard_path(@conn, :home)}
+          ><span class="icon"><i class="fas fa-plus-square"></i></span>
+          <%= gettext "Live" %>
+        </a>
+      <% end %>
+      <%= if @is_logged do %>
+        |
+        <a href={Routes.page_path(@conn, :logout)}
+          ><span class="icon"><i class="fas fa-sign-out-alt"></i></span>
+          <%= gettext "Logout" %>
+        </a>
+      <% end %>
+      <%= if !@is_logged do %>
+        |
+        <a href={Routes.page_path(@conn, :login)}
+          ><span class="icon"><i class="fas fa-sign-in-alt"></i></span>
+          <%= gettext "Login" %>
+        </a>
+      <% end %>
+  </div>
+  <div class="home">
+    <br /><br /><br />
+    <img alt="logo" src={Routes.static_path(@conn, "/images/logo.png")} width="150" />
+    <div class="hello">
+      <br /><br />
+      <strong><%= gettext "Welcome to Brangus" %></strong>
+      <br /><br />
+      <p>
+        <%= gettext "If you have any suggestions, bug reports, or annoyances" %><br/>
+        <%= gettext "please report them to our" %>
+        <a href="https://github.com/clivern/brangus/issues" target="_blank" rel="noopener"><%= gettext "issue tracker" %>.</a>
+      </p>
+      <br />
+      <small>
+        <%= gettext "Made with" %> <span class="icon has-text-danger"><i class="fas fa-heart"></i></span> <%= gettext "by" %> <a href="https://github.com/clivern" target="_blank" rel="noopener">Clivern</a><br/>
+      </small>
+    </div>
+  </div>
+</div>

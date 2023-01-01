@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-campfire-*.tar
+brangus-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ campfire-*.tar
 npm-debug.log
 /assets/node_modules/
 
-campfire_test*
-campfire_dev*
+brangus_test*
+brangus_dev*
 .vscode
 
 .terraform

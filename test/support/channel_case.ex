@@ -1,4 +1,4 @@
-defmodule CampfireWeb.ChannelCase do
+defmodule BrangusWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule CampfireWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use CampfireWeb.ChannelCase, async: true`, although
+  by setting `use BrangusWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,15 +21,15 @@ defmodule CampfireWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import CampfireWeb.ChannelCase
+      import BrangusWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint CampfireWeb.Endpoint
+      @endpoint BrangusWeb.Endpoint
     end
   end
 
   setup tags do
-    Campfire.DataCase.setup_sandbox(tags)
+    Brangus.DataCase.setup_sandbox(tags)
     :ok
   end
 end

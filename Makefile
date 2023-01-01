@@ -4,7 +4,7 @@ iex          ?= iex
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Campfire:"
+	@echo " Choose a command run in Brangus:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
@@ -68,10 +68,10 @@ migrate:
 	@$(mix) ecto.setup
 
 
-## run: Run campfire
+## run: Run brangus
 .PHONY: run
 run:
-	@echo ">> ============= Run campfire ============= <<"
+	@echo ">> ============= Run brangus ============= <<"
 	@$(mix) phx.server
 
 

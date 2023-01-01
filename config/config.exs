@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :campfire,
-  ecto_repos: [Campfire.Repo]
+config :brangus,
+  ecto_repos: [Brangus.Repo]
 
 # Configures the endpoint
-config :campfire, CampfireWeb.Endpoint,
+config :brangus, BrangusWeb.Endpoint,
   url: [host: System.get_env("APP_HOST") || "localhost"],
-  render_errors: [view: CampfireWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Campfire.PubSub,
+  render_errors: [view: BrangusWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Brangus.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :campfire, CampfireWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :campfire, Campfire.Mailer, adapter: Swoosh.Adapters.Local
+config :brangus, Brangus.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

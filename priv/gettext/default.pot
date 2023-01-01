@@ -11,62 +11,62 @@
 msgid ""
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:6
+#: lib/brangus_web/templates/page/index.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:50
+#: lib/brangus_web/templates/page/index.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "If you have any suggestions, bug reports, or annoyances"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:24
+#: lib/brangus_web/templates/page/index.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Live"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:38
+#: lib/brangus_web/templates/page/index.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Login"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:31
+#: lib/brangus_web/templates/page/index.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:56
+#: lib/brangus_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Made with"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:17
+#: lib/brangus_web/templates/page/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "New Project"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:12
+#: lib/brangus_web/templates/page/index.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Projects"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:47
+#: lib/brangus_web/templates/page/index.html.heex:47
 #, elixir-autogen, elixir-format
-msgid "Welcome to Campfire"
+msgid "Welcome to Brangus"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:56
+#: lib/brangus_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "by"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:52
+#: lib/brangus_web/templates/page/index.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "issue tracker"
 msgstr ""
 
-#: lib/campfire_web/templates/page/index.html.heex:51
+#: lib/brangus_web/templates/page/index.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "please report them to our"
 msgstr ""

@@ -45,10 +45,10 @@ window.liveSocket = liveSocket
 
 import socket from "./user_socket"
 
-var campfire_app = campfire_app || {};
+var brangus_app = brangus_app || {};
 
 // Install Page
-campfire_app.install_screen = (Vue, axios, $) => {
+brangus_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -92,7 +92,7 @@ campfire_app.install_screen = (Vue, axios, $) => {
 }
 
 // Login Page
-campfire_app.login_screen = (Vue, axios, $) => {
+brangus_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -144,7 +144,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_install")) {
-        campfire_app.install_screen(
+        brangus_app.install_screen(
             Vue,
             axios,
             $
@@ -152,7 +152,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_login")) {
-        campfire_app.login_screen(
+        brangus_app.login_screen(
             Vue,
             axios,
             $

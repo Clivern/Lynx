@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Campfire.Repo.Migrations.CreateLocks do
+defmodule Brangus.Repo.Migrations.CreateLocks do
   use Ecto.Migration
 
   def change do

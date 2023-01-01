@@ -28,9 +28,9 @@ jobs:
         image: postgres:latest
         ports: ['5432:5432']
         env:
-          POSTGRES_DB: campfire_dev
-          POSTGRES_USER: campfire
-          POSTGRES_PASSWORD: campfire
+          POSTGRES_DB: brangus_dev
+          POSTGRES_USER: brangus
+          POSTGRES_PASSWORD: brangus
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -42,14 +42,14 @@ jobs:
       - name: Get Dependencies
         run: make deps
 
-      - name: Check Campfire Format
+      - name: Check Brangus Format
         run: make fmt_check
 
       - name: Get Version
         run: make v
 
-      - name: Test Campfire
+      - name: Test Brangus
         run: make ci
 
-      - name: Build Campfire
+      - name: Build Brangus
         run: make build

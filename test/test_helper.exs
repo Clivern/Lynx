@@ -3,4 +3,4 @@
 # license that can be found in the LICENSE file.
 
 ExUnit.start()
-Ecto.Adapters.SQL.Sandbox.mode(Campfire.Repo, :manual)
+Ecto.Adapters.SQL.Sandbox.mode(Brangus.Repo, :manual)
