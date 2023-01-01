@@ -60,6 +60,17 @@ $ docker run -itd \
     -p 5432:5432 \
     --name postgresql \
     postgres:15.2
+
+$ podman run -itd \
+    -e POSTGRES_USER=brangus \
+    -e POSTGRES_PASSWORD=brangus \
+    -e POSTGRES_DB=brangus_dev \
+    -p 5432:5432 \
+    --name postgresql \
+    postgres:15.2
+
+# https://github.com/dbcli/pgcli
+$ psql -h 127.0.0.1 -U brangus -d brangus_dev -W
 ```
 
 
