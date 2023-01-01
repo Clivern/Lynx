@@ -14,7 +14,6 @@ defmodule BrangusWeb.SettingsController do
   plug :only_super_users, only: [:update]
 
   defp only_super_users(conn, _opts) do
-
     Logger.info("Validate user permissions. requestId is #{conn.assigns[:request_id]}")
 
     # If user not authenticated, return forbidden access
