@@ -46,11 +46,11 @@ defmodule Brangus.Module.TeamModule do
         team =
           id
           |> ValidatorService.parse_int()
-          |> TeamContext.get_project_by_id()
+          |> TeamContext.get_team_by_id()
 
         case team do
           nil ->
-            {:not_found, "Project with ID #{id} not found"}
+            {:not_found, "Team with ID #{id} not found"}
 
           _ ->
             new_team =
@@ -60,7 +60,7 @@ defmodule Brangus.Module.TeamModule do
                 description: ValidatorService.get_str(data[:description], team.description)
               })
 
-            case TeamContext.update_project(team, new_team) do
+            case TeamContext.update_team(team, new_team) do
               {:ok, team} ->
                 {:ok, team}
 
@@ -74,7 +74,7 @@ defmodule Brangus.Module.TeamModule do
         end
 
       false ->
-        {:error, "Invalid Project ID"}
+        {:error, "Invalid Team ID"}
     end
   end
 
@@ -156,5 +156,12 @@ defmodule Brangus.Module.TeamModule do
       false ->
         {:error, "Invalid Team ID"}
     end
+  end
+
+  @doc """
+  Generate slug from team name
+  """
+  def generate_team_slug(name) do
+
   end
 end

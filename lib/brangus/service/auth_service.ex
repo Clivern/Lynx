@@ -4,7 +4,7 @@
 
 defmodule Brangus.Service.AuthService do
   @moduledoc """
-  Auth Service Module
+  Auth Service
   """
 
   alias Brangus.Context.UserContext

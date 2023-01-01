@@ -4,7 +4,7 @@
 
 defmodule Brangus.Service.ValidatorService do
   @moduledoc """
-  Validator Service Module
+  Validator Service
   """
 
   @doc """
