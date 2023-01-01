@@ -22,14 +22,14 @@ defmodule BrangusWeb.PageController do
 
     conn = case result do
       false ->
-          assign(conn, :is_logged, false)
-          |> assign(:user_id, "")
-          |> assign(:user_token, "")
+        assign(conn, :is_logged, false)
+        |> assign(:user_id, "")
+        |> assign(:user_token, "")
 
       {true, session} ->
-          assign(conn, :is_logged, true)
-          |> assign(:user_id, session.user_id)
-          |> assign(:user_token, session.value)
+        assign(conn, :is_logged, true)
+        |> assign(:user_id, session.user_id)
+        |> assign(:user_token, session.value)
     end
 
     conn

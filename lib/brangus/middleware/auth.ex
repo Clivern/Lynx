@@ -20,30 +20,29 @@ defmodule Brangus.Service.AuthMiddleware do
         conn.req_cookies["_token"]
       )
 
-    case result do
+    conn = case result do
       false ->
-        conn = assign(conn, :is_logged, false)
-        conn = assign(conn, :user_role, :anonymous)
-        conn = assign(conn, :user_id, "")
-        conn = assign(conn, :sess_token, "")
-        conn
+        assign(conn, :is_logged, false)
+        |> assign(conn, :user_role, :anonymous)
+        |> assign(conn, :user_id, "")
+        |> assign(conn, :sess_token, "")
 
       {true, session} ->
-        case UserModule.get_user_by_id(session.user_id) do
+        conn = case UserModule.get_user_by_id(session.user_id) do
           {:ok, user} ->
-            conn = assign(conn, :is_logged, true)
-            conn = assign(conn, :user_role, String.to_atom(user.role))
-            conn = assign(conn, :user_id, session.user_id)
-            conn = assign(conn, :sess_token, session.value)
-            conn
+            assign(conn, :is_logged, true)
+            |> assign(conn, :user_role, String.to_atom(user.role))
+            |> assign(conn, :user_id, session.user_id)
+            |> assign(conn, :sess_token, session.value)
 
           {:not_found, _} ->
-            conn = assign(conn, :is_logged, false)
-            conn = assign(conn, :user_role, :anonymous)
-            conn = assign(conn, :user_id, "")
-            conn = assign(conn, :sess_token, "")
-            conn
+            assign(conn, :is_logged, false)
+            |> assign(conn, :user_role, :anonymous)
+            |> assign(conn, :user_id, "")
+            |> assign(conn, :sess_token, "")
         end
+
+        conn
     end
 
     conn
