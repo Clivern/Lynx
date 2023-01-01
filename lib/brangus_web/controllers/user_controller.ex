@@ -17,14 +17,14 @@ defmodule BrangusWeb.UserController do
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :only_super_users, only: [:list, :get, :add, :edit, :delete]
+  plug :only_super_users, only: [:list, :index, :create, :update, :delete]
 
   defp only_super_users(conn, _opts) do
-    Logger.info("Validate user permissions. requestId is #{conn.assigns[:request_id]}")
+    Logger.info("Validate user permissions. RequestId=#{conn.assigns[:request_id]}")
 
     # If user not authenticated, return forbidden access
     if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated. requestId is #{conn.assigns[:request_id]}")
+      Logger.info("User is not authenticated. RequestId=#{conn.assigns[:request_id]}")
 
       conn
       |> put_status(:forbidden)
@@ -34,7 +34,7 @@ defmodule BrangusWeb.UserController do
       # If user not super, return forbidden access
       if conn.assigns[:user_role] != :super do
         Logger.info(
-          "User doesn't have a super permission. requestId is #{conn.assigns[:request_id]}"
+          "User doesn't have a super permission. RequestId=#{conn.assigns[:request_id]}"
         )
 
         conn
@@ -43,7 +43,7 @@ defmodule BrangusWeb.UserController do
         |> halt()
       else
         Logger.info(
-          "User with id #{conn.assigns[:user_id]} can access this endpoint. requestId is #{conn.assigns[:request_id]}"
+          "User with id #{conn.assigns[:user_id]} can access this endpoint. RequestId=#{conn.assigns[:request_id]}"
         )
       end
     end
@@ -69,18 +69,18 @@ defmodule BrangusWeb.UserController do
   end
 
   @doc """
-  Create Action Endpoint
+  Index Action Endpoint
   """
-  def create(conn, _params) do
+  def index(conn, _params) do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%{status: "ok"}))
   end
 
   @doc """
-  Index Action Endpoint
+  Create Action Endpoint
   """
-  def index(conn, _params) do
+  def create(conn, _params) do
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%{status: "ok"}))

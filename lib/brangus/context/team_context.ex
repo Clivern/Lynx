@@ -55,8 +55,8 @@ defmodule Brangus.Context.TeamContext do
   """
   def get_team_by_uuid(uuid) do
     from(
-      u in Team,
-      where: u.uuid == ^uuid
+      t in Team,
+      where: t.uuid == ^uuid
     )
     |> Repo.one()
   end
@@ -66,8 +66,8 @@ defmodule Brangus.Context.TeamContext do
   """
   def get_team_by_slug(slug) do
     from(
-      u in Team,
-      where: u.slug == ^slug
+      t in Team,
+      where: t.slug == ^slug
     )
     |> Repo.one()
   end
@@ -99,11 +99,21 @@ defmodule Brangus.Context.TeamContext do
   Retrieve teams
   """
   def get_teams(offset, limit) do
-    from(u in Team,
+    from(t in Team,
       limit: ^limit,
       offset: ^offset
     )
     |> Repo.all()
+  end
+
+  @doc """
+  Count all teams
+  """
+  def count_teams() do
+    from(t in Team,
+      select: count(t.id)
+    )
+    |> Repo.one()
   end
 
   @doc """
@@ -143,9 +153,9 @@ defmodule Brangus.Context.TeamContext do
   """
   def get_team_meta_by_id_key(team_id, meta_key) do
     from(
-      u in TeamMeta,
-      where: u.team_id == ^team_id,
-      where: u.key == ^meta_key
+      t in TeamMeta,
+      where: t.team_id == ^team_id,
+      where: t.key == ^meta_key
     )
     |> Repo.one()
   end
@@ -155,8 +165,8 @@ defmodule Brangus.Context.TeamContext do
   """
   def get_team_metas(team_id) do
     from(
-      u in TeamMeta,
-      where: u.team_id == ^team_id
+      t in TeamMeta,
+      where: t.team_id == ^team_id
     )
     |> Repo.all()
   end

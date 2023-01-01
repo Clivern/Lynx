@@ -59,8 +59,8 @@ defmodule Brangus.Context.LockContext do
   """
   def get_lock_by_uuid(uuid) do
     from(
-      u in Lock,
-      where: u.uuid == ^uuid
+      l in Lock,
+      where: l.uuid == ^uuid
     )
     |> limit(1)
     |> Repo.one()
@@ -71,9 +71,9 @@ defmodule Brangus.Context.LockContext do
   """
   def get_active_lock_by_project_id(project_id) do
     from(
-      u in Lock,
-      where: u.project_id == ^project_id,
-      where: u.is_active == true
+      l in Lock,
+      where: l.project_id == ^project_id,
+      where: l.is_active == true
     )
     |> lock("FOR UPDATE")
     |> limit(1)
@@ -139,9 +139,9 @@ defmodule Brangus.Context.LockContext do
   """
   def get_lock_meta_by_id_key(lock_id, meta_key) do
     from(
-      u in LockMeta,
-      where: u.lock_id == ^lock_id,
-      where: u.key == ^meta_key
+      l in LockMeta,
+      where: l.lock_id == ^lock_id,
+      where: l.key == ^meta_key
     )
     |> Repo.one()
   end
@@ -151,8 +151,8 @@ defmodule Brangus.Context.LockContext do
   """
   def get_lock_metas(lock_id) do
     from(
-      u in LockMeta,
-      where: u.lock_id == ^lock_id
+      l in LockMeta,
+      where: l.lock_id == ^lock_id
     )
     |> Repo.all()
   end

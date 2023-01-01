@@ -56,8 +56,8 @@ defmodule Brangus.Context.ProjectContext do
   """
   def get_project_by_uuid(uuid) do
     from(
-      u in Project,
-      where: u.uuid == ^uuid
+      p in Project,
+      where: p.uuid == ^uuid
     )
     |> limit(1)
     |> Repo.one()
@@ -68,8 +68,8 @@ defmodule Brangus.Context.ProjectContext do
   """
   def get_project_by_slug(slug) do
     from(
-      u in Project,
-      where: u.slug == ^slug
+      p in Project,
+      where: p.slug == ^slug
     )
     |> limit(1)
     |> Repo.one()
@@ -102,10 +102,10 @@ defmodule Brangus.Context.ProjectContext do
   Retrieve projects
   """
   def get_team_projects(team_id, offset, limit) do
-    from(u in Project,
+    from(p in Project,
       limit: ^limit,
       offset: ^offset,
-      where: u.team_id == ^team_id
+      where: p.team_id == ^team_id
     )
     |> Repo.all()
   end
@@ -114,9 +114,9 @@ defmodule Brangus.Context.ProjectContext do
   Count all projects
   """
   def count_team_projects(team_id) do
-    from(u in Project,
-      select: count(u.id),
-      where: u.team_id == ^team_id
+    from(p in Project,
+      select: count(p.id),
+      where: p.team_id == ^team_id
     )
     |> Repo.one()
   end
@@ -157,9 +157,9 @@ defmodule Brangus.Context.ProjectContext do
   """
   def get_project_meta_by_id_key(project_id, meta_key) do
     from(
-      u in ProjectMeta,
-      where: u.project_id == ^project_id,
-      where: u.key == ^meta_key
+      p in ProjectMeta,
+      where: p.project_id == ^project_id,
+      where: p.key == ^meta_key
     )
     |> Repo.one()
   end
@@ -169,8 +169,8 @@ defmodule Brangus.Context.ProjectContext do
   """
   def get_project_metas(project_id) do
     from(
-      u in ProjectMeta,
-      where: u.project_id == ^project_id
+      p in ProjectMeta,
+      where: p.project_id == ^project_id
     )
     |> Repo.all()
   end

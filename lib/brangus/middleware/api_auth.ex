@@ -4,7 +4,7 @@
 
 defmodule Brangus.Middleware.APIAuthMiddleware do
   @moduledoc """
-  Frontend Auth Middleware
+  API Auth Middleware
   """
 
   import Plug.Conn

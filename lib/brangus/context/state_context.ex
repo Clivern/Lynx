@@ -55,8 +55,8 @@ defmodule Brangus.Context.StateContext do
   """
   def get_state_by_uuid(uuid) do
     from(
-      u in State,
-      where: u.uuid == ^uuid
+      s in State,
+      where: s.uuid == ^uuid
     )
     |> Repo.one()
   end
@@ -66,8 +66,8 @@ defmodule Brangus.Context.StateContext do
   """
   def get_state_by_name(name) do
     from(
-      u in State,
-      where: u.name == ^name
+      s in State,
+      where: s.name == ^name
     )
     |> Repo.one()
   end
@@ -77,8 +77,8 @@ defmodule Brangus.Context.StateContext do
   """
   def get_latest_state_by_project_id(project_id) do
     from(
-      u in State,
-      where: u.project_id == ^project_id
+      s in State,
+      where: s.project_id == ^project_id
     )
     |> last(:inserted_at)
     |> Repo.one()
@@ -111,7 +111,7 @@ defmodule Brangus.Context.StateContext do
   Retrieve states
   """
   def get_states(offset, limit) do
-    from(u in State,
+    from(s in State,
       limit: ^limit,
       offset: ^offset
     )
@@ -154,9 +154,9 @@ defmodule Brangus.Context.StateContext do
   """
   def get_state_meta_by_id_key(state_id, meta_key) do
     from(
-      u in StateMeta,
-      where: u.state_id == ^state_id,
-      where: u.key == ^meta_key
+      s in StateMeta,
+      where: s.state_id == ^state_id,
+      where: s.key == ^meta_key
     )
     |> Repo.one()
   end
@@ -166,8 +166,8 @@ defmodule Brangus.Context.StateContext do
   """
   def get_state_metas(state_id) do
     from(
-      u in StateMeta,
-      where: u.state_id == ^state_id
+      s in StateMeta,
+      where: s.state_id == ^state_id
     )
     |> Repo.all()
   end

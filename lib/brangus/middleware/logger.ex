@@ -4,7 +4,7 @@
 
 defmodule Brangus.Middleware.Logger do
   @moduledoc """
-  Frontend Auth Middleware
+  Logger Middleware
   """
 
   import Plug.Conn
@@ -24,7 +24,7 @@ defmodule Brangus.Middleware.Logger do
         {nil, ""}
 
     Logger.info(
-      "Incoming #{conn.method} Request to #{conn.request_path}?#{conn.query_string} and body #{body}. requestId is #{request_id}"
+      "Incoming #{conn.method} Request to #{conn.request_path}?#{conn.query_string} and body #{body}. RequestId=#{request_id}"
     )
 
     conn

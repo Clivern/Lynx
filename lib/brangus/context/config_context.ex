@@ -43,8 +43,8 @@ defmodule Brangus.Context.ConfigContext do
   """
   def get_config_by_uuid(uuid) do
     from(
-      u in Config,
-      where: u.uuid == ^uuid
+      c in Config,
+      where: c.uuid == ^uuid
     )
     |> limit(1)
     |> Repo.one()
@@ -55,8 +55,8 @@ defmodule Brangus.Context.ConfigContext do
   """
   def get_config_by_name(name) do
     from(
-      u in Config,
-      where: u.name == ^name
+      c in Config,
+      where: c.name == ^name
     )
     |> limit(1)
     |> Repo.one()

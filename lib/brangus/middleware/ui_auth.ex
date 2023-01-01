@@ -16,7 +16,7 @@ defmodule Brangus.Middleware.UIAuthMiddleware do
   @doc """
   Trigger the UI Auth Middleware
 
-  To authenticate users into the UI, The app will set two cookies
+  To authenticate users into the UI, The app will set two cookies:
   _uid: User id
   _token: the session value
   """

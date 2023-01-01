@@ -57,8 +57,8 @@ defmodule Brangus.Context.EnvironmentContext do
   """
   def get_env_by_slug(slug) do
     from(
-      u in Environment,
-      where: u.slug == ^slug
+      e in Environment,
+      where: e.slug == ^slug
     )
     |> Repo.one()
   end
@@ -68,8 +68,8 @@ defmodule Brangus.Context.EnvironmentContext do
   """
   def get_env_by_uuid(uuid) do
     from(
-      u in Environment,
-      where: u.uuid == ^uuid
+      e in Environment,
+      where: e.uuid == ^uuid
     )
     |> Repo.one()
   end
@@ -101,7 +101,7 @@ defmodule Brangus.Context.EnvironmentContext do
   Retrieve environments
   """
   def get_envs(offset, limit) do
-    from(u in Environment,
+    from(e in Environment,
       limit: ^limit,
       offset: ^offset
     )
@@ -144,9 +144,9 @@ defmodule Brangus.Context.EnvironmentContext do
   """
   def get_env_meta_by_id_key(env_id, meta_key) do
     from(
-      u in EnvironmentMeta,
-      where: u.environment_id == ^env_id,
-      where: u.key == ^meta_key
+      e in EnvironmentMeta,
+      where: e.environment_id == ^env_id,
+      where: e.key == ^meta_key
     )
     |> Repo.one()
   end
@@ -156,8 +156,8 @@ defmodule Brangus.Context.EnvironmentContext do
   """
   def get_env_metas(env_id) do
     from(
-      u in EnvironmentMeta,
-      where: u.environment_id == ^env_id
+      e in EnvironmentMeta,
+      where: e.environment_id == ^env_id
     )
     |> Repo.all()
   end
