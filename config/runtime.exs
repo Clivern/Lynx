@@ -1,3 +1,7 @@
+# Copyright 2023 Clivern. All rights reserved.
+# Use of this source code is governed by the MIT
+# license that can be found in the LICENSE file.
+
 import Config
 
 # config/runtime.exs is executed for all environments, including
@@ -23,7 +27,7 @@ end
 if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
-  if System.get_env("DB_SSL") == "on" do
+  if System.get_env("DB_SSL") || "off" == "on" do
     config :campfire, Campfire.Repo,
       username: System.get_env("DB_USERNAME"),
       password: System.get_env("DB_PASSWORD"),
@@ -36,7 +40,7 @@ if config_env() == :prod do
       ssl: true,
       ssl_opts: [
         verify: :verify_peer,
-        cacertfile: System.get_env("DB_CA_CERTFILE_PATH")
+        cacertfile: System.get_env("DB_CA_CERTFILE_PATH") || ""
       ]
   else
     config :campfire, Campfire.Repo,

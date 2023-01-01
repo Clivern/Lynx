@@ -5,30 +5,30 @@
 import Config
 
 # Configure your database
-if System.get_env("DB_SSL") == "on" do
+if System.get_env("DB_SSL") || "off" == "on" do
   config :campfire, Campfire.Repo,
-    username: System.get_env("DB_USERNAME"),
-    password: System.get_env("DB_PASSWORD"),
-    hostname: System.get_env("DB_HOSTNAME"),
-    database: System.get_env("DB_DATABASE"),
-    port: String.to_integer(System.get_env("DB_PORT")),
-    maintenance_database: System.get_env("DB_DATABASE"),
+    username: System.get_env("DB_USERNAME") || "campfire",
+    password: System.get_env("DB_PASSWORD") || "campfire",
+    hostname: System.get_env("DB_HOSTNAME") || "localhost",
+    database: System.get_env("DB_DATABASE") || "campfire_dev",
+    port: String.to_integer(System.get_env("DB_PORT") || "5432"),
+    maintenance_database: System.get_env("DB_DATABASE") || "campfire_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
     ssl: true,
     ssl_opts: [
       verify: :verify_peer,
-      cacertfile: System.get_env("DB_CA_CERTFILE_PATH")
+      cacertfile: System.get_env("DB_CA_CERTFILE_PATH") || ""
     ]
 else
   config :campfire, Campfire.Repo,
-    username: System.get_env("DB_USERNAME"),
-    password: System.get_env("DB_PASSWORD"),
-    hostname: System.get_env("DB_HOSTNAME"),
-    database: System.get_env("DB_DATABASE"),
-    port: String.to_integer(System.get_env("DB_PORT")),
-    maintenance_database: System.get_env("DB_DATABASE"),
+    username: System.get_env("DB_USERNAME") || "campfire",
+    password: System.get_env("DB_PASSWORD") || "campfire",
+    hostname: System.get_env("DB_HOSTNAME") || "localhost",
+    database: System.get_env("DB_DATABASE") || "campfire_dev",
+    port: String.to_integer(System.get_env("DB_PORT") || "5432"),
+    maintenance_database: System.get_env("DB_DATABASE") || "campfire_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10")
@@ -48,7 +48,7 @@ config :campfire, CampfireWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: System.get_env("APP_SECRET"),
+  secret_key_base: System.get_env("APP_SECRET") || "",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
