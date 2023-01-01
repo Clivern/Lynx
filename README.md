@@ -35,6 +35,7 @@ To start the application.
 ```zsh
 $ cp .env.example .env.local
 $ export $(cat .env | xargs)
+
 $ make run
 ```
 
