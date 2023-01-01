@@ -62,8 +62,8 @@ defmodule BrangusWeb.ProjectController do
   @doc """
   View Project Endpoint
   """
-  def index(conn, %{"id" => id}) do
-    result = ProjectModule.get_project(id)
+  def index(conn, params) do
+    result = ProjectModule.get_project(params["pid"])
 
     case result do
       {:not_found, msg} ->
@@ -89,7 +89,7 @@ defmodule BrangusWeb.ProjectController do
   def update(conn, params) do
     result =
       ProjectModule.update_project(%{
-        id: ValidatorService.get_int(params["id"], 0),
+        id: ValidatorService.get_int(params["pid"], 0),
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
         environment: ValidatorService.get_str(params["environment"], ""),
@@ -118,8 +118,8 @@ defmodule BrangusWeb.ProjectController do
   @doc """
   Delete Project Endpoint
   """
-  def delete(conn, %{"id" => id}) do
-    result = ProjectModule.delete_project(id)
+  def delete(conn, params) do
+    result = ProjectModule.delete_project(params["pid"])
 
     case result do
       {:not_found, msg} ->

@@ -62,7 +62,7 @@ if config_env() == :prod do
   secret_key_base =
     System.get_env("APP_SECRET") ||
       raise """
-      environment variable SECRET_KEY_BASE is missing.
+      environment variable APP_SECRET is missing.
       You can generate one by calling: mix phx.gen.secret
       """
 
