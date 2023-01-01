@@ -39,4 +39,6 @@ brangus_dev*
 .terraform
 .terraform.lock.hcl
 
+!.env.example
+.env.*
 .env

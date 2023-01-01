@@ -34,7 +34,6 @@ else
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10")
 end
 
-
 # For development, we disable any cache and enable
 # debugging and code reloading.
 #
@@ -48,7 +47,7 @@ config :brangus, BrangusWeb.Endpoint,
   check_origin: false,
   code_reloader: true,
   debug_errors: true,
-  secret_key_base: System.get_env("APP_SECRET") || "",
+  secret_key_base: System.get_env("APP_SECRET") || "koPmu7TJCwD8mttV9vgWUeU7iuu/zTPOR3sX4UalM9KkYEVGPfyi0PeTVzu1TT8C",
   watchers: [
     # Start the esbuild watcher by calling Esbuild.install_and_run(:default, args)
     esbuild: {Esbuild, :install_and_run, [:default, ~w(--sourcemap=inline --watch)]}
