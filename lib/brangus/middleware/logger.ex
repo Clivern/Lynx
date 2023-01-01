@@ -23,6 +23,7 @@ defmodule Brangus.Middleware.Logger do
       Enum.find(conn.resp_headers, fn {key, _value} -> String.downcase(key) == "x-request-id" end) ||
         {nil, ""}
 
+    # Log Incoming Request
     Logger.info(
       "Incoming #{conn.method} Request to #{conn.request_path}?#{conn.query_string} and body #{body}. RequestId=#{request_id}"
     )

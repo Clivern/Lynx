@@ -21,12 +21,25 @@ defmodule Brangus.Middleware.UIAuthMiddleware do
   _token: the session value
   """
   def call(conn, _opts) do
-    result =
-      AuthService.is_authenticated(
-        conn.req_cookies["_uid"],
-        conn.req_cookies["_token"]
-      )
+    uid = conn.req_cookies["_uid"]
+    token = conn.req_cookies["_token"]
 
+    # Logging
+    if is_nil(uid) do
+      Logger.info("_uid cookie is not in the request. RequestId=#{conn.assigns[:request_id]}")
+    else
+      Logger.info("_uid cookie is in the request. RequestId=#{conn.assigns[:request_id]}")
+    end
+
+    if is_nil(token) do
+      Logger.info("_token cookie is not in the request. RequestId=#{conn.assigns[:request_id]}")
+    else
+      Logger.info("_token cookie is in the request. RequestId=#{conn.assigns[:request_id]}")
+    end
+
+    result = AuthService.is_authenticated(uid, token)
+
+    # Adjust conn Object
     conn =
       case result do
         false ->

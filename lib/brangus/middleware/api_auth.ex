@@ -8,6 +8,7 @@ defmodule Brangus.Middleware.APIAuthMiddleware do
   """
 
   import Plug.Conn
+  require Logger
 
   alias Brangus.Service.AuthService
 
@@ -29,6 +30,32 @@ defmodule Brangus.Middleware.APIAuthMiddleware do
       Enum.find(conn.req_headers, fn {key, _value} -> String.downcase(key) == "x-api-key" end) ||
         {nil, nil}
 
+    # Logging
+    if is_nil(user_token) do
+      Logger.info(
+        "X-USER-TOKEN header is not in the request. RequestId=#{conn.assigns[:request_id]}"
+      )
+    else
+      Logger.info("X-USER-TOKEN header is in the request. RequestId=#{conn.assigns[:request_id]}")
+    end
+
+    if is_nil(user_id) do
+      Logger.info(
+        "X-USER-ID header is not in the request. RequestId=#{conn.assigns[:request_id]}"
+      )
+    else
+      Logger.info("X-USER-ID header is in the request. RequestId=#{conn.assigns[:request_id]}")
+    end
+
+    if is_nil(api_key) do
+      Logger.info(
+        "X-API-KEY header is not in the request. RequestId=#{conn.assigns[:request_id]}"
+      )
+    else
+      Logger.info("X-API-KEY header is in the request. RequestId=#{conn.assigns[:request_id]}")
+    end
+
+    # Adjust conn Object
     conn =
       if is_nil(api_key) do
         # UI Authentication
