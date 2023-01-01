@@ -11,62 +11,62 @@
 msgid ""
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:6
+#: lib/raccoon_web/templates/page/index.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:50
+#: lib/raccoon_web/templates/page/index.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "If you have any suggestions, bug reports, or annoyances"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:24
+#: lib/raccoon_web/templates/page/index.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Live"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:38
+#: lib/raccoon_web/templates/page/index.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Login"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:31
+#: lib/raccoon_web/templates/page/index.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:56
+#: lib/raccoon_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Made with"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:17
+#: lib/raccoon_web/templates/page/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "New Project"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:12
+#: lib/raccoon_web/templates/page/index.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Projects"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:47
+#: lib/raccoon_web/templates/page/index.html.heex:47
 #, elixir-autogen, elixir-format
-msgid "Welcome to Brangus"
+msgid "Welcome to Raccoon"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:56
+#: lib/raccoon_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "by"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:52
+#: lib/raccoon_web/templates/page/index.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "issue tracker"
 msgstr ""
 
-#: lib/brangus_web/templates/page/index.html.heex:51
+#: lib/raccoon_web/templates/page/index.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "please report them to our"
 msgstr ""

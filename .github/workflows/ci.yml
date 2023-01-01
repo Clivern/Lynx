@@ -28,9 +28,9 @@ jobs:
         image: postgres:latest
         ports: ['5432:5432']
         env:
-          POSTGRES_DB: brangus_dev
-          POSTGRES_USER: brangus
-          POSTGRES_PASSWORD: brangus
+          POSTGRES_DB: raccoon_dev
+          POSTGRES_USER: raccoon
+          POSTGRES_PASSWORD: raccoon
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -42,14 +42,14 @@ jobs:
       - name: Get Dependencies
         run: make deps
 
-      - name: Check Brangus Format
+      - name: Check Raccoon Format
         run: make fmt_check
 
       - name: Get Version
         run: make v
 
-      - name: Test Brangus
+      - name: Test Raccoon
         run: make ci
 
-      - name: Build Brangus
+      - name: Build Raccoon
         run: make build

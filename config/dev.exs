@@ -6,13 +6,13 @@ import Config
 
 # Configure your database
 if System.get_env("DB_SSL") || "off" == "on" do
-  config :brangus, Brangus.Repo,
-    username: System.get_env("DB_USERNAME") || "brangus",
-    password: System.get_env("DB_PASSWORD") || "brangus",
+  config :raccoon, Raccoon.Repo,
+    username: System.get_env("DB_USERNAME") || "raccoon",
+    password: System.get_env("DB_PASSWORD") || "raccoon",
     hostname: System.get_env("DB_HOSTNAME") || "localhost",
-    database: System.get_env("DB_DATABASE") || "brangus_dev",
+    database: System.get_env("DB_DATABASE") || "raccoon_dev",
     port: String.to_integer(System.get_env("DB_PORT") || "5432"),
-    maintenance_database: System.get_env("DB_DATABASE") || "brangus_dev",
+    maintenance_database: System.get_env("DB_DATABASE") || "raccoon_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
@@ -22,13 +22,13 @@ if System.get_env("DB_SSL") || "off" == "on" do
       cacertfile: System.get_env("DB_CA_CERTFILE_PATH") || ""
     ]
 else
-  config :brangus, Brangus.Repo,
-    username: System.get_env("DB_USERNAME") || "brangus",
-    password: System.get_env("DB_PASSWORD") || "brangus",
+  config :raccoon, Raccoon.Repo,
+    username: System.get_env("DB_USERNAME") || "raccoon",
+    password: System.get_env("DB_PASSWORD") || "raccoon",
     hostname: System.get_env("DB_HOSTNAME") || "localhost",
-    database: System.get_env("DB_DATABASE") || "brangus_dev",
+    database: System.get_env("DB_DATABASE") || "raccoon_dev",
     port: String.to_integer(System.get_env("DB_PORT") || "5432"),
-    maintenance_database: System.get_env("DB_DATABASE") || "brangus_dev",
+    maintenance_database: System.get_env("DB_DATABASE") || "raccoon_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10")
@@ -40,7 +40,7 @@ end
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :brangus, BrangusWeb.Endpoint,
+config :raccoon, RaccoonWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: String.to_integer(System.get_env("APP_PORT") || "4000")],
@@ -78,13 +78,13 @@ config :brangus, BrangusWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :brangus, BrangusWeb.Endpoint,
+config :raccoon, RaccoonWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/brangus_web/(live|views)/.*(ex)$",
-      ~r"lib/brangus_web/templates/.*(eex)$"
+      ~r"lib/raccoon_web/(live|views)/.*(ex)$",
+      ~r"lib/raccoon_web/templates/.*(eex)$"
     ]
   ]
 

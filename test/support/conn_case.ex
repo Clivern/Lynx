@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule BrangusWeb.ConnCase do
+defmodule RaccoonWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -15,7 +15,7 @@ defmodule BrangusWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use BrangusWeb.ConnCase, async: true`, although
+  by setting `use RaccoonWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -26,17 +26,17 @@ defmodule BrangusWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import BrangusWeb.ConnCase
+      import RaccoonWeb.ConnCase
 
-      alias BrangusWeb.Router.Helpers, as: Routes
+      alias RaccoonWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint BrangusWeb.Endpoint
+      @endpoint RaccoonWeb.Endpoint
     end
   end
 
   setup tags do
-    Brangus.DataCase.setup_sandbox(tags)
+    Raccoon.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

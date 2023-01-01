@@ -1,7 +1,7 @@
 <!--
 &lt;--- Readme.md Snippet without images Start ---&gt;
 ## Tech Stack
-Norwik/Brangus is built on the following main stack:
+Norwik/Raccoon is built on the following main stack:
 
 - [PostgreSQL](http://www.postgresql.org/) – Databases
 - [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
@@ -18,7 +18,7 @@ Full tech stack [here](/techstack.md)
 
 &lt;--- Readme.md Snippet with images Start ---&gt;
 ## Tech Stack
-Norwik/Brangus is built on the following main stack:
+Norwik/Raccoon is built on the following main stack:
 
 - <img width='25' height='25' src='https://img.stackshare.io/service/1028/ASOhU5xJ.png' alt='PostgreSQL'/> [PostgreSQL](http://www.postgresql.org/) – Databases
 - <img width='25' height='25' src='https://img.stackshare.io/service/1209/javascript.jpeg' alt='JavaScript'/> [JavaScript](https://developer.mozilla.org/en-US/docs/Web/JavaScript) – Languages
@@ -36,7 +36,7 @@ Full tech stack [here](/techstack.md)
 <div align="center">
 
 # Tech Stack File
-![](https://img.stackshare.io/repo.svg "repo") [Norwik/Brangus](https://github.com/Norwik/Brangus)![](https://img.stackshare.io/public_badge.svg "public")
+![](https://img.stackshare.io/repo.svg "repo") [Norwik/Raccoon](https://github.com/Norwik/Raccoon)![](https://img.stackshare.io/public_badge.svg "public")
 <br/><br/>
 |10<br/>Tools used|01/05/24 <br/>Report generated|
 |------|------|

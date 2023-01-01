@@ -45,10 +45,10 @@ window.liveSocket = liveSocket
 
 import socket from "./user_socket"
 
-var brangus_app = brangus_app || {};
+var raccoon_app = raccoon_app || {};
 
 // Install Page
-brangus_app.install_screen = (Vue, axios, $) => {
+raccoon_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -92,7 +92,7 @@ brangus_app.install_screen = (Vue, axios, $) => {
 }
 
 // Login Page
-brangus_app.login_screen = (Vue, axios, $) => {
+raccoon_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -144,7 +144,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_install")) {
-        brangus_app.install_screen(
+        raccoon_app.install_screen(
             Vue,
             axios,
             $
@@ -152,7 +152,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_login")) {
-        brangus_app.login_screen(
+        raccoon_app.login_screen(
             Vue,
             axios,
             $
