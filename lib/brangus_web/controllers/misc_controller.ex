@@ -24,7 +24,7 @@ defmodule BrangusWeb.MiscController do
       true ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: "Application is installed"})
+        |> render("error.json", %{message: "Application is installed"})
         |> halt()
 
       false ->
@@ -47,7 +47,7 @@ defmodule BrangusWeb.MiscController do
         {:error, msg} ->
           conn
           |> put_status(:bad_request)
-          |> render("error.json", %{error: msg})
+          |> render("error.json", %{message: msg})
           |> halt()
 
         {:success, nil} ->
@@ -68,7 +68,7 @@ defmodule BrangusWeb.MiscController do
       {:error, msg} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
         |> halt()
 
       {:success, nil} ->
@@ -108,7 +108,7 @@ defmodule BrangusWeb.MiscController do
       {:error, message} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: message})
+        |> render("error.json", %{message: message})
         |> halt()
     end
   end
@@ -127,7 +127,7 @@ defmodule BrangusWeb.MiscController do
       false ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: "Invalid request"})
+        |> render("error.json", %{message: "Invalid request"})
         |> halt()
 
       {true, session} ->
@@ -135,7 +135,7 @@ defmodule BrangusWeb.MiscController do
           {:error, message} ->
             conn
             |> put_status(:bad_request)
-            |> render("error.json", %{error: message})
+            |> render("error.json", %{message: message})
             |> halt()
 
           {_, sess} ->
@@ -144,6 +144,7 @@ defmodule BrangusWeb.MiscController do
             |> render(
               "token_success.json",
               %{
+                message: "Token updated successfully!",
                 token: sess.value,
                 user: sess.user_id
               }

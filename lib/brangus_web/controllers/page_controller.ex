@@ -20,16 +20,16 @@ defmodule BrangusWeb.PageController do
         conn.req_cookies["_token"]
       )
 
-    case result do
+    conn = case result do
       false ->
-        conn = assign(conn, :is_logged, false)
-        conn = assign(conn, :user_id, "")
-        conn = assign(conn, :sess_token, "")
+          assign(conn, :is_logged, false)
+          |> assign(:user_id, "")
+          |> assign(:user_token, "")
 
       {true, session} ->
-        conn = assign(conn, :is_logged, true)
-        conn = assign(conn, :user_id, session.user_id)
-        conn = assign(conn, :sess_token, session.value)
+          assign(conn, :is_logged, true)
+          |> assign(:user_id, session.user_id)
+          |> assign(:user_token, session.value)
     end
 
     conn
@@ -65,7 +65,7 @@ defmodule BrangusWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             user_id: conn.assigns[:user_id],
-            sess_token: conn.assigns[:sess_token]
+            user_token: conn.assigns[:user_token]
           }
         )
     end
@@ -89,7 +89,7 @@ defmodule BrangusWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             user_id: conn.assigns[:user_id],
-            sess_token: conn.assigns[:sess_token]
+            user_token: conn.assigns[:user_token]
           }
         )
     end
@@ -111,7 +111,7 @@ defmodule BrangusWeb.PageController do
       data: %{
         is_logged: conn.assigns[:is_logged],
         user_id: conn.assigns[:user_id],
-        sess_token: conn.assigns[:sess_token]
+        user_token: conn.assigns[:user_token]
       }
     )
   end
