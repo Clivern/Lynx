@@ -10,26 +10,37 @@ defmodule BrangusWeb.UserController do
   use BrangusWeb, :controller
   alias Brangus.Module.UserModule
   alias Brangus.Service.ValidatorService
-  import Brangus.Service.AuthMiddleware
+  require Logger
 
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :auth_ui, only: [:list, :add, :edit, :delete]
-  plug :auth_api, only: [:list, :add, :edit, :delete]
-  plug :only_super_user, only: [:list, :add, :edit, :delete]
+  plug :auth, only: [:list, :get, :add, :edit, :delete]
 
-  @doc """
-  Allow only super users
-  """
-  def only_super_user(conn, _opts) do
-    # If user not super, return forbidden access
-    if conn.assigns[:user_role] != :super do
+  defp auth(conn, _opts) do
+    Logger.info("Validate user permissions")
+
+    # If user not authenticated, return forbidden access
+    if conn.assigns[:is_logged] == false do
+      Logger.info("User is not authenticated")
+
       conn
       |> put_status(:forbidden)
       |> render("error.json", %{error: "Forbidden Access"})
       |> halt()
+    else
+      # If user not super, return forbidden access
+      if conn.assigns[:user_role] != :super do
+        Logger.info("User doesn't have a super permission")
+
+        conn
+        |> put_status(:forbidden)
+        |> render("error.json", %{error: "Forbidden Access"})
+        |> halt()
+      end
     end
+
+    Logger.info("User with id #{conn.assigns[:user_id]} can access this endpoint")
 
     conn
   end
@@ -49,6 +60,15 @@ defmodule BrangusWeb.UserController do
         totalCount: UserModule.count_users()
       }
     })
+  end
+
+  @doc """
+  Get Action Endpoint
+  """
+  def get(conn, _params) do
+    conn
+    |> put_resp_content_type("application/json")
+    |> send_resp(200, Jason.encode!(%{status: "ok"}))
   end
 
   @doc """

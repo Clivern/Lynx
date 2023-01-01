@@ -50,7 +50,7 @@ defmodule BrangusWeb.MiscController do
           |> render("error.json", %{message: msg})
           |> halt()
 
-        {:success, nil} ->
+        _ ->
           nil
       end
     end
@@ -71,14 +71,11 @@ defmodule BrangusWeb.MiscController do
         |> render("error.json", %{message: msg})
         |> halt()
 
-      {:success, nil} ->
-        nil
+      _ ->
+        conn
+        |> put_status(:ok)
+        |> render("success.json", %{message: "Application installed successfully"})
     end
-
-    # Installation succeeded
-    conn
-    |> put_status(:ok)
-    |> render("success.json", %{message: "Application installed successfully"})
   end
 
   @doc """
@@ -110,47 +107,6 @@ defmodule BrangusWeb.MiscController do
         |> put_status(:bad_request)
         |> render("error.json", %{message: message})
         |> halt()
-    end
-  end
-
-  @doc """
-  Renew Token Endpoint
-  """
-  def renew_token(conn, params) do
-    result =
-      AuthService.is_authenticated(
-        params["user_id"],
-        params["token"]
-      )
-
-    case result do
-      false ->
-        conn
-        |> put_status(:bad_request)
-        |> render("error.json", %{message: "Invalid request"})
-        |> halt()
-
-      {true, session} ->
-        case AuthService.refresh_session(session) do
-          {:error, message} ->
-            conn
-            |> put_status(:bad_request)
-            |> render("error.json", %{message: message})
-            |> halt()
-
-          {_, sess} ->
-            conn
-            |> put_status(:ok)
-            |> render(
-              "token_success.json",
-              %{
-                message: "Token updated successfully!",
-                token: sess.value,
-                user: sess.user_id
-              }
-            )
-            |> halt()
-        end
     end
   end
 end

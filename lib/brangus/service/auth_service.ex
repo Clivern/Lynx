@@ -40,7 +40,7 @@ defmodule Brangus.Service.AuthService do
   @doc """
   Login
   """
-  def login(email, password) when is_nil(email) == false and is_nil(password) == false do
+  def login(email, password) when not is_nil(email) and not is_nil(password) do
     user = UserContext.get_user_by_email(email)
 
     case user do
@@ -96,7 +96,7 @@ defmodule Brangus.Service.AuthService do
   Is Authenticated
   """
   def is_authenticated(user_id, session_value)
-      when is_nil(user_id) == false and is_nil(session_value) == false do
+      when not is_nil(user_id) and not is_nil(session_value) do
     result = UserContext.get_user_session_by_id_key(user_id, session_value)
 
     case result do
@@ -115,7 +115,7 @@ defmodule Brangus.Service.AuthService do
   @doc """
   Authenticate
   """
-  def authenticate(user_id) when is_nil(user_id) == false do
+  def authenticate(user_id) when not is_nil(user_id) do
     # Clear old sessions
     UserContext.delete_user_sessions(user_id)
 
@@ -139,14 +139,14 @@ defmodule Brangus.Service.AuthService do
     end
   end
 
-  def authenticate(user_id) when is_nil(user_id) == true do
+  def authenticate(user_id) when is_nil(user_id) do
     {:error, "Invalid User ID"}
   end
 
   @doc """
   Logout
   """
-  def logout(user_id) when is_nil(user_id) == false do
+  def logout(user_id) when not is_nil(user_id) do
     # Clear old sessions
     UserContext.delete_user_sessions(user_id)
   end
@@ -158,7 +158,7 @@ defmodule Brangus.Service.AuthService do
   @doc """
   Get User By API Key
   """
-  def get_user_by_api(api_key) when is_nil(api_key) == false do
+  def get_user_by_api(api_key) when not is_nil(api_key) do
     case UserContext.get_user_by_api_key(api_key) do
       nil ->
         {:not_found, "Invalid API Key"}

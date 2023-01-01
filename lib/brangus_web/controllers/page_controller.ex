@@ -20,17 +20,18 @@ defmodule BrangusWeb.PageController do
         conn.req_cookies["_token"]
       )
 
-    conn = case result do
-      false ->
-        assign(conn, :is_logged, false)
-        |> assign(:user_id, "")
-        |> assign(:user_token, "")
+    conn =
+      case result do
+        false ->
+          assign(conn, :is_logged, false)
+          |> assign(:user_id, "")
+          |> assign(:user_token, "")
 
-      {true, session} ->
-        assign(conn, :is_logged, true)
-        |> assign(:user_id, session.user_id)
-        |> assign(:user_token, session.value)
-    end
+        {true, session} ->
+          assign(conn, :is_logged, true)
+          |> assign(:user_id, session.user_id)
+          |> assign(:user_token, session.value)
+      end
 
     conn
   end

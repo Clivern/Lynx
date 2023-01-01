@@ -162,6 +162,5 @@ defmodule Brangus.Module.TeamModule do
   Generate slug from team name
   """
   def generate_team_slug(name) do
-
   end
 end

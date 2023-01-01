@@ -12,13 +12,19 @@ defmodule BrangusWeb.Router do
     plug :put_root_layout, {BrangusWeb.LayoutView, :root}
     plug :protect_from_forgery
     plug :put_secure_browser_headers
+    plug Brangus.Middleware.UIAuthMiddleware
   end
 
   pipeline :api do
     plug :accepts, ["json"]
+    plug Brangus.Middleware.APIAuthMiddleware
   end
 
   pipeline :pub do
+    plug :accepts, ["json"]
+  end
+
+  pipeline :client do
     plug :accepts, ["json"]
   end
 
@@ -41,7 +47,6 @@ defmodule BrangusWeb.Router do
     get "/_ready", ReadyController, :ready
     post "/action/install", MiscController, :install
     post "/action/auth", MiscController, :auth
-    post "/action/renew", MiscController, :renew_token
   end
 
   scope "/api/v1", BrangusWeb do
@@ -65,18 +70,22 @@ defmodule BrangusWeb.Router do
     put "/settings", SettingsController, :update
 
     # Project CRUD
-    get "/team/:tid/project", ProjectController, :list
-    post "/team/:tid/project", ProjectController, :create
-    get "/team/:tid/project/:pid", ProjectController, :index
-    put "/team/:tid/project/:pid", ProjectController, :update
-    delete "/team/:tid/project/:pid", ProjectController, :delete
+    get "/project", ProjectController, :list
+    post "/project", ProjectController, :create
+    get "/project/:pid", ProjectController, :index
+    put "/project/:pid", ProjectController, :update
+    delete "/project/:pid", ProjectController, :delete
 
     # Environment CRUD
-    get "/team/:tid/project/:pid/environment", EnvironmentController, :list
-    post "/team/:tid/project/:pid/environment", EnvironmentController, :create
-    get "/team/:tid/project/:pid/environment/:eid", EnvironmentController, :index
-    put "/team/:tid/project/:pid/environment/:eid", EnvironmentController, :update
-    delete "/team/:tid/project/:pid/environment/:eid", EnvironmentController, :delete
+    get "/project/:pid/environment", EnvironmentController, :list
+    post "/project/:pid/environment", EnvironmentController, :create
+    get "/project/:pid/environment/:eid", EnvironmentController, :index
+    put "/project/:pid/environment/:eid", EnvironmentController, :update
+    delete "/project/:pid/environment/:eid", EnvironmentController, :delete
+  end
+
+  scope "/client", BrangusWeb do
+    pipe_through :client
 
     # Locking API
     post "/:tsg/:psg/:esg/lock", LockController, :lock
