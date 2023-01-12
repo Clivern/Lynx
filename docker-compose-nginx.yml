@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: clivern/lynx:0.12.3
+    image: clivern/lynx:0.12.4
     environment:
       APP_NAME: Lynx
       APP_PORT: 4000
@@ -46,7 +46,7 @@ services:
       retries: 3
     restart: unless-stopped
     volumes:
-      - ./nginx-cluster.conf:/etc/nginx/nginx.conf
+      - ./nginx.conf:/etc/nginx/nginx.conf
       - nginx_logs:/var/log/nginx
 
 volumes:
