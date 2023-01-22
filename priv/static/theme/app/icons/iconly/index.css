@@ -1,0 +1,1644 @@
+@font-face {
+    font-family: 'iconly';
+    src: url('iconly.eot');
+    src: url('iconly.eot') format('embedded-opentype'),
+      url('iconly.ttf') format('truetype'),
+      url('iconly.woff') format('woff'),
+      url('iconly.svg') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+  }
+  
+  [class^="iconly-"],
+  [class*=" iconly-"] {
+    /* use !important to prevent issues with browser extensions that change fonts */
+    font-family: 'iconly' !important;
+    speak: never;
+    font-style: normal;
+    font-weight: normal;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1;
+    font-size: 24px;
+  
+    /* Better Font Rendering =========== */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  .iconly-Light-Activity:before {
+    content: "\eb14";
+  }
+  
+  .iconly-Light-AddUser:before {
+    content: "\eb15";
+  }
+  
+  .iconly-Light-ArrowDown:before {
+    content: "\eb16";
+  }
+  
+  .iconly-Light-ArrowDownSquare:before {
+    content: "\eb17";
+  }
+  
+  .iconly-Light-ArrowLeft:before {
+    content: "\eb18";
+  }
+  
+  .iconly-Light-ArrowLeftSquare:before {
+    content: "\eb19";
+  }
+  
+  .iconly-Light-ArrowRight:before {
+    content: "\eb1a";
+  }
+  
+  .iconly-Light-ArrowRightSquare:before {
+    content: "\eb1b";
+  }
+  
+  .iconly-Light-ArrowUp:before {
+    content: "\eb1c";
+  }
+  
+  .iconly-Light-ArrowUpSquare:before {
+    content: "\eb1d";
+  }
+  
+  .iconly-Light-Bag:before {
+    content: "\eb1e";
+  }
+  
+  .iconly-Light-Bag2:before {
+    content: "\eb1f";
+  }
+  
+  .iconly-Light-Bookmark:before {
+    content: "\eb20";
+  }
+  
+  .iconly-Light-Buy:before {
+    content: "\eb21";
+  }
+  
+  .iconly-Light-Calendar:before {
+    content: "\eb22";
+  }
+  
+  .iconly-Light-Call:before {
+    content: "\eb23";
+  }
+  
+  .iconly-Light-Calling:before {
+    content: "\eb24";
+  }
+  
+  .iconly-Light-CallMissed:before {
+    content: "\eb25";
+  }
+  
+  .iconly-Light-CallSilent:before {
+    content: "\eb26";
+  }
+  
+  .iconly-Light-Camera:before {
+    content: "\eb27";
+  }
+  
+  .iconly-Light-CaretDown:before {
+    content: "\eb28";
+  }
+  
+  .iconly-Light-CaretLeft:before {
+    content: "\eb29";
+  }
+  
+  .iconly-Light-CaretRight:before {
+    content: "\eb2a";
+  }
+  
+  .iconly-Light-CaretUp:before {
+    content: "\eb2b";
+  }
+  
+  .iconly-Light-Category:before {
+    content: "\eb2c";
+  }
+  
+  .iconly-Light-Chart:before {
+    content: "\eb2d";
+  }
+  
+  .iconly-Light-Chat:before {
+    content: "\eb2e";
+  }
+  
+  .iconly-Light-ChevronDown:before {
+    content: "\eb2f";
+  }
+  
+  .iconly-Light-ChevronDownCircle:before {
+    content: "\eb30";
+  }
+  
+  .iconly-Light-ChevronLeft:before {
+    content: "\eb31";
+  }
+  
+  .iconly-Light-ChevronLeftCircle:before {
+    content: "\eb32";
+  }
+  
+  .iconly-Light-ChevronRight:before {
+    content: "\eb33";
+  }
+  
+  .iconly-Light-ChevronRightCircle:before {
+    content: "\eb34";
+  }
+  
+  .iconly-Light-ChevronUp:before {
+    content: "\eb35";
+  }
+  
+  .iconly-Light-ChevronUpCircle:before {
+    content: "\eb36";
+  }
+  
+  .iconly-Light-CloseSquare:before {
+    content: "\eb37";
+  }
+  
+  .iconly-Light-Danger:before {
+    content: "\eb38";
+  }
+  
+  .iconly-Light-Delete:before {
+    content: "\eb39";
+  }
+  
+  .iconly-Light-Discount:before {
+    content: "\eb3a";
+  }
+  
+  .iconly-Light-Discovery:before {
+    content: "\eb3b";
+  }
+  
+  .iconly-Light-Document:before {
+    content: "\eb3c";
+  }
+  
+  .iconly-Light-Download:before {
+    content: "\eb3d";
+  }
+  
+  .iconly-Light-Edit:before {
+    content: "\eb3e";
+  }
+  
+  .iconly-Light-EditSquare:before {
+    content: "\eb3f";
+  }
+  
+  .iconly-Light-Filter:before {
+    content: "\eb40";
+  }
+  
+  .iconly-Light-Filter2:before {
+    content: "\eb41";
+  }
+  
+  .iconly-Light-Folder:before {
+    content: "\eb42";
+  }
+  
+  .iconly-Light-Game:before {
+    content: "\eb43";
+  }
+  
+  .iconly-Light-Graph:before {
+    content: "\eb44";
+  }
+  
+  .iconly-Light-Heart:before {
+    content: "\eb45";
+  }
+  
+  .iconly-Light-Heart2:before {
+    content: "\eb46";
+  }
+  
+  .iconly-Light-Hide:before {
+    content: "\eb47";
+  }
+  
+  .iconly-Light-Home:before {
+    content: "\eb48";
+  }
+  
+  .iconly-Light-Image:before {
+    content: "\eb49";
+  }
+  
+  .iconly-Light-Image2:before {
+    content: "\eb4a";
+  }
+  
+  .iconly-Light-InfoCircle:before {
+    content: "\eb4b";
+  }
+  
+  .iconly-Light-InfoSquare:before {
+    content: "\eb4c";
+  }
+  
+  .iconly-Light-Location:before {
+    content: "\eb4d";
+  }
+  
+  .iconly-Light-Lock:before {
+    content: "\eb4e";
+  }
+  
+  .iconly-Light-Login:before {
+    content: "\eb4f";
+  }
+  
+  .iconly-Light-Logout:before {
+    content: "\eb50";
+  }
+  
+  .iconly-Light-Message:before {
+    content: "\eb51";
+  }
+  
+  .iconly-Light-MoreCircle:before {
+    content: "\eb52";
+  }
+  
+  .iconly-Light-MoreSquare:before {
+    content: "\eb53";
+  }
+  
+  .iconly-Light-Notification:before {
+    content: "\eb54";
+  }
+  
+  .iconly-Light-Paper:before {
+    content: "\eb55";
+  }
+  
+  .iconly-Light-PaperDownload:before {
+    content: "\eb56";
+  }
+  
+  .iconly-Light-PaperFail:before {
+    content: "\eb57";
+  }
+  
+  .iconly-Light-PaperNegative:before {
+    content: "\eb58";
+  }
+  
+  .iconly-Light-PaperPlus:before {
+    content: "\eb59";
+  }
+  
+  .iconly-Light-PaperUpload:before {
+    content: "\eb5a";
+  }
+  
+  .iconly-Light-Password:before {
+    content: "\eb5b";
+  }
+  
+  .iconly-Light-People:before {
+    content: "\eb5c";
+  }
+  
+  .iconly-Light-Play:before {
+    content: "\eb5d";
+  }
+  
+  .iconly-Light-Plus:before {
+    content: "\eb5e";
+  }
+  
+  .iconly-Light-Scan:before {
+    content: "\eb5f";
+  }
+  
+  .iconly-Light-Search:before {
+    content: "\eb60";
+  }
+  
+  .iconly-Light-Send:before {
+    content: "\eb61";
+  }
+  
+  .iconly-Light-Setting:before {
+    content: "\eb62";
+  }
+  
+  .iconly-Light-ShieldDone:before {
+    content: "\eb63";
+  }
+  
+  .iconly-Light-ShieldFail:before {
+    content: "\eb64";
+  }
+  
+  .iconly-Light-Show:before {
+    content: "\eb65";
+  }
+  
+  .iconly-Light-Star:before {
+    content: "\eb66";
+  }
+  
+  .iconly-Light-Swap:before {
+    content: "\eb67";
+  }
+  
+  .iconly-Light-Ticket:before {
+    content: "\eb68";
+  }
+  
+  .iconly-Light-TicketStar:before {
+    content: "\eb69";
+  }
+  
+  .iconly-Light-TickSquare:before {
+    content: "\eb6a";
+  }
+  
+  .iconly-Light-TimeCircle:before {
+    content: "\eb6b";
+  }
+  
+  .iconly-Light-TimeSquare:before {
+    content: "\eb6c";
+  }
+  
+  .iconly-Light-TwoUsers:before {
+    content: "\eb6d";
+  }
+  
+  .iconly-Light-Unlock:before {
+    content: "\eb6e";
+  }
+  
+  .iconly-Light-Upload:before {
+    content: "\eb6f";
+  }
+  
+  .iconly-Light-User:before {
+    content: "\eb70";
+  }
+  
+  .iconly-Light-Video:before {
+    content: "\eb71";
+  }
+  
+  .iconly-Light-Voice:before {
+    content: "\eb72";
+  }
+  
+  .iconly-Light-Voice2:before {
+    content: "\eb73";
+  }
+  
+  .iconly-Light-VolumeDown:before {
+    content: "\eb74";
+  }
+  
+  .iconly-Light-VolumeOff:before {
+    content: "\eb75";
+  }
+  
+  .iconly-Light-VolumeUp:before {
+    content: "\eb76";
+  }
+  
+  .iconly-Light-Wallet:before {
+    content: "\eb77";
+  }
+  
+  .iconly-Light-Work:before {
+    content: "\eb78";
+  }
+  
+  .iconly-Curved-Activity:before {
+    content: "\e900";
+  }
+  
+  .iconly-Curved-AddUser:before {
+    content: "\e901";
+  }
+  
+  .iconly-Curved-ArrowDown:before {
+    content: "\e902";
+  }
+  
+  .iconly-Curved-ArrowDownSquare:before {
+    content: "\e903";
+  }
+  
+  .iconly-Curved-ArrowLeft:before {
+    content: "\e904";
+  }
+  
+  .iconly-Curved-ArrowLeftSquare:before {
+    content: "\e905";
+  }
+  
+  .iconly-Curved-ArrowRight:before {
+    content: "\e906";
+  }
+  
+  .iconly-Curved-ArrowRightSquare:before {
+    content: "\e907";
+  }
+  
+  .iconly-Curved-ArrowUp:before {
+    content: "\e908";
+  }
+  
+  .iconly-Curved-ArrowUpSquare:before {
+    content: "\e909";
+  }
+  
+  .iconly-Curved-Bag:before {
+    content: "\e90a";
+  }
+  
+  .iconly-Curved-Bag2:before {
+    content: "\e90b";
+  }
+  
+  .iconly-Curved-Bookmark:before {
+    content: "\e90c";
+  }
+  
+  .iconly-Curved-Buy:before {
+    content: "\e90d";
+  }
+  
+  .iconly-Curved-Calendar:before {
+    content: "\e90e";
+  }
+  
+  .iconly-Curved-Call:before {
+    content: "\e90f";
+  }
+  
+  .iconly-Curved-Calling:before {
+    content: "\e910";
+  }
+  
+  .iconly-Curved-CallMissed:before {
+    content: "\e911";
+  }
+  
+  .iconly-Curved-CallSilent:before {
+    content: "\e912";
+  }
+  
+  .iconly-Curved-Camera:before {
+    content: "\e913";
+  }
+  
+  .iconly-Curved-CaretDown:before {
+    content: "\e914";
+  }
+  
+  .iconly-Curved-CaretLeft:before {
+    content: "\e915";
+  }
+  
+  .iconly-Curved-CaretRight:before {
+    content: "\e916";
+  }
+  
+  .iconly-Curved-CaretUp:before {
+    content: "\e917";
+  }
+  
+  .iconly-Curved-Category:before {
+    content: "\e918";
+  }
+  
+  .iconly-Curved-Chart:before {
+    content: "\e919";
+  }
+  
+  .iconly-Curved-Chat:before {
+    content: "\e91a";
+  }
+  
+  .iconly-Curved-ChevronDown:before {
+    content: "\e91b";
+  }
+  
+  .iconly-Curved-ChevronDownCircle:before {
+    content: "\e91c";
+  }
+  
+  .iconly-Curved-ChevronLeft:before {
+    content: "\e91d";
+  }
+  
+  .iconly-Curved-ChevronLeftCircle:before {
+    content: "\e91e";
+  }
+  
+  .iconly-Curved-ChevronRight:before {
+    content: "\e91f";
+  }
+  
+  .iconly-Curved-ChevronRightCircle:before {
+    content: "\e920";
+  }
+  
+  .iconly-Curved-ChevronUp:before {
+    content: "\e921";
+  }
+  
+  .iconly-Curved-ChevronUpCircle:before {
+    content: "\e922";
+  }
+  
+  .iconly-Curved-CloseSquare:before {
+    content: "\e923";
+  }
+  
+  .iconly-Curved-Danger:before {
+    content: "\e924";
+  }
+  
+  .iconly-Curved-Delete:before {
+    content: "\e925";
+  }
+  
+  .iconly-Curved-Discount:before {
+    content: "\e926";
+  }
+  
+  .iconly-Curved-Discovery:before {
+    content: "\e927";
+  }
+  
+  .iconly-Curved-Document:before {
+    content: "\e928";
+  }
+  
+  .iconly-Curved-Download:before {
+    content: "\e929";
+  }
+  
+  .iconly-Curved-Edit:before {
+    content: "\e92a";
+  }
+  
+  .iconly-Curved-EditSquare:before {
+    content: "\e92b";
+  }
+  
+  .iconly-Curved-Filter:before {
+    content: "\e92c";
+  }
+  
+  .iconly-Curved-Filter2:before {
+    content: "\e92d";
+  }
+  
+  .iconly-Curved-Folder:before {
+    content: "\e92e";
+  }
+  
+  .iconly-Curved-Game:before {
+    content: "\e92f";
+  }
+  
+  .iconly-Curved-Graph:before {
+    content: "\e930";
+  }
+  
+  .iconly-Curved-Heart:before {
+    content: "\e931";
+  }
+  
+  .iconly-Curved-Heart2:before {
+    content: "\e932";
+  }
+  
+  .iconly-Curved-Hide:before {
+    content: "\e933";
+  }
+  
+  .iconly-Curved-Home:before {
+    content: "\e934";
+  }
+  
+  .iconly-Curved-Image:before {
+    content: "\e935";
+  }
+  
+  .iconly-Curved-Image2:before {
+    content: "\e936";
+  }
+  
+  .iconly-Curved-InfoCircle:before {
+    content: "\e937";
+  }
+  
+  .iconly-Curved-InfoSquare:before {
+    content: "\e938";
+  }
+  
+  .iconly-Curved-Location:before {
+    content: "\e939";
+  }
+  
+  .iconly-Curved-Lock:before {
+    content: "\e93a";
+  }
+  
+  .iconly-Curved-Login:before {
+    content: "\e93b";
+  }
+  
+  .iconly-Curved-Logout:before {
+    content: "\e93c";
+  }
+  
+  .iconly-Curved-Message:before {
+    content: "\e93d";
+  }
+  
+  .iconly-Curved-MoreCircle:before {
+    content: "\e93e";
+  }
+  
+  .iconly-Curved-MoreSquare:before {
+    content: "\e93f";
+  }
+  
+  .iconly-Curved-Notification:before {
+    content: "\e940";
+  }
+  
+  .iconly-Curved-Paper:before {
+    content: "\e941";
+  }
+  
+  .iconly-Curved-PaperDownload:before {
+    content: "\e942";
+  }
+  
+  .iconly-Curved-PaperFail:before {
+    content: "\e943";
+  }
+  
+  .iconly-Curved-PaperNegative:before {
+    content: "\e944";
+  }
+  
+  .iconly-Curved-PaperPlus:before {
+    content: "\e945";
+  }
+  
+  .iconly-Curved-PaperUpload:before {
+    content: "\e946";
+  }
+  
+  .iconly-Curved-Password:before {
+    content: "\e947";
+  }
+  
+  .iconly-Curved-People:before {
+    content: "\e948";
+  }
+  
+  .iconly-Curved-Play:before {
+    content: "\e949";
+  }
+  
+  .iconly-Curved-Plus:before {
+    content: "\e94a";
+  }
+  
+  .iconly-Curved-Scan:before {
+    content: "\e94b";
+  }
+  
+  .iconly-Curved-Search:before {
+    content: "\e94c";
+  }
+  
+  .iconly-Curved-Send:before {
+    content: "\e94d";
+  }
+  
+  .iconly-Curved-Setting:before {
+    content: "\e94e";
+  }
+  
+  .iconly-Curved-ShieldDone:before {
+    content: "\e94f";
+  }
+  
+  .iconly-Curved-ShieldFail:before {
+    content: "\e950";
+  }
+  
+  .iconly-Curved-Show:before {
+    content: "\e951";
+  }
+  
+  .iconly-Curved-Star:before {
+    content: "\e952";
+  }
+  
+  .iconly-Curved-Swap:before {
+    content: "\e953";
+  }
+  
+  .iconly-Curved-Ticket:before {
+    content: "\e954";
+  }
+  
+  .iconly-Curved-TicketStar:before {
+    content: "\e955";
+  }
+  
+  .iconly-Curved-TickSquare:before {
+    content: "\e956";
+  }
+  
+  .iconly-Curved-TimeCircle:before {
+    content: "\e957";
+  }
+  
+  .iconly-Curved-TimeSquare:before {
+    content: "\e958";
+  }
+  
+  .iconly-Curved-TwoUsers:before {
+    content: "\e959";
+  }
+  
+  .iconly-Curved-Unlock:before {
+    content: "\e95a";
+  }
+  
+  .iconly-Curved-Upload:before {
+    content: "\e95b";
+  }
+  
+  .iconly-Curved-User:before {
+    content: "\e95c";
+  }
+  
+  .iconly-Curved-Video:before {
+    content: "\e95d";
+  }
+  
+  .iconly-Curved-Voice:before {
+    content: "\e95e";
+  }
+  
+  .iconly-Curved-Voice2:before {
+    content: "\e95f";
+  }
+  
+  .iconly-Curved-VolumeDown:before {
+    content: "\e960";
+  }
+  
+  .iconly-Curved-VolumeOff:before {
+    content: "\e961";
+  }
+  
+  .iconly-Curved-VolumeUp:before {
+    content: "\e962";
+  }
+  
+  .iconly-Curved-Wallet:before {
+    content: "\e963";
+  }
+  
+  .iconly-Curved-Work:before {
+    content: "\e964";
+  }
+  
+  .iconly-Broken-Activity:before {
+    content: "\eaaf";
+  }
+  
+  .iconly-Broken-AddUser:before {
+    content: "\eab0";
+  }
+  
+  .iconly-Broken-ArrowDown:before {
+    content: "\eab1";
+  }
+  
+  .iconly-Broken-ArrowDownSquare:before {
+    content: "\eab2";
+  }
+  
+  .iconly-Broken-ArrowLeft:before {
+    content: "\eab3";
+  }
+  
+  .iconly-Broken-ArrowLeftSquare:before {
+    content: "\eab4";
+  }
+  
+  .iconly-Broken-ArrowRight:before {
+    content: "\eab5";
+  }
+  
+  .iconly-Broken-ArrowRightSquare:before {
+    content: "\eab6";
+  }
+  
+  .iconly-Broken-ArrowUp:before {
+    content: "\eab7";
+  }
+  
+  .iconly-Broken-ArrowUpSquare:before {
+    content: "\eab8";
+  }
+  
+  .iconly-Broken-Bag:before {
+    content: "\eab9";
+  }
+  
+  .iconly-Broken-Bag2:before {
+    content: "\eaba";
+  }
+  
+  .iconly-Broken-Bookmark:before {
+    content: "\eabb";
+  }
+  
+  .iconly-Broken-Buy:before {
+    content: "\eabc";
+  }
+  
+  .iconly-Broken-Calendar:before {
+    content: "\eabd";
+  }
+  
+  .iconly-Broken-Call:before {
+    content: "\eabe";
+  }
+  
+  .iconly-Broken-Calling:before {
+    content: "\eabf";
+  }
+  
+  .iconly-Broken-CallMissed:before {
+    content: "\eac0";
+  }
+  
+  .iconly-Broken-CallSilent:before {
+    content: "\eac1";
+  }
+  
+  .iconly-Broken-Camera:before {
+    content: "\eac2";
+  }
+  
+  .iconly-Broken-CaretDown:before {
+    content: "\eac3";
+  }
+  
+  .iconly-Broken-CaretLeft:before {
+    content: "\eac4";
+  }
+  
+  .iconly-Broken-CaretRight:before {
+    content: "\eac5";
+  }
+  
+  .iconly-Broken-CaretUp:before {
+    content: "\eac6";
+  }
+  
+  .iconly-Broken-Category:before {
+    content: "\eac7";
+  }
+  
+  .iconly-Broken-Chart:before {
+    content: "\eac8";
+  }
+  
+  .iconly-Broken-Chat:before {
+    content: "\eac9";
+  }
+  
+  .iconly-Broken-ChevronDown:before {
+    content: "\eaca";
+  }
+  
+  .iconly-Broken-ChevronDownCircle:before {
+    content: "\eacb";
+  }
+  
+  .iconly-Broken-ChevronLeft:before {
+    content: "\eacc";
+  }
+  
+  .iconly-Broken-ChevronLeftCircle:before {
+    content: "\eacd";
+  }
+  
+  .iconly-Broken-ChevronRight:before {
+    content: "\eace";
+  }
+  
+  .iconly-Broken-ChevronRightCircle:before {
+    content: "\eacf";
+  }
+  
+  .iconly-Broken-ChevronUp:before {
+    content: "\ead0";
+  }
+  
+  .iconly-Broken-ChevronUpCircle:before {
+    content: "\ead1";
+  }
+  
+  .iconly-Broken-CloseSquare:before {
+    content: "\ead2";
+  }
+  
+  .iconly-Broken-Danger:before {
+    content: "\ead3";
+  }
+  
+  .iconly-Broken-Delete:before {
+    content: "\ead4";
+  }
+  
+  .iconly-Broken-Discount:before {
+    content: "\ead5";
+  }
+  
+  .iconly-Broken-Discovery:before {
+    content: "\ead6";
+  }
+  
+  .iconly-Broken-Document:before {
+    content: "\ead7";
+  }
+  
+  .iconly-Broken-Download:before {
+    content: "\ead8";
+  }
+  
+  .iconly-Broken-Edit:before {
+    content: "\ead9";
+  }
+  
+  .iconly-Broken-EditSquare:before {
+    content: "\eada";
+  }
+  
+  .iconly-Broken-Filter:before {
+    content: "\eadb";
+  }
+  
+  .iconly-Broken-Filter2:before {
+    content: "\eadc";
+  }
+  
+  .iconly-Broken-Folder:before {
+    content: "\eadd";
+  }
+  
+  .iconly-Broken-Game:before {
+    content: "\eade";
+  }
+  
+  .iconly-Broken-Graph:before {
+    content: "\eadf";
+  }
+  
+  .iconly-Broken-Heart:before {
+    content: "\eae0";
+  }
+  
+  .iconly-Broken-Heart2:before {
+    content: "\eae1";
+  }
+  
+  .iconly-Broken-Hide:before {
+    content: "\eae2";
+  }
+  
+  .iconly-Broken-Home:before {
+    content: "\eae3";
+  }
+  
+  .iconly-Broken-Image:before {
+    content: "\eae4";
+  }
+  
+  .iconly-Broken-Image2:before {
+    content: "\eae5";
+  }
+  
+  .iconly-Broken-InfoCircle:before {
+    content: "\eae6";
+  }
+  
+  .iconly-Broken-InfoSquare:before {
+    content: "\eae7";
+  }
+  
+  .iconly-Broken-Location:before {
+    content: "\eae8";
+  }
+  
+  .iconly-Broken-Lock:before {
+    content: "\eae9";
+  }
+  
+  .iconly-Broken-Login:before {
+    content: "\eaea";
+  }
+  
+  .iconly-Broken-Logout:before {
+    content: "\eaeb";
+  }
+  
+  .iconly-Broken-Message:before {
+    content: "\eaec";
+  }
+  
+  .iconly-Broken-MoreCircle:before {
+    content: "\eaed";
+  }
+  
+  .iconly-Broken-MoreSquare:before {
+    content: "\eaee";
+  }
+  
+  .iconly-Broken-Notification:before {
+    content: "\eaef";
+  }
+  
+  .iconly-Broken-Paper:before {
+    content: "\eaf0";
+  }
+  
+  .iconly-Broken-PaperDownload:before {
+    content: "\eaf1";
+  }
+  
+  .iconly-Broken-PaperFail:before {
+    content: "\eaf2";
+  }
+  
+  .iconly-Broken-PaperNegative:before {
+    content: "\eaf3";
+  }
+  
+  .iconly-Broken-PaperPlus:before {
+    content: "\eaf4";
+  }
+  
+  .iconly-Broken-PaperUpload:before {
+    content: "\eaf5";
+  }
+  
+  .iconly-Broken-Password:before {
+    content: "\eaf6";
+  }
+  
+  .iconly-Broken-People:before {
+    content: "\eaf7";
+  }
+  
+  .iconly-Broken-Play:before {
+    content: "\eaf8";
+  }
+  
+  .iconly-Broken-Plus:before {
+    content: "\eaf9";
+  }
+  
+  .iconly-Broken-Scan:before {
+    content: "\eafa";
+  }
+  
+  .iconly-Broken-Search:before {
+    content: "\eafb";
+  }
+  
+  .iconly-Broken-Send:before {
+    content: "\eafc";
+  }
+  
+  .iconly-Broken-Setting:before {
+    content: "\eafd";
+  }
+  
+  .iconly-Broken-ShieldDone:before {
+    content: "\eafe";
+  }
+  
+  .iconly-Broken-ShieldFail:before {
+    content: "\eaff";
+  }
+  
+  .iconly-Broken-Show:before {
+    content: "\eb00";
+  }
+  
+  .iconly-Broken-Star:before {
+    content: "\eb01";
+  }
+  
+  .iconly-Broken-Swap:before {
+    content: "\eb02";
+  }
+  
+  .iconly-Broken-Ticket:before {
+    content: "\eb03";
+  }
+  
+  .iconly-Broken-TicketStar:before {
+    content: "\eb04";
+  }
+  
+  .iconly-Broken-TickSquare:before {
+    content: "\eb05";
+  }
+  
+  .iconly-Broken-TimeCircle:before {
+    content: "\eb06";
+  }
+  
+  .iconly-Broken-TimeSquare:before {
+    content: "\eb07";
+  }
+  
+  .iconly-Broken-TwoUsers:before {
+    content: "\eb08";
+  }
+  
+  .iconly-Broken-Unlock:before {
+    content: "\eb09";
+  }
+  
+  .iconly-Broken-Upload:before {
+    content: "\eb0a";
+  }
+  
+  .iconly-Broken-User:before {
+    content: "\eb0b";
+  }
+  
+  .iconly-Broken-Video:before {
+    content: "\eb0c";
+  }
+  
+  .iconly-Broken-Voice:before {
+    content: "\eb0d";
+  }
+  
+  .iconly-Broken-Voice2:before {
+    content: "\eb0e";
+  }
+  
+  .iconly-Broken-VolumeDown:before {
+    content: "\eb0f";
+  }
+  
+  .iconly-Broken-VolumeOff:before {
+    content: "\eb10";
+  }
+  
+  .iconly-Broken-VolumeUp:before {
+    content: "\eb11";
+  }
+  
+  .iconly-Broken-Wallet:before {
+    content: "\eb12";
+  }
+  
+  .iconly-Broken-Work:before {
+    content: "\eb13";
+  }
+  
+  .iconly-Bold-Activity:before {
+    content: "\e9eb";
+  }
+  
+  .iconly-Bold-AddUser:before {
+    content: "\e9ec";
+  }
+  
+  .iconly-Bold-ArrowDown:before {
+    content: "\e9ed";
+  }
+  
+  .iconly-Bold-ArrowDownSquare:before {
+    content: "\e9ee";
+  }
+  
+  .iconly-Bold-ArrowLeft:before {
+    content: "\e9ef";
+  }
+  
+  .iconly-Bold-ArrowLeftSquare:before {
+    content: "\e9f0";
+  }
+  
+  .iconly-Bold-ArrowRight:before {
+    content: "\e9f1";
+  }
+  
+  .iconly-Bold-ArrowRightSquare:before {
+    content: "\e9f2";
+  }
+  
+  .iconly-Bold-ArrowUp:before {
+    content: "\e9f3";
+  }
+  
+  .iconly-Bold-ArrowUpSquare:before {
+    content: "\e9f4";
+  }
+  
+  .iconly-Bold-Bag:before {
+    content: "\e9f5";
+  }
+  
+  .iconly-Bold-Bag2:before {
+    content: "\e9f6";
+  }
+  
+  .iconly-Bold-Bookmark:before {
+    content: "\e9f7";
+  }
+  
+  .iconly-Bold-Buy:before {
+    content: "\e9f8";
+  }
+  
+  .iconly-Bold-Calendar:before {
+    content: "\e9f9";
+  }
+  
+  .iconly-Bold-Call:before {
+    content: "\e9fa";
+  }
+  
+  .iconly-Bold-Calling:before {
+    content: "\e9fb";
+  }
+  
+  .iconly-Bold-CallMissed:before {
+    content: "\e9fc";
+  }
+  
+  .iconly-Bold-CallSilent:before {
+    content: "\e9fd";
+  }
+  
+  .iconly-Bold-Camera:before {
+    content: "\e9fe";
+  }
+  
+  .iconly-Bold-CaretDown:before {
+    content: "\e9ff";
+  }
+  
+  .iconly-Bold-CaretLeft:before {
+    content: "\ea00";
+  }
+  
+  .iconly-Bold-CaretRight:before {
+    content: "\ea01";
+  }
+  
+  .iconly-Bold-CaretUp:before {
+    content: "\ea02";
+  }
+  
+  .iconly-Bold-Category:before {
+    content: "\ea03";
+  }
+  
+  .iconly-Bold-Chart:before {
+    content: "\ea04";
+  }
+  
+  .iconly-Bold-Chat:before {
+    content: "\ea05";
+  }
+  
+  .iconly-Bold-ChevronDown:before {
+    content: "\ea06";
+  }
+  
+  .iconly-Bold-ChevronDownCircle:before {
+    content: "\ea07";
+  }
+  
+  .iconly-Bold-ChevronLeft:before {
+    content: "\ea08";
+  }
+  
+  .iconly-Bold-ChevronLeftCircle:before {
+    content: "\ea09";
+  }
+  
+  .iconly-Bold-ChevronRight:before {
+    content: "\ea0a";
+  }
+  
+  .iconly-Bold-ChevronRightCircle:before {
+    content: "\ea0b";
+  }
+  
+  .iconly-Bold-ChevronUp:before {
+    content: "\ea0c";
+  }
+  
+  .iconly-Bold-ChevronUpCircle:before {
+    content: "\ea0d";
+  }
+  
+  .iconly-Bold-CloseSquare:before {
+    content: "\ea0e";
+  }
+  
+  .iconly-Bold-Danger:before {
+    content: "\ea0f";
+  }
+  
+  .iconly-Bold-Delete:before {
+    content: "\ea10";
+  }
+  
+  .iconly-Bold-Discount:before {
+    content: "\ea11";
+  }
+  
+  .iconly-Bold-Discovery:before {
+    content: "\ea12";
+  }
+  
+  .iconly-Bold-Document:before {
+    content: "\ea13";
+  }
+  
+  .iconly-Bold-Download:before {
+    content: "\ea14";
+  }
+  
+  .iconly-Bold-Edit:before {
+    content: "\ea15";
+  }
+  
+  .iconly-Bold-EditSquare:before {
+    content: "\ea16";
+  }
+  
+  .iconly-Bold-Filter:before {
+    content: "\ea17";
+  }
+  
+  .iconly-Bold-Filter2:before {
+    content: "\ea18";
+  }
+  
+  .iconly-Bold-Folder:before {
+    content: "\ea19";
+  }
+  
+  .iconly-Bold-Game:before {
+    content: "\ea1a";
+  }
+  
+  .iconly-Bold-Graph:before {
+    content: "\ea1b";
+  }
+  
+  .iconly-Bold-Heart:before {
+    content: "\ea1c";
+  }
+  
+  .iconly-Bold-Heart2:before {
+    content: "\ea1d";
+  }
+  
+  .iconly-Bold-Hide:before {
+    content: "\ea1e";
+  }
+  
+  .iconly-Bold-Home:before {
+    content: "\ea1f";
+  }
+  
+  .iconly-Bold-Image:before {
+    content: "\ea20";
+  }
+  
+  .iconly-Bold-Image2:before {
+    content: "\ea21";
+  }
+  
+  .iconly-Bold-InfoCircle:before {
+    content: "\ea22";
+  }
+  
+  .iconly-Bold-InfoSquare:before {
+    content: "\ea23";
+  }
+  
+  .iconly-Bold-Location:before {
+    content: "\ea24";
+  }
+  
+  .iconly-Bold-Lock:before {
+    content: "\ea25";
+  }
+  
+  .iconly-Bold-Login:before {
+    content: "\ea26";
+  }
+  
+  .iconly-Bold-Logout:before {
+    content: "\ea27";
+  }
+  
+  .iconly-Bold-Message:before {
+    content: "\ea28";
+  }
+  
+  .iconly-Bold-MoreCircle:before {
+    content: "\ea29";
+  }
+  
+  .iconly-Bold-MoreSquare:before {
+    content: "\ea2a";
+  }
+  
+  .iconly-Bold-Notification:before {
+    content: "\ea2b";
+  }
+  
+  .iconly-Bold-Paper:before {
+    content: "\ea2c";
+  }
+  
+  .iconly-Bold-PaperDownload:before {
+    content: "\ea2d";
+  }
+  
+  .iconly-Bold-PaperFail:before {
+    content: "\ea2e";
+  }
+  
+  .iconly-Bold-PaperNegative:before {
+    content: "\ea2f";
+  }
+  
+  .iconly-Bold-PaperPlus:before {
+    content: "\ea30";
+  }
+  
+  .iconly-Bold-PaperUpload:before {
+    content: "\ea31";
+  }
+  
+  .iconly-Bold-Password:before {
+    content: "\ea32";
+  }
+  
+  .iconly-Bold-People:before {
+    content: "\ea33";
+  }
+  
+  .iconly-Bold-Play:before {
+    content: "\ea34";
+  }
+  
+  .iconly-Bold-Plus:before {
+    content: "\ea35";
+  }
+  
+  .iconly-Bold-Scan:before {
+    content: "\ea36";
+  }
+  
+  .iconly-Bold-Search:before {
+    content: "\ea37";
+  }
+  
+  .iconly-Bold-Send:before {
+    content: "\ea38";
+  }
+  
+  .iconly-Bold-Setting:before {
+    content: "\ea39";
+  }
+  
+  .iconly-Bold-ShieldDone:before {
+    content: "\ea3a";
+  }
+  
+  .iconly-Bold-ShieldFail:before {
+    content: "\ea3b";
+  }
+  
+  .iconly-Bold-Show:before {
+    content: "\ea3c";
+  }
+  
+  .iconly-Bold-Star:before {
+    content: "\ea3d";
+  }
+  
+  .iconly-Bold-Swap:before {
+    content: "\ea3e";
+  }
+  
+  .iconly-Bold-Ticket:before {
+    content: "\ea3f";
+  }
+  
+  .iconly-Bold-TicketStar:before {
+    content: "\ea40";
+  }
+  
+  .iconly-Bold-TickSquare:before {
+    content: "\ea41";
+  }
+  
+  .iconly-Bold-TimeCircle:before {
+    content: "\ea42";
+  }
+  
+  .iconly-Bold-TimeSquare:before {
+    content: "\ea43";
+  }
+  
+  .iconly-Bold-TwoUsers:before {
+    content: "\ea44";
+  }
+  
+  .iconly-Bold-Unlock:before {
+    content: "\ea45";
+  }
+  
+  .iconly-Bold-Upload:before {
+    content: "\ea46";
+  }
+  
+  .iconly-Bold-User:before {
+    content: "\ea47";
+  }
+  
+  .iconly-Bold-Video:before {
+    content: "\ea48";
+  }
+  
+  .iconly-Bold-Voice:before {
+    content: "\ea49";
+  }
+  
+  .iconly-Bold-Voice2:before {
+    content: "\ea4a";
+  }
+  
+  .iconly-Bold-VolumeDown:before {
+    content: "\ea4b";
+  }
+  
+  .iconly-Bold-VolumeOff:before {
+    content: "\ea4c";
+  }
+  
+  .iconly-Bold-VolumeUp:before {
+    content: "\ea4d";
+  }
+  
+  .iconly-Bold-Wallet:before {
+    content: "\ea4e";
+  }
+  
+  .iconly-Bold-Work:before {
+    content: "\ea4f";
+  }

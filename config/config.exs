@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :raccoon,
-  ecto_repos: [Raccoon.Repo]
+config :bandit,
+  ecto_repos: [Bandit.Repo]
 
 # Configures the endpoint
-config :raccoon, RaccoonWeb.Endpoint,
+config :bandit, BanditWeb.Endpoint,
   url: [host: System.get_env("APP_HOST") || "localhost"],
-  render_errors: [view: RaccoonWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Raccoon.PubSub,
+  render_errors: [view: BanditWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Bandit.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :raccoon, RaccoonWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :raccoon, Raccoon.Mailer, adapter: Swoosh.Adapters.Local
+config :bandit, Bandit.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

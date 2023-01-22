@@ -28,9 +28,9 @@ jobs:
         image: postgres:latest
         ports: ['5432:5432']
         env:
-          POSTGRES_DB: raccoon_dev
-          POSTGRES_USER: raccoon
-          POSTGRES_PASSWORD: raccoon
+          POSTGRES_DB: bandit_dev
+          POSTGRES_USER: bandit
+          POSTGRES_PASSWORD: bandit
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
     steps:
       - uses: actions/checkout@v3
@@ -42,14 +42,14 @@ jobs:
       - name: Get Dependencies
         run: make deps
 
-      - name: Check Raccoon Format
+      - name: Check Bandit Format
         run: make fmt_check
 
       - name: Get Version
         run: make v
 
-      - name: Test Raccoon
+      - name: Test Bandit
         run: make ci
 
-      - name: Build Raccoon
+      - name: Build Bandit
         run: make build

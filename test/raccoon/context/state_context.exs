@@ -1,7 +1,7 @@
-defmodule Raccoon.Context.StateContextTest do
+defmodule Bandit.Context.StateContextTest do
   use ExUnit.Case
 
-  alias Raccoon.Context.StateContext
+  alias Bandit.Context.StateContext
 
   describe "new_state/1" do
     test "returns a new state" do

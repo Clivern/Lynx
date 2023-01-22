@@ -1,0 +1,8 @@
+<svg id="eth-dark-logo" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16">
+  <g id="Group_76" data-name="Group 76">
+    <path id="Path_2165" data-name="Path 2165" d="M8,16a8,8,0,1,1,8-8A8,8,0,0,1,8,16Zm4-7.891L8.249,2,4.5,8.11l3.749,2.177Zm0,.7L8.249,10.983,4.5,8.809,8.249,14Z" fill="#2d3436" fill-rule="evenodd"/>
+    <path id="Path_2166" data-name="Path 2166" d="M8.249,2V6.435L12,8.11Zm0,8.984V14L12,8.808Z" fill="rgba(0,0,0,0.3)"/>
+    <path id="Path_2167" data-name="Path 2167" d="M8.249,10.286,12,8.11,8.249,6.436Z" fill="rgba(0,0,0,0.8)"/>
+    <path id="Path_2168" data-name="Path 2168" d="M4.5,8.11l3.749,2.176V6.436Z" fill="rgba(0,0,0,0.3)"/>
+  </g>
+</svg>

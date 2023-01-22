@@ -1,0 +1,2365 @@
+/* Text Color Hover Map */
+.hp-hover-text-color-primary-1:hover {
+  color: #0010f7 !important;
+}
+
+.hp-hover-text-color-primary-2:hover {
+  color: #0063f7 !important;
+}
+
+.hp-hover-text-color-primary-3:hover {
+  color: #55b1f3 !important;
+}
+
+.hp-hover-text-color-primary-4:hover {
+  color: #ebfafa !important;
+}
+
+.hp-hover-text-color-secondary-1:hover {
+  color: #c903ff !important;
+}
+
+.hp-hover-text-color-secondary-2:hover {
+  color: #e26bf5 !important;
+}
+
+.hp-hover-text-color-secondary-3:hover {
+  color: #f7c2ff !important;
+}
+
+.hp-hover-text-color-secondary-4:hover {
+  color: #fdeffc !important;
+}
+
+.hp-hover-text-color-warning-1:hover {
+  color: #ffc212 !important;
+}
+
+.hp-hover-text-color-warning-2:hover {
+  color: #ffd252 !important;
+}
+
+.hp-hover-text-color-warning-3:hover {
+  color: #ffe393 !important;
+}
+
+.hp-hover-text-color-warning-4:hover {
+  color: #fff9e9 !important;
+}
+
+.hp-hover-text-color-success-1:hover {
+  color: #00f7bf !important;
+}
+
+.hp-hover-text-color-success-2:hover {
+  color: #5bffce !important;
+}
+
+.hp-hover-text-color-success-3:hover {
+  color: #98ffe0 !important;
+}
+
+.hp-hover-text-color-success-4:hover {
+  color: #eafff8 !important;
+}
+
+.hp-hover-text-color-danger-1:hover {
+  color: #ff0022 !important;
+}
+
+.hp-hover-text-color-danger-2:hover {
+  color: #ff455e !important;
+}
+
+.hp-hover-text-color-danger-3:hover {
+  color: #ff8b9a !important;
+}
+
+.hp-hover-text-color-danger-4:hover {
+  color: #ffe7ea !important;
+}
+
+.hp-hover-text-color-info-1:hover {
+  color: #1be7ff !important;
+}
+
+.hp-hover-text-color-info-2:hover {
+  color: #59edff !important;
+}
+
+.hp-hover-text-color-info-3:hover {
+  color: #97f4ff !important;
+}
+
+.hp-hover-text-color-info-4:hover {
+  color: #eafcff !important;
+}
+
+.hp-hover-text-color-black-0:hover {
+  color: #ffffff !important;
+}
+
+.hp-hover-text-color-black-10:hover {
+  color: #f7fafc !important;
+}
+
+.hp-hover-text-color-black-20:hover {
+  color: #f0f3f5 !important;
+}
+
+.hp-hover-text-color-black-40:hover {
+  color: #dfe6e9 !important;
+}
+
+.hp-hover-text-color-black-60:hover {
+  color: #b2bec3 !important;
+}
+
+.hp-hover-text-color-black-80:hover {
+  color: #636e72 !important;
+}
+
+.hp-hover-text-color-black-100:hover {
+  color: #2d3436 !important;
+}
+
+.hp-hover-text-color-black-bg:hover {
+  color: #111314 !important;
+}
+
+.hp-hover-text-color-primary-gradient:hover {
+  color: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-hover-text-color-secondary-gradient:hover {
+  color: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-hover-text-color-warning-gradient:hover {
+  color: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-hover-text-color-dark-gradient:hover {
+  color: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-hover-text-color-success-gradient:hover {
+  color: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-hover-text-color-danger-gradient:hover {
+  color: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-hover-text-color-info-gradient:hover {
+  color: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Text Color Map */
+.hp-text-color-primary-1 {
+  color: #0010f7 !important;
+}
+
+.hp-text-color-primary-2 {
+  color: #0063f7 !important;
+}
+
+.hp-text-color-primary-3 {
+  color: #55b1f3 !important;
+}
+
+.hp-text-color-primary-4 {
+  color: #ebfafa !important;
+}
+
+.hp-text-color-secondary-1 {
+  color: #c903ff !important;
+}
+
+.hp-text-color-secondary-2 {
+  color: #e26bf5 !important;
+}
+
+.hp-text-color-secondary-3 {
+  color: #f7c2ff !important;
+}
+
+.hp-text-color-secondary-4 {
+  color: #fdeffc !important;
+}
+
+.hp-text-color-warning-1 {
+  color: #ffc212 !important;
+}
+
+.hp-text-color-warning-2 {
+  color: #ffd252 !important;
+}
+
+.hp-text-color-warning-3 {
+  color: #ffe393 !important;
+}
+
+.hp-text-color-warning-4 {
+  color: #fff9e9 !important;
+}
+
+.hp-text-color-success-1 {
+  color: #00f7bf !important;
+}
+
+.hp-text-color-success-2 {
+  color: #5bffce !important;
+}
+
+.hp-text-color-success-3 {
+  color: #98ffe0 !important;
+}
+
+.hp-text-color-success-4 {
+  color: #eafff8 !important;
+}
+
+.hp-text-color-danger-1 {
+  color: #ff0022 !important;
+}
+
+.hp-text-color-danger-2 {
+  color: #ff455e !important;
+}
+
+.hp-text-color-danger-3 {
+  color: #ff8b9a !important;
+}
+
+.hp-text-color-danger-4 {
+  color: #ffe7ea !important;
+}
+
+.hp-text-color-info-1 {
+  color: #1be7ff !important;
+}
+
+.hp-text-color-info-2 {
+  color: #59edff !important;
+}
+
+.hp-text-color-info-3 {
+  color: #97f4ff !important;
+}
+
+.hp-text-color-info-4 {
+  color: #eafcff !important;
+}
+
+.hp-text-color-black-0 {
+  color: #ffffff !important;
+}
+
+.hp-text-color-black-10 {
+  color: #f7fafc !important;
+}
+
+.hp-text-color-black-20 {
+  color: #f0f3f5 !important;
+}
+
+.hp-text-color-black-40 {
+  color: #dfe6e9 !important;
+}
+
+.hp-text-color-black-60 {
+  color: #b2bec3 !important;
+}
+
+.hp-text-color-black-80 {
+  color: #636e72 !important;
+}
+
+.hp-text-color-black-100 {
+  color: #2d3436 !important;
+}
+
+.hp-text-color-black-bg {
+  color: #111314 !important;
+}
+
+.hp-text-color-primary-gradient {
+  color: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-text-color-secondary-gradient {
+  color: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-text-color-warning-gradient {
+  color: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-text-color-dark-gradient {
+  color: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-text-color-success-gradient {
+  color: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-text-color-danger-gradient {
+  color: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-text-color-info-gradient {
+  color: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Background Color Hover Map */
+.hp-hover-bg-color-primary-1:hover {
+  background-color: #0010f7 !important;
+}
+
+.hp-hover-bg-color-primary-2:hover {
+  background-color: #0063f7 !important;
+}
+
+.hp-hover-bg-color-primary-3:hover {
+  background-color: #55b1f3 !important;
+}
+
+.hp-hover-bg-color-primary-4:hover {
+  background-color: #ebfafa !important;
+}
+
+.hp-hover-bg-color-secondary-1:hover {
+  background-color: #c903ff !important;
+}
+
+.hp-hover-bg-color-secondary-2:hover {
+  background-color: #e26bf5 !important;
+}
+
+.hp-hover-bg-color-secondary-3:hover {
+  background-color: #f7c2ff !important;
+}
+
+.hp-hover-bg-color-secondary-4:hover {
+  background-color: #fdeffc !important;
+}
+
+.hp-hover-bg-color-warning-1:hover {
+  background-color: #ffc212 !important;
+}
+
+.hp-hover-bg-color-warning-2:hover {
+  background-color: #ffd252 !important;
+}
+
+.hp-hover-bg-color-warning-3:hover {
+  background-color: #ffe393 !important;
+}
+
+.hp-hover-bg-color-warning-4:hover {
+  background-color: #fff9e9 !important;
+}
+
+.hp-hover-bg-color-success-1:hover {
+  background-color: #00f7bf !important;
+}
+
+.hp-hover-bg-color-success-2:hover {
+  background-color: #5bffce !important;
+}
+
+.hp-hover-bg-color-success-3:hover {
+  background-color: #98ffe0 !important;
+}
+
+.hp-hover-bg-color-success-4:hover {
+  background-color: #eafff8 !important;
+}
+
+.hp-hover-bg-color-danger-1:hover {
+  background-color: #ff0022 !important;
+}
+
+.hp-hover-bg-color-danger-2:hover {
+  background-color: #ff455e !important;
+}
+
+.hp-hover-bg-color-danger-3:hover {
+  background-color: #ff8b9a !important;
+}
+
+.hp-hover-bg-color-danger-4:hover {
+  background-color: #ffe7ea !important;
+}
+
+.hp-hover-bg-color-info-1:hover {
+  background-color: #1be7ff !important;
+}
+
+.hp-hover-bg-color-info-2:hover {
+  background-color: #59edff !important;
+}
+
+.hp-hover-bg-color-info-3:hover {
+  background-color: #97f4ff !important;
+}
+
+.hp-hover-bg-color-info-4:hover {
+  background-color: #eafcff !important;
+}
+
+.hp-hover-bg-color-black-0:hover {
+  background-color: #ffffff !important;
+}
+
+.hp-hover-bg-color-black-10:hover {
+  background-color: #f7fafc !important;
+}
+
+.hp-hover-bg-color-black-20:hover {
+  background-color: #f0f3f5 !important;
+}
+
+.hp-hover-bg-color-black-40:hover {
+  background-color: #dfe6e9 !important;
+}
+
+.hp-hover-bg-color-black-60:hover {
+  background-color: #b2bec3 !important;
+}
+
+.hp-hover-bg-color-black-80:hover {
+  background-color: #636e72 !important;
+}
+
+.hp-hover-bg-color-black-100:hover {
+  background-color: #2d3436 !important;
+}
+
+.hp-hover-bg-color-black-bg:hover {
+  background-color: #111314 !important;
+}
+
+.hp-hover-bg-color-primary-gradient:hover {
+  background-color: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-hover-bg-color-secondary-gradient:hover {
+  background-color: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-hover-bg-color-warning-gradient:hover {
+  background-color: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-hover-bg-color-dark-gradient:hover {
+  background-color: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-hover-bg-color-success-gradient:hover {
+  background-color: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-hover-bg-color-danger-gradient:hover {
+  background-color: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-hover-bg-color-info-gradient:hover {
+  background-color: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Background Color Map */
+.hp-bg-color-primary-1 {
+  background-color: #0010f7 !important;
+}
+
+.hp-bg-color-primary-2 {
+  background-color: #0063f7 !important;
+}
+
+.hp-bg-color-primary-3 {
+  background-color: #55b1f3 !important;
+}
+
+.hp-bg-color-primary-4 {
+  background-color: #ebfafa !important;
+}
+
+.hp-bg-color-secondary-1 {
+  background-color: #c903ff !important;
+}
+
+.hp-bg-color-secondary-2 {
+  background-color: #e26bf5 !important;
+}
+
+.hp-bg-color-secondary-3 {
+  background-color: #f7c2ff !important;
+}
+
+.hp-bg-color-secondary-4 {
+  background-color: #fdeffc !important;
+}
+
+.hp-bg-color-warning-1 {
+  background-color: #ffc212 !important;
+}
+
+.hp-bg-color-warning-2 {
+  background-color: #ffd252 !important;
+}
+
+.hp-bg-color-warning-3 {
+  background-color: #ffe393 !important;
+}
+
+.hp-bg-color-warning-4 {
+  background-color: #fff9e9 !important;
+}
+
+.hp-bg-color-success-1 {
+  background-color: #00f7bf !important;
+}
+
+.hp-bg-color-success-2 {
+  background-color: #5bffce !important;
+}
+
+.hp-bg-color-success-3 {
+  background-color: #98ffe0 !important;
+}
+
+.hp-bg-color-success-4 {
+  background-color: #eafff8 !important;
+}
+
+.hp-bg-color-danger-1 {
+  background-color: #ff0022 !important;
+}
+
+.hp-bg-color-danger-2 {
+  background-color: #ff455e !important;
+}
+
+.hp-bg-color-danger-3 {
+  background-color: #ff8b9a !important;
+}
+
+.hp-bg-color-danger-4 {
+  background-color: #ffe7ea !important;
+}
+
+.hp-bg-color-info-1 {
+  background-color: #1be7ff !important;
+}
+
+.hp-bg-color-info-2 {
+  background-color: #59edff !important;
+}
+
+.hp-bg-color-info-3 {
+  background-color: #97f4ff !important;
+}
+
+.hp-bg-color-info-4 {
+  background-color: #eafcff !important;
+}
+
+.hp-bg-color-black-0 {
+  background-color: #ffffff !important;
+}
+
+.hp-bg-color-black-10 {
+  background-color: #f7fafc !important;
+}
+
+.hp-bg-color-black-20 {
+  background-color: #f0f3f5 !important;
+}
+
+.hp-bg-color-black-40 {
+  background-color: #dfe6e9 !important;
+}
+
+.hp-bg-color-black-60 {
+  background-color: #b2bec3 !important;
+}
+
+.hp-bg-color-black-80 {
+  background-color: #636e72 !important;
+}
+
+.hp-bg-color-black-100 {
+  background-color: #2d3436 !important;
+}
+
+.hp-bg-color-black-bg {
+  background-color: #111314 !important;
+}
+
+.hp-bg-color-primary-gradient {
+  background-color: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-bg-color-secondary-gradient {
+  background-color: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-bg-color-warning-gradient {
+  background-color: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-bg-color-dark-gradient {
+  background-color: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-bg-color-success-gradient {
+  background-color: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-bg-color-danger-gradient {
+  background-color: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-bg-color-info-gradient {
+  background-color: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Background Hover Map */
+.hp-hover-bg-primary-1:hover {
+  background: #0010f7 !important;
+}
+
+.hp-hover-bg-primary-2:hover {
+  background: #0063f7 !important;
+}
+
+.hp-hover-bg-primary-3:hover {
+  background: #55b1f3 !important;
+}
+
+.hp-hover-bg-primary-4:hover {
+  background: #ebfafa !important;
+}
+
+.hp-hover-bg-secondary-1:hover {
+  background: #c903ff !important;
+}
+
+.hp-hover-bg-secondary-2:hover {
+  background: #e26bf5 !important;
+}
+
+.hp-hover-bg-secondary-3:hover {
+  background: #f7c2ff !important;
+}
+
+.hp-hover-bg-secondary-4:hover {
+  background: #fdeffc !important;
+}
+
+.hp-hover-bg-warning-1:hover {
+  background: #ffc212 !important;
+}
+
+.hp-hover-bg-warning-2:hover {
+  background: #ffd252 !important;
+}
+
+.hp-hover-bg-warning-3:hover {
+  background: #ffe393 !important;
+}
+
+.hp-hover-bg-warning-4:hover {
+  background: #fff9e9 !important;
+}
+
+.hp-hover-bg-success-1:hover {
+  background: #00f7bf !important;
+}
+
+.hp-hover-bg-success-2:hover {
+  background: #5bffce !important;
+}
+
+.hp-hover-bg-success-3:hover {
+  background: #98ffe0 !important;
+}
+
+.hp-hover-bg-success-4:hover {
+  background: #eafff8 !important;
+}
+
+.hp-hover-bg-danger-1:hover {
+  background: #ff0022 !important;
+}
+
+.hp-hover-bg-danger-2:hover {
+  background: #ff455e !important;
+}
+
+.hp-hover-bg-danger-3:hover {
+  background: #ff8b9a !important;
+}
+
+.hp-hover-bg-danger-4:hover {
+  background: #ffe7ea !important;
+}
+
+.hp-hover-bg-info-1:hover {
+  background: #1be7ff !important;
+}
+
+.hp-hover-bg-info-2:hover {
+  background: #59edff !important;
+}
+
+.hp-hover-bg-info-3:hover {
+  background: #97f4ff !important;
+}
+
+.hp-hover-bg-info-4:hover {
+  background: #eafcff !important;
+}
+
+.hp-hover-bg-black-0:hover {
+  background: #ffffff !important;
+}
+
+.hp-hover-bg-black-10:hover {
+  background: #f7fafc !important;
+}
+
+.hp-hover-bg-black-20:hover {
+  background: #f0f3f5 !important;
+}
+
+.hp-hover-bg-black-40:hover {
+  background: #dfe6e9 !important;
+}
+
+.hp-hover-bg-black-60:hover {
+  background: #b2bec3 !important;
+}
+
+.hp-hover-bg-black-80:hover {
+  background: #636e72 !important;
+}
+
+.hp-hover-bg-black-100:hover {
+  background: #2d3436 !important;
+}
+
+.hp-hover-bg-black-bg:hover {
+  background: #111314 !important;
+}
+
+.hp-hover-bg-primary-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#0010f7), to(#1be7ff)) !important;
+  background: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-hover-bg-secondary-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#a210ba), to(#ff00c7)) !important;
+  background: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-hover-bg-warning-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#ffc212), to(#faff00)) !important;
+  background: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-hover-bg-dark-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#111314), to(#636e72)) !important;
+  background: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-hover-bg-success-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#00f7bf), to(#98ffa2)) !important;
+  background: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-hover-bg-danger-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#ff0022), to(#ff5c00)) !important;
+  background: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-hover-bg-info-gradient:hover {
+  background: -webkit-gradient(linear, left top, right top, from(#1be7ff), to(#c2f4ff)) !important;
+  background: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Background Map */
+.hp-bg-primary-1 {
+  background: #0010f7 !important;
+}
+
+.hp-bg-primary-2 {
+  background: #0063f7 !important;
+}
+
+.hp-bg-primary-3 {
+  background: #55b1f3 !important;
+}
+
+.hp-bg-primary-4 {
+  background: #ebfafa !important;
+}
+
+.hp-bg-secondary-1 {
+  background: #c903ff !important;
+}
+
+.hp-bg-secondary-2 {
+  background: #e26bf5 !important;
+}
+
+.hp-bg-secondary-3 {
+  background: #f7c2ff !important;
+}
+
+.hp-bg-secondary-4 {
+  background: #fdeffc !important;
+}
+
+.hp-bg-warning-1 {
+  background: #ffc212 !important;
+}
+
+.hp-bg-warning-2 {
+  background: #ffd252 !important;
+}
+
+.hp-bg-warning-3 {
+  background: #ffe393 !important;
+}
+
+.hp-bg-warning-4 {
+  background: #fff9e9 !important;
+}
+
+.hp-bg-success-1 {
+  background: #00f7bf !important;
+}
+
+.hp-bg-success-2 {
+  background: #5bffce !important;
+}
+
+.hp-bg-success-3 {
+  background: #98ffe0 !important;
+}
+
+.hp-bg-success-4 {
+  background: #eafff8 !important;
+}
+
+.hp-bg-danger-1 {
+  background: #ff0022 !important;
+}
+
+.hp-bg-danger-2 {
+  background: #ff455e !important;
+}
+
+.hp-bg-danger-3 {
+  background: #ff8b9a !important;
+}
+
+.hp-bg-danger-4 {
+  background: #ffe7ea !important;
+}
+
+.hp-bg-info-1 {
+  background: #1be7ff !important;
+}
+
+.hp-bg-info-2 {
+  background: #59edff !important;
+}
+
+.hp-bg-info-3 {
+  background: #97f4ff !important;
+}
+
+.hp-bg-info-4 {
+  background: #eafcff !important;
+}
+
+.hp-bg-black-0 {
+  background: #ffffff !important;
+}
+
+.hp-bg-black-10 {
+  background: #f7fafc !important;
+}
+
+.hp-bg-black-20 {
+  background: #f0f3f5 !important;
+}
+
+.hp-bg-black-40 {
+  background: #dfe6e9 !important;
+}
+
+.hp-bg-black-60 {
+  background: #b2bec3 !important;
+}
+
+.hp-bg-black-80 {
+  background: #636e72 !important;
+}
+
+.hp-bg-black-100 {
+  background: #2d3436 !important;
+}
+
+.hp-bg-black-bg {
+  background: #111314 !important;
+}
+
+.hp-bg-primary-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#0010f7), to(#1be7ff)) !important;
+  background: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-bg-secondary-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#a210ba), to(#ff00c7)) !important;
+  background: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-bg-warning-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#ffc212), to(#faff00)) !important;
+  background: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-bg-dark-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#111314), to(#636e72)) !important;
+  background: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-bg-success-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#00f7bf), to(#98ffa2)) !important;
+  background: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-bg-danger-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#ff0022), to(#ff5c00)) !important;
+  background: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-bg-info-gradient {
+  background: -webkit-gradient(linear, left top, right top, from(#1be7ff), to(#c2f4ff)) !important;
+  background: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Border Color Hover Map */
+.hp-hover-border-color-primary-1:hover {
+  border-color: #0010f7 !important;
+}
+
+.hp-hover-border-color-primary-2:hover {
+  border-color: #0063f7 !important;
+}
+
+.hp-hover-border-color-primary-3:hover {
+  border-color: #55b1f3 !important;
+}
+
+.hp-hover-border-color-primary-4:hover {
+  border-color: #ebfafa !important;
+}
+
+.hp-hover-border-color-secondary-1:hover {
+  border-color: #c903ff !important;
+}
+
+.hp-hover-border-color-secondary-2:hover {
+  border-color: #e26bf5 !important;
+}
+
+.hp-hover-border-color-secondary-3:hover {
+  border-color: #f7c2ff !important;
+}
+
+.hp-hover-border-color-secondary-4:hover {
+  border-color: #fdeffc !important;
+}
+
+.hp-hover-border-color-warning-1:hover {
+  border-color: #ffc212 !important;
+}
+
+.hp-hover-border-color-warning-2:hover {
+  border-color: #ffd252 !important;
+}
+
+.hp-hover-border-color-warning-3:hover {
+  border-color: #ffe393 !important;
+}
+
+.hp-hover-border-color-warning-4:hover {
+  border-color: #fff9e9 !important;
+}
+
+.hp-hover-border-color-success-1:hover {
+  border-color: #00f7bf !important;
+}
+
+.hp-hover-border-color-success-2:hover {
+  border-color: #5bffce !important;
+}
+
+.hp-hover-border-color-success-3:hover {
+  border-color: #98ffe0 !important;
+}
+
+.hp-hover-border-color-success-4:hover {
+  border-color: #eafff8 !important;
+}
+
+.hp-hover-border-color-danger-1:hover {
+  border-color: #ff0022 !important;
+}
+
+.hp-hover-border-color-danger-2:hover {
+  border-color: #ff455e !important;
+}
+
+.hp-hover-border-color-danger-3:hover {
+  border-color: #ff8b9a !important;
+}
+
+.hp-hover-border-color-danger-4:hover {
+  border-color: #ffe7ea !important;
+}
+
+.hp-hover-border-color-info-1:hover {
+  border-color: #1be7ff !important;
+}
+
+.hp-hover-border-color-info-2:hover {
+  border-color: #59edff !important;
+}
+
+.hp-hover-border-color-info-3:hover {
+  border-color: #97f4ff !important;
+}
+
+.hp-hover-border-color-info-4:hover {
+  border-color: #eafcff !important;
+}
+
+.hp-hover-border-color-black-0:hover {
+  border-color: #ffffff !important;
+}
+
+.hp-hover-border-color-black-10:hover {
+  border-color: #f7fafc !important;
+}
+
+.hp-hover-border-color-black-20:hover {
+  border-color: #f0f3f5 !important;
+}
+
+.hp-hover-border-color-black-40:hover {
+  border-color: #dfe6e9 !important;
+}
+
+.hp-hover-border-color-black-60:hover {
+  border-color: #b2bec3 !important;
+}
+
+.hp-hover-border-color-black-80:hover {
+  border-color: #636e72 !important;
+}
+
+.hp-hover-border-color-black-100:hover {
+  border-color: #2d3436 !important;
+}
+
+.hp-hover-border-color-black-bg:hover {
+  border-color: #111314 !important;
+}
+
+.hp-hover-border-color-primary-gradient:hover {
+  border-color: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-hover-border-color-secondary-gradient:hover {
+  border-color: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-hover-border-color-warning-gradient:hover {
+  border-color: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-hover-border-color-dark-gradient:hover {
+  border-color: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-hover-border-color-success-gradient:hover {
+  border-color: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-hover-border-color-danger-gradient:hover {
+  border-color: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-hover-border-color-info-gradient:hover {
+  border-color: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Border Color Map */
+.hp-border-color-primary-1 {
+  border-color: #0010f7 !important;
+}
+
+.hp-border-color-primary-2 {
+  border-color: #0063f7 !important;
+}
+
+.hp-border-color-primary-3 {
+  border-color: #55b1f3 !important;
+}
+
+.hp-border-color-primary-4 {
+  border-color: #ebfafa !important;
+}
+
+.hp-border-color-secondary-1 {
+  border-color: #c903ff !important;
+}
+
+.hp-border-color-secondary-2 {
+  border-color: #e26bf5 !important;
+}
+
+.hp-border-color-secondary-3 {
+  border-color: #f7c2ff !important;
+}
+
+.hp-border-color-secondary-4 {
+  border-color: #fdeffc !important;
+}
+
+.hp-border-color-warning-1 {
+  border-color: #ffc212 !important;
+}
+
+.hp-border-color-warning-2 {
+  border-color: #ffd252 !important;
+}
+
+.hp-border-color-warning-3 {
+  border-color: #ffe393 !important;
+}
+
+.hp-border-color-warning-4 {
+  border-color: #fff9e9 !important;
+}
+
+.hp-border-color-success-1 {
+  border-color: #00f7bf !important;
+}
+
+.hp-border-color-success-2 {
+  border-color: #5bffce !important;
+}
+
+.hp-border-color-success-3 {
+  border-color: #98ffe0 !important;
+}
+
+.hp-border-color-success-4 {
+  border-color: #eafff8 !important;
+}
+
+.hp-border-color-danger-1 {
+  border-color: #ff0022 !important;
+}
+
+.hp-border-color-danger-2 {
+  border-color: #ff455e !important;
+}
+
+.hp-border-color-danger-3 {
+  border-color: #ff8b9a !important;
+}
+
+.hp-border-color-danger-4 {
+  border-color: #ffe7ea !important;
+}
+
+.hp-border-color-info-1 {
+  border-color: #1be7ff !important;
+}
+
+.hp-border-color-info-2 {
+  border-color: #59edff !important;
+}
+
+.hp-border-color-info-3 {
+  border-color: #97f4ff !important;
+}
+
+.hp-border-color-info-4 {
+  border-color: #eafcff !important;
+}
+
+.hp-border-color-black-0 {
+  border-color: #ffffff !important;
+}
+
+.hp-border-color-black-10 {
+  border-color: #f7fafc !important;
+}
+
+.hp-border-color-black-20 {
+  border-color: #f0f3f5 !important;
+}
+
+.hp-border-color-black-40 {
+  border-color: #dfe6e9 !important;
+}
+
+.hp-border-color-black-60 {
+  border-color: #b2bec3 !important;
+}
+
+.hp-border-color-black-80 {
+  border-color: #636e72 !important;
+}
+
+.hp-border-color-black-100 {
+  border-color: #2d3436 !important;
+}
+
+.hp-border-color-black-bg {
+  border-color: #111314 !important;
+}
+
+.hp-border-color-primary-gradient {
+  border-color: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-border-color-secondary-gradient {
+  border-color: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-border-color-warning-gradient {
+  border-color: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-border-color-dark-gradient {
+  border-color: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-border-color-success-gradient {
+  border-color: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-border-color-danger-gradient {
+  border-color: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-border-color-info-gradient {
+  border-color: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Fill Hover Map */
+.hp-hover-fill-color-primary-1:hover path,
+.hp-hover-fill-color-primary-1:hover rect,
+.hp-hover-fill-color-primary-1:hover line,
+.hp-hover-fill-color-primary-1:hover circle {
+  fill: #0010f7 !important;
+}
+
+.hp-hover-fill-color-primary-2:hover path,
+.hp-hover-fill-color-primary-2:hover rect,
+.hp-hover-fill-color-primary-2:hover line,
+.hp-hover-fill-color-primary-2:hover circle {
+  fill: #0063f7 !important;
+}
+
+.hp-hover-fill-color-primary-3:hover path,
+.hp-hover-fill-color-primary-3:hover rect,
+.hp-hover-fill-color-primary-3:hover line,
+.hp-hover-fill-color-primary-3:hover circle {
+  fill: #55b1f3 !important;
+}
+
+.hp-hover-fill-color-primary-4:hover path,
+.hp-hover-fill-color-primary-4:hover rect,
+.hp-hover-fill-color-primary-4:hover line,
+.hp-hover-fill-color-primary-4:hover circle {
+  fill: #ebfafa !important;
+}
+
+.hp-hover-fill-color-secondary-1:hover path,
+.hp-hover-fill-color-secondary-1:hover rect,
+.hp-hover-fill-color-secondary-1:hover line,
+.hp-hover-fill-color-secondary-1:hover circle {
+  fill: #c903ff !important;
+}
+
+.hp-hover-fill-color-secondary-2:hover path,
+.hp-hover-fill-color-secondary-2:hover rect,
+.hp-hover-fill-color-secondary-2:hover line,
+.hp-hover-fill-color-secondary-2:hover circle {
+  fill: #e26bf5 !important;
+}
+
+.hp-hover-fill-color-secondary-3:hover path,
+.hp-hover-fill-color-secondary-3:hover rect,
+.hp-hover-fill-color-secondary-3:hover line,
+.hp-hover-fill-color-secondary-3:hover circle {
+  fill: #f7c2ff !important;
+}
+
+.hp-hover-fill-color-secondary-4:hover path,
+.hp-hover-fill-color-secondary-4:hover rect,
+.hp-hover-fill-color-secondary-4:hover line,
+.hp-hover-fill-color-secondary-4:hover circle {
+  fill: #fdeffc !important;
+}
+
+.hp-hover-fill-color-warning-1:hover path,
+.hp-hover-fill-color-warning-1:hover rect,
+.hp-hover-fill-color-warning-1:hover line,
+.hp-hover-fill-color-warning-1:hover circle {
+  fill: #ffc212 !important;
+}
+
+.hp-hover-fill-color-warning-2:hover path,
+.hp-hover-fill-color-warning-2:hover rect,
+.hp-hover-fill-color-warning-2:hover line,
+.hp-hover-fill-color-warning-2:hover circle {
+  fill: #ffd252 !important;
+}
+
+.hp-hover-fill-color-warning-3:hover path,
+.hp-hover-fill-color-warning-3:hover rect,
+.hp-hover-fill-color-warning-3:hover line,
+.hp-hover-fill-color-warning-3:hover circle {
+  fill: #ffe393 !important;
+}
+
+.hp-hover-fill-color-warning-4:hover path,
+.hp-hover-fill-color-warning-4:hover rect,
+.hp-hover-fill-color-warning-4:hover line,
+.hp-hover-fill-color-warning-4:hover circle {
+  fill: #fff9e9 !important;
+}
+
+.hp-hover-fill-color-success-1:hover path,
+.hp-hover-fill-color-success-1:hover rect,
+.hp-hover-fill-color-success-1:hover line,
+.hp-hover-fill-color-success-1:hover circle {
+  fill: #00f7bf !important;
+}
+
+.hp-hover-fill-color-success-2:hover path,
+.hp-hover-fill-color-success-2:hover rect,
+.hp-hover-fill-color-success-2:hover line,
+.hp-hover-fill-color-success-2:hover circle {
+  fill: #5bffce !important;
+}
+
+.hp-hover-fill-color-success-3:hover path,
+.hp-hover-fill-color-success-3:hover rect,
+.hp-hover-fill-color-success-3:hover line,
+.hp-hover-fill-color-success-3:hover circle {
+  fill: #98ffe0 !important;
+}
+
+.hp-hover-fill-color-success-4:hover path,
+.hp-hover-fill-color-success-4:hover rect,
+.hp-hover-fill-color-success-4:hover line,
+.hp-hover-fill-color-success-4:hover circle {
+  fill: #eafff8 !important;
+}
+
+.hp-hover-fill-color-danger-1:hover path,
+.hp-hover-fill-color-danger-1:hover rect,
+.hp-hover-fill-color-danger-1:hover line,
+.hp-hover-fill-color-danger-1:hover circle {
+  fill: #ff0022 !important;
+}
+
+.hp-hover-fill-color-danger-2:hover path,
+.hp-hover-fill-color-danger-2:hover rect,
+.hp-hover-fill-color-danger-2:hover line,
+.hp-hover-fill-color-danger-2:hover circle {
+  fill: #ff455e !important;
+}
+
+.hp-hover-fill-color-danger-3:hover path,
+.hp-hover-fill-color-danger-3:hover rect,
+.hp-hover-fill-color-danger-3:hover line,
+.hp-hover-fill-color-danger-3:hover circle {
+  fill: #ff8b9a !important;
+}
+
+.hp-hover-fill-color-danger-4:hover path,
+.hp-hover-fill-color-danger-4:hover rect,
+.hp-hover-fill-color-danger-4:hover line,
+.hp-hover-fill-color-danger-4:hover circle {
+  fill: #ffe7ea !important;
+}
+
+.hp-hover-fill-color-info-1:hover path,
+.hp-hover-fill-color-info-1:hover rect,
+.hp-hover-fill-color-info-1:hover line,
+.hp-hover-fill-color-info-1:hover circle {
+  fill: #1be7ff !important;
+}
+
+.hp-hover-fill-color-info-2:hover path,
+.hp-hover-fill-color-info-2:hover rect,
+.hp-hover-fill-color-info-2:hover line,
+.hp-hover-fill-color-info-2:hover circle {
+  fill: #59edff !important;
+}
+
+.hp-hover-fill-color-info-3:hover path,
+.hp-hover-fill-color-info-3:hover rect,
+.hp-hover-fill-color-info-3:hover line,
+.hp-hover-fill-color-info-3:hover circle {
+  fill: #97f4ff !important;
+}
+
+.hp-hover-fill-color-info-4:hover path,
+.hp-hover-fill-color-info-4:hover rect,
+.hp-hover-fill-color-info-4:hover line,
+.hp-hover-fill-color-info-4:hover circle {
+  fill: #eafcff !important;
+}
+
+.hp-hover-fill-color-black-0:hover path,
+.hp-hover-fill-color-black-0:hover rect,
+.hp-hover-fill-color-black-0:hover line,
+.hp-hover-fill-color-black-0:hover circle {
+  fill: #ffffff !important;
+}
+
+.hp-hover-fill-color-black-10:hover path,
+.hp-hover-fill-color-black-10:hover rect,
+.hp-hover-fill-color-black-10:hover line,
+.hp-hover-fill-color-black-10:hover circle {
+  fill: #f7fafc !important;
+}
+
+.hp-hover-fill-color-black-20:hover path,
+.hp-hover-fill-color-black-20:hover rect,
+.hp-hover-fill-color-black-20:hover line,
+.hp-hover-fill-color-black-20:hover circle {
+  fill: #f0f3f5 !important;
+}
+
+.hp-hover-fill-color-black-40:hover path,
+.hp-hover-fill-color-black-40:hover rect,
+.hp-hover-fill-color-black-40:hover line,
+.hp-hover-fill-color-black-40:hover circle {
+  fill: #dfe6e9 !important;
+}
+
+.hp-hover-fill-color-black-60:hover path,
+.hp-hover-fill-color-black-60:hover rect,
+.hp-hover-fill-color-black-60:hover line,
+.hp-hover-fill-color-black-60:hover circle {
+  fill: #b2bec3 !important;
+}
+
+.hp-hover-fill-color-black-80:hover path,
+.hp-hover-fill-color-black-80:hover rect,
+.hp-hover-fill-color-black-80:hover line,
+.hp-hover-fill-color-black-80:hover circle {
+  fill: #636e72 !important;
+}
+
+.hp-hover-fill-color-black-100:hover path,
+.hp-hover-fill-color-black-100:hover rect,
+.hp-hover-fill-color-black-100:hover line,
+.hp-hover-fill-color-black-100:hover circle {
+  fill: #2d3436 !important;
+}
+
+.hp-hover-fill-color-black-bg:hover path,
+.hp-hover-fill-color-black-bg:hover rect,
+.hp-hover-fill-color-black-bg:hover line,
+.hp-hover-fill-color-black-bg:hover circle {
+  fill: #111314 !important;
+}
+
+.hp-hover-fill-color-primary-gradient:hover path,
+.hp-hover-fill-color-primary-gradient:hover rect,
+.hp-hover-fill-color-primary-gradient:hover line,
+.hp-hover-fill-color-primary-gradient:hover circle {
+  fill: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-hover-fill-color-secondary-gradient:hover path,
+.hp-hover-fill-color-secondary-gradient:hover rect,
+.hp-hover-fill-color-secondary-gradient:hover line,
+.hp-hover-fill-color-secondary-gradient:hover circle {
+  fill: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-hover-fill-color-warning-gradient:hover path,
+.hp-hover-fill-color-warning-gradient:hover rect,
+.hp-hover-fill-color-warning-gradient:hover line,
+.hp-hover-fill-color-warning-gradient:hover circle {
+  fill: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-hover-fill-color-dark-gradient:hover path,
+.hp-hover-fill-color-dark-gradient:hover rect,
+.hp-hover-fill-color-dark-gradient:hover line,
+.hp-hover-fill-color-dark-gradient:hover circle {
+  fill: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-hover-fill-color-success-gradient:hover path,
+.hp-hover-fill-color-success-gradient:hover rect,
+.hp-hover-fill-color-success-gradient:hover line,
+.hp-hover-fill-color-success-gradient:hover circle {
+  fill: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-hover-fill-color-danger-gradient:hover path,
+.hp-hover-fill-color-danger-gradient:hover rect,
+.hp-hover-fill-color-danger-gradient:hover line,
+.hp-hover-fill-color-danger-gradient:hover circle {
+  fill: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-hover-fill-color-info-gradient:hover path,
+.hp-hover-fill-color-info-gradient:hover rect,
+.hp-hover-fill-color-info-gradient:hover line,
+.hp-hover-fill-color-info-gradient:hover circle {
+  fill: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Fill Map */
+.hp-fill-color-primary-1 path,
+.hp-fill-color-primary-1 rect,
+.hp-fill-color-primary-1 line,
+.hp-fill-color-primary-1 circle {
+  fill: #0010f7 !important;
+}
+
+.hp-fill-color-primary-2 path,
+.hp-fill-color-primary-2 rect,
+.hp-fill-color-primary-2 line,
+.hp-fill-color-primary-2 circle {
+  fill: #0063f7 !important;
+}
+
+.hp-fill-color-primary-3 path,
+.hp-fill-color-primary-3 rect,
+.hp-fill-color-primary-3 line,
+.hp-fill-color-primary-3 circle {
+  fill: #55b1f3 !important;
+}
+
+.hp-fill-color-primary-4 path,
+.hp-fill-color-primary-4 rect,
+.hp-fill-color-primary-4 line,
+.hp-fill-color-primary-4 circle {
+  fill: #ebfafa !important;
+}
+
+.hp-fill-color-secondary-1 path,
+.hp-fill-color-secondary-1 rect,
+.hp-fill-color-secondary-1 line,
+.hp-fill-color-secondary-1 circle {
+  fill: #c903ff !important;
+}
+
+.hp-fill-color-secondary-2 path,
+.hp-fill-color-secondary-2 rect,
+.hp-fill-color-secondary-2 line,
+.hp-fill-color-secondary-2 circle {
+  fill: #e26bf5 !important;
+}
+
+.hp-fill-color-secondary-3 path,
+.hp-fill-color-secondary-3 rect,
+.hp-fill-color-secondary-3 line,
+.hp-fill-color-secondary-3 circle {
+  fill: #f7c2ff !important;
+}
+
+.hp-fill-color-secondary-4 path,
+.hp-fill-color-secondary-4 rect,
+.hp-fill-color-secondary-4 line,
+.hp-fill-color-secondary-4 circle {
+  fill: #fdeffc !important;
+}
+
+.hp-fill-color-warning-1 path,
+.hp-fill-color-warning-1 rect,
+.hp-fill-color-warning-1 line,
+.hp-fill-color-warning-1 circle {
+  fill: #ffc212 !important;
+}
+
+.hp-fill-color-warning-2 path,
+.hp-fill-color-warning-2 rect,
+.hp-fill-color-warning-2 line,
+.hp-fill-color-warning-2 circle {
+  fill: #ffd252 !important;
+}
+
+.hp-fill-color-warning-3 path,
+.hp-fill-color-warning-3 rect,
+.hp-fill-color-warning-3 line,
+.hp-fill-color-warning-3 circle {
+  fill: #ffe393 !important;
+}
+
+.hp-fill-color-warning-4 path,
+.hp-fill-color-warning-4 rect,
+.hp-fill-color-warning-4 line,
+.hp-fill-color-warning-4 circle {
+  fill: #fff9e9 !important;
+}
+
+.hp-fill-color-success-1 path,
+.hp-fill-color-success-1 rect,
+.hp-fill-color-success-1 line,
+.hp-fill-color-success-1 circle {
+  fill: #00f7bf !important;
+}
+
+.hp-fill-color-success-2 path,
+.hp-fill-color-success-2 rect,
+.hp-fill-color-success-2 line,
+.hp-fill-color-success-2 circle {
+  fill: #5bffce !important;
+}
+
+.hp-fill-color-success-3 path,
+.hp-fill-color-success-3 rect,
+.hp-fill-color-success-3 line,
+.hp-fill-color-success-3 circle {
+  fill: #98ffe0 !important;
+}
+
+.hp-fill-color-success-4 path,
+.hp-fill-color-success-4 rect,
+.hp-fill-color-success-4 line,
+.hp-fill-color-success-4 circle {
+  fill: #eafff8 !important;
+}
+
+.hp-fill-color-danger-1 path,
+.hp-fill-color-danger-1 rect,
+.hp-fill-color-danger-1 line,
+.hp-fill-color-danger-1 circle {
+  fill: #ff0022 !important;
+}
+
+.hp-fill-color-danger-2 path,
+.hp-fill-color-danger-2 rect,
+.hp-fill-color-danger-2 line,
+.hp-fill-color-danger-2 circle {
+  fill: #ff455e !important;
+}
+
+.hp-fill-color-danger-3 path,
+.hp-fill-color-danger-3 rect,
+.hp-fill-color-danger-3 line,
+.hp-fill-color-danger-3 circle {
+  fill: #ff8b9a !important;
+}
+
+.hp-fill-color-danger-4 path,
+.hp-fill-color-danger-4 rect,
+.hp-fill-color-danger-4 line,
+.hp-fill-color-danger-4 circle {
+  fill: #ffe7ea !important;
+}
+
+.hp-fill-color-info-1 path,
+.hp-fill-color-info-1 rect,
+.hp-fill-color-info-1 line,
+.hp-fill-color-info-1 circle {
+  fill: #1be7ff !important;
+}
+
+.hp-fill-color-info-2 path,
+.hp-fill-color-info-2 rect,
+.hp-fill-color-info-2 line,
+.hp-fill-color-info-2 circle {
+  fill: #59edff !important;
+}
+
+.hp-fill-color-info-3 path,
+.hp-fill-color-info-3 rect,
+.hp-fill-color-info-3 line,
+.hp-fill-color-info-3 circle {
+  fill: #97f4ff !important;
+}
+
+.hp-fill-color-info-4 path,
+.hp-fill-color-info-4 rect,
+.hp-fill-color-info-4 line,
+.hp-fill-color-info-4 circle {
+  fill: #eafcff !important;
+}
+
+.hp-fill-color-black-0 path,
+.hp-fill-color-black-0 rect,
+.hp-fill-color-black-0 line,
+.hp-fill-color-black-0 circle {
+  fill: #ffffff !important;
+}
+
+.hp-fill-color-black-10 path,
+.hp-fill-color-black-10 rect,
+.hp-fill-color-black-10 line,
+.hp-fill-color-black-10 circle {
+  fill: #f7fafc !important;
+}
+
+.hp-fill-color-black-20 path,
+.hp-fill-color-black-20 rect,
+.hp-fill-color-black-20 line,
+.hp-fill-color-black-20 circle {
+  fill: #f0f3f5 !important;
+}
+
+.hp-fill-color-black-40 path,
+.hp-fill-color-black-40 rect,
+.hp-fill-color-black-40 line,
+.hp-fill-color-black-40 circle {
+  fill: #dfe6e9 !important;
+}
+
+.hp-fill-color-black-60 path,
+.hp-fill-color-black-60 rect,
+.hp-fill-color-black-60 line,
+.hp-fill-color-black-60 circle {
+  fill: #b2bec3 !important;
+}
+
+.hp-fill-color-black-80 path,
+.hp-fill-color-black-80 rect,
+.hp-fill-color-black-80 line,
+.hp-fill-color-black-80 circle {
+  fill: #636e72 !important;
+}
+
+.hp-fill-color-black-100 path,
+.hp-fill-color-black-100 rect,
+.hp-fill-color-black-100 line,
+.hp-fill-color-black-100 circle {
+  fill: #2d3436 !important;
+}
+
+.hp-fill-color-black-bg path,
+.hp-fill-color-black-bg rect,
+.hp-fill-color-black-bg line,
+.hp-fill-color-black-bg circle {
+  fill: #111314 !important;
+}
+
+.hp-fill-color-primary-gradient path,
+.hp-fill-color-primary-gradient rect,
+.hp-fill-color-primary-gradient line,
+.hp-fill-color-primary-gradient circle {
+  fill: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-fill-color-secondary-gradient path,
+.hp-fill-color-secondary-gradient rect,
+.hp-fill-color-secondary-gradient line,
+.hp-fill-color-secondary-gradient circle {
+  fill: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-fill-color-warning-gradient path,
+.hp-fill-color-warning-gradient rect,
+.hp-fill-color-warning-gradient line,
+.hp-fill-color-warning-gradient circle {
+  fill: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-fill-color-dark-gradient path,
+.hp-fill-color-dark-gradient rect,
+.hp-fill-color-dark-gradient line,
+.hp-fill-color-dark-gradient circle {
+  fill: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-fill-color-success-gradient path,
+.hp-fill-color-success-gradient rect,
+.hp-fill-color-success-gradient line,
+.hp-fill-color-success-gradient circle {
+  fill: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-fill-color-danger-gradient path,
+.hp-fill-color-danger-gradient rect,
+.hp-fill-color-danger-gradient line,
+.hp-fill-color-danger-gradient circle {
+  fill: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-fill-color-info-gradient path,
+.hp-fill-color-info-gradient rect,
+.hp-fill-color-info-gradient line,
+.hp-fill-color-info-gradient circle {
+  fill: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Stroke Hover Map */
+.hp-hover-stroke-color-primary-1 path:hover,
+.hp-hover-stroke-color-primary-1 rect:hover,
+.hp-hover-stroke-color-primary-1 line:hover,
+.hp-hover-stroke-color-primary-1 circle:hover {
+  stroke: #0010f7 !important;
+}
+
+.hp-hover-stroke-color-primary-2 path:hover,
+.hp-hover-stroke-color-primary-2 rect:hover,
+.hp-hover-stroke-color-primary-2 line:hover,
+.hp-hover-stroke-color-primary-2 circle:hover {
+  stroke: #0063f7 !important;
+}
+
+.hp-hover-stroke-color-primary-3 path:hover,
+.hp-hover-stroke-color-primary-3 rect:hover,
+.hp-hover-stroke-color-primary-3 line:hover,
+.hp-hover-stroke-color-primary-3 circle:hover {
+  stroke: #55b1f3 !important;
+}
+
+.hp-hover-stroke-color-primary-4 path:hover,
+.hp-hover-stroke-color-primary-4 rect:hover,
+.hp-hover-stroke-color-primary-4 line:hover,
+.hp-hover-stroke-color-primary-4 circle:hover {
+  stroke: #ebfafa !important;
+}
+
+.hp-hover-stroke-color-secondary-1 path:hover,
+.hp-hover-stroke-color-secondary-1 rect:hover,
+.hp-hover-stroke-color-secondary-1 line:hover,
+.hp-hover-stroke-color-secondary-1 circle:hover {
+  stroke: #c903ff !important;
+}
+
+.hp-hover-stroke-color-secondary-2 path:hover,
+.hp-hover-stroke-color-secondary-2 rect:hover,
+.hp-hover-stroke-color-secondary-2 line:hover,
+.hp-hover-stroke-color-secondary-2 circle:hover {
+  stroke: #e26bf5 !important;
+}
+
+.hp-hover-stroke-color-secondary-3 path:hover,
+.hp-hover-stroke-color-secondary-3 rect:hover,
+.hp-hover-stroke-color-secondary-3 line:hover,
+.hp-hover-stroke-color-secondary-3 circle:hover {
+  stroke: #f7c2ff !important;
+}
+
+.hp-hover-stroke-color-secondary-4 path:hover,
+.hp-hover-stroke-color-secondary-4 rect:hover,
+.hp-hover-stroke-color-secondary-4 line:hover,
+.hp-hover-stroke-color-secondary-4 circle:hover {
+  stroke: #fdeffc !important;
+}
+
+.hp-hover-stroke-color-warning-1 path:hover,
+.hp-hover-stroke-color-warning-1 rect:hover,
+.hp-hover-stroke-color-warning-1 line:hover,
+.hp-hover-stroke-color-warning-1 circle:hover {
+  stroke: #ffc212 !important;
+}
+
+.hp-hover-stroke-color-warning-2 path:hover,
+.hp-hover-stroke-color-warning-2 rect:hover,
+.hp-hover-stroke-color-warning-2 line:hover,
+.hp-hover-stroke-color-warning-2 circle:hover {
+  stroke: #ffd252 !important;
+}
+
+.hp-hover-stroke-color-warning-3 path:hover,
+.hp-hover-stroke-color-warning-3 rect:hover,
+.hp-hover-stroke-color-warning-3 line:hover,
+.hp-hover-stroke-color-warning-3 circle:hover {
+  stroke: #ffe393 !important;
+}
+
+.hp-hover-stroke-color-warning-4 path:hover,
+.hp-hover-stroke-color-warning-4 rect:hover,
+.hp-hover-stroke-color-warning-4 line:hover,
+.hp-hover-stroke-color-warning-4 circle:hover {
+  stroke: #fff9e9 !important;
+}
+
+.hp-hover-stroke-color-success-1 path:hover,
+.hp-hover-stroke-color-success-1 rect:hover,
+.hp-hover-stroke-color-success-1 line:hover,
+.hp-hover-stroke-color-success-1 circle:hover {
+  stroke: #00f7bf !important;
+}
+
+.hp-hover-stroke-color-success-2 path:hover,
+.hp-hover-stroke-color-success-2 rect:hover,
+.hp-hover-stroke-color-success-2 line:hover,
+.hp-hover-stroke-color-success-2 circle:hover {
+  stroke: #5bffce !important;
+}
+
+.hp-hover-stroke-color-success-3 path:hover,
+.hp-hover-stroke-color-success-3 rect:hover,
+.hp-hover-stroke-color-success-3 line:hover,
+.hp-hover-stroke-color-success-3 circle:hover {
+  stroke: #98ffe0 !important;
+}
+
+.hp-hover-stroke-color-success-4 path:hover,
+.hp-hover-stroke-color-success-4 rect:hover,
+.hp-hover-stroke-color-success-4 line:hover,
+.hp-hover-stroke-color-success-4 circle:hover {
+  stroke: #eafff8 !important;
+}
+
+.hp-hover-stroke-color-danger-1 path:hover,
+.hp-hover-stroke-color-danger-1 rect:hover,
+.hp-hover-stroke-color-danger-1 line:hover,
+.hp-hover-stroke-color-danger-1 circle:hover {
+  stroke: #ff0022 !important;
+}
+
+.hp-hover-stroke-color-danger-2 path:hover,
+.hp-hover-stroke-color-danger-2 rect:hover,
+.hp-hover-stroke-color-danger-2 line:hover,
+.hp-hover-stroke-color-danger-2 circle:hover {
+  stroke: #ff455e !important;
+}
+
+.hp-hover-stroke-color-danger-3 path:hover,
+.hp-hover-stroke-color-danger-3 rect:hover,
+.hp-hover-stroke-color-danger-3 line:hover,
+.hp-hover-stroke-color-danger-3 circle:hover {
+  stroke: #ff8b9a !important;
+}
+
+.hp-hover-stroke-color-danger-4 path:hover,
+.hp-hover-stroke-color-danger-4 rect:hover,
+.hp-hover-stroke-color-danger-4 line:hover,
+.hp-hover-stroke-color-danger-4 circle:hover {
+  stroke: #ffe7ea !important;
+}
+
+.hp-hover-stroke-color-info-1 path:hover,
+.hp-hover-stroke-color-info-1 rect:hover,
+.hp-hover-stroke-color-info-1 line:hover,
+.hp-hover-stroke-color-info-1 circle:hover {
+  stroke: #1be7ff !important;
+}
+
+.hp-hover-stroke-color-info-2 path:hover,
+.hp-hover-stroke-color-info-2 rect:hover,
+.hp-hover-stroke-color-info-2 line:hover,
+.hp-hover-stroke-color-info-2 circle:hover {
+  stroke: #59edff !important;
+}
+
+.hp-hover-stroke-color-info-3 path:hover,
+.hp-hover-stroke-color-info-3 rect:hover,
+.hp-hover-stroke-color-info-3 line:hover,
+.hp-hover-stroke-color-info-3 circle:hover {
+  stroke: #97f4ff !important;
+}
+
+.hp-hover-stroke-color-info-4 path:hover,
+.hp-hover-stroke-color-info-4 rect:hover,
+.hp-hover-stroke-color-info-4 line:hover,
+.hp-hover-stroke-color-info-4 circle:hover {
+  stroke: #eafcff !important;
+}
+
+.hp-hover-stroke-color-black-0 path:hover,
+.hp-hover-stroke-color-black-0 rect:hover,
+.hp-hover-stroke-color-black-0 line:hover,
+.hp-hover-stroke-color-black-0 circle:hover {
+  stroke: #ffffff !important;
+}
+
+.hp-hover-stroke-color-black-10 path:hover,
+.hp-hover-stroke-color-black-10 rect:hover,
+.hp-hover-stroke-color-black-10 line:hover,
+.hp-hover-stroke-color-black-10 circle:hover {
+  stroke: #f7fafc !important;
+}
+
+.hp-hover-stroke-color-black-20 path:hover,
+.hp-hover-stroke-color-black-20 rect:hover,
+.hp-hover-stroke-color-black-20 line:hover,
+.hp-hover-stroke-color-black-20 circle:hover {
+  stroke: #f0f3f5 !important;
+}
+
+.hp-hover-stroke-color-black-40 path:hover,
+.hp-hover-stroke-color-black-40 rect:hover,
+.hp-hover-stroke-color-black-40 line:hover,
+.hp-hover-stroke-color-black-40 circle:hover {
+  stroke: #dfe6e9 !important;
+}
+
+.hp-hover-stroke-color-black-60 path:hover,
+.hp-hover-stroke-color-black-60 rect:hover,
+.hp-hover-stroke-color-black-60 line:hover,
+.hp-hover-stroke-color-black-60 circle:hover {
+  stroke: #b2bec3 !important;
+}
+
+.hp-hover-stroke-color-black-80 path:hover,
+.hp-hover-stroke-color-black-80 rect:hover,
+.hp-hover-stroke-color-black-80 line:hover,
+.hp-hover-stroke-color-black-80 circle:hover {
+  stroke: #636e72 !important;
+}
+
+.hp-hover-stroke-color-black-100 path:hover,
+.hp-hover-stroke-color-black-100 rect:hover,
+.hp-hover-stroke-color-black-100 line:hover,
+.hp-hover-stroke-color-black-100 circle:hover {
+  stroke: #2d3436 !important;
+}
+
+.hp-hover-stroke-color-black-bg path:hover,
+.hp-hover-stroke-color-black-bg rect:hover,
+.hp-hover-stroke-color-black-bg line:hover,
+.hp-hover-stroke-color-black-bg circle:hover {
+  stroke: #111314 !important;
+}
+
+.hp-hover-stroke-color-primary-gradient path:hover,
+.hp-hover-stroke-color-primary-gradient rect:hover,
+.hp-hover-stroke-color-primary-gradient line:hover,
+.hp-hover-stroke-color-primary-gradient circle:hover {
+  stroke: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-hover-stroke-color-secondary-gradient path:hover,
+.hp-hover-stroke-color-secondary-gradient rect:hover,
+.hp-hover-stroke-color-secondary-gradient line:hover,
+.hp-hover-stroke-color-secondary-gradient circle:hover {
+  stroke: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-hover-stroke-color-warning-gradient path:hover,
+.hp-hover-stroke-color-warning-gradient rect:hover,
+.hp-hover-stroke-color-warning-gradient line:hover,
+.hp-hover-stroke-color-warning-gradient circle:hover {
+  stroke: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-hover-stroke-color-dark-gradient path:hover,
+.hp-hover-stroke-color-dark-gradient rect:hover,
+.hp-hover-stroke-color-dark-gradient line:hover,
+.hp-hover-stroke-color-dark-gradient circle:hover {
+  stroke: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-hover-stroke-color-success-gradient path:hover,
+.hp-hover-stroke-color-success-gradient rect:hover,
+.hp-hover-stroke-color-success-gradient line:hover,
+.hp-hover-stroke-color-success-gradient circle:hover {
+  stroke: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-hover-stroke-color-danger-gradient path:hover,
+.hp-hover-stroke-color-danger-gradient rect:hover,
+.hp-hover-stroke-color-danger-gradient line:hover,
+.hp-hover-stroke-color-danger-gradient circle:hover {
+  stroke: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-hover-stroke-color-info-gradient path:hover,
+.hp-hover-stroke-color-info-gradient rect:hover,
+.hp-hover-stroke-color-info-gradient line:hover,
+.hp-hover-stroke-color-info-gradient circle:hover {
+  stroke: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}
+
+/* Stroke Map */
+.hp-stroke-color-primary-1 path,
+.hp-stroke-color-primary-1 rect,
+.hp-stroke-color-primary-1 line,
+.hp-stroke-color-primary-1 circle {
+  stroke: #0010f7 !important;
+}
+
+.hp-stroke-color-primary-2 path,
+.hp-stroke-color-primary-2 rect,
+.hp-stroke-color-primary-2 line,
+.hp-stroke-color-primary-2 circle {
+  stroke: #0063f7 !important;
+}
+
+.hp-stroke-color-primary-3 path,
+.hp-stroke-color-primary-3 rect,
+.hp-stroke-color-primary-3 line,
+.hp-stroke-color-primary-3 circle {
+  stroke: #55b1f3 !important;
+}
+
+.hp-stroke-color-primary-4 path,
+.hp-stroke-color-primary-4 rect,
+.hp-stroke-color-primary-4 line,
+.hp-stroke-color-primary-4 circle {
+  stroke: #ebfafa !important;
+}
+
+.hp-stroke-color-secondary-1 path,
+.hp-stroke-color-secondary-1 rect,
+.hp-stroke-color-secondary-1 line,
+.hp-stroke-color-secondary-1 circle {
+  stroke: #c903ff !important;
+}
+
+.hp-stroke-color-secondary-2 path,
+.hp-stroke-color-secondary-2 rect,
+.hp-stroke-color-secondary-2 line,
+.hp-stroke-color-secondary-2 circle {
+  stroke: #e26bf5 !important;
+}
+
+.hp-stroke-color-secondary-3 path,
+.hp-stroke-color-secondary-3 rect,
+.hp-stroke-color-secondary-3 line,
+.hp-stroke-color-secondary-3 circle {
+  stroke: #f7c2ff !important;
+}
+
+.hp-stroke-color-secondary-4 path,
+.hp-stroke-color-secondary-4 rect,
+.hp-stroke-color-secondary-4 line,
+.hp-stroke-color-secondary-4 circle {
+  stroke: #fdeffc !important;
+}
+
+.hp-stroke-color-warning-1 path,
+.hp-stroke-color-warning-1 rect,
+.hp-stroke-color-warning-1 line,
+.hp-stroke-color-warning-1 circle {
+  stroke: #ffc212 !important;
+}
+
+.hp-stroke-color-warning-2 path,
+.hp-stroke-color-warning-2 rect,
+.hp-stroke-color-warning-2 line,
+.hp-stroke-color-warning-2 circle {
+  stroke: #ffd252 !important;
+}
+
+.hp-stroke-color-warning-3 path,
+.hp-stroke-color-warning-3 rect,
+.hp-stroke-color-warning-3 line,
+.hp-stroke-color-warning-3 circle {
+  stroke: #ffe393 !important;
+}
+
+.hp-stroke-color-warning-4 path,
+.hp-stroke-color-warning-4 rect,
+.hp-stroke-color-warning-4 line,
+.hp-stroke-color-warning-4 circle {
+  stroke: #fff9e9 !important;
+}
+
+.hp-stroke-color-success-1 path,
+.hp-stroke-color-success-1 rect,
+.hp-stroke-color-success-1 line,
+.hp-stroke-color-success-1 circle {
+  stroke: #00f7bf !important;
+}
+
+.hp-stroke-color-success-2 path,
+.hp-stroke-color-success-2 rect,
+.hp-stroke-color-success-2 line,
+.hp-stroke-color-success-2 circle {
+  stroke: #5bffce !important;
+}
+
+.hp-stroke-color-success-3 path,
+.hp-stroke-color-success-3 rect,
+.hp-stroke-color-success-3 line,
+.hp-stroke-color-success-3 circle {
+  stroke: #98ffe0 !important;
+}
+
+.hp-stroke-color-success-4 path,
+.hp-stroke-color-success-4 rect,
+.hp-stroke-color-success-4 line,
+.hp-stroke-color-success-4 circle {
+  stroke: #eafff8 !important;
+}
+
+.hp-stroke-color-danger-1 path,
+.hp-stroke-color-danger-1 rect,
+.hp-stroke-color-danger-1 line,
+.hp-stroke-color-danger-1 circle {
+  stroke: #ff0022 !important;
+}
+
+.hp-stroke-color-danger-2 path,
+.hp-stroke-color-danger-2 rect,
+.hp-stroke-color-danger-2 line,
+.hp-stroke-color-danger-2 circle {
+  stroke: #ff455e !important;
+}
+
+.hp-stroke-color-danger-3 path,
+.hp-stroke-color-danger-3 rect,
+.hp-stroke-color-danger-3 line,
+.hp-stroke-color-danger-3 circle {
+  stroke: #ff8b9a !important;
+}
+
+.hp-stroke-color-danger-4 path,
+.hp-stroke-color-danger-4 rect,
+.hp-stroke-color-danger-4 line,
+.hp-stroke-color-danger-4 circle {
+  stroke: #ffe7ea !important;
+}
+
+.hp-stroke-color-info-1 path,
+.hp-stroke-color-info-1 rect,
+.hp-stroke-color-info-1 line,
+.hp-stroke-color-info-1 circle {
+  stroke: #1be7ff !important;
+}
+
+.hp-stroke-color-info-2 path,
+.hp-stroke-color-info-2 rect,
+.hp-stroke-color-info-2 line,
+.hp-stroke-color-info-2 circle {
+  stroke: #59edff !important;
+}
+
+.hp-stroke-color-info-3 path,
+.hp-stroke-color-info-3 rect,
+.hp-stroke-color-info-3 line,
+.hp-stroke-color-info-3 circle {
+  stroke: #97f4ff !important;
+}
+
+.hp-stroke-color-info-4 path,
+.hp-stroke-color-info-4 rect,
+.hp-stroke-color-info-4 line,
+.hp-stroke-color-info-4 circle {
+  stroke: #eafcff !important;
+}
+
+.hp-stroke-color-black-0 path,
+.hp-stroke-color-black-0 rect,
+.hp-stroke-color-black-0 line,
+.hp-stroke-color-black-0 circle {
+  stroke: #ffffff !important;
+}
+
+.hp-stroke-color-black-10 path,
+.hp-stroke-color-black-10 rect,
+.hp-stroke-color-black-10 line,
+.hp-stroke-color-black-10 circle {
+  stroke: #f7fafc !important;
+}
+
+.hp-stroke-color-black-20 path,
+.hp-stroke-color-black-20 rect,
+.hp-stroke-color-black-20 line,
+.hp-stroke-color-black-20 circle {
+  stroke: #f0f3f5 !important;
+}
+
+.hp-stroke-color-black-40 path,
+.hp-stroke-color-black-40 rect,
+.hp-stroke-color-black-40 line,
+.hp-stroke-color-black-40 circle {
+  stroke: #dfe6e9 !important;
+}
+
+.hp-stroke-color-black-60 path,
+.hp-stroke-color-black-60 rect,
+.hp-stroke-color-black-60 line,
+.hp-stroke-color-black-60 circle {
+  stroke: #b2bec3 !important;
+}
+
+.hp-stroke-color-black-80 path,
+.hp-stroke-color-black-80 rect,
+.hp-stroke-color-black-80 line,
+.hp-stroke-color-black-80 circle {
+  stroke: #636e72 !important;
+}
+
+.hp-stroke-color-black-100 path,
+.hp-stroke-color-black-100 rect,
+.hp-stroke-color-black-100 line,
+.hp-stroke-color-black-100 circle {
+  stroke: #2d3436 !important;
+}
+
+.hp-stroke-color-black-bg path,
+.hp-stroke-color-black-bg rect,
+.hp-stroke-color-black-bg line,
+.hp-stroke-color-black-bg circle {
+  stroke: #111314 !important;
+}
+
+.hp-stroke-color-primary-gradient path,
+.hp-stroke-color-primary-gradient rect,
+.hp-stroke-color-primary-gradient line,
+.hp-stroke-color-primary-gradient circle {
+  stroke: linear-gradient(90deg, #0010f7 0%, #1be7ff 100%) !important;
+}
+
+.hp-stroke-color-secondary-gradient path,
+.hp-stroke-color-secondary-gradient rect,
+.hp-stroke-color-secondary-gradient line,
+.hp-stroke-color-secondary-gradient circle {
+  stroke: linear-gradient(90deg, #a210ba 0%, #ff00c7 100%) !important;
+}
+
+.hp-stroke-color-warning-gradient path,
+.hp-stroke-color-warning-gradient rect,
+.hp-stroke-color-warning-gradient line,
+.hp-stroke-color-warning-gradient circle {
+  stroke: linear-gradient(90deg, #ffc212 0%, #faff00 100%) !important;
+}
+
+.hp-stroke-color-dark-gradient path,
+.hp-stroke-color-dark-gradient rect,
+.hp-stroke-color-dark-gradient line,
+.hp-stroke-color-dark-gradient circle {
+  stroke: linear-gradient(90deg, #111314 0%, #636e72 100%) !important;
+}
+
+.hp-stroke-color-success-gradient path,
+.hp-stroke-color-success-gradient rect,
+.hp-stroke-color-success-gradient line,
+.hp-stroke-color-success-gradient circle {
+  stroke: linear-gradient(90deg, #00f7bf 0%, #98ffa2 100%) !important;
+}
+
+.hp-stroke-color-danger-gradient path,
+.hp-stroke-color-danger-gradient rect,
+.hp-stroke-color-danger-gradient line,
+.hp-stroke-color-danger-gradient circle {
+  stroke: linear-gradient(90deg, #ff0022 0%, #ff5c00 100%) !important;
+}
+
+.hp-stroke-color-info-gradient path,
+.hp-stroke-color-info-gradient rect,
+.hp-stroke-color-info-gradient line,
+.hp-stroke-color-info-gradient circle {
+  stroke: linear-gradient(90deg, #1be7ff 0%, #c2f4ff 100%) !important;
+}

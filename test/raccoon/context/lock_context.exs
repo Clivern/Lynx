@@ -1,7 +1,7 @@
-defmodule Raccoon.Context.LockContextTest do
+defmodule Bandit.Context.LockContextTest do
   use ExUnit.Case
 
-  alias Raccoon.Context.LockContext
+  alias Bandit.Context.LockContext
 
   describe "new_lock/1" do
     test "returns a new lock" do

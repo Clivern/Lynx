@@ -2,12 +2,12 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Raccoon.Context.ConfigContextTest do
+defmodule Bandit.Context.ConfigContextTest do
   @moduledoc """
   Lock Context Test Cases
   """
-  use Raccoon.DataCase
-  alias Raccoon.Context.ConfigContext, as: ConfigContext
+  use Bandit.DataCase
+  alias Bandit.Context.ConfigContext, as: ConfigContext
 
   describe "new_config/1" do
     # new_config/1
@@ -15,11 +15,11 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       assert item.name == "app_name"
-      assert item.value == "raccoon"
+      assert item.value == "bandit"
       assert item.uuid != ""
     end
   end
@@ -30,13 +30,13 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
 
       assert result.name == "app_name"
-      assert result.value == "raccoon"
+      assert result.value == "bandit"
       assert result.uuid != ""
       assert result.id != ""
     end
@@ -48,7 +48,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -56,7 +56,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       conf = ConfigContext.get_config_by_id(result.id)
 
       assert conf.name == "app_name"
-      assert conf.value == "raccoon"
+      assert conf.value == "bandit"
       assert conf.uuid != ""
       assert conf.id != ""
     end
@@ -68,7 +68,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -76,7 +76,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       conf = ConfigContext.get_config_by_uuid(result.uuid)
 
       assert conf.name == "app_name"
-      assert conf.value == "raccoon"
+      assert conf.value == "bandit"
       assert conf.uuid != ""
       assert conf.id != ""
     end
@@ -88,7 +88,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -96,7 +96,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       conf = ConfigContext.get_config_by_name(result.name)
 
       assert conf.name == "app_name"
-      assert conf.value == "raccoon"
+      assert conf.value == "bandit"
       assert conf.uuid != ""
       assert conf.id != ""
     end
@@ -108,7 +108,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       {:ok, result} = ConfigContext.create_config(item)
@@ -131,7 +131,7 @@ defmodule Raccoon.Context.ConfigContextTest do
       item =
         ConfigContext.new_config(%{
           name: "app_name",
-          value: "raccoon"
+          value: "bandit"
         })
 
       {:ok, result} = ConfigContext.create_config(item)

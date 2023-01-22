@@ -1,11 +1,11 @@
-defmodule RaccoonWeb.RoomChannelTest do
-  use RaccoonWeb.ChannelCase
+defmodule BanditWeb.RoomChannelTest do
+  use BanditWeb.ChannelCase
 
   setup do
     {:ok, _, socket} =
-      RaccoonWeb.UserSocket
+      BanditWeb.UserSocket
       |> socket("user_id", %{some: :assign})
-      |> subscribe_and_join(RaccoonWeb.RoomChannel, "room:lobby")
+      |> subscribe_and_join(BanditWeb.RoomChannel, "room:lobby")
 
     %{socket: socket}
   end

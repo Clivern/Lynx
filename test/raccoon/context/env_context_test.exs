@@ -2,32 +2,32 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Raccoon.Context.EnvironmentContextTest do
+defmodule Bandit.Context.EnvironmentContextTest do
   @moduledoc """
   Environment Context Test Cases
   """
-  use Raccoon.DataCase
+  use Bandit.DataCase
 
-  alias Raccoon.Context.EnvironmentContext
-  alias Raccoon.Context.ProjectContext
-  alias Raccoon.Context.TeamContext
+  alias Bandit.Context.EnvironmentContext
+  alias Bandit.Context.ProjectContext
+  alias Bandit.Context.TeamContext
 
   describe "new_env/1" do
     test "returns a new environment with a UUID" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -55,18 +55,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "creates a new environment" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -96,18 +96,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "returns the environment with the given ID" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -134,18 +134,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "returns the environment with the given slug" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -172,18 +172,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "returns the environment with the given UUID" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -210,18 +210,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "updates the environment with the given attributes" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -262,18 +262,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "deletes the given environment" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -300,18 +300,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "creates a new environment meta" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -346,18 +346,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "returns the environment meta with the given ID" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -388,18 +388,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "updates the environment meta with the given attributes" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -441,18 +441,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "deletes the given environment meta" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -487,18 +487,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "returns the environment meta with the given environment ID and key" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 
@@ -533,18 +533,18 @@ defmodule Raccoon.Context.EnvironmentContextTest do
     test "returns all environment metas for the given environment ID" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)
 
       project_item =
         ProjectContext.new_project(%{
-          name: "Raccoon",
-          description: "Raccoon Project",
-          slug: "raccoon",
+          name: "Bandit",
+          description: "Bandit Project",
+          slug: "bandit",
           team_id: team.id
         })
 

@@ -1,0 +1,15 @@
+<svg width="80" height="104" viewBox="0 0 80 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M80 0H0V104H80V0Z" fill="white"/>
+<path d="M78 28H0V52H78V28Z" fill="#0010F7" fill-opacity="0.3"/>
+<g style="mix-blend-mode:multiply">
+<path d="M44 12H10V20H44V12Z" fill="#E0E0E0"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M44 60H10V68H44V60Z" fill="#E0E0E0"/>
+</g>
+<g style="mix-blend-mode:multiply">
+<path d="M44 84H10V92H44V84Z" fill="#E0E0E0"/>
+</g>
+<path d="M80 28H77V52H80V28Z" fill="#0010F7"/>
+<path d="M52 36H18V44H52V36Z" fill="#0010F7"/>
+</svg>

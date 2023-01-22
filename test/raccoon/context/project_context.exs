@@ -1,15 +1,15 @@
-defmodule Raccoon.Context.ProjectContextTest do
+defmodule Bandit.Context.ProjectContextTest do
   use ExUnit.Case
 
-  alias Raccoon.Context.ProjectContext
+  alias Bandit.Context.ProjectContext
 
   describe "new_project/1" do
     test "returns a new project" do
       team_item =
         TeamContext.new_team(%{
-          slug: "raccoon",
-          name: "Raccoon",
-          description: "Raccoon Team"
+          slug: "bandit",
+          name: "Bandit",
+          description: "Bandit Team"
         })
 
       {:ok, team} = TeamContext.create_team(team_item)

@@ -2,12 +2,12 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Raccoon.Service.ValidatorServiceTest do
+defmodule Bandit.Service.ValidatorServiceTest do
   @moduledoc """
   Validator Service Test Cases
   """
-  use Raccoon.DataCase
-  alias Raccoon.Service.ValidatorService, as: ValidatorService
+  use Bandit.DataCase
+  alias Bandit.Service.ValidatorService, as: ValidatorService
 
   describe "validator" do
     test "validate_int/1 test cases" do

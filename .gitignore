@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-raccoon-*.tar
+bandit-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ raccoon-*.tar
 npm-debug.log
 /assets/node_modules/
 
-raccoon_test*
-raccoon_dev*
+bandit_test*
+bandit_dev*
 .vscode
 
 .terraform

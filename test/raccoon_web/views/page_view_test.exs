@@ -2,6 +2,6 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule RaccoonWeb.PageViewTest do
-  use RaccoonWeb.ConnCase, async: true
+defmodule BanditWeb.PageViewTest do
+  use BanditWeb.ConnCase, async: true
 end

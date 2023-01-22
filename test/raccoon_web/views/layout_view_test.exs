@@ -2,8 +2,8 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule RaccoonWeb.LayoutViewTest do
-  use RaccoonWeb.ConnCase, async: true
+defmodule BanditWeb.LayoutViewTest do
+  use BanditWeb.ConnCase, async: true
 
   # When testing helpers, you may want to import Phoenix.HTML and
   # use functions such as safe_to_string() to convert the helper

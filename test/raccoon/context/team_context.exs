@@ -1,7 +1,7 @@
-defmodule Raccoon.Context.TeamContextTest do
+defmodule Bandit.Context.TeamContextTest do
   use ExUnit.Case
 
-  alias Raccoon.Context.TeamContext
+  alias Bandit.Context.TeamContext
 
   describe "new_team/1" do
     test "returns a new team" do

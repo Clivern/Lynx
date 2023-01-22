@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule RaccoonWeb.ConnCase do
+defmodule BanditWeb.ConnCase do
   @moduledoc """
   This module defines the test case to be used by
   tests that require setting up a connection.
@@ -15,7 +15,7 @@ defmodule RaccoonWeb.ConnCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use RaccoonWeb.ConnCase, async: true`, although
+  by setting `use BanditWeb.ConnCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -26,17 +26,17 @@ defmodule RaccoonWeb.ConnCase do
       # Import conveniences for testing with connections
       import Plug.Conn
       import Phoenix.ConnTest
-      import RaccoonWeb.ConnCase
+      import BanditWeb.ConnCase
 
-      alias RaccoonWeb.Router.Helpers, as: Routes
+      alias BanditWeb.Router.Helpers, as: Routes
 
       # The default endpoint for testing
-      @endpoint RaccoonWeb.Endpoint
+      @endpoint BanditWeb.Endpoint
     end
   end
 
   setup tags do
-    Raccoon.DataCase.setup_sandbox(tags)
+    Bandit.DataCase.setup_sandbox(tags)
     {:ok, conn: Phoenix.ConnTest.build_conn()}
   end
 end

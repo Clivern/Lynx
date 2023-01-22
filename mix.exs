@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Raccoon.MixProject do
+defmodule Bandit.MixProject do
   use Mix.Project
 
   @version "0.4.0"
@@ -11,7 +11,7 @@ defmodule Raccoon.MixProject do
 
   def project do
     [
-      app: :raccoon,
+      app: :bandit,
       version: @version,
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -27,7 +27,7 @@ defmodule Raccoon.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Raccoon.Application, []},
+      mod: {Bandit.Application, []},
       extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
@@ -82,6 +82,6 @@ defmodule Mix.Tasks.Version do
   use Mix.Task
 
   def run(_) do
-    Mix.shell().info("Currnt Version: v#{Raccoon.MixProject.get_version()}")
+    Mix.shell().info("Currnt Version: v#{Bandit.MixProject.get_version()}")
   end
 end

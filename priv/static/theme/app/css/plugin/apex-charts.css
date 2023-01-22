@@ -1,0 +1,64 @@
+/* Apex Charts */
+.apexcharts-canvas {
+  /* Tooltip Color */
+  /* Toolbar Download Option Color */
+  /* Text font family */
+}
+.apexcharts-canvas .apexcharts-tooltip {
+  color: #636e72;
+}
+.apexcharts-canvas .apexcharts-toolbar .apexcharts-menu .apexcharts-menu-item {
+  color: #636e72;
+  background-color: #0010f7;
+}
+.apexcharts-canvas .apexcharts-xaxistooltip-text {
+  font-family: "Manrope", sans-serif !important;
+  color: #636e72 !important;
+}
+.apexcharts-canvas .apexcharts-text,
+.apexcharts-canvas .apexcharts-datalabel {
+  font-family: "Poppins", sans-serif !important;
+}
+.apexcharts-canvas .apexcharts-tooltip-text {
+  font-family: "Poppins", sans-serif !important;
+}
+.apexcharts-canvas .hp-donut-chart .apexcharts-tooltip {
+  color: #ffffff !important;
+}
+
+.hp-chart-text-color .apexcharts-text {
+  fill: #b2bec3 !important;
+}
+
+/* apex charts tooltip */
+.apexcharts-xaxistooltip {
+  color: #ffffff !important;
+}
+
+/* Toolbar Z-index */
+.apexcharts-toolbar {
+  z-index: 10;
+}
+
+/* Analytics Visiters Chart */
+.hp-analytics-visiters-chart {
+  height: 402px;
+}
+.hp-analytics-visiters-chart .apexcharts-text {
+  fill: #b2bec3 !important;
+}
+
+#analytics-visiters-chart .apexcharts-legend.apexcharts-align-right .apexcharts-legend-series {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+/* Heatmap Chart */
+.hp-heatmap-chart .apexcharts-legend.position-bottom.apexcharts-align-center,
+.hp-heatmap-chart .apexcharts-legend.position-top.apexcharts-align-center {
+  -webkit-box-pack: justify !important;
+      -ms-flex-pack: justify !important;
+          justify-content: space-between !important;
+  padding: 0px 50px;
+}

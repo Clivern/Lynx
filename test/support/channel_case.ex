@@ -1,4 +1,4 @@
-defmodule RaccoonWeb.ChannelCase do
+defmodule BanditWeb.ChannelCase do
   @moduledoc """
   This module defines the test case to be used by
   channel tests.
@@ -11,7 +11,7 @@ defmodule RaccoonWeb.ChannelCase do
   we enable the SQL sandbox, so changes done to the database
   are reverted at the end of every test. If you are using
   PostgreSQL, you can even run database tests asynchronously
-  by setting `use RaccoonWeb.ChannelCase, async: true`, although
+  by setting `use BanditWeb.ChannelCase, async: true`, although
   this option is not recommended for other databases.
   """
 
@@ -21,15 +21,15 @@ defmodule RaccoonWeb.ChannelCase do
     quote do
       # Import conveniences for testing with channels
       import Phoenix.ChannelTest
-      import RaccoonWeb.ChannelCase
+      import BanditWeb.ChannelCase
 
       # The default endpoint for testing
-      @endpoint RaccoonWeb.Endpoint
+      @endpoint BanditWeb.Endpoint
     end
   end
 
   setup tags do
-    Raccoon.DataCase.setup_sandbox(tags)
+    Bandit.DataCase.setup_sandbox(tags)
     :ok
   end
 end

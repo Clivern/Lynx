@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Raccoon.Repo.Migrations.CreateProjectsMeta do
+defmodule Bandit.Repo.Migrations.CreateProjectsMeta do
   use Ecto.Migration
 
   def change do

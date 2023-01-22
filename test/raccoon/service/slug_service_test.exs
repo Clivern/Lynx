@@ -2,12 +2,12 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Raccoon.Service.SlugServiceTest do
+defmodule Bandit.Service.SlugServiceTest do
   @moduledoc """
   Slug Service Test Cases
   """
-  use Raccoon.DataCase
-  alias Raccoon.Service.SlugService, as: SlugService
+  use Bandit.DataCase
+  alias Bandit.Service.SlugService, as: SlugService
 
   describe "slug" do
     test "create/1 test cases" do
