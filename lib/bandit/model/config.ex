@@ -19,8 +19,8 @@ defmodule Bandit.Model.Config do
   end
 
   @doc false
-  def changeset(state, attrs) do
-    state
+  def changeset(config, attrs) do
+    config
     |> cast(attrs, [
       :uuid,
       :name,

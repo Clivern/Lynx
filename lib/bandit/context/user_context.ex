@@ -8,6 +8,7 @@ defmodule Bandit.Context.UserContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.{Team, UserMeta, User, UserSession, UserTeam}
 
@@ -126,6 +127,7 @@ defmodule Bandit.Context.UserContext do
   """
   def get_users(offset, limit) do
     from(u in User,
+      order_by: [desc: u.inserted_at],
       limit: ^limit,
       offset: ^offset
     )
@@ -225,7 +227,7 @@ defmodule Bandit.Context.UserContext do
   @doc """
   Get user session by user id and value
   """
-  def get_user_session_by_id_key(user_id, value) do
+  def get_user_session_by_id_value(user_id, value) do
     from(
       u in UserSession,
       where: u.user_id == ^user_id,
@@ -316,6 +318,17 @@ defmodule Bandit.Context.UserContext do
           teams ++ team
       end
     end
+  end
+
+  @doc """
+  Count team users
+  """
+  def count_team_users(team_id) do
+    from(u in UserTeam,
+      select: count(u.id),
+      where: u.team_id == ^team_id
+    )
+    |> Repo.one()
   end
 
   @doc """

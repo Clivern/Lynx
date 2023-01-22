@@ -76,4 +76,17 @@ defmodule Bandit.Service.ValidatorService do
       false -> value
     end
   end
+
+  @doc """
+  Get list value or default
+  """
+  def get_list(value, default) do
+    case is_list(value) do
+      true ->
+        value
+
+      false ->
+        default
+    end
+  end
 end

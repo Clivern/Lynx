@@ -12,6 +12,7 @@ defmodule Bandit.Middleware.APIAuthMiddleware do
   require Logger
 
   alias Bandit.Service.AuthService
+  alias Bandit.Module.UserModule
 
   def init(_opts), do: nil
 
@@ -68,7 +69,10 @@ defmodule Bandit.Middleware.APIAuthMiddleware do
               conn
               |> assign(:is_logged, false)
               |> assign(:user_role, :anonymous)
+              |> assign(:is_super, false)
               |> assign(:user_id, nil)
+              |> assign(:user_name, nil)
+              |> assign(:user_email, nil)
 
             {true, session} ->
               conn =
@@ -76,14 +80,20 @@ defmodule Bandit.Middleware.APIAuthMiddleware do
                   {:ok, user} ->
                     conn
                     |> assign(:is_logged, true)
+                    |> assign(:is_super, String.to_atom(user.role) == :super)
                     |> assign(:user_role, String.to_atom(user.role))
                     |> assign(:user_id, user.id)
+                    |> assign(:user_name, user.name)
+                    |> assign(:user_email, user.email)
 
                   {:not_found, _} ->
                     conn
                     |> assign(:is_logged, false)
+                    |> assign(:is_super, false)
                     |> assign(:user_role, :anonymous)
                     |> assign(:user_id, nil)
+                    |> assign(:user_name, nil)
+                    |> assign(:user_email, nil)
                 end
 
               conn
