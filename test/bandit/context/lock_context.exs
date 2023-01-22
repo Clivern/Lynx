@@ -1,7 +1,20 @@
+# Copyright 2023 Clivern. All rights reserved.
+# Use of this source code is governed by the MIT
+# license that can be found in the LICENSE file.
+
 defmodule Bandit.Context.LockContextTest do
+  @moduledoc """
+  Lock Context Test Cases
+  """
+
   use ExUnit.Case
 
   alias Bandit.Context.LockContext
+
+  # Init
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Brandit.Repo)
+  end
 
   describe "new_lock/1" do
     test "returns a new lock" do

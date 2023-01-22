@@ -8,16 +8,17 @@ defmodule Bandit.Context.ConfigContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.Config
 
   @doc """
   Get a new config
   """
-  def new_config(config \\ %{}) do
+  def new_config(attrs \\ %{}) do
     %{
-      name: config.name,
-      value: config.value,
+      name: attrs.name,
+      value: attrs.value,
       uuid: Ecto.UUID.generate()
     }
   end

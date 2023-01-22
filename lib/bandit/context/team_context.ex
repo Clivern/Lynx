@@ -8,17 +8,18 @@ defmodule Bandit.Context.TeamContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.{Team, TeamMeta}
 
   @doc """
   Get a new team
   """
-  def new_team(team \\ %{}) do
+  def new_team(attrs \\ %{}) do
     %{
-      slug: team.slug,
-      name: team.name,
-      description: team.description,
+      slug: attrs.slug,
+      name: attrs.name,
+      description: attrs.description,
       uuid: Ecto.UUID.generate()
     }
   end

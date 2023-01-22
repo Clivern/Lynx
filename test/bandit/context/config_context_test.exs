@@ -6,8 +6,15 @@ defmodule Bandit.Context.ConfigContextTest do
   @moduledoc """
   Lock Context Test Cases
   """
-  use Bandit.DataCase
+
+  use ExUnit.Case
+
   alias Bandit.Context.ConfigContext, as: ConfigContext
+
+  # Init
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Brandit.Repo)
+  end
 
   describe "new_config/1" do
     # new_config/1

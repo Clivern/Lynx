@@ -1,7 +1,20 @@
+# Copyright 2023 Clivern. All rights reserved.
+# Use of this source code is governed by the MIT
+# license that can be found in the LICENSE file.
+
 defmodule Bandit.Context.ProjectContextTest do
+  @moduledoc """
+  Project Context Test Cases
+  """
+
   use ExUnit.Case
 
   alias Bandit.Context.ProjectContext
+
+  # Init
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Brandit.Repo)
+  end
 
   describe "new_project/1" do
     test "returns a new project" do

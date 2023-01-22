@@ -6,11 +6,17 @@ defmodule Bandit.Context.EnvironmentContextTest do
   @moduledoc """
   Environment Context Test Cases
   """
-  use Bandit.DataCase
+
+  use ExUnit.Case
 
   alias Bandit.Context.EnvironmentContext
   alias Bandit.Context.ProjectContext
   alias Bandit.Context.TeamContext
+
+  # Init
+  setup do
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Brandit.Repo)
+  end
 
   describe "new_env/1" do
     test "returns a new environment with a UUID" do
