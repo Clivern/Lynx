@@ -4,7 +4,7 @@
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
         <a href="https://github.com/Clivern/Bandit/actions/workflows/ci.yml">
-            <img src="https://github.com/Clivern/Bandit/actions/workflows/ci.yml/badge.svg"/>
+            <img src="https://github.com/Clivern/Bandit/actions/workflows/server_ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Bandit/releases">
             <img src="https://img.shields.io/badge/Version-0.4.0-1abc9c.svg">

@@ -8,22 +8,23 @@ defmodule Bandit.Context.LockContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.{LockMeta, Lock}
 
   @doc """
   Get a new lock
   """
-  def new_lock(lock \\ %{}) do
+  def new_lock(attrs \\ %{}) do
     %{
-      project_id: lock.project_id,
-      uuid: lock.uuid,
-      operation: lock.operation,
-      info: lock.info,
-      who: lock.who,
-      version: lock.version,
-      path: lock.path,
-      is_active: lock.is_active
+      project_id: attrs.project_id,
+      uuid: attrs.uuid,
+      operation: attrs.operation,
+      info: attrs.info,
+      who: attrs.who,
+      version: attrs.version,
+      path: attrs.path,
+      is_active: attrs.is_active
     }
   end
 
@@ -123,7 +124,8 @@ defmodule Bandit.Context.LockContext do
   Update lock meta
   """
   def update_lock_meta(lock_meta, attrs) do
-    LockMeta.changeset(lock_meta, attrs)
+    lock_meta
+    |> LockMeta.changeset(attrs)
     |> Repo.update()
   end
 
@@ -131,7 +133,8 @@ defmodule Bandit.Context.LockContext do
   Delete lock meta
   """
   def delete_lock_meta(lock_meta) do
-    Repo.delete(lock_meta)
+    lock_meta
+    |> Repo.delete()
   end
 
   @doc """

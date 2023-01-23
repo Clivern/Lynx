@@ -146,7 +146,8 @@ defmodule Bandit.Context.TeamContext do
   Delete a team meta
   """
   def delete_team_meta(team_meta) do
-    Repo.delete(team_meta)
+    team_meta
+    |> Repo.delete()
   end
 
   @doc """

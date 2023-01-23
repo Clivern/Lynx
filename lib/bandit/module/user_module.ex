@@ -140,4 +140,33 @@ defmodule Bandit.Module.UserModule do
         {:error, "Invalid User ID"}
     end
   end
+
+  @doc """
+  Validate User ID
+  """
+  def validate_user_id(user_id) do
+    UserContext.validate_user_id(user_id)
+  end
+
+  @doc """
+  Count Team Users
+  """
+  def count_team_users(team_id) do
+    UserContext.count_team_users(team_id)
+  end
+
+  @doc """
+  Verify if email is used
+  """
+  def is_email_used(email) do
+    user = UserContext.get_user_by_email(email)
+
+    case user do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
+  end
 end

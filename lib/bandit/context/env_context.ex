@@ -8,19 +8,20 @@ defmodule Bandit.Context.EnvironmentContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.{Environment, EnvironmentMeta}
 
   @doc """
   Get a new environment
   """
-  def new_env(env \\ %{}) do
+  def new_env(attrs \\ %{}) do
     %{
-      slug: env.slug,
-      name: env.name,
-      username: env.username,
-      secret: env.secret,
-      project_id: env.project_id,
+      slug: attrs.slug,
+      name: attrs.name,
+      username: attrs.username,
+      secret: attrs.secret,
+      project_id: attrs.project_id,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -128,7 +129,8 @@ defmodule Bandit.Context.EnvironmentContext do
   Update a environment meta
   """
   def update_env_meta(env_meta, attrs) do
-    EnvironmentMeta.changeset(env_meta, attrs)
+    env_meta
+    |> EnvironmentMeta.changeset(attrs)
     |> Repo.update()
   end
 

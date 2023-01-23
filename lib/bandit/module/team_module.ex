@@ -10,6 +10,7 @@ defmodule Bandit.Module.TeamModule do
   alias Bandit.Context.TeamContext
   alias Bandit.Context.UserContext
   alias Bandit.Service.ValidatorService
+  alias Bandit.Service.SlugService
 
   @doc """
   Create a team
@@ -17,9 +18,9 @@ defmodule Bandit.Module.TeamModule do
   def create_team(data \\ %{}) do
     team =
       TeamContext.new_team(%{
-        slug: data[:slug],
         name: data[:name],
-        description: data[:description]
+        description: data[:description],
+        slug: data[:slug]
       })
 
     case TeamContext.create_team(team) do
@@ -32,6 +33,31 @@ defmodule Bandit.Module.TeamModule do
           |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
 
         {:error, Enum.at(messages, 0)}
+    end
+  end
+
+  @doc """
+  Sync team members
+  """
+  def sync_team_members(team_id, future_members \\ []) do
+    current_members = []
+
+    current_members =
+      for member <- UserContext.get_team_users(team_id) do
+        current_members ++ member.id
+      end
+
+    # @TODO: Track errors
+    for member <- current_members do
+      if member not in future_members do
+        UserContext.remove_user_from_team(member, team_id)
+      end
+    end
+
+    for member <- future_members do
+      if member not in current_members do
+        UserContext.add_user_to_team(member, team_id)
+      end
     end
   end
 
@@ -55,9 +81,9 @@ defmodule Bandit.Module.TeamModule do
           _ ->
             new_team =
               TeamContext.new_team(%{
-                slug: ValidatorService.get_str(data[:slug], team.slug),
                 name: ValidatorService.get_str(data[:name], team.name),
-                description: ValidatorService.get_str(data[:description], team.description)
+                description: ValidatorService.get_str(data[:description], team.description),
+                slug: ValidatorService.get_str(data[:slug], team.slug)
               })
 
             case TeamContext.update_team(team, new_team) do
@@ -82,37 +108,14 @@ defmodule Bandit.Module.TeamModule do
   Get team by an id
   """
   def get_team_by_id(id) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        team =
-          id
-          |> ValidatorService.parse_int()
-          |> TeamContext.get_team_by_id()
-
-        case team do
-          nil ->
-            {:not_found, "Team with ID #{id} not found"}
-
-          _ ->
-            {:ok, team}
-        end
-
-      false ->
-        {:error, "Invalid Team ID"}
-    end
-  end
-
-  @doc """
-  Get team by a slug
-  """
-  def get_team_by_slug(slug) do
     team =
-      ValidatorService.get_str(slug, "")
-      |> TeamContext.get_team_by_slug()
+      id
+      |> ValidatorService.parse_int()
+      |> TeamContext.get_team_by_id()
 
     case team do
       nil ->
-        {:not_found, "Team with slug #{slug} not found"}
+        {:not_found, "Team with ID #{id} not found"}
 
       _ ->
         {:ok, team}
@@ -163,11 +166,5 @@ defmodule Bandit.Module.TeamModule do
       false ->
         {:error, "Invalid Team ID"}
     end
-  end
-
-  @doc """
-  Generate slug from team name
-  """
-  def generate_team_slug(name) do
   end
 end

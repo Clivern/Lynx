@@ -11,29 +11,43 @@ defmodule BanditWeb.PageController do
   alias Bandit.Module.InstallModule
   alias Bandit.Service.AuthService
 
-  plug :auth
+  @doc """
+  Login Page
+  """
+  def login(conn, _params) do
+    is_installed = InstallModule.is_installed()
 
-  defp auth(conn, _opts) do
-    result =
-      AuthService.is_authenticated(
-        conn.req_cookies["_uid"],
-        conn.req_cookies["_token"]
-      )
+    case {is_installed, conn.assigns[:is_logged]} do
+      {false, _} ->
+        conn
+        |> redirect(to: "/install")
 
-    conn =
-      case result do
-        false ->
-          assign(conn, :is_logged, false)
-          |> assign(:user_id, "")
-          |> assign(:user_token, "")
+      {_, true} ->
+        conn
+        |> redirect(to: "/admin/dashboard")
 
-        {true, session} ->
-          assign(conn, :is_logged, true)
-          |> assign(:user_id, session.user_id)
-          |> assign(:user_token, session.value)
-      end
+      {true, _} ->
+        conn
+        |> render("login.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
+          }
+        )
+    end
+  end
+
+  @doc """
+  Logout Action
+  """
+  def logout(conn, _params) do
+    AuthService.logout(conn.assigns[:user_id])
 
     conn
+    |> clear_session()
+    |> redirect(to: "/")
   end
 
   @doc """
@@ -44,10 +58,12 @@ defmodule BanditWeb.PageController do
 
     case is_installed do
       true ->
-        redirect(conn, to: "/")
+        conn
+        |> redirect(to: "/")
 
       false ->
-        render(conn, "install.html")
+        conn
+        |> render("install.html")
     end
   end
 
@@ -59,49 +75,182 @@ defmodule BanditWeb.PageController do
 
     case is_installed do
       false ->
-        redirect(conn, to: "/install")
+        conn
+        |> redirect(to: "/install")
 
       true ->
-        render(conn, "home.html",
+        conn
+        |> render("home.html",
           data: %{
             is_logged: conn.assigns[:is_logged],
-            user_id: conn.assigns[:user_id],
-            user_token: conn.assigns[:user_token]
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
           }
         )
     end
   end
 
   @doc """
-  Login Page
+  Not Found Page
   """
-  def login(conn, _params) do
+  def not_found(conn, _params) do
     is_installed = InstallModule.is_installed()
 
-    case {is_installed, conn.assigns[:is_logged]} do
-      {false, _} ->
-        redirect(conn, to: "/install")
+    case is_installed do
+      false ->
+        conn
+        |> redirect(to: "/install")
 
-      {_, true} ->
-        redirect(conn, to: "/")
-
-      {true, _} ->
-        render(conn, "login.html",
+      true ->
+        conn
+        |> render("404.html",
           data: %{
             is_logged: conn.assigns[:is_logged],
-            user_id: conn.assigns[:user_id],
-            user_token: conn.assigns[:user_token]
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
           }
         )
     end
   end
 
   @doc """
-  Logout Action
+  Dashboard Page
   """
-  def logout(conn, _params) do
-    AuthService.logout(conn.assigns[:user_id])
-    redirect(conn, to: "/")
+  def dashboard(conn, _params) do
+    case conn.assigns[:is_logged] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        conn
+        |> render("dashboard.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
+          }
+        )
+    end
+  end
+
+  @doc """
+  Profile Page
+  """
+  def profile(conn, _params) do
+    case conn.assigns[:is_logged] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        conn
+        |> render("profile.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
+          }
+        )
+    end
+  end
+
+
+  @doc """
+  Teams List Page
+  """
+  def list_teams(conn, _params) do
+    case conn.assigns[:is_super] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        users = UserModule.get_users(0, 1000)
+        teams = TeamModule.get_teams(0, 1000)
+
+        new_teams = []
+
+        new_teams =
+          for team <- teams do
+            new_teams ++
+              %{
+                id: team.id,
+                uuid: team.uuid,
+                name: team.name,
+                description: team.description,
+                count: UserModule.count_team_users(team.id),
+                inserted_at: team.inserted_at,
+                updated_at: team.updated_at
+              }
+          end
+
+        conn
+        |> render("list_teams.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email],
+            users: users,
+            teams: new_teams
+          }
+        )
+    end
+  end
+
+  @doc """
+  Users List Page
+  """
+  def list_users(conn, _params) do
+    case conn.assigns[:is_super] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        users = UserModule.get_users(0, 1000)
+
+        conn
+        |> render("list_users.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email],
+            users: users
+          }
+        )
+    end
+  end
+
+  @doc """
+  Settings Page
+  """
+  def settings(conn, _params) do
+    case conn.assigns[:is_super] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        conn
+        |> render("settings.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email],
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", ""),
+            app_email: SettingsModule.get_config("app_email", "")
+          }
+        )
+    end
   end
 
   @doc """

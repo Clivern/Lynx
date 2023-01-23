@@ -8,17 +8,18 @@ defmodule Bandit.Context.StateContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.{StateMeta, State}
 
   @doc """
   Get a new state
   """
-  def new_state(state \\ %{}) do
+  def new_state(attrs \\ %{}) do
     %{
-      name: state.name,
-      value: state.value,
-      project_id: state.project_id,
+      name: attrs.name,
+      value: attrs.value,
+      project_id: attrs.project_id,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -138,7 +139,8 @@ defmodule Bandit.Context.StateContext do
   Update a state meta
   """
   def update_state_meta(state_meta, attrs) do
-    StateMeta.changeset(state_meta, attrs)
+    state_meta
+    |> StateMeta.changeset(attrs)
     |> Repo.update()
   end
 
@@ -146,7 +148,8 @@ defmodule Bandit.Context.StateContext do
   Delete a state meta
   """
   def delete_state_meta(state_meta) do
-    Repo.delete(state_meta)
+    state_meta
+    |> Repo.delete()
   end
 
   @doc """

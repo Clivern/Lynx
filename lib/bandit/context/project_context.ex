@@ -8,18 +8,19 @@ defmodule Bandit.Context.ProjectContext do
   """
 
   import Ecto.Query
+
   alias Bandit.Repo
   alias Bandit.Model.{ProjectMeta, Project}
 
   @doc """
   Get a new project
   """
-  def new_project(project \\ %{}) do
+  def new_project(attrs \\ %{}) do
     %{
-      name: project.name,
-      description: project.description,
-      slug: project.slug,
-      team_id: project.team_id,
+      name: attrs.name,
+      description: attrs.description,
+      slug: attrs.slug,
+      team_id: attrs.team_id,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -141,7 +142,8 @@ defmodule Bandit.Context.ProjectContext do
   Update a project meta
   """
   def update_project_meta(project_meta, attrs) do
-    ProjectMeta.changeset(project_meta, attrs)
+    project_meta
+    |> ProjectMeta.changeset(attrs)
     |> Repo.update()
   end
 
@@ -149,7 +151,8 @@ defmodule Bandit.Context.ProjectContext do
   Delete a project meta
   """
   def delete_project_meta(project_meta) do
-    Repo.delete(project_meta)
+    project_meta
+    |> Repo.delete()
   end
 
   @doc """
