@@ -159,7 +159,6 @@ defmodule BanditWeb.PageController do
     end
   end
 
-
   @doc """
   Teams List Page
   """
