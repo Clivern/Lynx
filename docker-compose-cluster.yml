@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app1:
-    image: clivern/lynx:0.12.5
+    image: clivern/lynx:0.12.6
     environment:
       APP_NAME: Lynx
       APP_PORT: 4001
@@ -27,7 +27,7 @@ services:
       - db
 
   app2:
-    image: clivern/lynx:0.12.5
+    image: clivern/lynx:0.12.6
     environment:
       APP_NAME: Lynx
       APP_PORT: 4002
@@ -52,7 +52,7 @@ services:
       - db
 
   app3:
-    image: clivern/lynx:0.12.5
+    image: clivern/lynx:0.12.6
     environment:
       APP_NAME: Lynx
       APP_PORT: 4003
