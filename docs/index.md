@@ -21,8 +21,8 @@ hero:
       icon: edit
 
   download_link:
-    label: Latest Release v0.12.6
-    url: https://github.com/Clivern/Lynx/releases/tag/0.12.6
+    label: Latest Release v0.12.7
+    url: https://github.com/Clivern/Lynx/releases/tag/0.12.7
 
 features:
   rows:
