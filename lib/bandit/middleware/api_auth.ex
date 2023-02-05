@@ -34,27 +34,21 @@ defmodule Bandit.Middleware.APIAuthMiddleware do
 
     # Logging
     if is_nil(user_token) do
-      Logger.info(
-        "X-USER-TOKEN header is not in the request. RequestId=#{conn.assigns[:request_id]}"
-      )
+      Logger.info("X-USER-TOKEN header is not in the request")
     else
-      Logger.info("X-USER-TOKEN header is in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("X-USER-TOKEN header is in the request")
     end
 
     if is_nil(user_id) do
-      Logger.info(
-        "X-USER-ID header is not in the request. RequestId=#{conn.assigns[:request_id]}"
-      )
+      Logger.info("X-USER-ID header is not in the request")
     else
-      Logger.info("X-USER-ID header is in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("X-USER-ID header is in the request")
     end
 
     if is_nil(api_key) do
-      Logger.info(
-        "X-API-KEY header is not in the request. RequestId=#{conn.assigns[:request_id]}"
-      )
+      Logger.info("X-API-KEY header is not in the request")
     else
-      Logger.info("X-API-KEY header is in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("X-API-KEY header is in the request")
     end
 
     # Adjust conn Object

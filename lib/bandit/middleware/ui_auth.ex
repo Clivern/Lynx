@@ -29,15 +29,15 @@ defmodule Bandit.Middleware.UIAuthMiddleware do
 
     # Logging
     if is_nil(uid) do
-      Logger.info("_uid cookie is not in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("_uid cookie is not in the request")
     else
-      Logger.info("_uid cookie is in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("_uid cookie is in the request")
     end
 
     if is_nil(token) do
-      Logger.info("_token cookie is not in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("_token cookie is not in the request")
     else
-      Logger.info("_token cookie is in the request. RequestId=#{conn.assigns[:request_id]}")
+      Logger.info("_token cookie is in the request")
     end
 
     result = AuthService.is_authenticated(uid, token)

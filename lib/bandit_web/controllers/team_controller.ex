@@ -11,44 +11,29 @@ defmodule BanditWeb.TeamController do
 
   alias Bandit.Module.TeamModule
   alias Bandit.Service.ValidatorService
+  alias Bandit.Exception.InvalidRequest
 
   require Logger
 
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :only_super_users, only: [:list, :index, :create, :update, :delete]
+  plug :super_user, only: [:list, :index, :create, :update, :delete]
 
-  defp only_super_users(conn, _opts) do
-    Logger.info("Validate user permissions. RequestId=#{conn.assigns[:request_id]}")
+  defp super_user(conn, _opts) do
+    Logger.info("Validate user permissions")
 
-    # If user not authenticated, return forbidden access
-    if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated. RequestId=#{conn.assigns[:request_id]}")
+    if not conn.assigns[:is_super] do
+      Logger.info("User doesn't have the right access permissions")
 
       conn
       |> put_status(:forbidden)
-      |> render("error.json", %{error: "Forbidden Access"})
-      |> halt()
+      |> render("error.json", %{message: "Forbidden Access"})
     else
-      # If user not super, return forbidden access
-      if conn.assigns[:user_role] != :super do
-        Logger.info(
-          "User doesn't have a super permission. RequestId=#{conn.assigns[:request_id]}"
-        )
+      Logger.info("User has the right access permissions")
 
-        conn
-        |> put_status(:forbidden)
-        |> render("error.json", %{error: "Forbidden Access"})
-        |> halt()
-      else
-        Logger.info(
-          "User with id #{conn.assigns[:user_id]} can access this endpoint. RequestId=#{conn.assigns[:request_id]}"
-        )
-      end
+      conn
     end
-
-    conn
   end
 
   @doc """
@@ -71,35 +56,119 @@ defmodule BanditWeb.TeamController do
   @doc """
   Create Action Endpoint
   """
-  def create(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+  def create(conn, params) do
+    try do
+      validate_create_request(params)
+
+      slug = ValidatorService.get_str(params["slug"], "")
+
+      if TeamModule.is_slug_used(slug) do
+        raise InvalidRequest, message: "Team slug is used"
+      end
+
+      result =
+        TeamModule.create_team(%{
+          slug: slug,
+          name: ValidatorService.get_str(params["name"], ""),
+          description: ValidatorService.get_str(params["description"], "")
+        })
+
+      case result do
+        {:ok, team} ->
+          conn
+          |> put_status(:created)
+          |> render("index.json", %{team: team})
+
+        {:error, msg} ->
+          conn
+          |> put_status(:bad_request)
+          |> render("error.json", %{error: msg})
+      end
+    rescue
+      e in InvalidRequest ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: e.message})
+
+      _ ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{message: "Internal server error"})
+    else
+      _ ->
+        conn
+        |> put_status(:ok)
+        |> render("success.json", %{message: "User created successfully"})
+    end
   end
 
   @doc """
   Index Action Endpoint
   """
-  def index(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+  def index(conn, %{"uuid" => uuid}) do
+    result = TeamModule.get_team_by_uuid(uuid)
+
+    case team do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{error: msg})
+
+      {:ok, team} ->
+        conn
+        |> put_status(:ok)
+        |> render("index.json", %{team: team})
+    end
   end
 
   @doc """
   Update Action Endpoint
   """
-  def update(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+  def update(conn, params) do
+    try do
+      validate_update_request(params)
+
+      result =
+        TeamModule.update_team(%{
+          uuid: ValidatorService.get_str(params["uuid"], ""),
+          name: ValidatorService.get_str(params["name"], ""),
+          description: ValidatorService.get_str(params["description"], "")
+        })
+
+      case result do
+        {:ok, team} ->
+          conn
+          |> put_status(:ok)
+          |> render("index.json", %{team: team})
+
+        {:error, msg} ->
+          conn
+          |> put_status(:bad_request)
+          |> render("error.json", %{error: msg})
+      end
+    rescue
+      e in InvalidRequest ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: e.message})
+
+      _ ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{message: "Internal server error"})
+    else
+      _ ->
+        conn
+        |> put_status(:ok)
+        |> render("success.json", %{message: "Team updated successfully"})
+    end
   end
 
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{"tid" => tid}) do
-    result = TeamModule.delete_team(tid)
+  def delete(conn, %{"uuid" => uuid}) do
+    result = TeamModule.delete_team_by_uuid(uuid)
 
     case result do
       {:not_found, msg} ->
@@ -110,11 +179,37 @@ defmodule BanditWeb.TeamController do
       {:ok, _} ->
         conn
         |> send_resp(:no_content, "")
+    end
+  end
 
-      {:error, msg} ->
-        conn
-        |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
+  defp validate_create_request(params) do
+    name = ValidatorService.get_str(params["name"], "")
+    description = ValidatorService.get_str(params["description"], "")
+    slug = ValidatorService.get_str(params["slug"], "")
+
+    if ValidatorService.is_empty(name) do
+      raise InvalidRequest, message: "Team name is required"
+    end
+
+    if ValidatorService.is_empty(description) do
+      raise InvalidRequest, message: "Team description is required"
+    end
+
+    if ValidatorService.is_empty(slug) do
+      raise InvalidRequest, message: "Team slug is required"
+    end
+  end
+
+  defp validate_update_request(params) do
+    name = ValidatorService.get_str(params["name"], "")
+    description = ValidatorService.get_str(params["description"], "")
+
+    if ValidatorService.is_empty(name) do
+      raise InvalidRequest, message: "Team name is required"
+    end
+
+    if ValidatorService.is_empty(description) do
+      raise InvalidRequest, message: "Team description is required"
     end
   end
 end

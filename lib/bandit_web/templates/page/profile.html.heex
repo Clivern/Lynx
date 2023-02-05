@@ -73,7 +73,7 @@
 
                                             <div class="row">
                                                 <div class="col-12">
-                                                    <a href="https://github.com/clivern/bandit/issues" class="d-flex align-items-center hp-p1-body py-4 px-10 hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded" style="margin-left: -10px; margin-right: -10px;">
+                                                    <a href="https://github.com/clivern/scuti/issues" class="d-flex align-items-center hp-p1-body py-4 px-10 hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded" style="margin-left: -10px; margin-right: -10px;">
                                                         <i class="iconly-Curved-Game me-8" style="font-size: 16px;"></i>
 
                                                         <span class="hp-ml-8"><%= gettext "Support" %></span>
@@ -240,7 +240,7 @@
                             <div class="col-sm-6 col-12">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Settings" %> </h1>
+                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Profile" %> </h1>
                                     </div>
                                     <div class="col-12">
                                         <ol class="breadcrumb mt-24">
@@ -249,7 +249,7 @@
                                             </li>
 
                                             <li class="breadcrumb-item active">
-                                                <%= gettext "Settings" %>
+                                                <%= gettext "Profile" %>
                                             </li>
                                         </ol>
                                     </div>
@@ -259,29 +259,25 @@
                     </div>
                 </div>
 
-                <div class="col-12" id="app_settings">
+                <div class="col-12" id="app_profile">
                     <div class="card">
                         <div class="card-body">
                             <div class="row justify-content-between">
                                 <div class="col pe-md-32 pe-md-120">
-                                    <h4><%= gettext "Settings" %></h4>
+                                    <h4><%= gettext "Profile" %></h4>
                                 </div>
                                 <div class="col-12 mt-16">
-                                    <form action={Routes.settings_path(@conn, :update)} method="post" v-on:submit.prevent="settingsAction">
+                                    <form action={Routes.profile_path(@conn, :update)} method="post" v-on:submit.prevent="profileAction">
                                         <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application Name" %></label>
-                                            <input class="form-control" name="app_name" type="text" value={@data.app_name} required="required">
+                                            <label class="form-label"><%= gettext "Nick Name" %></label>
+                                            <input class="form-control" name="name" type="text" value={@data.user_name} required="required">
                                         </div>
 
                                         <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application URL" %></label>
-                                            <input class="form-control" name="app_url" type="url" value={@data.app_url} required="required">
+                                            <label class="form-label"><%= gettext "Email" %></label>
+                                            <input class="form-control" name="email" type="email" value={@data.user_email} required="required">
                                         </div>
 
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application Email" %></label>
-                                            <input class="form-control" name="app_email" type="email" value={@data.app_email} required="required">
-                                        </div>
                                         <button type="submit" class="btn btn-primary"><%= gettext "Submit" %></button>
                                     </form>
                                 </div>

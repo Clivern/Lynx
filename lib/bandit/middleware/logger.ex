@@ -25,7 +25,7 @@ defmodule Bandit.Middleware.Logger do
 
     # Log Incoming Request
     Logger.info(
-      "Incoming #{conn.method} Request to #{conn.request_path}?#{conn.query_string} and body #{body}. RequestId=#{request_id}"
+      "Incoming #{conn.method} Request to #{conn.request_path}?#{conn.query_string} and body #{body}"
     )
 
     conn

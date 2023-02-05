@@ -11,6 +11,30 @@ defmodule Bandit.Module.ProjectModule do
   alias Bandit.Service.ValidatorService
 
   @doc """
+  Get Project
+  """
+  def get_project_by_id(id) do
+    case ValidatorService.validate_int(id) do
+      true ->
+        project =
+          id
+          |> ValidatorService.parse_int()
+          |> ProjectContext.get_project_by_id()
+
+        case project do
+          nil ->
+            {:not_found, "Project with ID #{id} not found"}
+
+          _ ->
+            {:ok, project}
+        end
+
+      false ->
+        {:error, "Invalid Project ID"}
+    end
+  end
+
+  @doc """
   Validate Auth Data
   """
   def is_allowed(params \\ %{}) do
@@ -32,30 +56,6 @@ defmodule Bandit.Module.ProjectModule do
           _ ->
             {:failed, "Invalid username or secret"}
         end
-    end
-  end
-
-  @doc """
-  Get Project
-  """
-  def get_project(id) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
-
-        case project do
-          nil ->
-            {:not_found, "Project with ID #{id} not found"}
-
-          _ ->
-            {:exist, project}
-        end
-
-      false ->
-        {:error, "Invalid Project ID"}
     end
   end
 
@@ -131,27 +131,21 @@ defmodule Bandit.Module.ProjectModule do
   end
 
   @doc """
-  Delete A Project
+  Delete Project By ID
   """
-  def delete_project(id) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
+  def delete_project_by_id(id) do
+    project =
+      id
+      |> ValidatorService.parse_int()
+      |> ProjectContext.get_project_by_id()
 
-        case project do
-          nil ->
-            {:not_found, "Project with ID #{id} not found"}
+    case project do
+      nil ->
+        {:not_found, "Project with ID #{id} not found"}
 
-          _ ->
-            ProjectContext.delete_project(project)
-            {:success, "Project with ID #{id} deleted successfully"}
-        end
-
-      false ->
-        {:error, "Invalid Project ID"}
+      _ ->
+        ProjectContext.delete_project(project)
+        {:success, "Project with ID #{id} deleted successfully"}
     end
   end
 end

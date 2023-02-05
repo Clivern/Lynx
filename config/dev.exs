@@ -5,7 +5,7 @@
 import Config
 
 # Configure your database
-if System.get_env("DB_SSL") || "off" == "on" do
+if (System.get_env("DB_SSL") || "off") == "on" do
   config :bandit, Bandit.Repo,
     username: System.get_env("DB_USERNAME") || "bandit",
     password: System.get_env("DB_PASSWORD") || "bandit",

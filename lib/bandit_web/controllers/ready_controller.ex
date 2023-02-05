@@ -8,6 +8,7 @@ defmodule BanditWeb.ReadyController do
   """
 
   use BanditWeb, :controller
+
   require Logger
 
   @doc """

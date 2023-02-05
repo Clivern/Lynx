@@ -4,7 +4,7 @@
 
 defmodule Bandit.Exception.ResourceNotFound do
   @moduledoc """
-  Internal Error Exception
+  Resource Not Found Exception
   """
   defexception message: "Resource Not Found"
 end

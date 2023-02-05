@@ -4,4 +4,12 @@
 
 defmodule BanditWeb.SettingsView do
   use BanditWeb, :view
+
+  def render("error.json", %{message: message}) do
+    %{errorMessage: message}
+  end
+
+  def render("success.json", %{message: message}) do
+    %{successMessage: message}
+  end
 end

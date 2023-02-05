@@ -10,7 +10,6 @@ defmodule Bandit.Module.TeamModule do
   alias Bandit.Context.TeamContext
   alias Bandit.Context.UserContext
   alias Bandit.Service.ValidatorService
-  alias Bandit.Service.SlugService
 
   @doc """
   Create a team
@@ -19,8 +18,8 @@ defmodule Bandit.Module.TeamModule do
     team =
       TeamContext.new_team(%{
         name: data[:name],
-        description: data[:description],
-        slug: data[:slug]
+        slug: data[:slug],
+        description: data[:description]
       })
 
     case TeamContext.create_team(team) do
@@ -65,42 +64,33 @@ defmodule Bandit.Module.TeamModule do
   Update a team
   """
   def update_team(data \\ %{}) do
-    id = data[:id]
+    uuid = ValidatorService.get_str(data[:uuid], "")
 
-    case ValidatorService.validate_int(id) do
-      true ->
-        team =
-          id
-          |> ValidatorService.parse_int()
-          |> TeamContext.get_team_by_id()
+    team = uuid |> TeamContext.get_team_by_uuid()
 
-        case team do
-          nil ->
-            {:not_found, "Team with ID #{id} not found"}
+    case team do
+      nil ->
+        {:not_found, "Team with UUID #{uuid} not found"}
 
-          _ ->
-            new_team =
-              TeamContext.new_team(%{
-                name: ValidatorService.get_str(data[:name], team.name),
-                description: ValidatorService.get_str(data[:description], team.description),
-                slug: ValidatorService.get_str(data[:slug], team.slug)
-              })
+      _ ->
+        new_team =
+          TeamContext.new_team(%{
+            name: ValidatorService.get_str(data[:name], team.name),
+            description: ValidatorService.get_str(data[:description], team.description),
+            slug: team.slug
+          })
 
-            case TeamContext.update_team(team, new_team) do
-              {:ok, team} ->
-                {:ok, team}
+        case TeamContext.update_team(team, new_team) do
+          {:ok, team} ->
+            {:ok, team}
 
-              {:error, changeset} ->
-                messages =
-                  changeset.errors()
-                  |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+          {:error, changeset} ->
+            messages =
+              changeset.errors()
+              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
 
-                {:error, Enum.at(messages, 0)}
-            end
+            {:error, Enum.at(messages, 0)}
         end
-
-      false ->
-        {:error, "Invalid Team ID"}
     end
   end
 
@@ -119,6 +109,40 @@ defmodule Bandit.Module.TeamModule do
 
       _ ->
         {:ok, team}
+    end
+  end
+
+  @doc """
+  Get team by UUID
+  """
+  def get_team_by_uuid(uuid) do
+    uuid = ValidatorService.get_str(uuid, "")
+
+    team = uuid |> TeamContext.get_team_by_uuid()
+
+    case team do
+      nil ->
+        {:not_found, "Team with UUID #{uuid} not found"}
+
+      _ ->
+        {:ok, team}
+    end
+  end
+
+  @doc """
+  Get team by slug
+  """
+  def is_slug_used(slug) do
+    slug = ValidatorService.get_str(slug, "")
+
+    team = slug |> TeamContext.get_team_by_slug()
+
+    case team do
+      nil ->
+        false
+
+      _ ->
+        true
     end
   end
 
@@ -144,27 +168,27 @@ defmodule Bandit.Module.TeamModule do
   end
 
   @doc """
-  Delete A Team
+  Delete a Team by UUID
   """
-  def delete_team(id) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        team =
-          id
-          |> ValidatorService.parse_int()
-          |> TeamContext.get_team_by_id()
+  def delete_team_by_uuid(uuid) do
+    uuid = ValidatorService.get_str(uuid, "")
 
-        case team do
-          nil ->
-            {:not_found, "Team with ID #{id} not found"}
+    team = uuid |> TeamContext.get_team_by_uuid()
 
-          _ ->
-            TeamContext.delete_team(team)
-            {:ok, "Team with ID #{id} deleted successfully"}
-        end
+    case team do
+      nil ->
+        {:not_found, "Team with ID #{uuid} not found"}
 
-      false ->
-        {:error, "Invalid Team ID"}
+      _ ->
+        TeamContext.delete_team(team)
+        {:ok, "Team with ID #{uuid} deleted successfully"}
     end
+  end
+
+  @doc """
+  Validate Team ID
+  """
+  def validate_team_id(id) do
+    TeamContext.validate_team_id(id)
   end
 end

@@ -59,16 +59,16 @@ defmodule BanditWeb.Router do
     # User CRUD
     get "/user", UserController, :list
     post "/user", UserController, :create
-    get "/user/:uid", UserController, :index
-    put "/user/:uid", UserController, :update
-    delete "/user/:uid", UserController, :delete
+    get "/user/:uuid", UserController, :index
+    put "/user/:uuid", UserController, :update
+    delete "/user/:uuid", UserController, :delete
 
     # Team CRUD
     get "/team", TeamController, :list
     post "/team", TeamController, :create
-    get "/team/:tid", TeamController, :index
-    put "/team/:tid", TeamController, :update
-    delete "/team/:tid", TeamController, :delete
+    get "/team/:uuid", TeamController, :index
+    put "/team/:uuid", TeamController, :update
+    delete "/team/:uuid", TeamController, :delete
 
     # Settings Endpoint
     put "/settings", SettingsController, :update
@@ -76,28 +76,28 @@ defmodule BanditWeb.Router do
     # Project CRUD
     get "/project", ProjectController, :list
     post "/project", ProjectController, :create
-    get "/project/:pid", ProjectController, :index
-    put "/project/:pid", ProjectController, :update
-    delete "/project/:pid", ProjectController, :delete
+    get "/project/:uuid", ProjectController, :index
+    put "/project/:uuid", ProjectController, :update
+    delete "/project/:uuid", ProjectController, :delete
 
     # Environment CRUD
-    get "/project/:pid/environment", EnvironmentController, :list
-    post "/project/:pid/environment", EnvironmentController, :create
-    get "/project/:pid/environment/:eid", EnvironmentController, :index
-    put "/project/:pid/environment/:eid", EnvironmentController, :update
-    delete "/project/:pid/environment/:eid", EnvironmentController, :delete
+    get "/project/:p_uuid/environment", EnvironmentController, :list
+    post "/project/:p_uuid/environment", EnvironmentController, :create
+    get "/project/:p_uuid/environment/:e_uuid", EnvironmentController, :index
+    put "/project/:p_uuid/environment/:e_uuid", EnvironmentController, :update
+    delete "/project/:p_uuid/environment/:e_uuid", EnvironmentController, :delete
   end
 
   scope "/client", BanditWeb do
     pipe_through :client
 
     # Locking API
-    post "/:tsg/:psg/:esg/lock", LockController, :lock
-    post "/:tsg/:psg/:esg/unlock", LockController, :unlock
+    post "/:t_slug/:p_slug/:e_slug/lock", LockController, :lock
+    post "/:t_slug/:p_slug/:e_slug/unlock", LockController, :unlock
 
     # State API
-    get "/:tsg/:psg/:esg/state", StateController, :index
-    post "/:tsg/:psg/:esg/state", StateController, :create
+    get "/:t_slug/:p_slug/:e_slug/state", StateController, :index
+    post "/:t_slug/:p_slug/:e_slug/state", StateController, :create
   end
 
   # Enables LiveDashboard only for development

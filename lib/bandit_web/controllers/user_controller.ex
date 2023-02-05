@@ -17,38 +17,22 @@ defmodule BanditWeb.UserController do
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :only_super_users, only: [:list, :index, :create, :update, :delete]
+  plug :super_user, only: [:list, :index, :create, :update, :delete]
 
-  defp only_super_users(conn, _opts) do
-    Logger.info("Validate user permissions. RequestId=#{conn.assigns[:request_id]}")
+  defp super_user(conn, _opts) do
+    Logger.info("Validate user permissions")
 
-    # If user not authenticated, return forbidden access
-    if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated. RequestId=#{conn.assigns[:request_id]}")
+    if not conn.assigns[:is_super] do
+      Logger.info("User doesn't have the right access permissions")
 
       conn
       |> put_status(:forbidden)
-      |> render("error.json", %{error: "Forbidden Access"})
-      |> halt()
+      |> render("error.json", %{message: "Forbidden Access"})
     else
-      # If user not super, return forbidden access
-      if conn.assigns[:user_role] != :super do
-        Logger.info(
-          "User doesn't have a super permission. RequestId=#{conn.assigns[:request_id]}"
-        )
+      Logger.info("User has the right access permissions")
 
-        conn
-        |> put_status(:forbidden)
-        |> render("error.json", %{error: "Forbidden Access"})
-        |> halt()
-      else
-        Logger.info(
-          "User with id #{conn.assigns[:user_id]} can access this endpoint. RequestId=#{conn.assigns[:request_id]}"
-        )
-      end
+      conn
     end
-
-    conn
   end
 
   @doc """
@@ -98,8 +82,8 @@ defmodule BanditWeb.UserController do
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{"uid" => uid}) do
-    result = UserModule.delete_user(uid)
+  def delete(conn, %{"uuid" => uuid}) do
+    result = UserModule.delete_user_by_uuid(uuid)
 
     case result do
       {:not_found, msg} ->
@@ -110,11 +94,6 @@ defmodule BanditWeb.UserController do
       {:ok, _} ->
         conn
         |> send_resp(:no_content, "")
-
-      {:error, msg} ->
-        conn
-        |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
     end
   end
 end

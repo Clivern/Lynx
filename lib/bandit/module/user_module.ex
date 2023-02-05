@@ -119,25 +119,16 @@ defmodule Bandit.Module.UserModule do
   @doc """
   Delete User
   """
-  def delete_user(id) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        user =
-          id
-          |> ValidatorService.parse_int()
-          |> UserContext.get_user_by_id()
+  def delete_user_by_uuid(uuid) do
+    user = uuid |> UserContext.get_user_by_uuid()
 
-        case user do
-          nil ->
-            {:not_found, "User with ID #{id} not found"}
+    case user do
+      nil ->
+        {:not_found, "User with ID #{uuid} not found"}
 
-          _ ->
-            UserContext.delete_user(user)
-            {:ok, "User with ID #{id} deleted successfully"}
-        end
-
-      false ->
-        {:error, "Invalid User ID"}
+      _ ->
+        UserContext.delete_user(user)
+        {:ok, "User with ID #{uuid} deleted successfully"}
     end
   end
 

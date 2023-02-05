@@ -27,7 +27,7 @@ end
 if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
-  if System.get_env("DB_SSL") || "off" == "on" do
+  if (System.get_env("DB_SSL") || "off") == "on" do
     config :bandit, Bandit.Repo,
       username: System.get_env("DB_USERNAME"),
       password: System.get_env("DB_PASSWORD"),

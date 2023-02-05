@@ -15,11 +15,11 @@ defmodule Bandit.Context.TeamContext do
   @doc """
   Get a new team
   """
-  def new_team(attrs \\ %{}) do
+  def new_team(team \\ %{}) do
     %{
-      slug: attrs.slug,
-      name: attrs.name,
-      description: attrs.description,
+      name: team.name,
+      description: team.description,
+      slug: team.slug,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -49,6 +49,19 @@ defmodule Bandit.Context.TeamContext do
   """
   def get_team_by_id(id) do
     Repo.get(Team, id)
+  end
+
+  @doc """
+  Validate Team ID
+  """
+  def validate_team_id(id) do
+    case get_team_by_id(id) do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
   end
 
   @doc """
@@ -101,6 +114,7 @@ defmodule Bandit.Context.TeamContext do
   """
   def get_teams(offset, limit) do
     from(t in Team,
+      order_by: [desc: t.inserted_at],
       limit: ^limit,
       offset: ^offset
     )
@@ -146,8 +160,7 @@ defmodule Bandit.Context.TeamContext do
   Delete a team meta
   """
   def delete_team_meta(team_meta) do
-    team_meta
-    |> Repo.delete()
+    Repo.delete(team_meta)
   end
 
   @doc """

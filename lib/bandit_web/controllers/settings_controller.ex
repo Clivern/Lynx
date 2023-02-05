@@ -11,46 +11,89 @@ defmodule BanditWeb.SettingsController do
 
   require Logger
 
-  plug :only_super_users, only: [:update]
+  alias Bandit.Module.SettingsModule
+  alias Bandit.Service.ValidatorService
+  alias Bandit.Exception.InvalidRequest
 
-  defp only_super_users(conn, _opts) do
-    Logger.info("Validate user permissions. RequestId=#{conn.assigns[:request_id]}")
+  plug :super_user, only: [:update]
 
-    # If user not authenticated, return forbidden access
-    if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated. RequestId=#{conn.assigns[:request_id]}")
+  defp super_user(conn, _opts) do
+    Logger.info("Validate user permissions")
+
+    if not conn.assigns[:is_super] do
+      Logger.info("User doesn't have the right access permissions")
 
       conn
       |> put_status(:forbidden)
-      |> render("error.json", %{error: "Forbidden Access"})
-      |> halt()
+      |> render("error.json", %{message: "Forbidden Access"})
     else
-      # If user not super, return forbidden access
-      if conn.assigns[:user_role] != :super do
-        Logger.info(
-          "User doesn't have a super permission. RequestId=#{conn.assigns[:request_id]}"
-        )
+      Logger.info("User has the right access permissions")
 
-        conn
-        |> put_status(:forbidden)
-        |> render("error.json", %{error: "Forbidden Access"})
-        |> halt()
-      else
-        Logger.info(
-          "User with id #{conn.assigns[:user_id]} can access this endpoint. RequestId=#{conn.assigns[:request_id]}"
-        )
-      end
+      conn
     end
-
-    conn
   end
 
   @doc """
   Update Action Endpoint
   """
-  def update(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+  def update(conn, params) do
+    try do
+      validate_update_request(params)
+
+      app_name = ValidatorService.get_str(params["app_name"], "")
+      app_url = ValidatorService.get_str(params["app_url"], "")
+      app_email = ValidatorService.get_str(params["app_email"], "")
+
+      config_results =
+        SettingsModule.update_configs(%{
+          app_name: app_name,
+          app_url: app_url,
+          app_email: app_email
+        })
+
+      for config_result <- config_results do
+        case config_result do
+          {:error, msg} ->
+            Logger.info("Incoming request is invalid: #{msg}")
+            raise InvalidRequest, message: "Invalid Request"
+
+          _ ->
+            nil
+        end
+      end
+    rescue
+      e in InvalidRequest ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: e.message})
+
+      _ ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{message: "Internal server error"})
+    else
+      _ ->
+        conn
+        |> put_status(:ok)
+        |> render("success.json", %{message: "Settings updated successfully"})
+    end
+  end
+
+  defp validate_update_request(params) do
+    app_name = ValidatorService.get_str(params["app_name"], "")
+    app_url = ValidatorService.get_str(params["app_url"], "")
+    app_email = ValidatorService.get_str(params["app_email"], "")
+
+    if ValidatorService.is_empty(app_name) do
+      raise InvalidRequest, message: "Application name is required"
+    end
+
+    if ValidatorService.is_empty(app_url) do
+      raise InvalidRequest, message: "Application URL is required"
+    end
+
+    if ValidatorService.is_empty(app_email) do
+      raise InvalidRequest, message: "Application email is required"
+    end
   end
 end

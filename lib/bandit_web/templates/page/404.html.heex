@@ -21,14 +21,9 @@
     <img alt="logo" src={Routes.static_path(@conn, "/images/logo.png")} width="150" />
     <div class="hello">
       <br /><br />
-      <strong><%= gettext "Welcome to Bandit" %></strong>
-      <br /><br />
-      <p>
-        <%= gettext "If you have any suggestions, bug reports, or annoyances" %><br/>
-        <%= gettext "please report them to our" %>
-        <a href="https://github.com/clivern/bandit/issues" target="_blank" rel="noopener"><%= gettext "issue tracker" %>.</a>
-      </p>
-      <p><a href={Routes.page_path(@conn, :login)}><%= gettext "Login into your Account" %></a></p>
+      <strong><%= gettext "404 Not Found" %></strong>
+      <br />
+      <p><a href={Routes.page_path(@conn, :home)}><%= gettext "Back to Home" %></a></p>
       <br />
       <small>
         <%= gettext "Copyright © 2024" %> <a href="https://github.com/clivern" target="_blank" rel="noopener">Clivern</a><br/>

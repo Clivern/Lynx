@@ -15,15 +15,15 @@ defmodule Bandit.Context.UserContext do
   @doc """
   Get a new user
   """
-  def new_user(attrs \\ %{}) do
+  def new_user(user \\ %{}) do
     %{
-      email: attrs.email,
-      name: attrs.name,
-      password_hash: attrs.password_hash,
-      verified: attrs.verified,
-      last_seen: attrs.last_seen,
-      role: attrs.role,
-      api_key: attrs.api_key,
+      email: user.email,
+      name: user.name,
+      password_hash: user.password_hash,
+      verified: user.verified,
+      last_seen: user.last_seen,
+      role: user.role,
+      api_key: user.api_key,
       uuid: Ecto.UUID.generate()
     }
   end
