@@ -9,112 +9,123 @@ defmodule Bandit.Module.ProjectModule do
 
   alias Bandit.Context.ProjectContext
   alias Bandit.Service.ValidatorService
+  alias Bandit.Module.TeamModule
 
   @doc """
-  Get Project
+  Get Project by ID
   """
   def get_project_by_id(id) do
-    case ValidatorService.validate_int(id) do
-      true ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
+    case ProjectContext.get_project_by_id(id) do
+      nil ->
+        {:not_found, "Project with ID #{id} not found"}
 
-        case project do
-          nil ->
-            {:not_found, "Project with ID #{id} not found"}
-
-          _ ->
-            {:ok, project}
-        end
-
-      false ->
-        {:error, "Invalid Project ID"}
+      project ->
+        {:ok, project}
     end
   end
 
   @doc """
-  Validate Auth Data
+  Get Project by UUID
   """
-  def is_allowed(params \\ %{}) do
-    project =
-      ProjectContext.get_project_by_name_environment(
-        params[:project],
-        params[:environment]
-      )
-
-    case project do
+  def get_project_by_uuid(uuid) do
+    case ProjectContext.get_project_by_uuid(uuid) do
       nil ->
-        {:not_found, "Project not found"}
+        {:not_found, "Project with UUID #{uuid} not found"}
 
-      _ ->
-        case {project.username == params[:username], project.secret == params[:secret]} do
-          {true, true} ->
-            {:success, "A valid username and secret"}
-
-          _ ->
-            {:failed, "Invalid username or secret"}
-        end
+      project ->
+        {:ok, project}
     end
+  end
+
+  @doc """
+  Get projects
+  """
+  def get_projects(offset, limit) do
+    ProjectContext.get_projects(offset, limit)
+  end
+
+  @doc """
+  Count projects
+  """
+  def count_projects() do
+    ProjectContext.count_projects()
+  end
+
+  @doc """
+  Get user projects
+  """
+  def get_projects(user_id, offset, limit) do
+    user_teams = TeamModule.get_user_teams(user_id)
+
+    teams_ids = []
+
+    teams_ids =
+      for user_team <- user_teams do
+        teams_ids ++ user_team.id
+      end
+
+    ProjectContext.get_projects_by_teams(teams_ids, offset, limit)
+  end
+
+  @doc """
+  Count user projects
+  """
+  def count_projects(user_id) do
+    user_teams = TeamModule.get_user_teams(user_id)
+
+    teams_ids = []
+
+    teams_ids =
+      for user_team <- user_teams do
+        teams_ids ++ user_team.id
+      end
+
+    ProjectContext.count_projects_by_teams(teams_ids)
   end
 
   @doc """
   Update Project
   """
-  def update_project(params \\ %{}) do
-    id = params[:id]
+  def update_project(data \\ %{}) do
+    uuid = ValidatorService.get_str(data[:uuid], "")
 
-    case ValidatorService.validate_int(id) do
-      true ->
-        project =
-          id
-          |> ValidatorService.parse_int()
-          |> ProjectContext.get_project_by_id()
+    case get_project_by_uuid(uuid) do
+      nil ->
+        {:not_found, "Project with ID #{uuid} not found"}
 
-        case project do
-          nil ->
-            {:not_found, "Project with ID #{id} not found"}
+      project ->
+        new_project =
+          ProjectContext.new_project(%{
+            name: ValidatorService.get_str(data[:name], project.name),
+            description: ValidatorService.get_str(data[:description], project.description),
+            team_id: ValidatorService.get_int(data[:team_id], project.team_id),
+            slug: project.slug
+          })
 
-          _ ->
-            new_project =
-              ProjectContext.new_project(%{
-                name: ValidatorService.get_str(params[:name], project.name),
-                description: ValidatorService.get_str(params[:description], project.description),
-                environment: ValidatorService.get_str(params[:environment], project.environment),
-                username: ValidatorService.get_str(params[:username], project.username),
-                secret: ValidatorService.get_str(params[:secret], project.secret)
-              })
+        case ProjectContext.update_project(project, new_project) do
+          {:ok, project} ->
+            {:ok, project}
 
-            case ProjectContext.update_project(project, new_project) do
-              {:ok, project} ->
-                {:ok, project}
+          {:error, changeset} ->
+            messages =
+              changeset.errors()
+              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
 
-              {:error, changeset} ->
-                messages =
-                  changeset.errors()
-                  |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
-
-                {:error, Enum.at(messages, 0)}
-            end
+            {:error, Enum.at(messages, 0)}
         end
-
-      false ->
-        {:error, "Invalid Project ID"}
     end
   end
 
   @doc """
   Create Project
   """
-  def create_project(params \\ %{}) do
+  def create_project(data \\ %{}) do
     project =
       ProjectContext.new_project(%{
-        name: params[:name],
-        description: params[:description],
-        environment: params[:environment],
-        username: params[:username],
-        secret: params[:secret]
+        name: data[:name],
+        description: data[:description],
+        slug: data[:slug],
+        team_id: data[:team_id]
       })
 
     case ProjectContext.create_project(project) do
@@ -131,21 +142,36 @@ defmodule Bandit.Module.ProjectModule do
   end
 
   @doc """
-  Delete Project By ID
+  Delete Project By UUID
   """
-  def delete_project_by_id(id) do
-    project =
-      id
-      |> ValidatorService.parse_int()
-      |> ProjectContext.get_project_by_id()
-
-    case project do
+  def delete_project_by_uuid(uuid) do
+    case ProjectContext.get_project_by_uuid(uuid) do
       nil ->
-        {:not_found, "Project with ID #{id} not found"}
+        {:not_found, "Project with UUID #{uuid} not found"}
+
+      project ->
+        ProjectContext.delete_project(project)
+        {:ok, "Project with UUID #{uuid} deleted successfully"}
+    end
+  end
+
+  @doc """
+  Count Team Projects
+  """
+  def count_projects_by_team(team_id) do
+    ProjectContext.count_projects_by_team(team_id)
+  end
+
+  @doc """
+  Check if a slug used with a team
+  """
+  def is_slug_used_in_team(slug, team_id) do
+    case ProjectContext.get_project_by_slug_team_id(slug, team_id) do
+      nil ->
+        false
 
       _ ->
-        ProjectContext.delete_project(project)
-        {:success, "Project with ID #{id} deleted successfully"}
+        true
     end
   end
 end

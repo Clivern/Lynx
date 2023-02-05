@@ -11,41 +11,28 @@ defmodule BanditWeb.ProjectController do
 
   require Logger
 
-  alias Bandit.Context.ProjectContext
   alias Bandit.Module.ProjectModule
   alias Bandit.Service.ValidatorService
 
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :only_super_users, only: [:list, :index, :create, :update, :delete]
+  plug :regular_user, only: [:list, :index, :create, :update, :delete]
 
-  defp only_super_users(conn, _opts) do
+  defp regular_user(conn, _opts) do
     Logger.info("Validate user permissions")
 
-    # If user not authenticated, return forbidden access
-    if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated")
+    if not conn.assigns[:is_logged] do
+      Logger.info("User doesn't have the right access permissions")
 
       conn
       |> put_status(:forbidden)
-      |> render("error.json", %{error: "Forbidden Access"})
-      |> halt()
+      |> render("error.json", %{message: "Forbidden Access"})
     else
-      # If user not super, return forbidden access
-      if conn.assigns[:user_role] != :super do
-        Logger.info("User doesn't have a super permission")
+      Logger.info("User has the right access permissions")
 
-        conn
-        |> put_status(:forbidden)
-        |> render("error.json", %{error: "Forbidden Access"})
-        |> halt()
-      else
-        Logger.info("User with id #{conn.assigns[:user_id]} can access this endpoint")
-      end
+      conn
     end
-
-    conn
   end
 
   @doc """
@@ -55,12 +42,20 @@ defmodule BanditWeb.ProjectController do
     limit = ValidatorService.get_int(params["limit"], @default_list_limit)
     offset = ValidatorService.get_int(params["offset"], @default_list_offset)
 
+    {projects, count} =
+      if conn.assigns[:is_super] do
+        {ProjectModule.get_projects(offset, limit), ProjectModule.count_projects()}
+      else
+        {ProjectModule.get_projects(conn.assigns[:user_id], offset, limit),
+         ProjectModule.count_projects(conn.assigns[:user_id])}
+      end
+
     render(conn, "list.json", %{
-      projects: ProjectContext.get_projects(offset, limit),
+      projects: projects,
       metadata: %{
         limit: limit,
         offset: offset,
-        totalCount: ProjectContext.count_projects()
+        totalCount: count
       }
     })
   end
@@ -73,9 +68,8 @@ defmodule BanditWeb.ProjectController do
       ProjectModule.create_project(%{
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
-        environment: ValidatorService.get_str(params["environment"], ""),
-        username: ValidatorService.get_str(params["username"], ""),
-        secret: ValidatorService.get_str(params["secret"], "")
+        slug: ValidatorService.get_str(params["slug"], ""),
+        team_id: ValidatorService.get_int(params["team_id"], 0)
       })
 
     case result do
@@ -94,24 +88,17 @@ defmodule BanditWeb.ProjectController do
   @doc """
   Index Project Endpoint
   """
-  def index(conn, params) do
-    result = ProjectModule.get_project(params["pid"])
-
-    case result do
+  def index(conn, %{"uuid" => uuid}) do
+    case ProjectModule.get_project_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
         |> render("error.json", %{error: msg})
 
-      {:exist, project} ->
+      {:ok, project} ->
         conn
         |> put_status(:ok)
         |> render("index.json", %{project: project})
-
-      {:error, msg} ->
-        conn
-        |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
     end
   end
 
@@ -121,12 +108,10 @@ defmodule BanditWeb.ProjectController do
   def update(conn, params) do
     result =
       ProjectModule.update_project(%{
-        id: ValidatorService.get_int(params["pid"], 0),
+        uuid: ValidatorService.get_str(params["uuid"], ""),
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
-        environment: ValidatorService.get_str(params["environment"], ""),
-        username: ValidatorService.get_str(params["username"], ""),
-        secret: ValidatorService.get_str(params["secret"], "")
+        team_id: ValidatorService.get_int(params["team_id"], 0)
       })
 
     case result do
@@ -150,23 +135,16 @@ defmodule BanditWeb.ProjectController do
   @doc """
   Delete Project Endpoint
   """
-  def delete(conn, params) do
-    result = ProjectModule.delete_project(params["pid"])
-
-    case result do
+  def delete(conn, %{"uuid" => uuid}) do
+    case ProjectModule.delete_project_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
         |> render("error.json", %{error: msg})
 
-      {:success, _} ->
+      {:ok, _} ->
         conn
         |> send_resp(:no_content, "")
-
-      {:error, msg} ->
-        conn
-        |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
     end
   end
 end

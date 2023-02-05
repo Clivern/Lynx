@@ -11,34 +11,22 @@ defmodule BanditWeb.EnvironmentController do
 
   require Logger
 
-  plug :only_super_users, only: [:list, :index, :create, :update, :delete]
+  plug :regular_user, only: [:list, :index, :create, :update, :delete]
 
-  defp only_super_users(conn, _opts) do
+  defp regular_user(conn, _opts) do
     Logger.info("Validate user permissions")
 
-    # If user not authenticated, return forbidden access
-    if conn.assigns[:is_logged] == false do
-      Logger.info("User is not authenticated")
+    if not conn.assigns[:is_logged] do
+      Logger.info("User doesn't have the right access permissions")
 
       conn
       |> put_status(:forbidden)
-      |> render("error.json", %{error: "Forbidden Access"})
-      |> halt()
+      |> render("error.json", %{message: "Forbidden Access"})
     else
-      # If user not super, return forbidden access
-      if conn.assigns[:user_role] != :super do
-        Logger.info("User doesn't have a super permission")
+      Logger.info("User has the right access permissions")
 
-        conn
-        |> put_status(:forbidden)
-        |> render("error.json", %{error: "Forbidden Access"})
-        |> halt()
-      else
-        Logger.info("User with id #{conn.assigns[:user_id]} can access this endpoint")
-      end
+      conn
     end
-
-    conn
   end
 
   @doc """

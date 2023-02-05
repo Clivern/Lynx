@@ -54,12 +54,15 @@ defmodule Bandit.Context.EnvironmentContext do
   end
 
   @doc """
-  Get environment by slug
+  Get environment by slug, project id, username and password
   """
-  def get_env_by_slug(slug) do
+  def get_env_by_slug_credentials(slug, project_id, username, secret) do
     from(
       e in Environment,
-      where: e.slug == ^slug
+      where: e.slug == ^slug,
+      where: e.project_id == ^project_id,
+      where: e.username == ^username,
+      where: e.secret == ^secret
     )
     |> Repo.one()
   end

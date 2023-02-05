@@ -6,6 +6,7 @@ defmodule BanditWeb.TeamView do
   use BanditWeb, :view
 
   alias Bandit.Module.UserModule
+  alias Bandit.Module.ProjectModule
 
   # Render teams list
   def render("list.json", %{teams: teams, metadata: metadata}) do
@@ -36,6 +37,7 @@ defmodule BanditWeb.TeamView do
       name: team.name,
       slug: team.slug,
       usersCount: UserModule.count_team_users(team.id),
+      projectsCount: ProjectModule.count_projects_by_team(team.id),
       description: team.description,
       createdAt: team.inserted_at,
       updatedAt: team.updated_at

@@ -30,12 +30,11 @@ defmodule BanditWeb.ProjectView do
   # Format project
   defp render_project(project) do
     %{
-      id: project.id,
+      id: project.uuid,
       name: project.name,
+      slug: project.slug,
       description: project.description,
-      environment: project.environment,
-      username: project.username,
-      secret: project.secret,
+      teamId: project.team_id,
       createdAt: project.inserted_at,
       updatedAt: project.updated_at
     }

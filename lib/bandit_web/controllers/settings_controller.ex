@@ -54,7 +54,7 @@ defmodule BanditWeb.SettingsController do
       for config_result <- config_results do
         case config_result do
           {:error, msg} ->
-            Logger.info("Incoming request is invalid: #{msg}")
+            Logger.info("Request is invalid: #{msg}")
             raise InvalidRequest, message: "Invalid Request"
 
           _ ->

@@ -65,12 +65,13 @@ defmodule Bandit.Context.ProjectContext do
   end
 
   @doc """
-  Get project by slug
+  Get project by slug and team
   """
-  def get_project_by_slug(slug) do
+  def get_project_by_slug_team_id(slug, team_id) do
     from(
       p in Project,
-      where: p.slug == ^slug
+      where: p.slug == ^slug,
+      where: p.team_id == ^team_id
     )
     |> limit(1)
     |> Repo.one()
@@ -100,21 +101,68 @@ defmodule Bandit.Context.ProjectContext do
   end
 
   @doc """
-  Retrieve projects
+  Get projects
   """
-  def get_team_projects(team_id, offset, limit) do
+  def get_projects(offset, limit) do
     from(p in Project,
+      order_by: [desc: p.inserted_at],
       limit: ^limit,
-      offset: ^offset,
-      where: p.team_id == ^team_id
+      offset: ^offset
     )
     |> Repo.all()
   end
 
   @doc """
-  Count all projects
+  Count projects
   """
-  def count_team_projects(team_id) do
+  def count_projects() do
+    from(p in Project,
+      select: count(p.id)
+    )
+    |> Repo.one()
+  end
+
+  @doc """
+  Get projects by teams
+  """
+  def get_projects_by_teams(teams_ids, offset, limit) do
+    from(p in Project,
+      order_by: [desc: p.inserted_at],
+      where: p.team_id in ^teams_ids,
+      limit: ^limit,
+      offset: ^offset
+    )
+    |> Repo.all()
+  end
+
+  @doc """
+  Count projects by teams
+  """
+  def count_projects_by_teams(teams_ids) do
+    from(p in Project,
+      select: count(p.id),
+      where: p.team_id in ^teams_ids
+    )
+    |> Repo.one()
+  end
+
+  @doc """
+  Get projects by team
+  """
+  def get_projects_by_team(team_id, offset, limit) do
+    from(p in Project,
+      order_by: [desc: p.inserted_at],
+      where: p.team_id == ^team_id,
+      limit: ^limit,
+      offset: ^offset
+    )
+    |> Repo.all()
+  end
+
+  @doc """
+  Count projects by team
+  """
+  def count_projects_by_team(team_id) do
     from(p in Project,
       select: count(p.id),
       where: p.team_id == ^team_id
