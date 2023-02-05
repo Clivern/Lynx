@@ -14,10 +14,23 @@ defmodule Bandit.Module.UserModule do
   @doc """
   Get User By ID
   """
-  def get_user_by_id(user_id) do
-    case UserContext.get_user_by_id(user_id) do
+  def get_user_by_id(id) do
+    case UserContext.get_user_by_id(id) do
       nil ->
         {:not_found, nil}
+
+      user ->
+        {:ok, user}
+    end
+  end
+
+  @doc """
+  Get user by UUID
+  """
+  def get_user_by_uuid(uuid) do
+    case UserContext.get_user_by_uuid(uuid) do
+      nil ->
+        {:not_found, "Team with UUID #{uuid} not found"}
 
       user ->
         {:ok, user}
@@ -117,16 +130,14 @@ defmodule Bandit.Module.UserModule do
   end
 
   @doc """
-  Delete User
+  Delete User by UUID
   """
   def delete_user_by_uuid(uuid) do
-    user = uuid |> UserContext.get_user_by_uuid()
-
-    case user do
+    case UserContext.get_user_by_uuid(uuid) do
       nil ->
         {:not_found, "User with ID #{uuid} not found"}
 
-      _ ->
+      user ->
         UserContext.delete_user(user)
         {:ok, "User with ID #{uuid} deleted successfully"}
     end
@@ -150,9 +161,7 @@ defmodule Bandit.Module.UserModule do
   Verify if email is used
   """
   def is_email_used(email) do
-    user = UserContext.get_user_by_email(email)
-
-    case user do
+    case UserContext.get_user_by_email(email) do
       nil ->
         false
 

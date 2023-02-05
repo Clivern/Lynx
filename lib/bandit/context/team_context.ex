@@ -65,6 +65,19 @@ defmodule Bandit.Context.TeamContext do
   end
 
   @doc """
+  Validate Team UUID
+  """
+  def validate_team_uuid(uuid) do
+    case get_team_by_uuid(uuid) do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
+  end
+
+  @doc """
   Get team by uuid
   """
   def get_team_by_uuid(uuid) do

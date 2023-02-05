@@ -66,13 +66,11 @@ defmodule Bandit.Module.TeamModule do
   def update_team(data \\ %{}) do
     uuid = ValidatorService.get_str(data[:uuid], "")
 
-    team = uuid |> TeamContext.get_team_by_uuid()
-
-    case team do
+    case TeamContext.get_team_by_uuid(uuid) do
       nil ->
         {:not_found, "Team with UUID #{uuid} not found"}
 
-      _ ->
+      team ->
         new_team =
           TeamContext.new_team(%{
             name: ValidatorService.get_str(data[:name], team.name),
@@ -98,16 +96,11 @@ defmodule Bandit.Module.TeamModule do
   Get team by an id
   """
   def get_team_by_id(id) do
-    team =
-      id
-      |> ValidatorService.parse_int()
-      |> TeamContext.get_team_by_id()
-
-    case team do
+    case TeamContext.get_team_by_id(id) do
       nil ->
         {:not_found, "Team with ID #{id} not found"}
 
-      _ ->
+      team ->
         {:ok, team}
     end
   end
@@ -116,15 +109,11 @@ defmodule Bandit.Module.TeamModule do
   Get team by UUID
   """
   def get_team_by_uuid(uuid) do
-    uuid = ValidatorService.get_str(uuid, "")
-
-    team = uuid |> TeamContext.get_team_by_uuid()
-
-    case team do
+    case TeamContext.get_team_by_uuid(uuid) do
       nil ->
         {:not_found, "Team with UUID #{uuid} not found"}
 
-      _ ->
+      team ->
         {:ok, team}
     end
   end
@@ -171,15 +160,11 @@ defmodule Bandit.Module.TeamModule do
   Delete a Team by UUID
   """
   def delete_team_by_uuid(uuid) do
-    uuid = ValidatorService.get_str(uuid, "")
-
-    team = uuid |> TeamContext.get_team_by_uuid()
-
-    case team do
+    case TeamContext.get_team_by_uuid(uuid) do
       nil ->
         {:not_found, "Team with ID #{uuid} not found"}
 
-      _ ->
+      team ->
         TeamContext.delete_team(team)
         {:ok, "Team with ID #{uuid} deleted successfully"}
     end
@@ -190,5 +175,12 @@ defmodule Bandit.Module.TeamModule do
   """
   def validate_team_id(id) do
     TeamContext.validate_team_id(id)
+  end
+
+  @doc """
+  Validate Team UUID
+  """
+  def validate_team_uuid(uuid) do
+    TeamContext.validate_team_uuid(uuid)
   end
 end

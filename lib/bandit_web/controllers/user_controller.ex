@@ -10,7 +10,9 @@ defmodule BanditWeb.UserController do
   use BanditWeb, :controller
 
   alias Bandit.Module.UserModule
+  alias Bandit.Exception.InvalidRequest
   alias Bandit.Service.ValidatorService
+  alias Bandit.Service.AuthService
 
   require Logger
 
@@ -55,19 +57,65 @@ defmodule BanditWeb.UserController do
   @doc """
   Index Action Endpoint
   """
-  def index(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+  def index(conn, %{"uuid" => uuid}) do
+    case UserModule.get_user_by_uuid(uuid) do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{error: msg})
+
+      {:ok, user} ->
+        conn
+        |> put_status(:ok)
+        |> render("index.json", %{user: user})
+    end
   end
 
   @doc """
   Create Action Endpoint
   """
   def create(conn, _params) do
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+    try do
+      validate_create_request(params)
+
+      email = ValidatorService.get_str(params["email"], "")
+      name = ValidatorService.get_str(params["name"], "")
+      role = ValidatorService.get_str(params["role"], "")
+      password = ValidatorService.get_str(params["password"], "")
+      api_key = AuthService.get_random_salt()
+      app_key = SettingsModule.get_config("app_key", "")
+
+      result =
+        UserModule.create_user(%{
+          name: name,
+          email: email,
+          api_key: api_key,
+          role: role,
+          password: password,
+          app_key: app_key
+        })
+
+      case result do
+        {:error, msg} ->
+          Logger.info("Incoming request is invalid: #{msg}")
+          raise InvalidRequest, message: "Invalid Request"
+
+        {:ok, user} ->
+          conn
+          |> put_status(:created)
+          |> render("create.json", %{user: user})
+      end
+    rescue
+      e in InvalidRequest ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: e.message})
+
+      _ ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{message: "Internal server error"})
+    end
   end
 
   @doc """
@@ -83,9 +131,9 @@ defmodule BanditWeb.UserController do
   Delete Action Endpoint
   """
   def delete(conn, %{"uuid" => uuid}) do
-    result = UserModule.delete_user_by_uuid(uuid)
+    Logger.info("Attempt to delete user with uuid #{uuid}")
 
-    case result do
+    case UserModule.delete_user_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
@@ -94,6 +142,33 @@ defmodule BanditWeb.UserController do
       {:ok, _} ->
         conn
         |> send_resp(:no_content, "")
+    end
+  end
+
+  defp validate_create_request(params) do
+    email = ValidatorService.get_str(params["email"], "")
+    name = ValidatorService.get_str(params["name"], "")
+    role = ValidatorService.get_str(params["role"], "regular")
+    password = ValidatorService.get_str(params["password"], "")
+
+    if ValidatorService.is_empty(email) do
+      raise InvalidRequest, message: "User email is required"
+    end
+
+    if ValidatorService.is_empty(name) do
+      raise InvalidRequest, message: "User name is required"
+    end
+
+    if ValidatorService.is_empty(role) do
+      raise InvalidRequest, message: "User role is required"
+    end
+
+    if ValidatorService.is_empty(password) do
+      raise InvalidRequest, message: "User password is required"
+    end
+
+    if UserModule.is_email_used(email) do
+      raise InvalidRequest, message: "Email is already used"
     end
   end
 end

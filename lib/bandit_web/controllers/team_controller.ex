@@ -62,6 +62,7 @@ defmodule BanditWeb.TeamController do
 
       slug = ValidatorService.get_str(params["slug"], "")
 
+      # Validate if slug is used before
       if TeamModule.is_slug_used(slug) do
         raise InvalidRequest, message: "Team slug is used"
       end
@@ -106,9 +107,7 @@ defmodule BanditWeb.TeamController do
   Index Action Endpoint
   """
   def index(conn, %{"uuid" => uuid}) do
-    result = TeamModule.get_team_by_uuid(uuid)
-
-    case team do
+    case TeamModule.get_team_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
@@ -168,9 +167,9 @@ defmodule BanditWeb.TeamController do
   Delete Action Endpoint
   """
   def delete(conn, %{"uuid" => uuid}) do
-    result = TeamModule.delete_team_by_uuid(uuid)
+    Logger.info("Attempt to delete team with uuid #{uuid}")
 
-    case result do
+    case TeamModule.delete_team_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
