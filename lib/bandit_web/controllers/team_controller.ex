@@ -171,11 +171,15 @@ defmodule BanditWeb.TeamController do
 
     case TeamModule.delete_team_by_uuid(uuid) do
       {:not_found, msg} ->
+        Logger.info("Team with uuid #{uuid} not found")
+
         conn
         |> put_status(:not_found)
         |> render("error.json", %{error: msg})
 
       {:ok, _} ->
+        Logger.info("Team with uuid #{uuid} is deleted")
+
         conn
         |> send_resp(:no_content, "")
     end
