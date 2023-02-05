@@ -122,6 +122,7 @@ defmodule BanditWeb.UserController do
   Update Action Endpoint
   """
   def update(conn, _params) do
+    # @TODO: User Update Endpoint
     conn
     |> put_resp_content_type("application/json")
     |> send_resp(200, Jason.encode!(%{status: "ok"}))
