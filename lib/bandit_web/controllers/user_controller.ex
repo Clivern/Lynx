@@ -74,7 +74,7 @@ defmodule BanditWeb.UserController do
   @doc """
   Create Action Endpoint
   """
-  def create(conn, _params) do
+  def create(conn, params) do
     try do
       validate_create_request(params)
 

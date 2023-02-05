@@ -162,41 +162,20 @@ defmodule BanditWeb.PageController do
   @doc """
   Teams List Page
   """
-  def list_teams(conn, _params) do
+  def teams(conn, _params) do
     case conn.assigns[:is_super] do
       false ->
         conn
         |> redirect(to: "/")
 
       true ->
-        users = UserModule.get_users(0, 1000)
-        teams = TeamModule.get_teams(0, 1000)
-
-        new_teams = []
-
-        new_teams =
-          for team <- teams do
-            new_teams ++
-              %{
-                id: team.id,
-                uuid: team.uuid,
-                name: team.name,
-                description: team.description,
-                count: UserModule.count_team_users(team.id),
-                inserted_at: team.inserted_at,
-                updated_at: team.updated_at
-              }
-          end
-
         conn
-        |> render("list_teams.html",
+        |> render("teams.html",
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
             user_name: conn.assigns[:user_name],
-            user_email: conn.assigns[:user_email],
-            users: users,
-            teams: new_teams
+            user_email: conn.assigns[:user_email]
           }
         )
     end
@@ -205,23 +184,20 @@ defmodule BanditWeb.PageController do
   @doc """
   Users List Page
   """
-  def list_users(conn, _params) do
+  def users(conn, _params) do
     case conn.assigns[:is_super] do
       false ->
         conn
         |> redirect(to: "/")
 
       true ->
-        users = UserModule.get_users(0, 1000)
-
         conn
-        |> render("list_users.html",
+        |> render("users.html",
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
             user_name: conn.assigns[:user_name],
-            user_email: conn.assigns[:user_email],
-            users: users
+            user_email: conn.assigns[:user_email]
           }
         )
     end
