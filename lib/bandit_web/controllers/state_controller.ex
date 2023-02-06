@@ -9,40 +9,36 @@ defmodule BanditWeb.StateController do
 
   use BanditWeb, :controller
 
+  require Logger
+
   alias Bandit.Module.StateModule
+  alias Bandit.Module.EnvironmentModule
   alias Bandit.Service.ValidatorService
-  alias Bandit.Module.ProjectModule
 
   plug :auth, only: [:create, :index]
 
   defp auth(conn, _opts) do
     with {user, pass} <- Plug.BasicAuth.parse_basic_auth(conn) do
       result =
-        ProjectModule.is_allowed(%{
-          project: conn.params["project"],
-          environment: conn.params["environment"],
+        EnvironmentModule.is_access_allowed(%{
+          team_slug: conn.params["t_slug"],
+          project_slug: conn.params["p_slug"],
+          env_slug: conn.params["e_slug"],
           username: user,
-          secret: pass
+          secret: secret
         })
 
       case result do
-        {:not_found, msg} ->
-          conn
-          |> put_status(:not_found)
-          |> render("error.json", %{
-            message: msg
-          })
-          |> halt()
+        {:error, msg} ->
+          Logger.info(msg)
 
-        {:failed, msg} ->
           conn
           |> put_status(:forbidden)
           |> render("error.json", %{
-            message: msg
+            message: "Access is forbidden"
           })
-          |> halt()
 
-        {:success, _} ->
+        {:ok, _} ->
           conn
       end
     else
