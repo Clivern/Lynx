@@ -1,0 +1,53 @@
+/* Dashboard Ecommerce */
+body.horizontal-active .hp-ecommerce-detail-card img {
+  max-width: 80%;
+}
+@media screen and (max-width: 1599px) {
+  body.horizontal-active .hp-ecommerce-detail-card img {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 1199px) {
+  body.horizontal-active .hp-ecommerce-detail-card img {
+    max-width: 85%;
+  }
+}
+@media screen and (max-width: 767px) {
+  body.horizontal-active .hp-ecommerce-detail-card img {
+    max-width: 100%;
+  }
+}
+
+.hp-ecommerce-detail-card img {
+  position: absolute;
+  bottom: -50px;
+  right: -70px;
+  max-width: 90%;
+}
+@media screen and (max-width: 1599px) {
+  .hp-ecommerce-detail-card img {
+    max-width: 100%;
+  }
+}
+@media screen and (max-width: 1199px) {
+  .hp-ecommerce-detail-card img {
+    max-width: 85%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hp-ecommerce-detail-card img {
+    max-width: 100%;
+  }
+}
+
+.hp-dashboard-ecommerce-product-slider .slick-slider {
+  width: 100%;
+}
+.hp-dashboard-ecommerce-product-slider-button {
+  position: absolute;
+  top: -56px;
+  right: 16px;
+}
+.hp-dashboard-ecommerce-product-slider-button.prev-button {
+  right: 64px;
+}

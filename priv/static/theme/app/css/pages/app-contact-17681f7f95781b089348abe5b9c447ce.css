@@ -1,0 +1,14 @@
+/* App Contact */
+.hp-contact-card .table > thead > tr > th {
+  background: none;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 500;
+}
+.hp-contact-card .table > thead > tr > th:nth-child(2), .hp-contact-card .table > thead > tr > th:nth-child(6) {
+  min-width: 200px;
+}
+.hp-contact-card .table > thead > tr > th,
+.hp-contact-card .table > tbody > tr > td {
+  padding: 16px 32px;
+}

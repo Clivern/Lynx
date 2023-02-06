@@ -1,0 +1,37 @@
+/* Invoice */
+@media screen and (max-width: 767px) {
+  .hp-invoice-table-desc {
+    min-width: 300px;
+  }
+}
+
+@media screen and (max-width: 767px) {
+  .hp-invoice-table-th {
+    min-width: 70px;
+  }
+}
+
+.hp-invoice-card p {
+  margin: 0;
+  color: #636e72;
+  line-height: 21px;
+}
+
+@media print {
+  body {
+    padding: 0;
+    margin: 0;
+  }
+
+  .hp-sidebar,
+header,
+footer,
+.hp-print-none,
+.hp-exchange-card {
+    display: none;
+  }
+
+  .hp-invoice-card {
+    border-width: 1px !important;
+  }
+}

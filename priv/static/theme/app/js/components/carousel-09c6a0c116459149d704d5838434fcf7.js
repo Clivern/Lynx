@@ -1,0 +1,2 @@
+// Carousel
+new bootstrap.Carousel()

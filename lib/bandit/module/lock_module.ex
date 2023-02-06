@@ -10,6 +10,7 @@ defmodule Bandit.Module.LockModule do
   alias Bandit.Context.LockContext
   alias Bandit.Context.ProjectContext
   alias Bandit.Context.TeamContext
+  alias Bandit.Context.EnvironmentContext
 
   @doc """
   Lock an environment

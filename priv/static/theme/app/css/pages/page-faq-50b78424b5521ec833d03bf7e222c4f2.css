@@ -1,0 +1,38 @@
+/* FAQ */
+.hp-collapse-arrow {
+  display: inline-block;
+  -webkit-transform: rotate(90deg);
+          transform: rotate(90deg);
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+
+.collapsed .hp-collapse-arrow {
+  -webkit-transform: rotate(0deg);
+          transform: rotate(0deg);
+}
+
+@media screen and (max-width: 767px) {
+  .hp-faq-tabs .nav-item {
+    min-width: 190px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+  }
+}
+.hp-faq-tabs .nav-link i {
+  -webkit-transition: 0.15s ease-in-out;
+  transition: 0.15s ease-in-out;
+}
+.hp-faq-tabs .nav-link.active i {
+  color: #ffffff !important;
+}
+.hp-faq-tabs .nav-link.active:hover i {
+  color: #ffffff !important;
+}
+.hp-faq-tabs .nav-link:hover i {
+  color: #0063f7 !important;
+}

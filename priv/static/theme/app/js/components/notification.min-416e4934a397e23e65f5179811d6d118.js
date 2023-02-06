@@ -1,0 +1,1 @@
+$(".toast-btn").click((function(){let t=$(this).data("id");$(".toast").each((function(){let a=$(this).data("id");a&&t===a&&new bootstrap.Toast($(this)).show()}))}));

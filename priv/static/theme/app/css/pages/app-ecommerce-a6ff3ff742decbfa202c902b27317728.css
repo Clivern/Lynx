@@ -1,0 +1,91 @@
+/* App Ecommerce */
+.hp-ecommerce-app {
+  /* Shop Sidebar */
+  /* Shop Header */
+  /* Shop Content */
+  /* Detail */
+  /* Checkout */
+}
+.hp-ecommerce-app-sidebar-mobile {
+  display: none;
+}
+.hp-ecommerce-app-sidebar-mobile-btn {
+  display: none;
+}
+@media screen and (max-width: 991px) {
+  .hp-ecommerce-app-sidebar {
+    display: none;
+  }
+  .hp-ecommerce-app-sidebar-mobile {
+    width: 255px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+  }
+  .hp-ecommerce-app-sidebar-mobile .hp-ecommerce-app-sidebar {
+    display: block;
+  }
+  .hp-ecommerce-app-sidebar-mobile-btn {
+    display: block;
+  }
+}
+.hp-ecommerce-app-header .nav .btn.active svg > path {
+  fill: #0010f7;
+}
+@media screen and (max-width: 767px) {
+  .hp-ecommerce-app-header-search {
+    -webkit-box-flex: 0 !important;
+        -ms-flex: 0 0 100% !important;
+            flex: 0 0 100% !important;
+  }
+  .hp-ecommerce-app-header-select {
+    -webkit-box-flex: 1 !important;
+        -ms-flex: 1 0 0px !important;
+            flex: 1 0 0 !important;
+  }
+}
+.hp-ecommerce-app-content .hp-eCommerceCardOne img {
+  max-height: auto;
+}
+.hp-ecommerce-app-detail-slider img {
+  max-height: 600px;
+  padding: 10px;
+}
+.hp-ecommerce-app-detail-slider-2 {
+  width: 80%;
+  margin: 0 auto;
+}
+.hp-ecommerce-app-detail-slider-2 .hp-slide-item > div {
+  width: 75px;
+  height: 75px;
+}
+.hp-ecommerce-app-detail-slider-2 .swiper-slide-active .hp-slide-item > div {
+  border-color: #636e72 !important;
+}
+@media screen and (max-width: 767px) {
+  .hp-ecommerce-app-detail-slider-2 {
+    width: 100%;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hp-ecommerce-app-checkout-item-img {
+    -webkit-box-flex: 0 !important;
+        -ms-flex: 0 0 100% !important;
+            flex: 0 0 100% !important;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hp-ecommerce-app-checkout-item-text {
+    -webkit-box-flex: 0 !important;
+        -ms-flex: 0 0 100% !important;
+            flex: 0 0 100% !important;
+  }
+}
+.hp-ecommerce-app-checkout-title-table {
+  padding-left: 190px;
+}
+@media screen and (max-width: 767px) {
+  .hp-ecommerce-app-checkout-title-table {
+    display: none;
+  }
+}

@@ -1,0 +1,44 @@
+/* Error */
+.hp-error-content {
+  min-height: calc(100vh - 189px);
+}
+.hp-error-content-title {
+  font-size: 22vw;
+  line-height: 1.2;
+}
+@media screen and (max-width: 1199px) {
+  .hp-error-content-title {
+    font-size: 32vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hp-error-content-title {
+    font-size: 45vw;
+  }
+}
+.hp-error-content .hp-comingsoon-timer-item {
+  min-width: 200px;
+}
+.hp-error-content .hp-comingsoon-timer-item span:nth-child(1) {
+  font-size: 100px;
+}
+@media screen and (max-width: 1199px) {
+  .hp-error-content .hp-comingsoon-timer-item {
+    min-width: 16vw;
+  }
+  .hp-error-content .hp-comingsoon-timer-item span:nth-child(1) {
+    font-size: 8vw;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hp-error-content .hp-comingsoon-timer-item {
+    min-width: 18vw;
+  }
+  .hp-error-content .hp-comingsoon-timer-item span:nth-child(1) {
+    font-size: 11vw;
+    margin-bottom: -8px;
+  }
+  .hp-error-content .hp-comingsoon-timer-item span:nth-child(2) {
+    font-size: 3vw;
+  }
+}

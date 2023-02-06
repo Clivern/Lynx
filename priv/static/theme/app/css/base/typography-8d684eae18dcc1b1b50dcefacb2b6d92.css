@@ -1,0 +1,141 @@
+/* Typography */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  color: #2d3436;
+  font-weight: 500;
+}
+
+h1 {
+  font-size: 42px;
+  line-height: 48px;
+}
+@media screen and (max-width: 767px) {
+  h1 {
+    font-size: 24px;
+    line-height: 28px;
+  }
+}
+
+h2 {
+  font-size: 28px;
+  line-height: 42px;
+}
+
+h3 {
+  font-size: 24px;
+  line-height: 28px;
+}
+
+h4 {
+  font-size: 20px;
+  line-height: 24px;
+}
+
+h5 {
+  font-size: 16px;
+  line-height: 24px;
+}
+
+h6 {
+  font-size: 14px;
+}
+
+.h1 {
+  font-size: 42px !important;
+  line-height: 48px !important;
+}
+@media screen and (max-width: 767px) {
+  .h1 {
+    font-size: 24px !important;
+    line-height: 28px !important;
+  }
+}
+
+.h2 {
+  font-size: 28px !important;
+  line-height: 42px !important;
+}
+
+.h3 {
+  font-size: 24px !important;
+  line-height: 28px !important;
+}
+
+.h4 {
+  font-size: 20px !important;
+  line-height: 24px !important;
+}
+
+.h5 {
+  font-size: 16px !important;
+  line-height: 24px !important;
+}
+
+.h6 {
+  font-size: 14px !important;
+}
+
+.hp-caption {
+  font-size: 12px;
+  line-height: 18px;
+  font-weight: 500;
+}
+
+.hp-p1-body {
+  font-size: 14px;
+  line-height: 21px;
+  color: #636e72;
+  font-weight: 400;
+}
+
+.hp-p2-body {
+  font-size: 14px;
+  line-height: 21px;
+  color: #636e72;
+  font-weight: 200;
+}
+
+.hp-button {
+  font-size: 14px;
+  line-height: 16px;
+  color: #636e72;
+  font-weight: 500;
+}
+
+.hp-placeholder {
+  font-size: 14px;
+  line-height: 16px;
+  color: #636e72;
+  font-weight: 300;
+}
+
+.hp-input-description {
+  font-size: 10px;
+  line-height: 12px;
+  color: #636e72;
+  font-weight: 500;
+}
+
+.hp-input-label {
+  font-size: 14px;
+  line-height: 16px;
+  color: #636e72;
+  font-weight: 500;
+}
+
+.hp-badge-text {
+  font-size: 12px;
+  line-height: 12px;
+  color: #636e72;
+  font-weight: 500;
+}

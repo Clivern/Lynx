@@ -1,0 +1,68 @@
+/* Pricing */
+.hp-pricing-billed-text.active {
+  color: #0010f7 !important;
+}
+
+.hp-pricing-item {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 19%;
+          flex: 0 0 19%;
+  max-width: 210px;
+}
+.hp-pricing-item-best-button {
+  width: 100%;
+  height: auto;
+  white-space: initial;
+  line-height: 1.2;
+}
+.hp-pricing-item-special {
+  background-color: #0010f7;
+  border-color: #0010f7 !important;
+}
+.hp-pricing-item-special .hp-pricing-item-title, .hp-pricing-item-special .hp-pricing-item-price {
+  color: #ebfafa;
+}
+.hp-pricing-item-special .hp-pricing-item-subtitle {
+  color: #00f7bf !important;
+}
+.hp-pricing-item-special .hp-pricing-item-billed, .hp-pricing-item-special .hp-pricing-item-list {
+  color: #55b1f3 !important;
+}
+.hp-pricing-item-special .hp-pricing-item-list svg path {
+  fill: #ebfafa;
+}
+.hp-pricing-item-special button.btn {
+  color: #0010f7 !important;
+  background-color: #ebfafa !important;
+}
+.hp-pricing-item-special button.btn:hover {
+  color: #ffffff !important;
+}
+@media screen and (max-width: 1199px) {
+  .hp-pricing-item {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 40%;
+            flex: 0 0 40%;
+    max-width: 40%;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
+    -webkit-box-pack: justify;
+        -ms-flex-pack: justify;
+            justify-content: space-between;
+    -ms-flex-item-align: normal;
+        align-self: normal;
+  }
+}
+@media screen and (max-width: 767px) {
+  .hp-pricing-item {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+    max-width: 100%;
+  }
+}

@@ -50,14 +50,15 @@ defmodule BanditWeb.StateController do
   Create State Endpoint
   """
   def create(conn, params) do
-    body = Map.drop(params, ["project", "environment"]) |> Jason.encode!()
+    body = Map.drop(params, ["t_slug", "p_slug", "e_slug"]) |> Jason.encode!()
 
     result =
       StateModule.add_state(%{
-        project: ValidatorService.get_str(params["project"], ""),
-        environment: ValidatorService.get_str(params["environment"], ""),
-        state_name: "_tf_state_",
-        state_value: body
+        t_slug: ValidatorService.get_str(params["t_slug"], ""),
+        p_slug: ValidatorService.get_str(params["p_slug"], ""),
+        e_slug: ValidatorService.get_str(params["e_slug"], ""),
+        name: "_tf_state_",
+        value: body
       })
 
     case result do
@@ -68,7 +69,7 @@ defmodule BanditWeb.StateController do
           message: "Project not found"
         })
 
-      :success ->
+      {:success, _} ->
         conn
         |> put_resp_content_type("application/json")
         |> send_resp(200, body)
@@ -88,8 +89,9 @@ defmodule BanditWeb.StateController do
   def index(conn, params) do
     result =
       StateModule.get_latest_state(%{
-        project: ValidatorService.get_str(params["project"], ""),
-        environment: ValidatorService.get_str(params["environment"], "")
+        t_slug: ValidatorService.get_str(params["t_slug"], ""),
+        p_slug: ValidatorService.get_str(params["p_slug"], ""),
+        e_slug: ValidatorService.get_str(params["e_slug"], "")
       })
 
     case result do

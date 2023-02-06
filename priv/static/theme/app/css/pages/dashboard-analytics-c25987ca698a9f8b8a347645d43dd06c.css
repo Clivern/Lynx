@@ -1,0 +1,35 @@
+/* Dashboard analytics */
+.hp-analytics-col-2 {
+  -webkit-box-flex: 0;
+      -ms-flex: 0 0 360px;
+          flex: 0 0 360px;
+}
+@media screen and (max-width: 1199px) {
+  .hp-analytics-col-2 {
+    -webkit-box-flex: 0;
+        -ms-flex: 0 0 100%;
+            flex: 0 0 100%;
+  }
+}
+
+.hp-dashboard-line {
+  display: none;
+}
+
+body.content-width-boxed .hp-dashboard-line {
+  display: block;
+}
+@media screen and (max-width: 1199px) {
+  body.content-width-boxed .hp-dashboard-line {
+    display: none;
+  }
+}
+
+.hp-dashboard-feature-card .hp-dashboard-feature-card-icon svg {
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+}
+.hp-dashboard-feature-card:hover .hp-dashboard-feature-card-icon svg {
+  -webkit-transform: scale(1.2);
+          transform: scale(1.2);
+}

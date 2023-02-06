@@ -9,30 +9,36 @@ defmodule Bandit.Module.StateModule do
 
   alias Bandit.Context.StateContext
   alias Bandit.Context.ProjectContext
+  alias Bandit.Context.EnvironmentContext
+  alias Bandit.Context.TeamContext
 
   @doc """
   Get latest state
   """
   def get_latest_state(params \\ %{}) do
-    project =
-      ProjectContext.get_project_by_name_environment(
-        params[:project],
-        params[:environment]
-      )
-
-    case project do
+    case TeamContext.get_team_by_slug(params[:t_slug]) do
       nil ->
-        {:not_found, "Project not found"}
+        {:not_found, "Team not found"}
 
-      _ ->
-        result = StateContext.get_latest_state_by_project_id(project.id)
-
-        case result do
+      team ->
+        case ProjectContext.get_project_by_slug_team_id(params[:p_slug], team.id) do
           nil ->
-            {:no_state, ""}
+            {:not_found, "Project not found"}
 
-          _ ->
-            {:state_found, result}
+          project ->
+            case EnvironmentContext.get_env_by_slug_project(project.id, params[:e_slug]) do
+              nil ->
+                {:not_found, "Environment not found"}
+
+              env ->
+                case StateContext.get_latest_state_by_environment_id(env.id) do
+                  nil ->
+                    {:no_state, ""}
+
+                  state ->
+                    {:state_found, state}
+                end
+            end
         end
     end
   end
@@ -41,34 +47,40 @@ defmodule Bandit.Module.StateModule do
   Add a new state
   """
   def add_state(params \\ %{}) do
-    project =
-      ProjectContext.get_project_by_name_environment(
-        params[:project],
-        params[:environment]
-      )
-
-    case project do
+    case TeamContext.get_team_by_slug(params[:t_slug]) do
       nil ->
-        {:not_found, "Project not found"}
+        {:not_found, "Team not found"}
 
-      _ ->
-        state =
-          StateContext.new_state(%{
-            project_id: project.id,
-            name: params[:state_name],
-            value: params[:state_value]
-          })
+      team ->
+        case ProjectContext.get_project_by_slug_team_id(params[:p_slug], team.id) do
+          nil ->
+            {:not_found, "Project not found"}
 
-        case StateContext.create_state(state) do
-          {:ok, _} ->
-            :success
+          project ->
+            case EnvironmentContext.get_env_by_slug_project(project.id, params[:e_slug]) do
+              nil ->
+                {:not_found, "Environment not found"}
 
-          {:error, changeset} ->
-            messages =
-              changeset.errors()
-              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+              env ->
+                state =
+                  StateContext.new_state(%{
+                    environment_id: env.id,
+                    name: params[:name],
+                    value: params[:value]
+                  })
 
-            {:error, Enum.at(messages, 0)}
+                case StateContext.create_state(state) do
+                  {:ok, _} ->
+                    {:success, ""}
+
+                  {:error, changeset} ->
+                    messages =
+                      changeset.errors()
+                      |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+                    {:error, Enum.at(messages, 0)}
+                end
+            end
         end
     end
   end

@@ -1,0 +1,2271 @@
+/* Dark Color Variables */
+/* Dark Text Color Hover Map */
+body.dark {
+  /* Dark Text Color Map */
+  /* Dark Background Color Hover Map */
+  /* Dark Background Color Map */
+  /* Dark Background Hover Map */
+  /* Dark Background Map */
+  /* Dark Border Color Hover Map */
+  /* Dark Border Color Map */
+  /* Dark Fill Hover Map */
+  /* Dark Fill Map */
+  /* Dark Stroke Hover Map */
+  /* Dark Stroke Map */
+}
+body.dark .hp-hover-text-color-dark-0:hover {
+  color: #FFFFFF !important;
+}
+body.dark .hp-hover-text-color-dark-5:hover {
+  color: #F5F5F5 !important;
+}
+body.dark .hp-hover-text-color-dark-10:hover {
+  color: #F0F0F0 !important;
+}
+body.dark .hp-hover-text-color-dark-15:hover {
+  color: #E1E1E1 !important;
+}
+body.dark .hp-hover-text-color-dark-20:hover {
+  color: #D7D7D7 !important;
+}
+body.dark .hp-hover-text-color-dark-30:hover {
+  color: #C2C2C2 !important;
+}
+body.dark .hp-hover-text-color-dark-35:hover {
+  color: #ADADAD !important;
+}
+body.dark .hp-hover-text-color-dark-40:hover {
+  color: #999999 !important;
+}
+body.dark .hp-hover-text-color-dark-45:hover {
+  color: #858585 !important;
+}
+body.dark .hp-hover-text-color-dark-50:hover {
+  color: #707070 !important;
+}
+body.dark .hp-hover-text-color-dark-60:hover {
+  color: #5C5C5C !important;
+}
+body.dark .hp-hover-text-color-dark-70:hover {
+  color: #474747 !important;
+}
+body.dark .hp-hover-text-color-dark-80:hover {
+  color: #333333 !important;
+}
+body.dark .hp-hover-text-color-dark-85:hover {
+  color: #292929 !important;
+}
+body.dark .hp-hover-text-color-dark-90:hover {
+  color: #1F1F1F !important;
+}
+body.dark .hp-hover-text-color-dark-100:hover {
+  color: #141414 !important;
+}
+body.dark .hp-hover-text-color-dark-primary:hover {
+  color: #050342 !important;
+}
+body.dark .hp-hover-text-color-dark-danger:hover {
+  color: #2e1619 !important;
+}
+body.dark .hp-hover-text-color-dark-error:hover {
+  color: #2e1619 !important;
+}
+body.dark .hp-hover-text-color-dark-warning:hover {
+  color: #3b3117 !important;
+}
+body.dark .hp-hover-text-color-dark-success:hover {
+  color: #18342a !important;
+}
+body.dark .hp-hover-text-color-dark-secondary:hover {
+  color: #290034 !important;
+}
+body.dark .hp-hover-text-color-dark-info:hover {
+  color: #1e383d !important;
+}
+body.dark .hp-hover-text-color-dark-primary-1:hover {
+  color: #0010f7 !important;
+}
+body.dark .hp-hover-text-color-dark-primary-2:hover {
+  color: #0063f7 !important;
+}
+body.dark .hp-hover-text-color-dark-primary-3:hover {
+  color: #55b1f3 !important;
+}
+body.dark .hp-hover-text-color-dark-primary-4:hover {
+  color: #ebfafa !important;
+}
+body.dark .hp-hover-text-color-dark-secondary-1:hover {
+  color: #c903ff !important;
+}
+body.dark .hp-hover-text-color-dark-secondary-2:hover {
+  color: #e26bf5 !important;
+}
+body.dark .hp-hover-text-color-dark-secondary-3:hover {
+  color: #f7c2ff !important;
+}
+body.dark .hp-hover-text-color-dark-secondary-4:hover {
+  color: #fdeffc !important;
+}
+body.dark .hp-hover-text-color-dark-warning-1:hover {
+  color: #ffc212 !important;
+}
+body.dark .hp-hover-text-color-dark-warning-2:hover {
+  color: #ffd252 !important;
+}
+body.dark .hp-hover-text-color-dark-warning-3:hover {
+  color: #ffe393 !important;
+}
+body.dark .hp-hover-text-color-dark-warning-4:hover {
+  color: #fff9e9 !important;
+}
+body.dark .hp-hover-text-color-dark-success-1:hover {
+  color: #00f7bf !important;
+}
+body.dark .hp-hover-text-color-dark-success-2:hover {
+  color: #5bffce !important;
+}
+body.dark .hp-hover-text-color-dark-success-3:hover {
+  color: #98ffe0 !important;
+}
+body.dark .hp-hover-text-color-dark-success-4:hover {
+  color: #eafff8 !important;
+}
+body.dark .hp-hover-text-color-dark-danger-1:hover {
+  color: #ff0022 !important;
+}
+body.dark .hp-hover-text-color-dark-danger-2:hover {
+  color: #ff455e !important;
+}
+body.dark .hp-hover-text-color-dark-danger-3:hover {
+  color: #ff8b9a !important;
+}
+body.dark .hp-hover-text-color-dark-danger-4:hover {
+  color: #ffe7ea !important;
+}
+body.dark .hp-hover-text-color-dark-info-1:hover {
+  color: #1be7ff !important;
+}
+body.dark .hp-hover-text-color-dark-info-2:hover {
+  color: #59edff !important;
+}
+body.dark .hp-hover-text-color-dark-info-3:hover {
+  color: #97f4ff !important;
+}
+body.dark .hp-hover-text-color-dark-info-4:hover {
+  color: #eafcff !important;
+}
+body.dark .hp-text-color-dark-0 {
+  color: #FFFFFF !important;
+}
+body.dark .hp-text-color-dark-5 {
+  color: #F5F5F5 !important;
+}
+body.dark .hp-text-color-dark-10 {
+  color: #F0F0F0 !important;
+}
+body.dark .hp-text-color-dark-15 {
+  color: #E1E1E1 !important;
+}
+body.dark .hp-text-color-dark-20 {
+  color: #D7D7D7 !important;
+}
+body.dark .hp-text-color-dark-30 {
+  color: #C2C2C2 !important;
+}
+body.dark .hp-text-color-dark-35 {
+  color: #ADADAD !important;
+}
+body.dark .hp-text-color-dark-40 {
+  color: #999999 !important;
+}
+body.dark .hp-text-color-dark-45 {
+  color: #858585 !important;
+}
+body.dark .hp-text-color-dark-50 {
+  color: #707070 !important;
+}
+body.dark .hp-text-color-dark-60 {
+  color: #5C5C5C !important;
+}
+body.dark .hp-text-color-dark-70 {
+  color: #474747 !important;
+}
+body.dark .hp-text-color-dark-80 {
+  color: #333333 !important;
+}
+body.dark .hp-text-color-dark-85 {
+  color: #292929 !important;
+}
+body.dark .hp-text-color-dark-90 {
+  color: #1F1F1F !important;
+}
+body.dark .hp-text-color-dark-100 {
+  color: #141414 !important;
+}
+body.dark .hp-text-color-dark-primary {
+  color: #050342 !important;
+}
+body.dark .hp-text-color-dark-danger {
+  color: #2e1619 !important;
+}
+body.dark .hp-text-color-dark-error {
+  color: #2e1619 !important;
+}
+body.dark .hp-text-color-dark-warning {
+  color: #3b3117 !important;
+}
+body.dark .hp-text-color-dark-success {
+  color: #18342a !important;
+}
+body.dark .hp-text-color-dark-secondary {
+  color: #290034 !important;
+}
+body.dark .hp-text-color-dark-info {
+  color: #1e383d !important;
+}
+body.dark .hp-text-color-dark-primary-1 {
+  color: #0010f7 !important;
+}
+body.dark .hp-text-color-dark-primary-2 {
+  color: #0063f7 !important;
+}
+body.dark .hp-text-color-dark-primary-3 {
+  color: #55b1f3 !important;
+}
+body.dark .hp-text-color-dark-primary-4 {
+  color: #ebfafa !important;
+}
+body.dark .hp-text-color-dark-secondary-1 {
+  color: #c903ff !important;
+}
+body.dark .hp-text-color-dark-secondary-2 {
+  color: #e26bf5 !important;
+}
+body.dark .hp-text-color-dark-secondary-3 {
+  color: #f7c2ff !important;
+}
+body.dark .hp-text-color-dark-secondary-4 {
+  color: #fdeffc !important;
+}
+body.dark .hp-text-color-dark-warning-1 {
+  color: #ffc212 !important;
+}
+body.dark .hp-text-color-dark-warning-2 {
+  color: #ffd252 !important;
+}
+body.dark .hp-text-color-dark-warning-3 {
+  color: #ffe393 !important;
+}
+body.dark .hp-text-color-dark-warning-4 {
+  color: #fff9e9 !important;
+}
+body.dark .hp-text-color-dark-success-1 {
+  color: #00f7bf !important;
+}
+body.dark .hp-text-color-dark-success-2 {
+  color: #5bffce !important;
+}
+body.dark .hp-text-color-dark-success-3 {
+  color: #98ffe0 !important;
+}
+body.dark .hp-text-color-dark-success-4 {
+  color: #eafff8 !important;
+}
+body.dark .hp-text-color-dark-danger-1 {
+  color: #ff0022 !important;
+}
+body.dark .hp-text-color-dark-danger-2 {
+  color: #ff455e !important;
+}
+body.dark .hp-text-color-dark-danger-3 {
+  color: #ff8b9a !important;
+}
+body.dark .hp-text-color-dark-danger-4 {
+  color: #ffe7ea !important;
+}
+body.dark .hp-text-color-dark-info-1 {
+  color: #1be7ff !important;
+}
+body.dark .hp-text-color-dark-info-2 {
+  color: #59edff !important;
+}
+body.dark .hp-text-color-dark-info-3 {
+  color: #97f4ff !important;
+}
+body.dark .hp-text-color-dark-info-4 {
+  color: #eafcff !important;
+}
+body.dark .hp-hover-bg-color-dark-0:hover {
+  background-color: #FFFFFF !important;
+}
+body.dark .hp-hover-bg-color-dark-5:hover {
+  background-color: #F5F5F5 !important;
+}
+body.dark .hp-hover-bg-color-dark-10:hover {
+  background-color: #F0F0F0 !important;
+}
+body.dark .hp-hover-bg-color-dark-15:hover {
+  background-color: #E1E1E1 !important;
+}
+body.dark .hp-hover-bg-color-dark-20:hover {
+  background-color: #D7D7D7 !important;
+}
+body.dark .hp-hover-bg-color-dark-30:hover {
+  background-color: #C2C2C2 !important;
+}
+body.dark .hp-hover-bg-color-dark-35:hover {
+  background-color: #ADADAD !important;
+}
+body.dark .hp-hover-bg-color-dark-40:hover {
+  background-color: #999999 !important;
+}
+body.dark .hp-hover-bg-color-dark-45:hover {
+  background-color: #858585 !important;
+}
+body.dark .hp-hover-bg-color-dark-50:hover {
+  background-color: #707070 !important;
+}
+body.dark .hp-hover-bg-color-dark-60:hover {
+  background-color: #5C5C5C !important;
+}
+body.dark .hp-hover-bg-color-dark-70:hover {
+  background-color: #474747 !important;
+}
+body.dark .hp-hover-bg-color-dark-80:hover {
+  background-color: #333333 !important;
+}
+body.dark .hp-hover-bg-color-dark-85:hover {
+  background-color: #292929 !important;
+}
+body.dark .hp-hover-bg-color-dark-90:hover {
+  background-color: #1F1F1F !important;
+}
+body.dark .hp-hover-bg-color-dark-100:hover {
+  background-color: #141414 !important;
+}
+body.dark .hp-hover-bg-color-dark-primary:hover {
+  background-color: #050342 !important;
+}
+body.dark .hp-hover-bg-color-dark-danger:hover {
+  background-color: #2e1619 !important;
+}
+body.dark .hp-hover-bg-color-dark-error:hover {
+  background-color: #2e1619 !important;
+}
+body.dark .hp-hover-bg-color-dark-warning:hover {
+  background-color: #3b3117 !important;
+}
+body.dark .hp-hover-bg-color-dark-success:hover {
+  background-color: #18342a !important;
+}
+body.dark .hp-hover-bg-color-dark-secondary:hover {
+  background-color: #290034 !important;
+}
+body.dark .hp-hover-bg-color-dark-info:hover {
+  background-color: #1e383d !important;
+}
+body.dark .hp-hover-bg-color-dark-primary-1:hover {
+  background-color: #0010f7 !important;
+}
+body.dark .hp-hover-bg-color-dark-primary-2:hover {
+  background-color: #0063f7 !important;
+}
+body.dark .hp-hover-bg-color-dark-primary-3:hover {
+  background-color: #55b1f3 !important;
+}
+body.dark .hp-hover-bg-color-dark-primary-4:hover {
+  background-color: #ebfafa !important;
+}
+body.dark .hp-hover-bg-color-dark-secondary-1:hover {
+  background-color: #c903ff !important;
+}
+body.dark .hp-hover-bg-color-dark-secondary-2:hover {
+  background-color: #e26bf5 !important;
+}
+body.dark .hp-hover-bg-color-dark-secondary-3:hover {
+  background-color: #f7c2ff !important;
+}
+body.dark .hp-hover-bg-color-dark-secondary-4:hover {
+  background-color: #fdeffc !important;
+}
+body.dark .hp-hover-bg-color-dark-warning-1:hover {
+  background-color: #ffc212 !important;
+}
+body.dark .hp-hover-bg-color-dark-warning-2:hover {
+  background-color: #ffd252 !important;
+}
+body.dark .hp-hover-bg-color-dark-warning-3:hover {
+  background-color: #ffe393 !important;
+}
+body.dark .hp-hover-bg-color-dark-warning-4:hover {
+  background-color: #fff9e9 !important;
+}
+body.dark .hp-hover-bg-color-dark-success-1:hover {
+  background-color: #00f7bf !important;
+}
+body.dark .hp-hover-bg-color-dark-success-2:hover {
+  background-color: #5bffce !important;
+}
+body.dark .hp-hover-bg-color-dark-success-3:hover {
+  background-color: #98ffe0 !important;
+}
+body.dark .hp-hover-bg-color-dark-success-4:hover {
+  background-color: #eafff8 !important;
+}
+body.dark .hp-hover-bg-color-dark-danger-1:hover {
+  background-color: #ff0022 !important;
+}
+body.dark .hp-hover-bg-color-dark-danger-2:hover {
+  background-color: #ff455e !important;
+}
+body.dark .hp-hover-bg-color-dark-danger-3:hover {
+  background-color: #ff8b9a !important;
+}
+body.dark .hp-hover-bg-color-dark-danger-4:hover {
+  background-color: #ffe7ea !important;
+}
+body.dark .hp-hover-bg-color-dark-info-1:hover {
+  background-color: #1be7ff !important;
+}
+body.dark .hp-hover-bg-color-dark-info-2:hover {
+  background-color: #59edff !important;
+}
+body.dark .hp-hover-bg-color-dark-info-3:hover {
+  background-color: #97f4ff !important;
+}
+body.dark .hp-hover-bg-color-dark-info-4:hover {
+  background-color: #eafcff !important;
+}
+body.dark .hp-bg-color-dark-0 {
+  background-color: #FFFFFF !important;
+}
+body.dark .hp-bg-color-dark-5 {
+  background-color: #F5F5F5 !important;
+}
+body.dark .hp-bg-color-dark-10 {
+  background-color: #F0F0F0 !important;
+}
+body.dark .hp-bg-color-dark-15 {
+  background-color: #E1E1E1 !important;
+}
+body.dark .hp-bg-color-dark-20 {
+  background-color: #D7D7D7 !important;
+}
+body.dark .hp-bg-color-dark-30 {
+  background-color: #C2C2C2 !important;
+}
+body.dark .hp-bg-color-dark-35 {
+  background-color: #ADADAD !important;
+}
+body.dark .hp-bg-color-dark-40 {
+  background-color: #999999 !important;
+}
+body.dark .hp-bg-color-dark-45 {
+  background-color: #858585 !important;
+}
+body.dark .hp-bg-color-dark-50 {
+  background-color: #707070 !important;
+}
+body.dark .hp-bg-color-dark-60 {
+  background-color: #5C5C5C !important;
+}
+body.dark .hp-bg-color-dark-70 {
+  background-color: #474747 !important;
+}
+body.dark .hp-bg-color-dark-80 {
+  background-color: #333333 !important;
+}
+body.dark .hp-bg-color-dark-85 {
+  background-color: #292929 !important;
+}
+body.dark .hp-bg-color-dark-90 {
+  background-color: #1F1F1F !important;
+}
+body.dark .hp-bg-color-dark-100 {
+  background-color: #141414 !important;
+}
+body.dark .hp-bg-color-dark-primary {
+  background-color: #050342 !important;
+}
+body.dark .hp-bg-color-dark-danger {
+  background-color: #2e1619 !important;
+}
+body.dark .hp-bg-color-dark-error {
+  background-color: #2e1619 !important;
+}
+body.dark .hp-bg-color-dark-warning {
+  background-color: #3b3117 !important;
+}
+body.dark .hp-bg-color-dark-success {
+  background-color: #18342a !important;
+}
+body.dark .hp-bg-color-dark-secondary {
+  background-color: #290034 !important;
+}
+body.dark .hp-bg-color-dark-info {
+  background-color: #1e383d !important;
+}
+body.dark .hp-bg-color-dark-primary-1 {
+  background-color: #0010f7 !important;
+}
+body.dark .hp-bg-color-dark-primary-2 {
+  background-color: #0063f7 !important;
+}
+body.dark .hp-bg-color-dark-primary-3 {
+  background-color: #55b1f3 !important;
+}
+body.dark .hp-bg-color-dark-primary-4 {
+  background-color: #ebfafa !important;
+}
+body.dark .hp-bg-color-dark-secondary-1 {
+  background-color: #c903ff !important;
+}
+body.dark .hp-bg-color-dark-secondary-2 {
+  background-color: #e26bf5 !important;
+}
+body.dark .hp-bg-color-dark-secondary-3 {
+  background-color: #f7c2ff !important;
+}
+body.dark .hp-bg-color-dark-secondary-4 {
+  background-color: #fdeffc !important;
+}
+body.dark .hp-bg-color-dark-warning-1 {
+  background-color: #ffc212 !important;
+}
+body.dark .hp-bg-color-dark-warning-2 {
+  background-color: #ffd252 !important;
+}
+body.dark .hp-bg-color-dark-warning-3 {
+  background-color: #ffe393 !important;
+}
+body.dark .hp-bg-color-dark-warning-4 {
+  background-color: #fff9e9 !important;
+}
+body.dark .hp-bg-color-dark-success-1 {
+  background-color: #00f7bf !important;
+}
+body.dark .hp-bg-color-dark-success-2 {
+  background-color: #5bffce !important;
+}
+body.dark .hp-bg-color-dark-success-3 {
+  background-color: #98ffe0 !important;
+}
+body.dark .hp-bg-color-dark-success-4 {
+  background-color: #eafff8 !important;
+}
+body.dark .hp-bg-color-dark-danger-1 {
+  background-color: #ff0022 !important;
+}
+body.dark .hp-bg-color-dark-danger-2 {
+  background-color: #ff455e !important;
+}
+body.dark .hp-bg-color-dark-danger-3 {
+  background-color: #ff8b9a !important;
+}
+body.dark .hp-bg-color-dark-danger-4 {
+  background-color: #ffe7ea !important;
+}
+body.dark .hp-bg-color-dark-info-1 {
+  background-color: #1be7ff !important;
+}
+body.dark .hp-bg-color-dark-info-2 {
+  background-color: #59edff !important;
+}
+body.dark .hp-bg-color-dark-info-3 {
+  background-color: #97f4ff !important;
+}
+body.dark .hp-bg-color-dark-info-4 {
+  background-color: #eafcff !important;
+}
+body.dark .hp-hover-bg-dark-0:hover {
+  background: #FFFFFF !important;
+}
+body.dark .hp-hover-bg-dark-5:hover {
+  background: #F5F5F5 !important;
+}
+body.dark .hp-hover-bg-dark-10:hover {
+  background: #F0F0F0 !important;
+}
+body.dark .hp-hover-bg-dark-15:hover {
+  background: #E1E1E1 !important;
+}
+body.dark .hp-hover-bg-dark-20:hover {
+  background: #D7D7D7 !important;
+}
+body.dark .hp-hover-bg-dark-30:hover {
+  background: #C2C2C2 !important;
+}
+body.dark .hp-hover-bg-dark-35:hover {
+  background: #ADADAD !important;
+}
+body.dark .hp-hover-bg-dark-40:hover {
+  background: #999999 !important;
+}
+body.dark .hp-hover-bg-dark-45:hover {
+  background: #858585 !important;
+}
+body.dark .hp-hover-bg-dark-50:hover {
+  background: #707070 !important;
+}
+body.dark .hp-hover-bg-dark-60:hover {
+  background: #5C5C5C !important;
+}
+body.dark .hp-hover-bg-dark-70:hover {
+  background: #474747 !important;
+}
+body.dark .hp-hover-bg-dark-80:hover {
+  background: #333333 !important;
+}
+body.dark .hp-hover-bg-dark-85:hover {
+  background: #292929 !important;
+}
+body.dark .hp-hover-bg-dark-90:hover {
+  background: #1F1F1F !important;
+}
+body.dark .hp-hover-bg-dark-100:hover {
+  background: #141414 !important;
+}
+body.dark .hp-hover-bg-dark-primary:hover {
+  background: #050342 !important;
+}
+body.dark .hp-hover-bg-dark-danger:hover {
+  background: #2e1619 !important;
+}
+body.dark .hp-hover-bg-dark-error:hover {
+  background: #2e1619 !important;
+}
+body.dark .hp-hover-bg-dark-warning:hover {
+  background: #3b3117 !important;
+}
+body.dark .hp-hover-bg-dark-success:hover {
+  background: #18342a !important;
+}
+body.dark .hp-hover-bg-dark-secondary:hover {
+  background: #290034 !important;
+}
+body.dark .hp-hover-bg-dark-info:hover {
+  background: #1e383d !important;
+}
+body.dark .hp-hover-bg-dark-primary-1:hover {
+  background: #0010f7 !important;
+}
+body.dark .hp-hover-bg-dark-primary-2:hover {
+  background: #0063f7 !important;
+}
+body.dark .hp-hover-bg-dark-primary-3:hover {
+  background: #55b1f3 !important;
+}
+body.dark .hp-hover-bg-dark-primary-4:hover {
+  background: #ebfafa !important;
+}
+body.dark .hp-hover-bg-dark-secondary-1:hover {
+  background: #c903ff !important;
+}
+body.dark .hp-hover-bg-dark-secondary-2:hover {
+  background: #e26bf5 !important;
+}
+body.dark .hp-hover-bg-dark-secondary-3:hover {
+  background: #f7c2ff !important;
+}
+body.dark .hp-hover-bg-dark-secondary-4:hover {
+  background: #fdeffc !important;
+}
+body.dark .hp-hover-bg-dark-warning-1:hover {
+  background: #ffc212 !important;
+}
+body.dark .hp-hover-bg-dark-warning-2:hover {
+  background: #ffd252 !important;
+}
+body.dark .hp-hover-bg-dark-warning-3:hover {
+  background: #ffe393 !important;
+}
+body.dark .hp-hover-bg-dark-warning-4:hover {
+  background: #fff9e9 !important;
+}
+body.dark .hp-hover-bg-dark-success-1:hover {
+  background: #00f7bf !important;
+}
+body.dark .hp-hover-bg-dark-success-2:hover {
+  background: #5bffce !important;
+}
+body.dark .hp-hover-bg-dark-success-3:hover {
+  background: #98ffe0 !important;
+}
+body.dark .hp-hover-bg-dark-success-4:hover {
+  background: #eafff8 !important;
+}
+body.dark .hp-hover-bg-dark-danger-1:hover {
+  background: #ff0022 !important;
+}
+body.dark .hp-hover-bg-dark-danger-2:hover {
+  background: #ff455e !important;
+}
+body.dark .hp-hover-bg-dark-danger-3:hover {
+  background: #ff8b9a !important;
+}
+body.dark .hp-hover-bg-dark-danger-4:hover {
+  background: #ffe7ea !important;
+}
+body.dark .hp-hover-bg-dark-info-1:hover {
+  background: #1be7ff !important;
+}
+body.dark .hp-hover-bg-dark-info-2:hover {
+  background: #59edff !important;
+}
+body.dark .hp-hover-bg-dark-info-3:hover {
+  background: #97f4ff !important;
+}
+body.dark .hp-hover-bg-dark-info-4:hover {
+  background: #eafcff !important;
+}
+body.dark .hp-bg-dark-0 {
+  background: #FFFFFF !important;
+}
+body.dark .hp-bg-dark-5 {
+  background: #F5F5F5 !important;
+}
+body.dark .hp-bg-dark-10 {
+  background: #F0F0F0 !important;
+}
+body.dark .hp-bg-dark-15 {
+  background: #E1E1E1 !important;
+}
+body.dark .hp-bg-dark-20 {
+  background: #D7D7D7 !important;
+}
+body.dark .hp-bg-dark-30 {
+  background: #C2C2C2 !important;
+}
+body.dark .hp-bg-dark-35 {
+  background: #ADADAD !important;
+}
+body.dark .hp-bg-dark-40 {
+  background: #999999 !important;
+}
+body.dark .hp-bg-dark-45 {
+  background: #858585 !important;
+}
+body.dark .hp-bg-dark-50 {
+  background: #707070 !important;
+}
+body.dark .hp-bg-dark-60 {
+  background: #5C5C5C !important;
+}
+body.dark .hp-bg-dark-70 {
+  background: #474747 !important;
+}
+body.dark .hp-bg-dark-80 {
+  background: #333333 !important;
+}
+body.dark .hp-bg-dark-85 {
+  background: #292929 !important;
+}
+body.dark .hp-bg-dark-90 {
+  background: #1F1F1F !important;
+}
+body.dark .hp-bg-dark-100 {
+  background: #141414 !important;
+}
+body.dark .hp-bg-dark-primary {
+  background: #050342 !important;
+}
+body.dark .hp-bg-dark-danger {
+  background: #2e1619 !important;
+}
+body.dark .hp-bg-dark-error {
+  background: #2e1619 !important;
+}
+body.dark .hp-bg-dark-warning {
+  background: #3b3117 !important;
+}
+body.dark .hp-bg-dark-success {
+  background: #18342a !important;
+}
+body.dark .hp-bg-dark-secondary {
+  background: #290034 !important;
+}
+body.dark .hp-bg-dark-info {
+  background: #1e383d !important;
+}
+body.dark .hp-bg-dark-primary-1 {
+  background: #0010f7 !important;
+}
+body.dark .hp-bg-dark-primary-2 {
+  background: #0063f7 !important;
+}
+body.dark .hp-bg-dark-primary-3 {
+  background: #55b1f3 !important;
+}
+body.dark .hp-bg-dark-primary-4 {
+  background: #ebfafa !important;
+}
+body.dark .hp-bg-dark-secondary-1 {
+  background: #c903ff !important;
+}
+body.dark .hp-bg-dark-secondary-2 {
+  background: #e26bf5 !important;
+}
+body.dark .hp-bg-dark-secondary-3 {
+  background: #f7c2ff !important;
+}
+body.dark .hp-bg-dark-secondary-4 {
+  background: #fdeffc !important;
+}
+body.dark .hp-bg-dark-warning-1 {
+  background: #ffc212 !important;
+}
+body.dark .hp-bg-dark-warning-2 {
+  background: #ffd252 !important;
+}
+body.dark .hp-bg-dark-warning-3 {
+  background: #ffe393 !important;
+}
+body.dark .hp-bg-dark-warning-4 {
+  background: #fff9e9 !important;
+}
+body.dark .hp-bg-dark-success-1 {
+  background: #00f7bf !important;
+}
+body.dark .hp-bg-dark-success-2 {
+  background: #5bffce !important;
+}
+body.dark .hp-bg-dark-success-3 {
+  background: #98ffe0 !important;
+}
+body.dark .hp-bg-dark-success-4 {
+  background: #eafff8 !important;
+}
+body.dark .hp-bg-dark-danger-1 {
+  background: #ff0022 !important;
+}
+body.dark .hp-bg-dark-danger-2 {
+  background: #ff455e !important;
+}
+body.dark .hp-bg-dark-danger-3 {
+  background: #ff8b9a !important;
+}
+body.dark .hp-bg-dark-danger-4 {
+  background: #ffe7ea !important;
+}
+body.dark .hp-bg-dark-info-1 {
+  background: #1be7ff !important;
+}
+body.dark .hp-bg-dark-info-2 {
+  background: #59edff !important;
+}
+body.dark .hp-bg-dark-info-3 {
+  background: #97f4ff !important;
+}
+body.dark .hp-bg-dark-info-4 {
+  background: #eafcff !important;
+}
+body.dark .hp-hover-border-color-dark-0:hover {
+  border-color: #FFFFFF !important;
+}
+body.dark .hp-hover-border-color-dark-5:hover {
+  border-color: #F5F5F5 !important;
+}
+body.dark .hp-hover-border-color-dark-10:hover {
+  border-color: #F0F0F0 !important;
+}
+body.dark .hp-hover-border-color-dark-15:hover {
+  border-color: #E1E1E1 !important;
+}
+body.dark .hp-hover-border-color-dark-20:hover {
+  border-color: #D7D7D7 !important;
+}
+body.dark .hp-hover-border-color-dark-30:hover {
+  border-color: #C2C2C2 !important;
+}
+body.dark .hp-hover-border-color-dark-35:hover {
+  border-color: #ADADAD !important;
+}
+body.dark .hp-hover-border-color-dark-40:hover {
+  border-color: #999999 !important;
+}
+body.dark .hp-hover-border-color-dark-45:hover {
+  border-color: #858585 !important;
+}
+body.dark .hp-hover-border-color-dark-50:hover {
+  border-color: #707070 !important;
+}
+body.dark .hp-hover-border-color-dark-60:hover {
+  border-color: #5C5C5C !important;
+}
+body.dark .hp-hover-border-color-dark-70:hover {
+  border-color: #474747 !important;
+}
+body.dark .hp-hover-border-color-dark-80:hover {
+  border-color: #333333 !important;
+}
+body.dark .hp-hover-border-color-dark-85:hover {
+  border-color: #292929 !important;
+}
+body.dark .hp-hover-border-color-dark-90:hover {
+  border-color: #1F1F1F !important;
+}
+body.dark .hp-hover-border-color-dark-100:hover {
+  border-color: #141414 !important;
+}
+body.dark .hp-hover-border-color-dark-primary:hover {
+  border-color: #050342 !important;
+}
+body.dark .hp-hover-border-color-dark-danger:hover {
+  border-color: #2e1619 !important;
+}
+body.dark .hp-hover-border-color-dark-error:hover {
+  border-color: #2e1619 !important;
+}
+body.dark .hp-hover-border-color-dark-warning:hover {
+  border-color: #3b3117 !important;
+}
+body.dark .hp-hover-border-color-dark-success:hover {
+  border-color: #18342a !important;
+}
+body.dark .hp-hover-border-color-dark-secondary:hover {
+  border-color: #290034 !important;
+}
+body.dark .hp-hover-border-color-dark-info:hover {
+  border-color: #1e383d !important;
+}
+body.dark .hp-hover-border-color-dark-primary-1:hover {
+  border-color: #0010f7 !important;
+}
+body.dark .hp-hover-border-color-dark-primary-2:hover {
+  border-color: #0063f7 !important;
+}
+body.dark .hp-hover-border-color-dark-primary-3:hover {
+  border-color: #55b1f3 !important;
+}
+body.dark .hp-hover-border-color-dark-primary-4:hover {
+  border-color: #ebfafa !important;
+}
+body.dark .hp-hover-border-color-dark-secondary-1:hover {
+  border-color: #c903ff !important;
+}
+body.dark .hp-hover-border-color-dark-secondary-2:hover {
+  border-color: #e26bf5 !important;
+}
+body.dark .hp-hover-border-color-dark-secondary-3:hover {
+  border-color: #f7c2ff !important;
+}
+body.dark .hp-hover-border-color-dark-secondary-4:hover {
+  border-color: #fdeffc !important;
+}
+body.dark .hp-hover-border-color-dark-warning-1:hover {
+  border-color: #ffc212 !important;
+}
+body.dark .hp-hover-border-color-dark-warning-2:hover {
+  border-color: #ffd252 !important;
+}
+body.dark .hp-hover-border-color-dark-warning-3:hover {
+  border-color: #ffe393 !important;
+}
+body.dark .hp-hover-border-color-dark-warning-4:hover {
+  border-color: #fff9e9 !important;
+}
+body.dark .hp-hover-border-color-dark-success-1:hover {
+  border-color: #00f7bf !important;
+}
+body.dark .hp-hover-border-color-dark-success-2:hover {
+  border-color: #5bffce !important;
+}
+body.dark .hp-hover-border-color-dark-success-3:hover {
+  border-color: #98ffe0 !important;
+}
+body.dark .hp-hover-border-color-dark-success-4:hover {
+  border-color: #eafff8 !important;
+}
+body.dark .hp-hover-border-color-dark-danger-1:hover {
+  border-color: #ff0022 !important;
+}
+body.dark .hp-hover-border-color-dark-danger-2:hover {
+  border-color: #ff455e !important;
+}
+body.dark .hp-hover-border-color-dark-danger-3:hover {
+  border-color: #ff8b9a !important;
+}
+body.dark .hp-hover-border-color-dark-danger-4:hover {
+  border-color: #ffe7ea !important;
+}
+body.dark .hp-hover-border-color-dark-info-1:hover {
+  border-color: #1be7ff !important;
+}
+body.dark .hp-hover-border-color-dark-info-2:hover {
+  border-color: #59edff !important;
+}
+body.dark .hp-hover-border-color-dark-info-3:hover {
+  border-color: #97f4ff !important;
+}
+body.dark .hp-hover-border-color-dark-info-4:hover {
+  border-color: #eafcff !important;
+}
+body.dark .hp-border-color-dark-0 {
+  border-color: #FFFFFF !important;
+}
+body.dark .hp-border-color-dark-5 {
+  border-color: #F5F5F5 !important;
+}
+body.dark .hp-border-color-dark-10 {
+  border-color: #F0F0F0 !important;
+}
+body.dark .hp-border-color-dark-15 {
+  border-color: #E1E1E1 !important;
+}
+body.dark .hp-border-color-dark-20 {
+  border-color: #D7D7D7 !important;
+}
+body.dark .hp-border-color-dark-30 {
+  border-color: #C2C2C2 !important;
+}
+body.dark .hp-border-color-dark-35 {
+  border-color: #ADADAD !important;
+}
+body.dark .hp-border-color-dark-40 {
+  border-color: #999999 !important;
+}
+body.dark .hp-border-color-dark-45 {
+  border-color: #858585 !important;
+}
+body.dark .hp-border-color-dark-50 {
+  border-color: #707070 !important;
+}
+body.dark .hp-border-color-dark-60 {
+  border-color: #5C5C5C !important;
+}
+body.dark .hp-border-color-dark-70 {
+  border-color: #474747 !important;
+}
+body.dark .hp-border-color-dark-80 {
+  border-color: #333333 !important;
+}
+body.dark .hp-border-color-dark-85 {
+  border-color: #292929 !important;
+}
+body.dark .hp-border-color-dark-90 {
+  border-color: #1F1F1F !important;
+}
+body.dark .hp-border-color-dark-100 {
+  border-color: #141414 !important;
+}
+body.dark .hp-border-color-dark-primary {
+  border-color: #050342 !important;
+}
+body.dark .hp-border-color-dark-danger {
+  border-color: #2e1619 !important;
+}
+body.dark .hp-border-color-dark-error {
+  border-color: #2e1619 !important;
+}
+body.dark .hp-border-color-dark-warning {
+  border-color: #3b3117 !important;
+}
+body.dark .hp-border-color-dark-success {
+  border-color: #18342a !important;
+}
+body.dark .hp-border-color-dark-secondary {
+  border-color: #290034 !important;
+}
+body.dark .hp-border-color-dark-info {
+  border-color: #1e383d !important;
+}
+body.dark .hp-border-color-dark-primary-1 {
+  border-color: #0010f7 !important;
+}
+body.dark .hp-border-color-dark-primary-2 {
+  border-color: #0063f7 !important;
+}
+body.dark .hp-border-color-dark-primary-3 {
+  border-color: #55b1f3 !important;
+}
+body.dark .hp-border-color-dark-primary-4 {
+  border-color: #ebfafa !important;
+}
+body.dark .hp-border-color-dark-secondary-1 {
+  border-color: #c903ff !important;
+}
+body.dark .hp-border-color-dark-secondary-2 {
+  border-color: #e26bf5 !important;
+}
+body.dark .hp-border-color-dark-secondary-3 {
+  border-color: #f7c2ff !important;
+}
+body.dark .hp-border-color-dark-secondary-4 {
+  border-color: #fdeffc !important;
+}
+body.dark .hp-border-color-dark-warning-1 {
+  border-color: #ffc212 !important;
+}
+body.dark .hp-border-color-dark-warning-2 {
+  border-color: #ffd252 !important;
+}
+body.dark .hp-border-color-dark-warning-3 {
+  border-color: #ffe393 !important;
+}
+body.dark .hp-border-color-dark-warning-4 {
+  border-color: #fff9e9 !important;
+}
+body.dark .hp-border-color-dark-success-1 {
+  border-color: #00f7bf !important;
+}
+body.dark .hp-border-color-dark-success-2 {
+  border-color: #5bffce !important;
+}
+body.dark .hp-border-color-dark-success-3 {
+  border-color: #98ffe0 !important;
+}
+body.dark .hp-border-color-dark-success-4 {
+  border-color: #eafff8 !important;
+}
+body.dark .hp-border-color-dark-danger-1 {
+  border-color: #ff0022 !important;
+}
+body.dark .hp-border-color-dark-danger-2 {
+  border-color: #ff455e !important;
+}
+body.dark .hp-border-color-dark-danger-3 {
+  border-color: #ff8b9a !important;
+}
+body.dark .hp-border-color-dark-danger-4 {
+  border-color: #ffe7ea !important;
+}
+body.dark .hp-border-color-dark-info-1 {
+  border-color: #1be7ff !important;
+}
+body.dark .hp-border-color-dark-info-2 {
+  border-color: #59edff !important;
+}
+body.dark .hp-border-color-dark-info-3 {
+  border-color: #97f4ff !important;
+}
+body.dark .hp-border-color-dark-info-4 {
+  border-color: #eafcff !important;
+}
+body.dark .hp-hover-fill-color-dark-0:hover path,
+body.dark .hp-hover-fill-color-dark-0:hover rect,
+body.dark .hp-hover-fill-color-dark-0:hover line,
+body.dark .hp-hover-fill-color-dark-0:hover circle {
+  fill: #FFFFFF !important;
+}
+body.dark .hp-hover-fill-color-dark-5:hover path,
+body.dark .hp-hover-fill-color-dark-5:hover rect,
+body.dark .hp-hover-fill-color-dark-5:hover line,
+body.dark .hp-hover-fill-color-dark-5:hover circle {
+  fill: #F5F5F5 !important;
+}
+body.dark .hp-hover-fill-color-dark-10:hover path,
+body.dark .hp-hover-fill-color-dark-10:hover rect,
+body.dark .hp-hover-fill-color-dark-10:hover line,
+body.dark .hp-hover-fill-color-dark-10:hover circle {
+  fill: #F0F0F0 !important;
+}
+body.dark .hp-hover-fill-color-dark-15:hover path,
+body.dark .hp-hover-fill-color-dark-15:hover rect,
+body.dark .hp-hover-fill-color-dark-15:hover line,
+body.dark .hp-hover-fill-color-dark-15:hover circle {
+  fill: #E1E1E1 !important;
+}
+body.dark .hp-hover-fill-color-dark-20:hover path,
+body.dark .hp-hover-fill-color-dark-20:hover rect,
+body.dark .hp-hover-fill-color-dark-20:hover line,
+body.dark .hp-hover-fill-color-dark-20:hover circle {
+  fill: #D7D7D7 !important;
+}
+body.dark .hp-hover-fill-color-dark-30:hover path,
+body.dark .hp-hover-fill-color-dark-30:hover rect,
+body.dark .hp-hover-fill-color-dark-30:hover line,
+body.dark .hp-hover-fill-color-dark-30:hover circle {
+  fill: #C2C2C2 !important;
+}
+body.dark .hp-hover-fill-color-dark-35:hover path,
+body.dark .hp-hover-fill-color-dark-35:hover rect,
+body.dark .hp-hover-fill-color-dark-35:hover line,
+body.dark .hp-hover-fill-color-dark-35:hover circle {
+  fill: #ADADAD !important;
+}
+body.dark .hp-hover-fill-color-dark-40:hover path,
+body.dark .hp-hover-fill-color-dark-40:hover rect,
+body.dark .hp-hover-fill-color-dark-40:hover line,
+body.dark .hp-hover-fill-color-dark-40:hover circle {
+  fill: #999999 !important;
+}
+body.dark .hp-hover-fill-color-dark-45:hover path,
+body.dark .hp-hover-fill-color-dark-45:hover rect,
+body.dark .hp-hover-fill-color-dark-45:hover line,
+body.dark .hp-hover-fill-color-dark-45:hover circle {
+  fill: #858585 !important;
+}
+body.dark .hp-hover-fill-color-dark-50:hover path,
+body.dark .hp-hover-fill-color-dark-50:hover rect,
+body.dark .hp-hover-fill-color-dark-50:hover line,
+body.dark .hp-hover-fill-color-dark-50:hover circle {
+  fill: #707070 !important;
+}
+body.dark .hp-hover-fill-color-dark-60:hover path,
+body.dark .hp-hover-fill-color-dark-60:hover rect,
+body.dark .hp-hover-fill-color-dark-60:hover line,
+body.dark .hp-hover-fill-color-dark-60:hover circle {
+  fill: #5C5C5C !important;
+}
+body.dark .hp-hover-fill-color-dark-70:hover path,
+body.dark .hp-hover-fill-color-dark-70:hover rect,
+body.dark .hp-hover-fill-color-dark-70:hover line,
+body.dark .hp-hover-fill-color-dark-70:hover circle {
+  fill: #474747 !important;
+}
+body.dark .hp-hover-fill-color-dark-80:hover path,
+body.dark .hp-hover-fill-color-dark-80:hover rect,
+body.dark .hp-hover-fill-color-dark-80:hover line,
+body.dark .hp-hover-fill-color-dark-80:hover circle {
+  fill: #333333 !important;
+}
+body.dark .hp-hover-fill-color-dark-85:hover path,
+body.dark .hp-hover-fill-color-dark-85:hover rect,
+body.dark .hp-hover-fill-color-dark-85:hover line,
+body.dark .hp-hover-fill-color-dark-85:hover circle {
+  fill: #292929 !important;
+}
+body.dark .hp-hover-fill-color-dark-90:hover path,
+body.dark .hp-hover-fill-color-dark-90:hover rect,
+body.dark .hp-hover-fill-color-dark-90:hover line,
+body.dark .hp-hover-fill-color-dark-90:hover circle {
+  fill: #1F1F1F !important;
+}
+body.dark .hp-hover-fill-color-dark-100:hover path,
+body.dark .hp-hover-fill-color-dark-100:hover rect,
+body.dark .hp-hover-fill-color-dark-100:hover line,
+body.dark .hp-hover-fill-color-dark-100:hover circle {
+  fill: #141414 !important;
+}
+body.dark .hp-hover-fill-color-dark-primary:hover path,
+body.dark .hp-hover-fill-color-dark-primary:hover rect,
+body.dark .hp-hover-fill-color-dark-primary:hover line,
+body.dark .hp-hover-fill-color-dark-primary:hover circle {
+  fill: #050342 !important;
+}
+body.dark .hp-hover-fill-color-dark-danger:hover path,
+body.dark .hp-hover-fill-color-dark-danger:hover rect,
+body.dark .hp-hover-fill-color-dark-danger:hover line,
+body.dark .hp-hover-fill-color-dark-danger:hover circle {
+  fill: #2e1619 !important;
+}
+body.dark .hp-hover-fill-color-dark-error:hover path,
+body.dark .hp-hover-fill-color-dark-error:hover rect,
+body.dark .hp-hover-fill-color-dark-error:hover line,
+body.dark .hp-hover-fill-color-dark-error:hover circle {
+  fill: #2e1619 !important;
+}
+body.dark .hp-hover-fill-color-dark-warning:hover path,
+body.dark .hp-hover-fill-color-dark-warning:hover rect,
+body.dark .hp-hover-fill-color-dark-warning:hover line,
+body.dark .hp-hover-fill-color-dark-warning:hover circle {
+  fill: #3b3117 !important;
+}
+body.dark .hp-hover-fill-color-dark-success:hover path,
+body.dark .hp-hover-fill-color-dark-success:hover rect,
+body.dark .hp-hover-fill-color-dark-success:hover line,
+body.dark .hp-hover-fill-color-dark-success:hover circle {
+  fill: #18342a !important;
+}
+body.dark .hp-hover-fill-color-dark-secondary:hover path,
+body.dark .hp-hover-fill-color-dark-secondary:hover rect,
+body.dark .hp-hover-fill-color-dark-secondary:hover line,
+body.dark .hp-hover-fill-color-dark-secondary:hover circle {
+  fill: #290034 !important;
+}
+body.dark .hp-hover-fill-color-dark-info:hover path,
+body.dark .hp-hover-fill-color-dark-info:hover rect,
+body.dark .hp-hover-fill-color-dark-info:hover line,
+body.dark .hp-hover-fill-color-dark-info:hover circle {
+  fill: #1e383d !important;
+}
+body.dark .hp-hover-fill-color-dark-primary-1:hover path,
+body.dark .hp-hover-fill-color-dark-primary-1:hover rect,
+body.dark .hp-hover-fill-color-dark-primary-1:hover line,
+body.dark .hp-hover-fill-color-dark-primary-1:hover circle {
+  fill: #0010f7 !important;
+}
+body.dark .hp-hover-fill-color-dark-primary-2:hover path,
+body.dark .hp-hover-fill-color-dark-primary-2:hover rect,
+body.dark .hp-hover-fill-color-dark-primary-2:hover line,
+body.dark .hp-hover-fill-color-dark-primary-2:hover circle {
+  fill: #0063f7 !important;
+}
+body.dark .hp-hover-fill-color-dark-primary-3:hover path,
+body.dark .hp-hover-fill-color-dark-primary-3:hover rect,
+body.dark .hp-hover-fill-color-dark-primary-3:hover line,
+body.dark .hp-hover-fill-color-dark-primary-3:hover circle {
+  fill: #55b1f3 !important;
+}
+body.dark .hp-hover-fill-color-dark-primary-4:hover path,
+body.dark .hp-hover-fill-color-dark-primary-4:hover rect,
+body.dark .hp-hover-fill-color-dark-primary-4:hover line,
+body.dark .hp-hover-fill-color-dark-primary-4:hover circle {
+  fill: #ebfafa !important;
+}
+body.dark .hp-hover-fill-color-dark-secondary-1:hover path,
+body.dark .hp-hover-fill-color-dark-secondary-1:hover rect,
+body.dark .hp-hover-fill-color-dark-secondary-1:hover line,
+body.dark .hp-hover-fill-color-dark-secondary-1:hover circle {
+  fill: #c903ff !important;
+}
+body.dark .hp-hover-fill-color-dark-secondary-2:hover path,
+body.dark .hp-hover-fill-color-dark-secondary-2:hover rect,
+body.dark .hp-hover-fill-color-dark-secondary-2:hover line,
+body.dark .hp-hover-fill-color-dark-secondary-2:hover circle {
+  fill: #e26bf5 !important;
+}
+body.dark .hp-hover-fill-color-dark-secondary-3:hover path,
+body.dark .hp-hover-fill-color-dark-secondary-3:hover rect,
+body.dark .hp-hover-fill-color-dark-secondary-3:hover line,
+body.dark .hp-hover-fill-color-dark-secondary-3:hover circle {
+  fill: #f7c2ff !important;
+}
+body.dark .hp-hover-fill-color-dark-secondary-4:hover path,
+body.dark .hp-hover-fill-color-dark-secondary-4:hover rect,
+body.dark .hp-hover-fill-color-dark-secondary-4:hover line,
+body.dark .hp-hover-fill-color-dark-secondary-4:hover circle {
+  fill: #fdeffc !important;
+}
+body.dark .hp-hover-fill-color-dark-warning-1:hover path,
+body.dark .hp-hover-fill-color-dark-warning-1:hover rect,
+body.dark .hp-hover-fill-color-dark-warning-1:hover line,
+body.dark .hp-hover-fill-color-dark-warning-1:hover circle {
+  fill: #ffc212 !important;
+}
+body.dark .hp-hover-fill-color-dark-warning-2:hover path,
+body.dark .hp-hover-fill-color-dark-warning-2:hover rect,
+body.dark .hp-hover-fill-color-dark-warning-2:hover line,
+body.dark .hp-hover-fill-color-dark-warning-2:hover circle {
+  fill: #ffd252 !important;
+}
+body.dark .hp-hover-fill-color-dark-warning-3:hover path,
+body.dark .hp-hover-fill-color-dark-warning-3:hover rect,
+body.dark .hp-hover-fill-color-dark-warning-3:hover line,
+body.dark .hp-hover-fill-color-dark-warning-3:hover circle {
+  fill: #ffe393 !important;
+}
+body.dark .hp-hover-fill-color-dark-warning-4:hover path,
+body.dark .hp-hover-fill-color-dark-warning-4:hover rect,
+body.dark .hp-hover-fill-color-dark-warning-4:hover line,
+body.dark .hp-hover-fill-color-dark-warning-4:hover circle {
+  fill: #fff9e9 !important;
+}
+body.dark .hp-hover-fill-color-dark-success-1:hover path,
+body.dark .hp-hover-fill-color-dark-success-1:hover rect,
+body.dark .hp-hover-fill-color-dark-success-1:hover line,
+body.dark .hp-hover-fill-color-dark-success-1:hover circle {
+  fill: #00f7bf !important;
+}
+body.dark .hp-hover-fill-color-dark-success-2:hover path,
+body.dark .hp-hover-fill-color-dark-success-2:hover rect,
+body.dark .hp-hover-fill-color-dark-success-2:hover line,
+body.dark .hp-hover-fill-color-dark-success-2:hover circle {
+  fill: #5bffce !important;
+}
+body.dark .hp-hover-fill-color-dark-success-3:hover path,
+body.dark .hp-hover-fill-color-dark-success-3:hover rect,
+body.dark .hp-hover-fill-color-dark-success-3:hover line,
+body.dark .hp-hover-fill-color-dark-success-3:hover circle {
+  fill: #98ffe0 !important;
+}
+body.dark .hp-hover-fill-color-dark-success-4:hover path,
+body.dark .hp-hover-fill-color-dark-success-4:hover rect,
+body.dark .hp-hover-fill-color-dark-success-4:hover line,
+body.dark .hp-hover-fill-color-dark-success-4:hover circle {
+  fill: #eafff8 !important;
+}
+body.dark .hp-hover-fill-color-dark-danger-1:hover path,
+body.dark .hp-hover-fill-color-dark-danger-1:hover rect,
+body.dark .hp-hover-fill-color-dark-danger-1:hover line,
+body.dark .hp-hover-fill-color-dark-danger-1:hover circle {
+  fill: #ff0022 !important;
+}
+body.dark .hp-hover-fill-color-dark-danger-2:hover path,
+body.dark .hp-hover-fill-color-dark-danger-2:hover rect,
+body.dark .hp-hover-fill-color-dark-danger-2:hover line,
+body.dark .hp-hover-fill-color-dark-danger-2:hover circle {
+  fill: #ff455e !important;
+}
+body.dark .hp-hover-fill-color-dark-danger-3:hover path,
+body.dark .hp-hover-fill-color-dark-danger-3:hover rect,
+body.dark .hp-hover-fill-color-dark-danger-3:hover line,
+body.dark .hp-hover-fill-color-dark-danger-3:hover circle {
+  fill: #ff8b9a !important;
+}
+body.dark .hp-hover-fill-color-dark-danger-4:hover path,
+body.dark .hp-hover-fill-color-dark-danger-4:hover rect,
+body.dark .hp-hover-fill-color-dark-danger-4:hover line,
+body.dark .hp-hover-fill-color-dark-danger-4:hover circle {
+  fill: #ffe7ea !important;
+}
+body.dark .hp-hover-fill-color-dark-info-1:hover path,
+body.dark .hp-hover-fill-color-dark-info-1:hover rect,
+body.dark .hp-hover-fill-color-dark-info-1:hover line,
+body.dark .hp-hover-fill-color-dark-info-1:hover circle {
+  fill: #1be7ff !important;
+}
+body.dark .hp-hover-fill-color-dark-info-2:hover path,
+body.dark .hp-hover-fill-color-dark-info-2:hover rect,
+body.dark .hp-hover-fill-color-dark-info-2:hover line,
+body.dark .hp-hover-fill-color-dark-info-2:hover circle {
+  fill: #59edff !important;
+}
+body.dark .hp-hover-fill-color-dark-info-3:hover path,
+body.dark .hp-hover-fill-color-dark-info-3:hover rect,
+body.dark .hp-hover-fill-color-dark-info-3:hover line,
+body.dark .hp-hover-fill-color-dark-info-3:hover circle {
+  fill: #97f4ff !important;
+}
+body.dark .hp-hover-fill-color-dark-info-4:hover path,
+body.dark .hp-hover-fill-color-dark-info-4:hover rect,
+body.dark .hp-hover-fill-color-dark-info-4:hover line,
+body.dark .hp-hover-fill-color-dark-info-4:hover circle {
+  fill: #eafcff !important;
+}
+body.dark .hp-fill-color-dark-0 path,
+body.dark .hp-fill-color-dark-0 rect,
+body.dark .hp-fill-color-dark-0 line,
+body.dark .hp-fill-color-dark-0 circle {
+  fill: #FFFFFF !important;
+}
+body.dark .hp-fill-color-dark-5 path,
+body.dark .hp-fill-color-dark-5 rect,
+body.dark .hp-fill-color-dark-5 line,
+body.dark .hp-fill-color-dark-5 circle {
+  fill: #F5F5F5 !important;
+}
+body.dark .hp-fill-color-dark-10 path,
+body.dark .hp-fill-color-dark-10 rect,
+body.dark .hp-fill-color-dark-10 line,
+body.dark .hp-fill-color-dark-10 circle {
+  fill: #F0F0F0 !important;
+}
+body.dark .hp-fill-color-dark-15 path,
+body.dark .hp-fill-color-dark-15 rect,
+body.dark .hp-fill-color-dark-15 line,
+body.dark .hp-fill-color-dark-15 circle {
+  fill: #E1E1E1 !important;
+}
+body.dark .hp-fill-color-dark-20 path,
+body.dark .hp-fill-color-dark-20 rect,
+body.dark .hp-fill-color-dark-20 line,
+body.dark .hp-fill-color-dark-20 circle {
+  fill: #D7D7D7 !important;
+}
+body.dark .hp-fill-color-dark-30 path,
+body.dark .hp-fill-color-dark-30 rect,
+body.dark .hp-fill-color-dark-30 line,
+body.dark .hp-fill-color-dark-30 circle {
+  fill: #C2C2C2 !important;
+}
+body.dark .hp-fill-color-dark-35 path,
+body.dark .hp-fill-color-dark-35 rect,
+body.dark .hp-fill-color-dark-35 line,
+body.dark .hp-fill-color-dark-35 circle {
+  fill: #ADADAD !important;
+}
+body.dark .hp-fill-color-dark-40 path,
+body.dark .hp-fill-color-dark-40 rect,
+body.dark .hp-fill-color-dark-40 line,
+body.dark .hp-fill-color-dark-40 circle {
+  fill: #999999 !important;
+}
+body.dark .hp-fill-color-dark-45 path,
+body.dark .hp-fill-color-dark-45 rect,
+body.dark .hp-fill-color-dark-45 line,
+body.dark .hp-fill-color-dark-45 circle {
+  fill: #858585 !important;
+}
+body.dark .hp-fill-color-dark-50 path,
+body.dark .hp-fill-color-dark-50 rect,
+body.dark .hp-fill-color-dark-50 line,
+body.dark .hp-fill-color-dark-50 circle {
+  fill: #707070 !important;
+}
+body.dark .hp-fill-color-dark-60 path,
+body.dark .hp-fill-color-dark-60 rect,
+body.dark .hp-fill-color-dark-60 line,
+body.dark .hp-fill-color-dark-60 circle {
+  fill: #5C5C5C !important;
+}
+body.dark .hp-fill-color-dark-70 path,
+body.dark .hp-fill-color-dark-70 rect,
+body.dark .hp-fill-color-dark-70 line,
+body.dark .hp-fill-color-dark-70 circle {
+  fill: #474747 !important;
+}
+body.dark .hp-fill-color-dark-80 path,
+body.dark .hp-fill-color-dark-80 rect,
+body.dark .hp-fill-color-dark-80 line,
+body.dark .hp-fill-color-dark-80 circle {
+  fill: #333333 !important;
+}
+body.dark .hp-fill-color-dark-85 path,
+body.dark .hp-fill-color-dark-85 rect,
+body.dark .hp-fill-color-dark-85 line,
+body.dark .hp-fill-color-dark-85 circle {
+  fill: #292929 !important;
+}
+body.dark .hp-fill-color-dark-90 path,
+body.dark .hp-fill-color-dark-90 rect,
+body.dark .hp-fill-color-dark-90 line,
+body.dark .hp-fill-color-dark-90 circle {
+  fill: #1F1F1F !important;
+}
+body.dark .hp-fill-color-dark-100 path,
+body.dark .hp-fill-color-dark-100 rect,
+body.dark .hp-fill-color-dark-100 line,
+body.dark .hp-fill-color-dark-100 circle {
+  fill: #141414 !important;
+}
+body.dark .hp-fill-color-dark-primary path,
+body.dark .hp-fill-color-dark-primary rect,
+body.dark .hp-fill-color-dark-primary line,
+body.dark .hp-fill-color-dark-primary circle {
+  fill: #050342 !important;
+}
+body.dark .hp-fill-color-dark-danger path,
+body.dark .hp-fill-color-dark-danger rect,
+body.dark .hp-fill-color-dark-danger line,
+body.dark .hp-fill-color-dark-danger circle {
+  fill: #2e1619 !important;
+}
+body.dark .hp-fill-color-dark-error path,
+body.dark .hp-fill-color-dark-error rect,
+body.dark .hp-fill-color-dark-error line,
+body.dark .hp-fill-color-dark-error circle {
+  fill: #2e1619 !important;
+}
+body.dark .hp-fill-color-dark-warning path,
+body.dark .hp-fill-color-dark-warning rect,
+body.dark .hp-fill-color-dark-warning line,
+body.dark .hp-fill-color-dark-warning circle {
+  fill: #3b3117 !important;
+}
+body.dark .hp-fill-color-dark-success path,
+body.dark .hp-fill-color-dark-success rect,
+body.dark .hp-fill-color-dark-success line,
+body.dark .hp-fill-color-dark-success circle {
+  fill: #18342a !important;
+}
+body.dark .hp-fill-color-dark-secondary path,
+body.dark .hp-fill-color-dark-secondary rect,
+body.dark .hp-fill-color-dark-secondary line,
+body.dark .hp-fill-color-dark-secondary circle {
+  fill: #290034 !important;
+}
+body.dark .hp-fill-color-dark-info path,
+body.dark .hp-fill-color-dark-info rect,
+body.dark .hp-fill-color-dark-info line,
+body.dark .hp-fill-color-dark-info circle {
+  fill: #1e383d !important;
+}
+body.dark .hp-fill-color-dark-primary-1 path,
+body.dark .hp-fill-color-dark-primary-1 rect,
+body.dark .hp-fill-color-dark-primary-1 line,
+body.dark .hp-fill-color-dark-primary-1 circle {
+  fill: #0010f7 !important;
+}
+body.dark .hp-fill-color-dark-primary-2 path,
+body.dark .hp-fill-color-dark-primary-2 rect,
+body.dark .hp-fill-color-dark-primary-2 line,
+body.dark .hp-fill-color-dark-primary-2 circle {
+  fill: #0063f7 !important;
+}
+body.dark .hp-fill-color-dark-primary-3 path,
+body.dark .hp-fill-color-dark-primary-3 rect,
+body.dark .hp-fill-color-dark-primary-3 line,
+body.dark .hp-fill-color-dark-primary-3 circle {
+  fill: #55b1f3 !important;
+}
+body.dark .hp-fill-color-dark-primary-4 path,
+body.dark .hp-fill-color-dark-primary-4 rect,
+body.dark .hp-fill-color-dark-primary-4 line,
+body.dark .hp-fill-color-dark-primary-4 circle {
+  fill: #ebfafa !important;
+}
+body.dark .hp-fill-color-dark-secondary-1 path,
+body.dark .hp-fill-color-dark-secondary-1 rect,
+body.dark .hp-fill-color-dark-secondary-1 line,
+body.dark .hp-fill-color-dark-secondary-1 circle {
+  fill: #c903ff !important;
+}
+body.dark .hp-fill-color-dark-secondary-2 path,
+body.dark .hp-fill-color-dark-secondary-2 rect,
+body.dark .hp-fill-color-dark-secondary-2 line,
+body.dark .hp-fill-color-dark-secondary-2 circle {
+  fill: #e26bf5 !important;
+}
+body.dark .hp-fill-color-dark-secondary-3 path,
+body.dark .hp-fill-color-dark-secondary-3 rect,
+body.dark .hp-fill-color-dark-secondary-3 line,
+body.dark .hp-fill-color-dark-secondary-3 circle {
+  fill: #f7c2ff !important;
+}
+body.dark .hp-fill-color-dark-secondary-4 path,
+body.dark .hp-fill-color-dark-secondary-4 rect,
+body.dark .hp-fill-color-dark-secondary-4 line,
+body.dark .hp-fill-color-dark-secondary-4 circle {
+  fill: #fdeffc !important;
+}
+body.dark .hp-fill-color-dark-warning-1 path,
+body.dark .hp-fill-color-dark-warning-1 rect,
+body.dark .hp-fill-color-dark-warning-1 line,
+body.dark .hp-fill-color-dark-warning-1 circle {
+  fill: #ffc212 !important;
+}
+body.dark .hp-fill-color-dark-warning-2 path,
+body.dark .hp-fill-color-dark-warning-2 rect,
+body.dark .hp-fill-color-dark-warning-2 line,
+body.dark .hp-fill-color-dark-warning-2 circle {
+  fill: #ffd252 !important;
+}
+body.dark .hp-fill-color-dark-warning-3 path,
+body.dark .hp-fill-color-dark-warning-3 rect,
+body.dark .hp-fill-color-dark-warning-3 line,
+body.dark .hp-fill-color-dark-warning-3 circle {
+  fill: #ffe393 !important;
+}
+body.dark .hp-fill-color-dark-warning-4 path,
+body.dark .hp-fill-color-dark-warning-4 rect,
+body.dark .hp-fill-color-dark-warning-4 line,
+body.dark .hp-fill-color-dark-warning-4 circle {
+  fill: #fff9e9 !important;
+}
+body.dark .hp-fill-color-dark-success-1 path,
+body.dark .hp-fill-color-dark-success-1 rect,
+body.dark .hp-fill-color-dark-success-1 line,
+body.dark .hp-fill-color-dark-success-1 circle {
+  fill: #00f7bf !important;
+}
+body.dark .hp-fill-color-dark-success-2 path,
+body.dark .hp-fill-color-dark-success-2 rect,
+body.dark .hp-fill-color-dark-success-2 line,
+body.dark .hp-fill-color-dark-success-2 circle {
+  fill: #5bffce !important;
+}
+body.dark .hp-fill-color-dark-success-3 path,
+body.dark .hp-fill-color-dark-success-3 rect,
+body.dark .hp-fill-color-dark-success-3 line,
+body.dark .hp-fill-color-dark-success-3 circle {
+  fill: #98ffe0 !important;
+}
+body.dark .hp-fill-color-dark-success-4 path,
+body.dark .hp-fill-color-dark-success-4 rect,
+body.dark .hp-fill-color-dark-success-4 line,
+body.dark .hp-fill-color-dark-success-4 circle {
+  fill: #eafff8 !important;
+}
+body.dark .hp-fill-color-dark-danger-1 path,
+body.dark .hp-fill-color-dark-danger-1 rect,
+body.dark .hp-fill-color-dark-danger-1 line,
+body.dark .hp-fill-color-dark-danger-1 circle {
+  fill: #ff0022 !important;
+}
+body.dark .hp-fill-color-dark-danger-2 path,
+body.dark .hp-fill-color-dark-danger-2 rect,
+body.dark .hp-fill-color-dark-danger-2 line,
+body.dark .hp-fill-color-dark-danger-2 circle {
+  fill: #ff455e !important;
+}
+body.dark .hp-fill-color-dark-danger-3 path,
+body.dark .hp-fill-color-dark-danger-3 rect,
+body.dark .hp-fill-color-dark-danger-3 line,
+body.dark .hp-fill-color-dark-danger-3 circle {
+  fill: #ff8b9a !important;
+}
+body.dark .hp-fill-color-dark-danger-4 path,
+body.dark .hp-fill-color-dark-danger-4 rect,
+body.dark .hp-fill-color-dark-danger-4 line,
+body.dark .hp-fill-color-dark-danger-4 circle {
+  fill: #ffe7ea !important;
+}
+body.dark .hp-fill-color-dark-info-1 path,
+body.dark .hp-fill-color-dark-info-1 rect,
+body.dark .hp-fill-color-dark-info-1 line,
+body.dark .hp-fill-color-dark-info-1 circle {
+  fill: #1be7ff !important;
+}
+body.dark .hp-fill-color-dark-info-2 path,
+body.dark .hp-fill-color-dark-info-2 rect,
+body.dark .hp-fill-color-dark-info-2 line,
+body.dark .hp-fill-color-dark-info-2 circle {
+  fill: #59edff !important;
+}
+body.dark .hp-fill-color-dark-info-3 path,
+body.dark .hp-fill-color-dark-info-3 rect,
+body.dark .hp-fill-color-dark-info-3 line,
+body.dark .hp-fill-color-dark-info-3 circle {
+  fill: #97f4ff !important;
+}
+body.dark .hp-fill-color-dark-info-4 path,
+body.dark .hp-fill-color-dark-info-4 rect,
+body.dark .hp-fill-color-dark-info-4 line,
+body.dark .hp-fill-color-dark-info-4 circle {
+  fill: #eafcff !important;
+}
+body.dark .hp-hover-stroke-color-dark-0 path:hover,
+body.dark .hp-hover-stroke-color-dark-0 rect:hover,
+body.dark .hp-hover-stroke-color-dark-0 line:hover,
+body.dark .hp-hover-stroke-color-dark-0 circle:hover {
+  stroke: #FFFFFF !important;
+}
+body.dark .hp-hover-stroke-color-dark-5 path:hover,
+body.dark .hp-hover-stroke-color-dark-5 rect:hover,
+body.dark .hp-hover-stroke-color-dark-5 line:hover,
+body.dark .hp-hover-stroke-color-dark-5 circle:hover {
+  stroke: #F5F5F5 !important;
+}
+body.dark .hp-hover-stroke-color-dark-10 path:hover,
+body.dark .hp-hover-stroke-color-dark-10 rect:hover,
+body.dark .hp-hover-stroke-color-dark-10 line:hover,
+body.dark .hp-hover-stroke-color-dark-10 circle:hover {
+  stroke: #F0F0F0 !important;
+}
+body.dark .hp-hover-stroke-color-dark-15 path:hover,
+body.dark .hp-hover-stroke-color-dark-15 rect:hover,
+body.dark .hp-hover-stroke-color-dark-15 line:hover,
+body.dark .hp-hover-stroke-color-dark-15 circle:hover {
+  stroke: #E1E1E1 !important;
+}
+body.dark .hp-hover-stroke-color-dark-20 path:hover,
+body.dark .hp-hover-stroke-color-dark-20 rect:hover,
+body.dark .hp-hover-stroke-color-dark-20 line:hover,
+body.dark .hp-hover-stroke-color-dark-20 circle:hover {
+  stroke: #D7D7D7 !important;
+}
+body.dark .hp-hover-stroke-color-dark-30 path:hover,
+body.dark .hp-hover-stroke-color-dark-30 rect:hover,
+body.dark .hp-hover-stroke-color-dark-30 line:hover,
+body.dark .hp-hover-stroke-color-dark-30 circle:hover {
+  stroke: #C2C2C2 !important;
+}
+body.dark .hp-hover-stroke-color-dark-35 path:hover,
+body.dark .hp-hover-stroke-color-dark-35 rect:hover,
+body.dark .hp-hover-stroke-color-dark-35 line:hover,
+body.dark .hp-hover-stroke-color-dark-35 circle:hover {
+  stroke: #ADADAD !important;
+}
+body.dark .hp-hover-stroke-color-dark-40 path:hover,
+body.dark .hp-hover-stroke-color-dark-40 rect:hover,
+body.dark .hp-hover-stroke-color-dark-40 line:hover,
+body.dark .hp-hover-stroke-color-dark-40 circle:hover {
+  stroke: #999999 !important;
+}
+body.dark .hp-hover-stroke-color-dark-45 path:hover,
+body.dark .hp-hover-stroke-color-dark-45 rect:hover,
+body.dark .hp-hover-stroke-color-dark-45 line:hover,
+body.dark .hp-hover-stroke-color-dark-45 circle:hover {
+  stroke: #858585 !important;
+}
+body.dark .hp-hover-stroke-color-dark-50 path:hover,
+body.dark .hp-hover-stroke-color-dark-50 rect:hover,
+body.dark .hp-hover-stroke-color-dark-50 line:hover,
+body.dark .hp-hover-stroke-color-dark-50 circle:hover {
+  stroke: #707070 !important;
+}
+body.dark .hp-hover-stroke-color-dark-60 path:hover,
+body.dark .hp-hover-stroke-color-dark-60 rect:hover,
+body.dark .hp-hover-stroke-color-dark-60 line:hover,
+body.dark .hp-hover-stroke-color-dark-60 circle:hover {
+  stroke: #5C5C5C !important;
+}
+body.dark .hp-hover-stroke-color-dark-70 path:hover,
+body.dark .hp-hover-stroke-color-dark-70 rect:hover,
+body.dark .hp-hover-stroke-color-dark-70 line:hover,
+body.dark .hp-hover-stroke-color-dark-70 circle:hover {
+  stroke: #474747 !important;
+}
+body.dark .hp-hover-stroke-color-dark-80 path:hover,
+body.dark .hp-hover-stroke-color-dark-80 rect:hover,
+body.dark .hp-hover-stroke-color-dark-80 line:hover,
+body.dark .hp-hover-stroke-color-dark-80 circle:hover {
+  stroke: #333333 !important;
+}
+body.dark .hp-hover-stroke-color-dark-85 path:hover,
+body.dark .hp-hover-stroke-color-dark-85 rect:hover,
+body.dark .hp-hover-stroke-color-dark-85 line:hover,
+body.dark .hp-hover-stroke-color-dark-85 circle:hover {
+  stroke: #292929 !important;
+}
+body.dark .hp-hover-stroke-color-dark-90 path:hover,
+body.dark .hp-hover-stroke-color-dark-90 rect:hover,
+body.dark .hp-hover-stroke-color-dark-90 line:hover,
+body.dark .hp-hover-stroke-color-dark-90 circle:hover {
+  stroke: #1F1F1F !important;
+}
+body.dark .hp-hover-stroke-color-dark-100 path:hover,
+body.dark .hp-hover-stroke-color-dark-100 rect:hover,
+body.dark .hp-hover-stroke-color-dark-100 line:hover,
+body.dark .hp-hover-stroke-color-dark-100 circle:hover {
+  stroke: #141414 !important;
+}
+body.dark .hp-hover-stroke-color-dark-primary path:hover,
+body.dark .hp-hover-stroke-color-dark-primary rect:hover,
+body.dark .hp-hover-stroke-color-dark-primary line:hover,
+body.dark .hp-hover-stroke-color-dark-primary circle:hover {
+  stroke: #050342 !important;
+}
+body.dark .hp-hover-stroke-color-dark-danger path:hover,
+body.dark .hp-hover-stroke-color-dark-danger rect:hover,
+body.dark .hp-hover-stroke-color-dark-danger line:hover,
+body.dark .hp-hover-stroke-color-dark-danger circle:hover {
+  stroke: #2e1619 !important;
+}
+body.dark .hp-hover-stroke-color-dark-error path:hover,
+body.dark .hp-hover-stroke-color-dark-error rect:hover,
+body.dark .hp-hover-stroke-color-dark-error line:hover,
+body.dark .hp-hover-stroke-color-dark-error circle:hover {
+  stroke: #2e1619 !important;
+}
+body.dark .hp-hover-stroke-color-dark-warning path:hover,
+body.dark .hp-hover-stroke-color-dark-warning rect:hover,
+body.dark .hp-hover-stroke-color-dark-warning line:hover,
+body.dark .hp-hover-stroke-color-dark-warning circle:hover {
+  stroke: #3b3117 !important;
+}
+body.dark .hp-hover-stroke-color-dark-success path:hover,
+body.dark .hp-hover-stroke-color-dark-success rect:hover,
+body.dark .hp-hover-stroke-color-dark-success line:hover,
+body.dark .hp-hover-stroke-color-dark-success circle:hover {
+  stroke: #18342a !important;
+}
+body.dark .hp-hover-stroke-color-dark-secondary path:hover,
+body.dark .hp-hover-stroke-color-dark-secondary rect:hover,
+body.dark .hp-hover-stroke-color-dark-secondary line:hover,
+body.dark .hp-hover-stroke-color-dark-secondary circle:hover {
+  stroke: #290034 !important;
+}
+body.dark .hp-hover-stroke-color-dark-info path:hover,
+body.dark .hp-hover-stroke-color-dark-info rect:hover,
+body.dark .hp-hover-stroke-color-dark-info line:hover,
+body.dark .hp-hover-stroke-color-dark-info circle:hover {
+  stroke: #1e383d !important;
+}
+body.dark .hp-hover-stroke-color-dark-primary-1 path:hover,
+body.dark .hp-hover-stroke-color-dark-primary-1 rect:hover,
+body.dark .hp-hover-stroke-color-dark-primary-1 line:hover,
+body.dark .hp-hover-stroke-color-dark-primary-1 circle:hover {
+  stroke: #0010f7 !important;
+}
+body.dark .hp-hover-stroke-color-dark-primary-2 path:hover,
+body.dark .hp-hover-stroke-color-dark-primary-2 rect:hover,
+body.dark .hp-hover-stroke-color-dark-primary-2 line:hover,
+body.dark .hp-hover-stroke-color-dark-primary-2 circle:hover {
+  stroke: #0063f7 !important;
+}
+body.dark .hp-hover-stroke-color-dark-primary-3 path:hover,
+body.dark .hp-hover-stroke-color-dark-primary-3 rect:hover,
+body.dark .hp-hover-stroke-color-dark-primary-3 line:hover,
+body.dark .hp-hover-stroke-color-dark-primary-3 circle:hover {
+  stroke: #55b1f3 !important;
+}
+body.dark .hp-hover-stroke-color-dark-primary-4 path:hover,
+body.dark .hp-hover-stroke-color-dark-primary-4 rect:hover,
+body.dark .hp-hover-stroke-color-dark-primary-4 line:hover,
+body.dark .hp-hover-stroke-color-dark-primary-4 circle:hover {
+  stroke: #ebfafa !important;
+}
+body.dark .hp-hover-stroke-color-dark-secondary-1 path:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-1 rect:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-1 line:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-1 circle:hover {
+  stroke: #c903ff !important;
+}
+body.dark .hp-hover-stroke-color-dark-secondary-2 path:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-2 rect:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-2 line:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-2 circle:hover {
+  stroke: #e26bf5 !important;
+}
+body.dark .hp-hover-stroke-color-dark-secondary-3 path:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-3 rect:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-3 line:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-3 circle:hover {
+  stroke: #f7c2ff !important;
+}
+body.dark .hp-hover-stroke-color-dark-secondary-4 path:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-4 rect:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-4 line:hover,
+body.dark .hp-hover-stroke-color-dark-secondary-4 circle:hover {
+  stroke: #fdeffc !important;
+}
+body.dark .hp-hover-stroke-color-dark-warning-1 path:hover,
+body.dark .hp-hover-stroke-color-dark-warning-1 rect:hover,
+body.dark .hp-hover-stroke-color-dark-warning-1 line:hover,
+body.dark .hp-hover-stroke-color-dark-warning-1 circle:hover {
+  stroke: #ffc212 !important;
+}
+body.dark .hp-hover-stroke-color-dark-warning-2 path:hover,
+body.dark .hp-hover-stroke-color-dark-warning-2 rect:hover,
+body.dark .hp-hover-stroke-color-dark-warning-2 line:hover,
+body.dark .hp-hover-stroke-color-dark-warning-2 circle:hover {
+  stroke: #ffd252 !important;
+}
+body.dark .hp-hover-stroke-color-dark-warning-3 path:hover,
+body.dark .hp-hover-stroke-color-dark-warning-3 rect:hover,
+body.dark .hp-hover-stroke-color-dark-warning-3 line:hover,
+body.dark .hp-hover-stroke-color-dark-warning-3 circle:hover {
+  stroke: #ffe393 !important;
+}
+body.dark .hp-hover-stroke-color-dark-warning-4 path:hover,
+body.dark .hp-hover-stroke-color-dark-warning-4 rect:hover,
+body.dark .hp-hover-stroke-color-dark-warning-4 line:hover,
+body.dark .hp-hover-stroke-color-dark-warning-4 circle:hover {
+  stroke: #fff9e9 !important;
+}
+body.dark .hp-hover-stroke-color-dark-success-1 path:hover,
+body.dark .hp-hover-stroke-color-dark-success-1 rect:hover,
+body.dark .hp-hover-stroke-color-dark-success-1 line:hover,
+body.dark .hp-hover-stroke-color-dark-success-1 circle:hover {
+  stroke: #00f7bf !important;
+}
+body.dark .hp-hover-stroke-color-dark-success-2 path:hover,
+body.dark .hp-hover-stroke-color-dark-success-2 rect:hover,
+body.dark .hp-hover-stroke-color-dark-success-2 line:hover,
+body.dark .hp-hover-stroke-color-dark-success-2 circle:hover {
+  stroke: #5bffce !important;
+}
+body.dark .hp-hover-stroke-color-dark-success-3 path:hover,
+body.dark .hp-hover-stroke-color-dark-success-3 rect:hover,
+body.dark .hp-hover-stroke-color-dark-success-3 line:hover,
+body.dark .hp-hover-stroke-color-dark-success-3 circle:hover {
+  stroke: #98ffe0 !important;
+}
+body.dark .hp-hover-stroke-color-dark-success-4 path:hover,
+body.dark .hp-hover-stroke-color-dark-success-4 rect:hover,
+body.dark .hp-hover-stroke-color-dark-success-4 line:hover,
+body.dark .hp-hover-stroke-color-dark-success-4 circle:hover {
+  stroke: #eafff8 !important;
+}
+body.dark .hp-hover-stroke-color-dark-danger-1 path:hover,
+body.dark .hp-hover-stroke-color-dark-danger-1 rect:hover,
+body.dark .hp-hover-stroke-color-dark-danger-1 line:hover,
+body.dark .hp-hover-stroke-color-dark-danger-1 circle:hover {
+  stroke: #ff0022 !important;
+}
+body.dark .hp-hover-stroke-color-dark-danger-2 path:hover,
+body.dark .hp-hover-stroke-color-dark-danger-2 rect:hover,
+body.dark .hp-hover-stroke-color-dark-danger-2 line:hover,
+body.dark .hp-hover-stroke-color-dark-danger-2 circle:hover {
+  stroke: #ff455e !important;
+}
+body.dark .hp-hover-stroke-color-dark-danger-3 path:hover,
+body.dark .hp-hover-stroke-color-dark-danger-3 rect:hover,
+body.dark .hp-hover-stroke-color-dark-danger-3 line:hover,
+body.dark .hp-hover-stroke-color-dark-danger-3 circle:hover {
+  stroke: #ff8b9a !important;
+}
+body.dark .hp-hover-stroke-color-dark-danger-4 path:hover,
+body.dark .hp-hover-stroke-color-dark-danger-4 rect:hover,
+body.dark .hp-hover-stroke-color-dark-danger-4 line:hover,
+body.dark .hp-hover-stroke-color-dark-danger-4 circle:hover {
+  stroke: #ffe7ea !important;
+}
+body.dark .hp-hover-stroke-color-dark-info-1 path:hover,
+body.dark .hp-hover-stroke-color-dark-info-1 rect:hover,
+body.dark .hp-hover-stroke-color-dark-info-1 line:hover,
+body.dark .hp-hover-stroke-color-dark-info-1 circle:hover {
+  stroke: #1be7ff !important;
+}
+body.dark .hp-hover-stroke-color-dark-info-2 path:hover,
+body.dark .hp-hover-stroke-color-dark-info-2 rect:hover,
+body.dark .hp-hover-stroke-color-dark-info-2 line:hover,
+body.dark .hp-hover-stroke-color-dark-info-2 circle:hover {
+  stroke: #59edff !important;
+}
+body.dark .hp-hover-stroke-color-dark-info-3 path:hover,
+body.dark .hp-hover-stroke-color-dark-info-3 rect:hover,
+body.dark .hp-hover-stroke-color-dark-info-3 line:hover,
+body.dark .hp-hover-stroke-color-dark-info-3 circle:hover {
+  stroke: #97f4ff !important;
+}
+body.dark .hp-hover-stroke-color-dark-info-4 path:hover,
+body.dark .hp-hover-stroke-color-dark-info-4 rect:hover,
+body.dark .hp-hover-stroke-color-dark-info-4 line:hover,
+body.dark .hp-hover-stroke-color-dark-info-4 circle:hover {
+  stroke: #eafcff !important;
+}
+body.dark .hp-stroke-color-dark-0 path,
+body.dark .hp-stroke-color-dark-0 rect,
+body.dark .hp-stroke-color-dark-0 line,
+body.dark .hp-stroke-color-dark-0 circle {
+  stroke: #FFFFFF !important;
+}
+body.dark .hp-stroke-color-dark-5 path,
+body.dark .hp-stroke-color-dark-5 rect,
+body.dark .hp-stroke-color-dark-5 line,
+body.dark .hp-stroke-color-dark-5 circle {
+  stroke: #F5F5F5 !important;
+}
+body.dark .hp-stroke-color-dark-10 path,
+body.dark .hp-stroke-color-dark-10 rect,
+body.dark .hp-stroke-color-dark-10 line,
+body.dark .hp-stroke-color-dark-10 circle {
+  stroke: #F0F0F0 !important;
+}
+body.dark .hp-stroke-color-dark-15 path,
+body.dark .hp-stroke-color-dark-15 rect,
+body.dark .hp-stroke-color-dark-15 line,
+body.dark .hp-stroke-color-dark-15 circle {
+  stroke: #E1E1E1 !important;
+}
+body.dark .hp-stroke-color-dark-20 path,
+body.dark .hp-stroke-color-dark-20 rect,
+body.dark .hp-stroke-color-dark-20 line,
+body.dark .hp-stroke-color-dark-20 circle {
+  stroke: #D7D7D7 !important;
+}
+body.dark .hp-stroke-color-dark-30 path,
+body.dark .hp-stroke-color-dark-30 rect,
+body.dark .hp-stroke-color-dark-30 line,
+body.dark .hp-stroke-color-dark-30 circle {
+  stroke: #C2C2C2 !important;
+}
+body.dark .hp-stroke-color-dark-35 path,
+body.dark .hp-stroke-color-dark-35 rect,
+body.dark .hp-stroke-color-dark-35 line,
+body.dark .hp-stroke-color-dark-35 circle {
+  stroke: #ADADAD !important;
+}
+body.dark .hp-stroke-color-dark-40 path,
+body.dark .hp-stroke-color-dark-40 rect,
+body.dark .hp-stroke-color-dark-40 line,
+body.dark .hp-stroke-color-dark-40 circle {
+  stroke: #999999 !important;
+}
+body.dark .hp-stroke-color-dark-45 path,
+body.dark .hp-stroke-color-dark-45 rect,
+body.dark .hp-stroke-color-dark-45 line,
+body.dark .hp-stroke-color-dark-45 circle {
+  stroke: #858585 !important;
+}
+body.dark .hp-stroke-color-dark-50 path,
+body.dark .hp-stroke-color-dark-50 rect,
+body.dark .hp-stroke-color-dark-50 line,
+body.dark .hp-stroke-color-dark-50 circle {
+  stroke: #707070 !important;
+}
+body.dark .hp-stroke-color-dark-60 path,
+body.dark .hp-stroke-color-dark-60 rect,
+body.dark .hp-stroke-color-dark-60 line,
+body.dark .hp-stroke-color-dark-60 circle {
+  stroke: #5C5C5C !important;
+}
+body.dark .hp-stroke-color-dark-70 path,
+body.dark .hp-stroke-color-dark-70 rect,
+body.dark .hp-stroke-color-dark-70 line,
+body.dark .hp-stroke-color-dark-70 circle {
+  stroke: #474747 !important;
+}
+body.dark .hp-stroke-color-dark-80 path,
+body.dark .hp-stroke-color-dark-80 rect,
+body.dark .hp-stroke-color-dark-80 line,
+body.dark .hp-stroke-color-dark-80 circle {
+  stroke: #333333 !important;
+}
+body.dark .hp-stroke-color-dark-85 path,
+body.dark .hp-stroke-color-dark-85 rect,
+body.dark .hp-stroke-color-dark-85 line,
+body.dark .hp-stroke-color-dark-85 circle {
+  stroke: #292929 !important;
+}
+body.dark .hp-stroke-color-dark-90 path,
+body.dark .hp-stroke-color-dark-90 rect,
+body.dark .hp-stroke-color-dark-90 line,
+body.dark .hp-stroke-color-dark-90 circle {
+  stroke: #1F1F1F !important;
+}
+body.dark .hp-stroke-color-dark-100 path,
+body.dark .hp-stroke-color-dark-100 rect,
+body.dark .hp-stroke-color-dark-100 line,
+body.dark .hp-stroke-color-dark-100 circle {
+  stroke: #141414 !important;
+}
+body.dark .hp-stroke-color-dark-primary path,
+body.dark .hp-stroke-color-dark-primary rect,
+body.dark .hp-stroke-color-dark-primary line,
+body.dark .hp-stroke-color-dark-primary circle {
+  stroke: #050342 !important;
+}
+body.dark .hp-stroke-color-dark-danger path,
+body.dark .hp-stroke-color-dark-danger rect,
+body.dark .hp-stroke-color-dark-danger line,
+body.dark .hp-stroke-color-dark-danger circle {
+  stroke: #2e1619 !important;
+}
+body.dark .hp-stroke-color-dark-error path,
+body.dark .hp-stroke-color-dark-error rect,
+body.dark .hp-stroke-color-dark-error line,
+body.dark .hp-stroke-color-dark-error circle {
+  stroke: #2e1619 !important;
+}
+body.dark .hp-stroke-color-dark-warning path,
+body.dark .hp-stroke-color-dark-warning rect,
+body.dark .hp-stroke-color-dark-warning line,
+body.dark .hp-stroke-color-dark-warning circle {
+  stroke: #3b3117 !important;
+}
+body.dark .hp-stroke-color-dark-success path,
+body.dark .hp-stroke-color-dark-success rect,
+body.dark .hp-stroke-color-dark-success line,
+body.dark .hp-stroke-color-dark-success circle {
+  stroke: #18342a !important;
+}
+body.dark .hp-stroke-color-dark-secondary path,
+body.dark .hp-stroke-color-dark-secondary rect,
+body.dark .hp-stroke-color-dark-secondary line,
+body.dark .hp-stroke-color-dark-secondary circle {
+  stroke: #290034 !important;
+}
+body.dark .hp-stroke-color-dark-info path,
+body.dark .hp-stroke-color-dark-info rect,
+body.dark .hp-stroke-color-dark-info line,
+body.dark .hp-stroke-color-dark-info circle {
+  stroke: #1e383d !important;
+}
+body.dark .hp-stroke-color-dark-primary-1 path,
+body.dark .hp-stroke-color-dark-primary-1 rect,
+body.dark .hp-stroke-color-dark-primary-1 line,
+body.dark .hp-stroke-color-dark-primary-1 circle {
+  stroke: #0010f7 !important;
+}
+body.dark .hp-stroke-color-dark-primary-2 path,
+body.dark .hp-stroke-color-dark-primary-2 rect,
+body.dark .hp-stroke-color-dark-primary-2 line,
+body.dark .hp-stroke-color-dark-primary-2 circle {
+  stroke: #0063f7 !important;
+}
+body.dark .hp-stroke-color-dark-primary-3 path,
+body.dark .hp-stroke-color-dark-primary-3 rect,
+body.dark .hp-stroke-color-dark-primary-3 line,
+body.dark .hp-stroke-color-dark-primary-3 circle {
+  stroke: #55b1f3 !important;
+}
+body.dark .hp-stroke-color-dark-primary-4 path,
+body.dark .hp-stroke-color-dark-primary-4 rect,
+body.dark .hp-stroke-color-dark-primary-4 line,
+body.dark .hp-stroke-color-dark-primary-4 circle {
+  stroke: #ebfafa !important;
+}
+body.dark .hp-stroke-color-dark-secondary-1 path,
+body.dark .hp-stroke-color-dark-secondary-1 rect,
+body.dark .hp-stroke-color-dark-secondary-1 line,
+body.dark .hp-stroke-color-dark-secondary-1 circle {
+  stroke: #c903ff !important;
+}
+body.dark .hp-stroke-color-dark-secondary-2 path,
+body.dark .hp-stroke-color-dark-secondary-2 rect,
+body.dark .hp-stroke-color-dark-secondary-2 line,
+body.dark .hp-stroke-color-dark-secondary-2 circle {
+  stroke: #e26bf5 !important;
+}
+body.dark .hp-stroke-color-dark-secondary-3 path,
+body.dark .hp-stroke-color-dark-secondary-3 rect,
+body.dark .hp-stroke-color-dark-secondary-3 line,
+body.dark .hp-stroke-color-dark-secondary-3 circle {
+  stroke: #f7c2ff !important;
+}
+body.dark .hp-stroke-color-dark-secondary-4 path,
+body.dark .hp-stroke-color-dark-secondary-4 rect,
+body.dark .hp-stroke-color-dark-secondary-4 line,
+body.dark .hp-stroke-color-dark-secondary-4 circle {
+  stroke: #fdeffc !important;
+}
+body.dark .hp-stroke-color-dark-warning-1 path,
+body.dark .hp-stroke-color-dark-warning-1 rect,
+body.dark .hp-stroke-color-dark-warning-1 line,
+body.dark .hp-stroke-color-dark-warning-1 circle {
+  stroke: #ffc212 !important;
+}
+body.dark .hp-stroke-color-dark-warning-2 path,
+body.dark .hp-stroke-color-dark-warning-2 rect,
+body.dark .hp-stroke-color-dark-warning-2 line,
+body.dark .hp-stroke-color-dark-warning-2 circle {
+  stroke: #ffd252 !important;
+}
+body.dark .hp-stroke-color-dark-warning-3 path,
+body.dark .hp-stroke-color-dark-warning-3 rect,
+body.dark .hp-stroke-color-dark-warning-3 line,
+body.dark .hp-stroke-color-dark-warning-3 circle {
+  stroke: #ffe393 !important;
+}
+body.dark .hp-stroke-color-dark-warning-4 path,
+body.dark .hp-stroke-color-dark-warning-4 rect,
+body.dark .hp-stroke-color-dark-warning-4 line,
+body.dark .hp-stroke-color-dark-warning-4 circle {
+  stroke: #fff9e9 !important;
+}
+body.dark .hp-stroke-color-dark-success-1 path,
+body.dark .hp-stroke-color-dark-success-1 rect,
+body.dark .hp-stroke-color-dark-success-1 line,
+body.dark .hp-stroke-color-dark-success-1 circle {
+  stroke: #00f7bf !important;
+}
+body.dark .hp-stroke-color-dark-success-2 path,
+body.dark .hp-stroke-color-dark-success-2 rect,
+body.dark .hp-stroke-color-dark-success-2 line,
+body.dark .hp-stroke-color-dark-success-2 circle {
+  stroke: #5bffce !important;
+}
+body.dark .hp-stroke-color-dark-success-3 path,
+body.dark .hp-stroke-color-dark-success-3 rect,
+body.dark .hp-stroke-color-dark-success-3 line,
+body.dark .hp-stroke-color-dark-success-3 circle {
+  stroke: #98ffe0 !important;
+}
+body.dark .hp-stroke-color-dark-success-4 path,
+body.dark .hp-stroke-color-dark-success-4 rect,
+body.dark .hp-stroke-color-dark-success-4 line,
+body.dark .hp-stroke-color-dark-success-4 circle {
+  stroke: #eafff8 !important;
+}
+body.dark .hp-stroke-color-dark-danger-1 path,
+body.dark .hp-stroke-color-dark-danger-1 rect,
+body.dark .hp-stroke-color-dark-danger-1 line,
+body.dark .hp-stroke-color-dark-danger-1 circle {
+  stroke: #ff0022 !important;
+}
+body.dark .hp-stroke-color-dark-danger-2 path,
+body.dark .hp-stroke-color-dark-danger-2 rect,
+body.dark .hp-stroke-color-dark-danger-2 line,
+body.dark .hp-stroke-color-dark-danger-2 circle {
+  stroke: #ff455e !important;
+}
+body.dark .hp-stroke-color-dark-danger-3 path,
+body.dark .hp-stroke-color-dark-danger-3 rect,
+body.dark .hp-stroke-color-dark-danger-3 line,
+body.dark .hp-stroke-color-dark-danger-3 circle {
+  stroke: #ff8b9a !important;
+}
+body.dark .hp-stroke-color-dark-danger-4 path,
+body.dark .hp-stroke-color-dark-danger-4 rect,
+body.dark .hp-stroke-color-dark-danger-4 line,
+body.dark .hp-stroke-color-dark-danger-4 circle {
+  stroke: #ffe7ea !important;
+}
+body.dark .hp-stroke-color-dark-info-1 path,
+body.dark .hp-stroke-color-dark-info-1 rect,
+body.dark .hp-stroke-color-dark-info-1 line,
+body.dark .hp-stroke-color-dark-info-1 circle {
+  stroke: #1be7ff !important;
+}
+body.dark .hp-stroke-color-dark-info-2 path,
+body.dark .hp-stroke-color-dark-info-2 rect,
+body.dark .hp-stroke-color-dark-info-2 line,
+body.dark .hp-stroke-color-dark-info-2 circle {
+  stroke: #59edff !important;
+}
+body.dark .hp-stroke-color-dark-info-3 path,
+body.dark .hp-stroke-color-dark-info-3 rect,
+body.dark .hp-stroke-color-dark-info-3 line,
+body.dark .hp-stroke-color-dark-info-3 circle {
+  stroke: #97f4ff !important;
+}
+body.dark .hp-stroke-color-dark-info-4 path,
+body.dark .hp-stroke-color-dark-info-4 rect,
+body.dark .hp-stroke-color-dark-info-4 line,
+body.dark .hp-stroke-color-dark-info-4 circle {
+  stroke: #eafcff !important;
+}

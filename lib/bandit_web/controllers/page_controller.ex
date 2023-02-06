@@ -33,6 +33,8 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email]
           }
@@ -85,6 +87,8 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email]
           }
@@ -109,6 +113,8 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email]
           }
@@ -131,6 +137,8 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email]
           }
@@ -153,6 +161,8 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email]
           }
@@ -161,29 +171,7 @@ defmodule BanditWeb.PageController do
   end
 
   @doc """
-  Teams List Page
-  """
-  def teams(conn, _params) do
-    case conn.assigns[:is_super] do
-      false ->
-        conn
-        |> redirect(to: "/")
-
-      true ->
-        conn
-        |> render("teams.html",
-          data: %{
-            is_logged: conn.assigns[:is_logged],
-            is_super: conn.assigns[:is_super],
-            user_name: conn.assigns[:user_name],
-            user_email: conn.assigns[:user_email]
-          }
-        )
-    end
-  end
-
-  @doc """
-  Users List Page
+  Users Page
   """
   def users(conn, _params) do
     case conn.assigns[:is_super] do
@@ -197,6 +185,32 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
+          }
+        )
+    end
+  end
+
+  @doc """
+  Teams Page
+  """
+  def teams(conn, _params) do
+    case conn.assigns[:is_super] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        conn
+        |> render("teams.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email]
           }
@@ -219,6 +233,8 @@ defmodule BanditWeb.PageController do
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             app_name: SettingsModule.get_config("app_name", ""),
@@ -233,54 +249,48 @@ defmodule BanditWeb.PageController do
   Projects Page
   """
   def projects(conn, _params) do
-    render(conn, "projects.html",
-      data: %{
-        is_logged: conn.assigns[:is_logged],
-        user_id: conn.assigns[:user_id],
-        user_token: conn.assigns[:user_token]
-      }
-    )
+    case conn.assigns[:is_super] do
+      false ->
+        conn
+        |> redirect(to: "/")
+
+      true ->
+        conn
+        |> render("projects.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email]
+          }
+        )
+    end
   end
 
   @doc """
   Project Page
   """
-  def project(conn, _params) do
-    render(conn, "project.html", is_logged: conn.assigns[:is_logged])
-  end
+  def project(conn, %{"uuid" => uuid}) do
+    case conn.assigns[:is_super] do
+      false ->
+        conn
+        |> redirect(to: "/")
 
-  @doc """
-  New Project Page
-  """
-  def new_project(conn, _params) do
-    render(conn, "add_project.html", is_logged: conn.assigns[:is_logged])
-  end
-
-  @doc """
-  List Users Page
-  """
-  def users(conn, _params) do
-    render(conn, "users.html", is_logged: conn.assigns[:is_logged])
-  end
-
-  @doc """
-  Add User Page
-  """
-  def new_user(conn, _params) do
-    render(conn, "add_user.html", is_logged: conn.assigns[:is_logged])
-  end
-
-  @doc """
-  Edit User Page
-  """
-  def edit_user(conn, _params) do
-    render(conn, "edit_user.html", is_logged: conn.assigns[:is_logged])
-  end
-
-  @doc """
-  Settings Page
-  """
-  def settings(conn, _params) do
-    render(conn, "settings.html", is_logged: conn.assigns[:is_logged])
+      true ->
+        conn
+        |> render("project.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email],
+            uuid: uuid
+          }
+        )
+    end
   end
 end

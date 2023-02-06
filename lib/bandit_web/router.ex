@@ -35,13 +35,18 @@ defmodule BanditWeb.Router do
   scope "/", BanditWeb do
     pipe_through :browser
 
+    get "/404", PageController, :not_found
     get "/install", PageController, :install
     get "/", PageController, :home
     get "/login", PageController, :login
     get "/logout", PageController, :logout
+    get "/admin/dashboard", PageController, :dashboard
+    get "/admin/profile", PageController, :profile
+    get "/admin/teams", PageController, :teams
+    get "/admin/users", PageController, :users
     get "/admin/projects", PageController, :projects
-    get "/admin/projects/:id", PageController, :project
-    get "/admin/projects/new", PageController, :new_project
+    get "/admin/projects/:uuid", PageController, :project
+    get "/admin/settings", PageController, :settings
   end
 
   scope "/", BanditWeb do
@@ -72,6 +77,9 @@ defmodule BanditWeb.Router do
 
     # Settings Endpoint
     put "/settings", SettingsController, :update
+
+    # Profile Endpoint
+    post "/profile", ProfileController, :update
 
     # Project CRUD
     get "/project", ProjectController, :list
