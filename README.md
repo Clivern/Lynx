@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Bandit Logo" src="/assets/img/logo.png?v=0.4.0" width="250" />
+    <img alt="Bandit Logo" src="/assets/img/logo.png?v=0.5.0" width="250" />
     <h3 align="center">Bandit</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
@@ -7,7 +7,7 @@
             <img src="https://github.com/Clivern/Bandit/actions/workflows/server_ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Bandit/releases">
-            <img src="https://img.shields.io/badge/Version-0.4.0-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.5.0-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/Bandit/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
