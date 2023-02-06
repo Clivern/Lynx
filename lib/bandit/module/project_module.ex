@@ -174,4 +174,8 @@ defmodule Bandit.Module.ProjectModule do
         true
     end
   end
+
+  def get_project_id_with_uuid(uuid) do
+    ProjectContext.get_project_id_with_uuid(uuid)
+  end
 end

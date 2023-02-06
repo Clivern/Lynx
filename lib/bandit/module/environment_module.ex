@@ -30,6 +30,9 @@ defmodule Bandit.Module.EnvironmentModule do
     end
   end
 
+  @doc """
+  Get Project Environments
+  """
   def get_project_environments(project_uuid, offset, limit) do
     case ProjectContext.get_project_by_uuid(project_uuid) do
       nil ->
@@ -40,20 +43,77 @@ defmodule Bandit.Module.EnvironmentModule do
     end
   end
 
+  @doc """
+  Count Project Environments
+  """
   def count_project_environments(project_uuid, offset, limit) do
     case ProjectContext.get_project_by_uuid(project_uuid) do
       nil ->
-        {:not_found, "Project with UUID #{project_uuid} not found"}
+        0
 
       project ->
-        {:ok, EnvironmentContext.count_project_envs(project.id)}
+        EnvironmentContext.count_project_envs(project.id)
     end
   end
 
-  def create_environment(data) do
+  @doc """
+  Update environment
+  """
+  def update_environment(data \\ %{}) do
+    uuid = ValidatorService.get_str(data[:uuid], "")
+
+    case EnvironmentContext.get_env_by_uuid(uuid) do
+      nil ->
+        {:not_found, "Environment with UUID #{uuid} not found"}
+
+      env ->
+        new_env =
+          EnvironmentContext.new_env(%{
+            name: ValidatorService.get_str(data[:name], env.name),
+            username: ValidatorService.get_str(data[:username], env.username),
+            secret: ValidatorService.get_str(data[:secret], env.secret),
+            slug: env.slug,
+            project_id: env.project_id
+          })
+
+        case EnvironmentContext.update_env(env, new_env) do
+          {:ok, env} ->
+            {:ok, env}
+
+          {:error, changeset} ->
+            messages =
+              changeset.errors()
+              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+            {:error, Enum.at(messages, 0)}
+        end
+    end
   end
 
-  def update_environment(data) do
+  @doc """
+  Create environment
+  """
+  def create_environment(data \\ %{}) do
+    env =
+      EnvironmentContext.new_env(%{
+        name: data[:name],
+        slug: data[:slug],
+        username: data[:username],
+        secret: data[:secret],
+        project_id: data[:project_id]
+      })
+
+    case EnvironmentContext.create_env(env) do
+      {:ok, env} ->
+        {:ok, env}
+
+      {:error, changeset} ->
+        messages =
+          changeset.errors()
+          |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+        {:error, Enum.at(messages, 0)}
+    end
   end
 
   @doc """
@@ -77,7 +137,7 @@ defmodule Bandit.Module.EnvironmentModule do
   end
 
   @doc """
-  Validate Auth Data
+  Validate Auth Data for environment
   """
   def is_access_allowed(data \\ %{}) do
     case TeamContext.get_team_by_slug(data[:team_slug]) do
@@ -103,6 +163,19 @@ defmodule Bandit.Module.EnvironmentModule do
                 {:ok, team, project, env}
             end
         end
+    end
+  end
+
+  @doc """
+  Check if slug is used
+  """
+  def is_slug_used(project_id, slug) do
+    case EnvironmentContext.get_env_by_slug_project(project_id, slug) do
+      nil ->
+        false
+
+      _ ->
+        true
     end
   end
 end
