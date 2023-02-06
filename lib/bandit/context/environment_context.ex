@@ -47,6 +47,19 @@ defmodule Bandit.Context.EnvironmentContext do
   end
 
   @doc """
+  Get Env ID with UUID
+  """
+  def get_env_id_with_uuid(uuid) do
+    case get_env_by_uuid(uuid) do
+      nil ->
+        nil
+
+      env ->
+        env.id
+    end
+  end
+
+  @doc """
   Retrieve a environment by ID
   """
   def get_env_by_id(id) do
@@ -73,8 +86,22 @@ defmodule Bandit.Context.EnvironmentContext do
   def get_env_by_uuid(uuid) do
     from(
       e in Environment,
-      where: e.uuid == ^uuid
+      where: e.uuid == ^env_uuid
     )
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  @doc """
+  Get environment by uuid and project id
+  """
+  def get_env_by_uuid_project(project_id, env_uuid) do
+    from(
+      e in Environment,
+      where: e.project_id = ^project_id,
+      where: e.uuid == ^env_uuid
+    )
+    |> limit(1)
     |> Repo.one()
   end
 
@@ -102,14 +129,26 @@ defmodule Bandit.Context.EnvironmentContext do
   end
 
   @doc """
-  Retrieve environments
+  Retrieve project environments
   """
-  def get_envs(offset, limit) do
+  def get_project_envs(project_id, offset, limit) do
     from(e in Environment,
+      where: e.project_id = ^project_id,
       limit: ^limit,
       offset: ^offset
     )
     |> Repo.all()
+  end
+
+  @doc """
+  Count project environments
+  """
+  def count_project_envs(project_id) do
+    from(e in Environment,
+      select: count(e.id),
+      where: e.project_id = ^project_id
+    )
+    |> Repo.one()
   end
 
   @doc """

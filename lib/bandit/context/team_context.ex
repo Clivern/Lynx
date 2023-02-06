@@ -45,6 +45,19 @@ defmodule Bandit.Context.TeamContext do
   end
 
   @doc """
+  Get Team ID with UUID
+  """
+  def get_team_id_with_uuid(uuid) do
+    case get_team_by_uuid(uuid) do
+      nil ->
+        nil
+
+      team ->
+        team.id
+    end
+  end
+
+  @doc """
   Retrieve a team by ID
   """
   def get_team_by_id(id) do
@@ -85,6 +98,7 @@ defmodule Bandit.Context.TeamContext do
       t in Team,
       where: t.uuid == ^uuid
     )
+    |> limit(1)
     |> Repo.one()
   end
 
@@ -96,6 +110,7 @@ defmodule Bandit.Context.TeamContext do
       t in Team,
       where: t.slug == ^slug
     )
+    |> limit(1)
     |> Repo.one()
   end
 

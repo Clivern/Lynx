@@ -46,6 +46,19 @@ defmodule Bandit.Context.ProjectContext do
   end
 
   @doc """
+  Get Project ID with UUID
+  """
+  def get_project_id_with_uuid(uuid) do
+    case get_project_by_uuid(uuid) do
+      nil ->
+        nil
+
+      project ->
+        project.id
+    end
+  end
+
+  @doc """
   Retrieve a project by ID
   """
   def get_project_by_id(id) do

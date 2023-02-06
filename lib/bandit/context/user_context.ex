@@ -67,6 +67,19 @@ defmodule Bandit.Context.UserContext do
   end
 
   @doc """
+  Get User ID with UUID
+  """
+  def get_user_id_with_uuid(uuid) do
+    case get_user_by_uuid(uuid) do
+      nil ->
+        nil
+
+      user ->
+        user.id
+    end
+  end
+
+  @doc """
   Get user by uuid
   """
   def get_user_by_uuid(uuid) do
@@ -74,6 +87,7 @@ defmodule Bandit.Context.UserContext do
       u in User,
       where: u.uuid == ^uuid
     )
+    |> limit(1)
     |> Repo.one()
   end
 
@@ -85,6 +99,7 @@ defmodule Bandit.Context.UserContext do
       u in User,
       where: u.api_key == ^api_key
     )
+    |> limit(1)
     |> Repo.one()
   end
 
@@ -96,6 +111,7 @@ defmodule Bandit.Context.UserContext do
       u in User,
       where: u.email == ^email
     )
+    |> limit(1)
     |> Repo.one()
   end
 

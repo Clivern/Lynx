@@ -67,6 +67,8 @@ defmodule BanditWeb.TeamController do
         raise InvalidRequest, message: "Team slug is used"
       end
 
+      members = ValidatorService.get_list(params["members"], [])
+
       result =
         TeamModule.create_team(%{
           slug: slug,
@@ -76,6 +78,8 @@ defmodule BanditWeb.TeamController do
 
       case result do
         {:ok, team} ->
+          TeamModule.sync_team_members(team.id, members)
+
           conn
           |> put_status(:created)
           |> render("index.json", %{team: team})
@@ -95,11 +99,6 @@ defmodule BanditWeb.TeamController do
         conn
         |> put_status(:internal_server_error)
         |> render("error.json", %{message: "Internal server error"})
-    else
-      _ ->
-        conn
-        |> put_status(:ok)
-        |> render("success.json", %{message: "User created successfully"})
     end
   end
 
@@ -127,6 +126,8 @@ defmodule BanditWeb.TeamController do
     try do
       validate_update_request(params)
 
+      members = ValidatorService.get_list(params["members"], [])
+
       result =
         TeamModule.update_team(%{
           uuid: ValidatorService.get_str(params["uuid"], ""),
@@ -136,6 +137,8 @@ defmodule BanditWeb.TeamController do
 
       case result do
         {:ok, team} ->
+          TeamModule.sync_team_members(team.id, members)
+
           conn
           |> put_status(:ok)
           |> render("index.json", %{team: team})

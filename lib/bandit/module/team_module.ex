@@ -46,14 +46,21 @@ defmodule Bandit.Module.TeamModule do
         current_members ++ member.id
       end
 
+    future_members_ids = []
+
+    future_members_ids =
+      for member in future_members do
+        future_members_ids ++ get_user_id_with_uuid(member)
+      end
+
     # @TODO: Track errors
     for member <- current_members do
-      if member not in future_members do
+      if member not in future_members_ids do
         UserContext.remove_user_from_team(member, team_id)
       end
     end
 
-    for member <- future_members do
+    for member <- future_members_ids do
       if member not in current_members do
         UserContext.add_user_to_team(member, team_id)
       end
@@ -182,5 +189,16 @@ defmodule Bandit.Module.TeamModule do
   """
   def validate_team_uuid(uuid) do
     TeamContext.validate_team_uuid(uuid)
+  end
+
+  @doc """
+  Get Team ID with UUID
+  """
+  def get_team_id_with_uuid(uuid) do
+    TeamContext.get_team_id_with_uuid(uuid)
+  end
+
+  def get_user_id_with_uuid(uuid) do
+    UserContext.get_user_id_with_uuid(uuid)
   end
 end

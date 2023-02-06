@@ -11,6 +11,8 @@ defmodule BanditWeb.EnvironmentController do
 
   require Logger
 
+  alias Bandit.Module.EnvironmentModule
+
   plug :regular_user, only: [:list, :index, :create, :update, :delete]
 
   defp regular_user(conn, _opts) do

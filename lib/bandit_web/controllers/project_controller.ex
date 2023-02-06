@@ -12,6 +12,7 @@ defmodule BanditWeb.ProjectController do
   require Logger
 
   alias Bandit.Module.ProjectModule
+  alias Bandit.Module.TeamModule
   alias Bandit.Service.ValidatorService
 
   @default_list_limit "10"
@@ -64,12 +65,15 @@ defmodule BanditWeb.ProjectController do
   Create Project Endpoint
   """
   def create(conn, params) do
+    # Get Team ID from UUID
+    team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
+
     result =
       ProjectModule.create_project(%{
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
         slug: ValidatorService.get_str(params["slug"], ""),
-        team_id: ValidatorService.get_int(params["team_id"], 0)
+        team_id: team_id
       })
 
     case result do
@@ -106,12 +110,15 @@ defmodule BanditWeb.ProjectController do
   Update Project Endpoint
   """
   def update(conn, params) do
+    # Get Team ID from UUID
+    team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
+
     result =
       ProjectModule.update_project(%{
         uuid: ValidatorService.get_str(params["uuid"], ""),
         name: ValidatorService.get_str(params["name"], ""),
         description: ValidatorService.get_str(params["description"], ""),
-        team_id: ValidatorService.get_int(params["team_id"], 0)
+        team_id: team_id
       })
 
     case result do
