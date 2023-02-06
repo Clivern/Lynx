@@ -18,7 +18,7 @@ defmodule BanditWeb.StateController do
   plug :auth, only: [:create, :index]
 
   defp auth(conn, _opts) do
-    with {user, pass} <- Plug.BasicAuth.parse_basic_auth(conn) do
+    with {user, secret} <- Plug.BasicAuth.parse_basic_auth(conn) do
       result =
         EnvironmentModule.is_access_allowed(%{
           team_slug: conn.params["t_slug"],

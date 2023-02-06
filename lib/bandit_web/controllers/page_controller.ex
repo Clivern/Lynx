@@ -10,6 +10,7 @@ defmodule BanditWeb.PageController do
 
   alias Bandit.Module.InstallModule
   alias Bandit.Service.AuthService
+  alias Bandit.Module.SettingsModule
 
   @doc """
   Login Page

@@ -13,6 +13,7 @@ defmodule BanditWeb.UserController do
   alias Bandit.Exception.InvalidRequest
   alias Bandit.Service.ValidatorService
   alias Bandit.Service.AuthService
+  alias Bandit.Module.SettingsModule
 
   require Logger
 

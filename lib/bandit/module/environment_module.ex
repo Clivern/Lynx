@@ -10,6 +10,7 @@ defmodule Bandit.Module.EnvironmentModule do
   alias Bandit.Context.TeamContext
   alias Bandit.Context.ProjectContext
   alias Bandit.Context.EnvironmentContext
+  alias Bandit.Service.ValidatorService
 
   @doc """
   Get Environment by UUID and Project UUID

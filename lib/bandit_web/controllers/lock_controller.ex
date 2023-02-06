@@ -18,7 +18,7 @@ defmodule BanditWeb.LockController do
   plug :auth, only: [:lock, :unlock]
 
   defp auth(conn, _opts) do
-    with {user, pass} <- Plug.BasicAuth.parse_basic_auth(conn) do
+    with {user, secret} <- Plug.BasicAuth.parse_basic_auth(conn) do
       result =
         EnvironmentModule.is_access_allowed(%{
           team_slug: conn.params["t_slug"],

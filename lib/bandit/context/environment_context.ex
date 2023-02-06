@@ -112,7 +112,7 @@ defmodule Bandit.Context.EnvironmentContext do
   def get_env_by_uuid_project(project_id, env_uuid) do
     from(
       e in Environment,
-      where: e.project_id = ^project_id,
+      where: e.project_id == ^project_id,
       where: e.uuid == ^env_uuid
     )
     |> limit(1)
@@ -147,7 +147,7 @@ defmodule Bandit.Context.EnvironmentContext do
   """
   def get_project_envs(project_id, offset, limit) do
     from(e in Environment,
-      where: e.project_id = ^project_id,
+      where: e.project_id == ^project_id,
       limit: ^limit,
       offset: ^offset
     )
@@ -160,7 +160,7 @@ defmodule Bandit.Context.EnvironmentContext do
   def count_project_envs(project_id) do
     from(e in Environment,
       select: count(e.id),
-      where: e.project_id = ^project_id
+      where: e.project_id == ^project_id
     )
     |> Repo.one()
   end
