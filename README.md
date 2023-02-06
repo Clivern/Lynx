@@ -16,12 +16,18 @@
 </p>
 
 
-### Getting Started
+### Deployment
 
 To run with docker and docker-compose
 
 ```zsh
 $ docker-compose up -d
+```
+
+To run on linux server
+
+```zsh
+
 ```
 
 
