@@ -17,7 +17,7 @@ defmodule Bandit.Context.LockContext do
   """
   def new_lock(attrs \\ %{}) do
     %{
-      uuid: Ecto.UUID.generate(),
+      uuid: attrs.uuid,
       environment_id: attrs.environment_id,
       operation: attrs.operation,
       info: attrs.info,

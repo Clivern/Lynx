@@ -52,8 +52,9 @@ defmodule BanditWeb.LockController do
   def lock(conn, params) do
     is_locked =
       LockModule.is_locked(%{
-        project: ValidatorService.get_str(params["project"], ""),
-        environment: ValidatorService.get_str(params["environment"], "")
+        t_slug: ValidatorService.get_str(params["t_slug"], ""),
+        p_slug: ValidatorService.get_str(params["p_slug"], ""),
+        e_slug: ValidatorService.get_str(params["e_slug"], "")
       })
 
     case is_locked do
@@ -71,21 +72,22 @@ defmodule BanditWeb.LockController do
           message: msg
         })
 
-      :success ->
+      {:success, _} ->
         action =
           LockModule.lock_action(%{
-            project: ValidatorService.get_str(params["project"], ""),
-            environment: ValidatorService.get_str(params["environment"], ""),
-            tf_uuid: ValidatorService.get_str(params["ID"], ""),
-            tf_operation: ValidatorService.get_str(params["Operation"], ""),
-            tf_info: ValidatorService.get_str(params["Info"], ""),
-            tf_who: ValidatorService.get_str(params["Who"], ""),
-            tf_version: ValidatorService.get_str(params["Version"], ""),
-            tf_path: ValidatorService.get_str(params["Path"], "")
+            t_slug: ValidatorService.get_str(params["t_slug"], ""),
+            p_slug: ValidatorService.get_str(params["p_slug"], ""),
+            e_slug: ValidatorService.get_str(params["e_slug"], ""),
+            uuid: ValidatorService.get_str(params["ID"], ""),
+            operation: ValidatorService.get_str(params["Operation"], ""),
+            info: ValidatorService.get_str(params["Info"], ""),
+            who: ValidatorService.get_str(params["Who"], ""),
+            version: ValidatorService.get_str(params["Version"], ""),
+            path: ValidatorService.get_str(params["Path"], "")
           })
 
         case action do
-          :success ->
+          {:success, ""} ->
             conn
             |> put_status(:ok)
             |> render("lock.json", %{})
@@ -113,12 +115,13 @@ defmodule BanditWeb.LockController do
   def unlock(conn, params) do
     action =
       LockModule.unlock_action(%{
-        project: ValidatorService.get_str(params["project"], ""),
-        environment: ValidatorService.get_str(params["environment"], "")
+        t_slug: ValidatorService.get_str(params["t_slug"], ""),
+        p_slug: ValidatorService.get_str(params["p_slug"], ""),
+        e_slug: ValidatorService.get_str(params["e_slug"], "")
       })
 
     case action do
-      :success ->
+      {:success, ""} ->
         conn
         |> put_status(:ok)
         |> render("unlock.json", %{})

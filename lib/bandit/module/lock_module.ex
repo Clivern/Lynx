@@ -9,117 +9,128 @@ defmodule Bandit.Module.LockModule do
 
   alias Bandit.Context.LockContext
   alias Bandit.Context.ProjectContext
-  alias Bandit.Service.ValidatorService
+  alias Bandit.Context.TeamContext
 
   @doc """
-  Lock action
+  Lock an environment
   """
   def lock_action(params \\ %{}) do
-    # Get project
-    project =
-      ProjectContext.get_project_by_name_environment(
-        params[:project],
-        params[:environment]
-      )
-
-    case project do
+    case TeamContext.get_team_by_slug(params[:t_slug]) do
       nil ->
-        {:not_found, "Project not found"}
+        {:not_found, "Team not found"}
 
-      _ ->
-        # Create a new lock
-        lock =
-          LockContext.new_lock(%{
-            project_id: project.id,
-            tf_uuid: ValidatorService.get_str(params[:tf_uuid], ""),
-            tf_operation: ValidatorService.get_str(params[:tf_operation], ""),
-            tf_info: ValidatorService.get_str(params[:tf_info], ""),
-            tf_who: ValidatorService.get_str(params[:tf_who], ""),
-            tf_version: ValidatorService.get_str(params[:tf_version], ""),
-            tf_path: ValidatorService.get_str(params[:tf_path], ""),
-            is_active: true
-          })
+      team ->
+        case ProjectContext.get_project_by_slug_team_id(params[:p_slug], team.id) do
+          nil ->
+            {:not_found, "Project not found"}
 
-        case LockContext.create_lock(lock) do
-          {:ok, _} ->
-            :success
+          project ->
+            case EnvironmentContext.get_env_by_slug_project(project.id, params[:e_slug]) do
+              nil ->
+                {:not_found, "Environment not found"}
 
-          {:error, changeset} ->
-            messages =
-              changeset.errors()
-              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+              env ->
+                lock =
+                  LockContext.new_lock(%{
+                    environment_id: env.id,
+                    operation: params[:operation],
+                    info: params[:info],
+                    who: params[:who],
+                    version: params[:version],
+                    path: params[:path],
+                    is_active: true
+                  })
 
-            {:error, Enum.at(messages, 0)}
+                case LockContext.create_lock(lock) do
+                  {:ok, _} ->
+                    {:success, ""}
+
+                  {:error, changeset} ->
+                    messages =
+                      changeset.errors()
+                      |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+                    {:error, Enum.at(messages, 0)}
+                end
+            end
         end
     end
   end
 
   @doc """
-  Check if a project is locked
+  Check if environment is locked
   """
   def is_locked(params \\ %{}) do
-    # Get project
-    project =
-      ProjectContext.get_project_by_name_environment(
-        params[:project],
-        params[:environment]
-      )
-
-    case project do
+    case TeamContext.get_team_by_slug(params[:t_slug]) do
       nil ->
-        {:not_found, "Project not found"}
+        {:not_found, "Team not found"}
 
-      _ ->
-        lock = LockContext.get_active_lock_by_project_id(project.id)
-
-        case lock do
+      team ->
+        case ProjectContext.get_project_by_slug_team_id(params[:p_slug], team.id) do
           nil ->
-            :success
+            {:not_found, "Project not found"}
 
-          _ ->
-            {:locked, lock}
+          project ->
+            case EnvironmentContext.get_env_by_slug_project(project.id, params[:e_slug]) do
+              nil ->
+                {:not_found, "Environment not found"}
+
+              env ->
+                case LockContext.get_active_lock_by_environment_id(env.id) do
+                  nil ->
+                    {:success, ""}
+
+                  lock ->
+                    {:locked, lock}
+                end
+            end
         end
     end
   end
 
   @doc """
-  Unlock action
+  Unlock an environment
   """
   def unlock_action(params \\ %{}) do
-    # Get project
-    project =
-      ProjectContext.get_project_by_name_environment(
-        params[:project],
-        params[:environment]
-      )
-
-    case project do
+    case TeamContext.get_team_by_slug(params[:t_slug]) do
       nil ->
-        {:not_found, "Project not found"}
+        {:not_found, "Team not found"}
 
-      _ ->
-        lock = LockContext.get_active_lock_by_project_id(project.id)
-
-        case lock do
+      team ->
+        case ProjectContext.get_project_by_slug_team_id(params[:p_slug], team.id) do
           nil ->
-            :success
+            {:not_found, "Project not found"}
 
-          _ ->
-            result =
-              LockContext.update_lock(lock, %{
-                is_active: false
-              })
+          project ->
+            case EnvironmentContext.get_env_by_slug_project(project.id, params[:e_slug]) do
+              nil ->
+                {:not_found, "Environment not found"}
 
-            case result do
-              {:ok, _} ->
-                :success
+              env ->
+                case LockContext.get_active_lock_by_environment_id(env.id) do
+                  nil ->
+                    {:success, ""}
 
-              {:error, changeset} ->
-                messages =
-                  changeset.errors()
-                  |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+                  lock ->
+                    result =
+                      LockContext.update_lock(lock, %{
+                        is_active: false
+                      })
 
-                {:error, Enum.at(messages, 0)}
+                    case result do
+                      {:ok, _} ->
+                        {:success, ""}
+
+                      {:error, changeset} ->
+                        messages =
+                          changeset.errors()
+                          |> Enum.map(fn {field, {message, _options}} ->
+                            "#{field}: #{message}"
+                          end)
+
+                        {:error, Enum.at(messages, 0)}
+                    end
+                end
             end
         end
     end
