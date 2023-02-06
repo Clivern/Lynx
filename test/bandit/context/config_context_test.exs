@@ -4,7 +4,7 @@
 
 defmodule Bandit.Context.ConfigContextTest do
   @moduledoc """
-  Lock Context Test Cases
+  Config Context Test Cases
   """
 
   use ExUnit.Case
