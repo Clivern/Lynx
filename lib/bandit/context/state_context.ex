@@ -19,7 +19,7 @@ defmodule Bandit.Context.StateContext do
     %{
       name: attrs.name,
       value: attrs.value,
-      project_id: attrs.project_id,
+      environment_id: attrs.environment_id,
       uuid: Ecto.UUID.generate()
     }
   end
@@ -74,12 +74,12 @@ defmodule Bandit.Context.StateContext do
   end
 
   @doc """
-  Get latest state by project id
+  Get latest state by environment id
   """
-  def get_latest_state_by_project_id(project_id) do
+  def get_latest_state_by_environment_id(environment_id) do
     from(
       s in State,
-      where: s.project_id == ^project_id
+      where: s.environment_id == ^environment_id
     )
     |> last(:inserted_at)
     |> Repo.one()

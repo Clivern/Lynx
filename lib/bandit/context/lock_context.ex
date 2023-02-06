@@ -17,8 +17,8 @@ defmodule Bandit.Context.LockContext do
   """
   def new_lock(attrs \\ %{}) do
     %{
-      project_id: attrs.project_id,
-      uuid: attrs.uuid,
+      uuid: Ecto.UUID.generate(),
+      environment_id: attrs.environment_id,
       operation: attrs.operation,
       info: attrs.info,
       who: attrs.who,
@@ -68,12 +68,12 @@ defmodule Bandit.Context.LockContext do
   end
 
   @doc """
-  Get active lock by project id
+  Get active lock by environment id
   """
-  def get_active_lock_by_project_id(project_id) do
+  def get_active_lock_by_environment_id(environment_id) do
     from(
       l in Lock,
-      where: l.project_id == ^project_id,
+      where: l.environment_id == ^environment_id,
       where: l.is_active == true
     )
     |> lock("FOR UPDATE")

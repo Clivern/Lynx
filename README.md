@@ -18,42 +18,16 @@
 
 ### Getting Started
 
-To install dependencies.
+To run with docker and docker-compose
 
 ```zsh
-$ make deps
+$ docker-compose up -d
 ```
 
-To create and migrate your database.
 
-```zsh
-$ make migrate
-```
+### Development
 
-To start the application.
-
-```zsh
-$ cp .env.example .env.local
-$ export $(cat .env | xargs)
-
-$ make run
-```
-
-Now you can visit [localhost:4000](http://localhost:4000) from your browser.
-
-To run test cases:
-
-```zsh
-$ make ci
-```
-
-To list all commands:
-
-```zsh
-$ make
-```
-
-To run `postgresql` with `docker`
+To run `postgresql` with `docker` or `podman`
 
 ```zsh
 $ docker run -itd \
@@ -74,6 +48,24 @@ $ podman run -itd \
 
 # https://github.com/dbcli/pgcli
 $ psql -h 127.0.0.1 -U bandit -d bandit_dev -W
+```
+
+Then run `bandit` with the following commands
+
+```zsh
+$ cp .env.example .env.local
+
+$ export $(cat .env.local | xargs)
+```
+
+```
+$ make deps
+
+$ make migrate
+
+$ make run
+
+$ make test
 ```
 
 
