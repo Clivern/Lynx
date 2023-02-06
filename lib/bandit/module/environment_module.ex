@@ -46,7 +46,7 @@ defmodule Bandit.Module.EnvironmentModule do
   @doc """
   Count Project Environments
   """
-  def count_project_environments(project_uuid, offset, limit) do
+  def count_project_environments(project_uuid) do
     case ProjectContext.get_project_by_uuid(project_uuid) do
       nil ->
         0

@@ -16,6 +16,9 @@ defmodule BanditWeb.EnvironmentController do
   alias Bandit.Service.ValidatorService
   alias Bandit.Exception.InvalidRequest
 
+  @default_list_limit "10"
+  @default_list_offset "0"
+
   plug :regular_user, only: [:list, :index, :create, :update, :delete]
 
   defp regular_user(conn, _opts) do
@@ -37,12 +40,12 @@ defmodule BanditWeb.EnvironmentController do
   @doc """
   List Action Endpoint
   """
-  def list(conn, %{"p_uuid" => p_uuid}) do
+  def list(conn, params) do
     limit = ValidatorService.get_int(params["limit"], @default_list_limit)
     offset = ValidatorService.get_int(params["offset"], @default_list_offset)
 
-    result = EnvironmentModule.get_project_environments(p_uuid, offset, limit)
-    count = EnvironmentModule.count_project_environments(p_uuid, offset, limit)
+    result = EnvironmentModule.get_project_environments(params["p_uuid"], offset, limit)
+    count = EnvironmentModule.count_project_environments(params["p_uuid"])
 
     case result do
       {:error, msg} ->
@@ -227,10 +230,6 @@ defmodule BanditWeb.EnvironmentController do
 
     if ValidatorService.is_empty(secret) do
       raise InvalidRequest, message: "Environment secret is required"
-    end
-
-    if ValidatorService.is_empty(project_id) do
-      raise InvalidRequest, message: "Project ID is required"
     end
   end
 end

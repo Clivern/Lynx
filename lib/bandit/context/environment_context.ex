@@ -100,7 +100,7 @@ defmodule Bandit.Context.EnvironmentContext do
   def get_env_by_uuid(uuid) do
     from(
       e in Environment,
-      where: e.uuid == ^env_uuid
+      where: e.uuid == ^uuid
     )
     |> limit(1)
     |> Repo.one()

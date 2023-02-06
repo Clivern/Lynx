@@ -49,7 +49,7 @@ defmodule Bandit.Module.TeamModule do
     future_members_ids = []
 
     future_members_ids =
-      for member in future_members do
+      for member <- future_members do
         future_members_ids ++ get_user_id_with_uuid(member)
       end
 
