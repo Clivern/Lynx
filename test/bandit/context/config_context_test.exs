@@ -13,7 +13,7 @@ defmodule Bandit.Context.ConfigContextTest do
 
   # Init
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Brandit.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Bandit.Repo)
   end
 
   describe "new_config/1" do

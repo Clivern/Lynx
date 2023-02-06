@@ -2,19 +2,19 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Brandit.Context.UserContextTest do
+defmodule Bandit.Context.UserContextTest do
   @moduledoc """
   User Context Test Cases
   """
 
   use ExUnit.Case
 
-  alias Brandit.Context.UserContext
-  alias Brandit.Context.TeamContext
+  alias Bandit.Context.UserContext
+  alias Bandit.Context.TeamContext
 
   # Init
   setup do
-    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Brandit.Repo)
+    :ok = Ecto.Adapters.SQL.Sandbox.checkout(Bandit.Repo)
   end
 
   # Test Cases
