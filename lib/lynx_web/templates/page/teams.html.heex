@@ -37,20 +37,20 @@
                                 </li>
 
                                 <li class="px-6">
-                                    <a href={Routes.page_path(@conn, :list_projects)} class="px-12 py-4">
+                                    <a href={Routes.page_path(@conn, :projects)} class="px-12 py-4">
                                         <span><%= gettext "Projects" %></span>
                                     </a>
                                 </li>
 
                                 <%= if @data.is_super do %>
                                     <li class="px-6">
-                                        <a href={Routes.page_path(@conn, :list_teams)} class="px-12 py-4">
+                                        <a href={Routes.page_path(@conn, :teams)} class="px-12 py-4">
                                             <span><%= gettext "Teams" %></span>
                                         </a>
                                     </li>
 
                                     <li class="px-6">
-                                        <a href={Routes.page_path(@conn, :list_users)} class="px-12 py-4">
+                                        <a href={Routes.page_path(@conn, :users)} class="px-12 py-4">
                                             <span><%= gettext "Users" %></span>
                                         </a>
                                     </li>
@@ -62,6 +62,7 @@
                                 <% end %>
                             </ul>
                         </div>
+
                         <div class="col hp-flex-none w-auto pe-0">
                             <div class="row align-items-center justify-content-end">
                                 <div class="hover-dropdown-fade w-auto px-0 ms-6 position-relative hp-cursor-pointer">
@@ -164,7 +165,7 @@
                                         </a>
                                     </li>
                                     <li>
-                                        <a href={Routes.page_path(@conn, :list_projects)}>
+                                        <a href={Routes.page_path(@conn, :projects)}>
                                             <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                             <span>
                                                 <i class="iconly-Curved-PaperPlus"></i>
@@ -174,7 +175,7 @@
                                     </li>
                                     <%= if @data.is_super do %>
                                         <li>
-                                            <a href={Routes.page_path(@conn, :list_teams)}>
+                                            <a href={Routes.page_path(@conn, :teams)}>
                                                 <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                                 <span>
                                                     <i class="iconly-Curved-PaperPlus"></i>
@@ -183,7 +184,7 @@
                                             </a>
                                         </li>
                                         <li>
-                                            <a href={Routes.page_path(@conn, :list_users)}>
+                                            <a href={Routes.page_path(@conn, :users)}>
                                                 <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
                                                 <span>
                                                     <i class="iconly-Curved-PaperPlus"></i>
@@ -347,13 +348,6 @@
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Name" %></label>
                                             <input type="text" class="form-control" name="name" required="required">
-                                        </div>
-                                    </div>
-
-                                    <div class="col-12">
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Slug" %></label>
-                                            <input type="text" class="form-control" name="slug" required="required">
                                         </div>
                                     </div>
 

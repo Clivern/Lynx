@@ -1,59 +1,90 @@
-<div id="app">
-  <div class="home">
-    <br /><br /><br />
-    <img alt="logo" src={Routes.static_path(@conn, "/images/logo.png")} width="200" />
-    <div class="hello">
-      <br />
-      <strong><%= gettext "Install Lynx" %></strong>
-      <br /> <br />
-    <div class="columns">
-      <div class="column"></div>
-      <div class="column" id="app_install">
-        <form action={Routes.misc_path(@conn, :install)} method="post" v-on:submit.prevent="installAction">
-        <div class="control">
-          <input class="input" name="app_name" type="text" placeholder="Application Name" required>
-        </div>
-        <br />
-        <div class="control">
-          <input class="input" name="app_url" type="url" placeholder="Application URL" required>
-        </div>
-        <br />
-        <div class="control">
-          <input class="input" name="app_email" type="email" placeholder="Application Email" required>
-        </div>
-        <br />
-        <div class="control">
-          <input class="input" name="admin_name" type="text" placeholder="Admin Name" required>
-        </div>
-        <br />
-        <div class="control">
-          <input class="input" name="admin_email" type="email" placeholder="Admin Email" required>
-        </div>
-        <br />
-        <div class="control">
-          <input class="input" name="admin_password" type="password" placeholder="Admin Password" minlength="8" maxlength="20" required>
-        </div>
-        <br/>
-        <div class="field is-grouped is-grouped-centered">
-          <p class="control">
-            <button type="reset" class="button is-light">
-              <%= gettext "Cancel" %>
-            </button>
-          </p>
-          <p class="control">
-            <button type="submit" class="button is-primary">
-              <%= gettext "Submit" %>
-            </button>
-          </p>
-        </div>
-      </form>
-      </div>
-      <div class="column"></div>
+
+<div class="row hp-authentication-page d-flex flex-column">
+    <div class="position-absolute w-100 h-100" style="top: 0px; left: 0px; z-index: -1;">
+        <svg width="1440" height="1080" viewBox="0 0 1440 1080" fill="none" xmlns="http://www.w3.org/2000/svg" class="hp-stroke-color-dark-80 w-100 h-100">
+            <path opacity="0.5" d="M3574 1540L907.175 -134.641L1053.03 429.011L387.731 -53.7583L937.881 929.474L32.0529 297.577L254.672 889.032L-2135.09 -460" stroke="#F7FAFC" stroke-width="100"></path>
+        </svg>
     </div>
-      <br />
-      <small>
-        <%= gettext "Made With" %> <span class="icon has-text-danger"><i class="fas fa-heart"></i></span> <%= gettext "By" %> <a href="https://github.com/clivern" target="_blank" rel="noopener">Clivern</a><br/>
-      </small>
+
+    <div class="col-12">
+        <div class="row px-16 px-sm-64 py-16 mb-48 border-bottom hp-border-color-dark-70 align-items-center justify-content-between">
+            <div class="w-auto hp-flex-none pl-0 col">
+                <div class="hp-header-logo d-flex align-items-center">
+                    <a href="/login" class="position-relative">
+                        <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                        <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                        <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                        <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                        <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                    </a>
+                </div>
+            </div>
+
+            <div class="w-auto hp-flex-none col">
+                <div class="row align-items-center">
+                    <div class="col ms-24 px-0">
+                        <a href="https://github.com/clivern/lynx/issues" class="d-flex align-items-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" class="hp-text-color-black-100 hp-text-color-dark-0">
+                                <path d="M13.19 6h-6.4c-.26 0-.51.01-.75.04C3.35 6.27 2 7.86 2 10.79v4c0 4 1.6 4.79 4.79 4.79h.4c.22 0 .51.15.64.32l1.2 1.6c.53.71 1.39.71 1.92 0l1.2-1.6c.15-.2.39-.32.64-.32h.4c2.93 0 4.52-1.34 4.75-4.04.03-.24.04-.49.04-.75v-4c0-3.19-1.6-4.79-4.79-4.79ZM6.5 14c-.56 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1Zm3.49 0c-.56 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.44 1-1 1Zm3.5 0c-.56 0-1-.45-1-1s.45-1 1-1 1 .45 1 1-.45 1-1 1Z" fill="currentColor"></path>
+                                <path d="M21.98 6.79v4c0 2-.62 3.36-1.86 4.11-.3.18-.65-.06-.65-.41l.01-3.7c0-4-2.29-6.29-6.29-6.29l-6.09.01c-.35 0-.59-.35-.41-.65C7.44 2.62 8.8 2 10.79 2h6.4c3.19 0 4.79 1.6 4.79 4.79Z" fill="currentColor"></path>
+                            </svg>
+
+                            <span class="ms-6 d-block hp-p1-body hp-text-color-black-100 hp-text-color-dark-0"> <%= gettext "Support" %> </span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
+
+    <div class="px-32 flex-shrink-1 col d-flex">
+        <div class="row h-100 m-auto w-100 align-items-center" style="max-width: 400px;">
+            <div class="col-12" id="app_install">
+                <h1 class="mb-0 mb-sm-24"><%= gettext "Install Lynx" %></h1>
+                <form action={Routes.misc_path(@conn, :install)} method="post" v-on:submit.prevent="installAction" class="mt-16 mt-sm-32 mb-8">
+                    <div class="mb-16">
+                        <label class="form-label"><%= gettext "Application Name" %>:</label>
+                        <input class="form-control" name="app_name" type="text" required>
+                    </div>
+                    <div class="mb-16">
+                        <label class="form-label"><%= gettext "Application URL" %>:</label>
+                        <input class="form-control" name="app_url" type="url" required>
+                    </div>
+                    <div class="mb-16">
+                        <label class="form-label"><%= gettext "Application Email" %>:</label>
+                        <input class="form-control" name="app_email" type="email" required>
+                    </div>
+                    <div class="mb-16">
+                        <label class="form-label"><%= gettext "Admin Nick Name" %>:</label>
+                        <input class="form-control" name="admin_name" type="text" required>
+                    </div>
+                    <div class="mb-16">
+                        <label class="form-label"><%= gettext "Admin Email" %>:</label>
+                        <input class="form-control" name="admin_email" type="email" required>
+                    </div>
+                    <div class="mb-16">
+                        <label class="form-label"><%= gettext "Admin Password" %>:</label>
+                        <input class="form-control" name="admin_password" type="password" minlength="8" maxlength="20" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100"><%= gettext "Submit" %></button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="my-48 px-24 col-12">
+        <p class="hp-p1-body text-center hp-text-color-black-60 mb-8"><%= gettext "Copyright 2024 Clivern" %></p>
+    </div>
+</div>
+
+<div class="position-fixed top-0 end-0 p-16" style="z-index: 99">
+    <div class="toast fade hide" id="toast_notification" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img class="me-8" src={Routes.static_path(@conn, "/images/ico.png")} width="20">
+            <strong class="me-auto"><%= gettext "Lynx" %></strong>
+            <small><%= gettext "Just Now" %></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+    </div>
 </div>

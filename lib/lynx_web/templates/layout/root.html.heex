@@ -16,32 +16,32 @@
       <link href="//fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
       <!-- Plugin -->
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/plugin/swiper-bundle.min.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/icons/iconly/index.min.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/icons/remix-icon/index.min.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/bootstrap.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/colors.css">
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/plugin/swiper-bundle.min.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/icons/iconly/index.min.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/icons/remix-icon/index.min.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/bootstrap.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/colors.css")}>
 
       <!-- Base -->
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/base/typography.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/base/base.css">
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/base/typography.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/base/base.css")}>
 
       <!-- Theme -->
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/theme/colors-dark.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/theme/theme-dark.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/custom-rtl.css">
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/theme/colors-dark.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/theme/theme-dark.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/custom-rtl.css")}>
 
       <!-- Layouts -->
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/layouts/sider.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/layouts/header.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/layouts/page-content.css">
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/components.css">
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/layouts/sider.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/layouts/header.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/layouts/page-content.css")}>
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/components.css")}>
 
       <!-- Apex Charts -->
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/plugin/apex-charts.css">
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/plugin/apex-charts.css")}>
 
       <!-- Horizontal -->
-      <link rel="stylesheet" type="text/css" href="/theme/app/css/layouts/horizontal-menu.css">
+      <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/layouts/horizontal-menu.css")}>
 
       <%= live_title_tag assigns[:page_title] || "Lynx" %>
   </head>
@@ -54,32 +54,31 @@
       <script src="//cdnjs.cloudflare.com/ajax/libs/axios/1.3.4/axios.min.js"></script>
       <script src="//cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
 
-      <script src="/theme/app/js/plugin/jquery.min.js"></script>
-      <script src="/theme/app/js/plugin/bootstrap.bundle.min.js"></script>
-      <script src="/theme/app/js/plugin/swiper-bundle.min.js"></script>
-      <script src="/theme/app/js/plugin/jquery.mask.min.js"></script>
-      <script src="/theme/app/js/plugin/autocomplete.min.js"></script>
-      <script src="/theme/app/js/plugin/moment.min.js"></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/jquery.min.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/bootstrap.bundle.min.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/swiper-bundle.min.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/jquery.mask.min.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/autocomplete.min.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/moment.min.js")}></script>
 
       <!-- Layouts -->
-      <script src="/theme/app/js/layouts/header-search.js"></script>
-      <script src="/theme/app/js/layouts/sider.js"></script>
-      <script src="/theme/app/js/components/input-number.js"></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/layouts/header-search.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/layouts/sider.js")}></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/components/input-number.js")}></script>
 
       <!-- Base -->
-      <script src="/theme/app/js/base/index.js"></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/base/index.js")}></script>
 
       <!-- Charts -->
-      <script src="/theme/app/js/plugin/apexcharts.min.js"></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/plugin/apexcharts.min.js")}></script>
 
       <!-- Cards -->
-      <script src="/theme/app/js/cards/card-statistic.js"></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/cards/card-statistic.js")}></script>
 
       <!-- Horizontal -->
-      <script src="/theme/app/js/layouts/horizontal-menu.js"></script>
+      <script src={Routes.static_path(@conn, "/theme/app/js/layouts/horizontal-menu.js")}></script>
 
       <!-- Backend -->
-      <script src="/theme/app/backend.js"></script>
-
+      <script src={Routes.static_path(@conn, "/theme/app/backend.js")}></script>
   </body>
 </html>

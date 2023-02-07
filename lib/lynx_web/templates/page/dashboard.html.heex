@@ -241,18 +241,7 @@
                             <div class="col-sm-6 col-12">
                                 <div class="row">
                                     <div class="col-12">
-                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Settings" %> </h1>
-                                    </div>
-                                    <div class="col-12">
-                                        <ol class="breadcrumb mt-24">
-                                            <li class="breadcrumb-item breadcrumb-link">
-                                                <a href={Routes.page_path(@conn, :dashboard)}> <%= gettext "Dashboard" %> </a>
-                                            </li>
-
-                                            <li class="breadcrumb-item active">
-                                                <%= gettext "Settings" %>
-                                            </li>
-                                        </ol>
+                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Dashboard" %> </h1>
                                     </div>
                                 </div>
                             </div>
@@ -260,34 +249,274 @@
                     </div>
                 </div>
 
-                <div class="col-12" id="app_settings">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row justify-content-between">
-                                <div class="col pe-md-32 pe-md-120">
-                                    <h4><%= gettext "Settings" %></h4>
-                                </div>
-                                <div class="col-12 mt-16">
-                                    <form action={Routes.settings_path(@conn, :update)} method="post" v-on:submit.prevent="settingsAction">
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application Name" %></label>
-                                            <input class="form-control" name="app_name" type="text" value={@data.app_name} required="required">
+
+                <div class="col-12">
+                    <div class="row g-32">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="row align-items-center">
+                                        <div class="col-12 col-sm-2">
+                                            <h5>Hosts</h5>
+                                            <h4 class="mb-0">1000</h4>
                                         </div>
 
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application URL" %></label>
-                                            <input class="form-control" name="app_url" type="url" value={@data.app_url} required="required">
+                                        <div class="col-12 col-sm-10 overflow-hidden">
+                                            <div id="hosts_chart" class="w-100"></div>
                                         </div>
-
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application Email" %></label>
-                                            <input class="form-control" name="app_email" type="email" value={@data.app_email} required="required">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary"><%= gettext "Submit" %></button>
-                                    </form>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card hp-card-1">
+                                <div class="card-body p-16">
+                                    <div class="row align-items-center flex-shrink-1 w-100 mx-0">
+                                        <div style="width: 106px;" class="px-0">
+                                            <div class="h-100 bg-primary-4 hp-bg-color-dark-90 d-flex align-items-center justify-content-center rounded-4">
+                                                <div id="statistics-order"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col pe-0">
+                                            <h3 class="mb-0 fw-semibold">4</h3>
+                                            <p class="hp-p1-body mb-0">
+                                                <%= gettext "Host Groups" %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card hp-card-1">
+                                <div class="card-body p-16">
+                                    <div class="row align-items-center flex-shrink-1 w-100 mx-0">
+                                        <div style="width: 106px;" class="px-0">
+                                            <div class="h-100 bg-success-4 hp-bg-color-dark-90 d-flex align-items-center justify-content-center rounded-4">
+                                                <div id="statistics-subscribe"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col pe-0">
+                                            <h3 class="mb-0 fw-semibold">6</h3>
+                                            <p class="hp-p1-body mb-0">
+                                                <%= gettext "Total Hosts" %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card hp-card-1">
+                                <div class="card-body p-16">
+                                    <div class="row align-items-center flex-shrink-1 w-100 mx-0">
+                                        <div style="width: 106px;" class="px-0">
+                                            <div class="h-100 bg-warning-4 hp-bg-color-dark-90 d-flex align-items-center justify-content-center rounded-4">
+                                                <div id="statistics-users"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col pe-0">
+                                            <h3 class="mb-0 fw-semibold">4</h3>
+                                            <p class="hp-p1-body mb-0">
+                                                <%= gettext "UP Hosts" %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-sm-6 col-xl-3">
+                            <div class="card hp-card-1">
+                                <div class="card-body p-16">
+                                    <div class="row align-items-center flex-shrink-1 w-100 mx-0">
+                                        <div style="width: 106px;" class="px-0">
+                                            <div class="h-100 bg-secondary-4 hp-bg-color-dark-90 d-flex align-items-center justify-content-center rounded-4">
+                                                <div id="statistics-ticket"></div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col pe-0">
+                                            <h3 class="mb-0 fw-semibold">4</h3>
+                                            <p class="hp-p1-body mb-0">
+                                                <%= gettext "DOWN Hosts" %>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-12 col-xl-4">
+                            <div class="card hp-card-2">
+                                <div class="card-body px-16">
+                                    <div class="row justify-content-between mb-8">
+                                        <div class="col">
+                                            <div class="d-flex align-items-center">
+                                                <h5 class="me-8 mb-0">New Hosts</h5>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row align-items-center g-16">
+                                        <div class="col-6">
+                                            <p class="hp-badge-text mb-0 text-black-80 hp-text-color-dark-30">
+                                                New Hosts this week
+                                            </p>
+
+                                            <h2 class="my-4">120</h2>
+
+                                            <div class="d-flex align-items-center">
+                                                <i class="ri-arrow-right-up-line text-success" style="font-size: 16px;"></i>
+                                                <p class="mb-0 hp-badge-text text-success">10%</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6">
+                                            <div id="statistics-traffic"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!--
+                        <div class="col-12 col-xl-8">
+                            <div class="card hp-card-2">
+                                <div class="card-body">
+                                    <div class="row justify-content-between mb-32">
+                                        <div class="col">
+                                            <div class="d-flex align-items-center">
+                                                <h5 class="me-8 mb-0">Deployments</h5>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 hp-flex-none w-auto">
+                                            <p class="hp-caption-text text-black-80 hp-text-color-dark-30">Updated 1 month ago</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-32">
+                                        <div class="col-6 col-sm-3">
+                                            <div class="row gx-8 gy-16">
+                                                <div class="col hp-flex-none w-auto">
+                                                    <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-primary-4 hp-bg-dark-primary rounded-circle">
+                                                        <i class="ri-hand-coin-line text-primary hp-text-color-dark-primary-2" style="font-size: 24px;"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col hp-flex-none w-auto">
+                                                    <h5 class="mb-4">14.000 $</h5>
+                                                    <p class="hp-badge-text mb-0 text-black-80 hp-text-color-dark-30">
+                                                        Revenue
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-sm-3">
+                                            <div class="row gx-8 gy-16">
+                                                <div class="col hp-flex-none w-auto">
+                                                    <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-warning-4 hp-bg-dark-warning rounded-circle">
+                                                        <i class="ri-money-dollar-circle-line text-warning" style="font-size: 24px;"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col hp-flex-none w-auto">
+                                                    <h5 class="mb-4">94.000 $</h5>
+                                                    <p class="hp-badge-text mb-0 text-black-80 hp-text-color-dark-30">
+                                                        Sales
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-sm-3">
+                                            <div class="row gx-8 gy-16">
+                                                <div class="col hp-flex-none w-auto">
+                                                    <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-secondary-4 hp-bg-dark-secondary rounded-circle">
+                                                        <i class="ri-user-add-line text-secondary" style="font-size: 24px;"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col hp-flex-none w-auto">
+                                                    <h5 class="mb-4">+120</h5>
+                                                    <p class="hp-badge-text mb-0 text-black-80 hp-text-color-dark-30">
+                                                        Customer
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-6 col-sm-3">
+                                            <div class="row gx-8 gy-16">
+                                                <div class="col hp-flex-none w-auto">
+                                                    <div class="avatar-item d-flex align-items-center justify-content-center avatar-lg bg-danger-4 hp-bg-dark-danger rounded-circle">
+                                                        <i class="ri-user-star-line text-danger" style="font-size: 24px;"></i>
+                                                    </div>
+                                                </div>
+
+                                                <div class="col hp-flex-none w-auto">
+                                                    <h5 class="mb-4">24,500</h5>
+                                                    <p class="hp-badge-text mb-0 text-black-80 hp-text-color-dark-30">
+                                                        Customer
+                                                    </p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        -->
+                        <%= if @data.is_super do %>
+                            <div class="col-12">
+                                <div class="row g-32">
+                                    <div class="col-12 col-xl-8">
+                                        <div class="row g-32">
+                                            <div class="col-6 col-md-3">
+                                                <div class="card hp-card-2">
+                                                    <div class="card-body p-16">
+                                                        <div class="row">
+                                                            <div class="col-12 text-center">
+                                                                <div class="bg-primary-4 hp-bg-color-dark-90 rounded-4 d-flex align-items-center justify-content-center mb-18">
+                                                                    <div id="statistics-order-vertical"></div>
+                                                                </div>
+
+                                                                <h3 class="mb-0 fw-semibold">13</h3>
+                                                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-50">Users</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="col-6 col-md-3">
+                                                <div class="card hp-card-2">
+                                                    <div class="card-body p-16">
+                                                        <div class="row">
+                                                            <div class="col-12 text-center">
+                                                                <div class="bg-warning-4 hp-bg-color-dark-90 rounded-4 d-flex align-items-center justify-content-center mb-18">
+                                                                    <div id="statistics-users-vertical"></div>
+                                                                </div>
+
+                                                                <h3 class="mb-0 fw-semibold">17</h3>
+                                                                <p class="hp-p1-body mb-0 text-black-80 hp-text-color-dark-50">Teams</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <% end %>
                     </div>
                 </div>
             </div>
@@ -303,14 +532,71 @@
     </div>
 </main>
 
-<div class="position-fixed top-0 end-0 p-16" style="z-index: 99">
-    <div class="toast fade hide" id="toast_notification" role="alert" aria-live="assertive" aria-atomic="true">
-        <div class="toast-header">
-            <img class="me-8" src={Routes.static_path(@conn, "/images/ico.png")} width="20">
-            <strong class="me-auto"><%= gettext "Lynx" %></strong>
-            <small><%= gettext "Just Now" %></small>
-            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-        </div>
-        <div class="toast-body"></div>
-    </div>
-</div>
+<script type="text/javascript">
+let hostsChart = {
+    series: [
+        {
+            name: "UP",
+            data: [200],
+        },
+        {
+            name: "DOWN",
+            data: [300],
+        },
+        {
+            name: "UNKNOWN",
+            data: [500],
+        },
+    ],
+    chart: {
+        type: "bar",
+        height: 100,
+        stacked: true,
+        stackType: "100%",
+        toolbar: {
+            show: false,
+        },
+    },
+    grid: {
+        show: false,
+    },
+    plotOptions: {
+        bar: {
+            horizontal: true,
+            barHeight: "100%",
+            startingShape: "rounded",
+            endingShape: "rounded",
+        },
+    },
+
+    colors: ["#00F7BF", "#1BE7FF", "#0010F7"],
+    fill: {
+        type: "solid",
+    },
+    xaxis: {
+        type: "datetime",
+        labels: {
+            show: false,
+        },
+        axisBorder: {
+            show: false,
+        },
+        axisTicks: {
+            show: false,
+        },
+    },
+
+    yaxis: {
+        show: false,
+    },
+
+    legend: {
+        position: "left",
+    },
+    tooltip: {
+        x: {
+            show: false,
+        },
+    },
+};
+</script>
