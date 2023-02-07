@@ -41,7 +41,7 @@ $ docker run -itd \
     -e POSTGRES_PASSWORD=lynx \
     -e POSTGRES_DB=lynx_dev \
     -p 5432:5432 \
-    --name postgresql \
+    --name lyx \
     postgres:15.2
 
 $ podman run -itd \
@@ -49,7 +49,7 @@ $ podman run -itd \
     -e POSTGRES_PASSWORD=lynx \
     -e POSTGRES_DB=lynx_dev \
     -p 5432:5432 \
-    --name postgresql \
+    --name lyx \
     postgres:15.2
 
 # https://github.com/dbcli/pgcli
