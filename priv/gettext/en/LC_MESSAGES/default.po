@@ -11,62 +11,62 @@ msgstr ""
 "Language: en\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: lib/bandit_web/templates/page/index.html.heex:6
+#: lib/lynx_web/templates/page/index.html.heex:6
 #, elixir-autogen, elixir-format
 msgid "Home"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:50
+#: lib/lynx_web/templates/page/index.html.heex:50
 #, elixir-autogen, elixir-format
 msgid "If you have any suggestions, bug reports, or annoyances"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:24
+#: lib/lynx_web/templates/page/index.html.heex:24
 #, elixir-autogen, elixir-format
 msgid "Live"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:38
+#: lib/lynx_web/templates/page/index.html.heex:38
 #, elixir-autogen, elixir-format
 msgid "Login"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:31
+#: lib/lynx_web/templates/page/index.html.heex:31
 #, elixir-autogen, elixir-format
 msgid "Logout"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:56
+#: lib/lynx_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "Made with"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:17
+#: lib/lynx_web/templates/page/index.html.heex:17
 #, elixir-autogen, elixir-format
 msgid "New Project"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:12
+#: lib/lynx_web/templates/page/index.html.heex:12
 #, elixir-autogen, elixir-format
 msgid "Projects"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:47
+#: lib/lynx_web/templates/page/index.html.heex:47
 #, elixir-autogen, elixir-format
-msgid "Welcome to Bandit"
+msgid "Welcome to Lynx"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:56
+#: lib/lynx_web/templates/page/index.html.heex:56
 #, elixir-autogen, elixir-format
 msgid "by"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:52
+#: lib/lynx_web/templates/page/index.html.heex:52
 #, elixir-autogen, elixir-format
 msgid "issue tracker"
 msgstr ""
 
-#: lib/bandit_web/templates/page/index.html.heex:51
+#: lib/lynx_web/templates/page/index.html.heex:51
 #, elixir-autogen, elixir-format
 msgid "please report them to our"
 msgstr ""

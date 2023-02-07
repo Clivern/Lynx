@@ -20,7 +20,7 @@ erl_crash.dump
 *.ez
 
 # Ignore package tarball (built via "mix hex.build").
-bandit-*.tar
+lynx-*.tar
 
 # Ignore assets that are produced by build tools.
 /priv/static/assets/
@@ -32,8 +32,8 @@ bandit-*.tar
 npm-debug.log
 /assets/node_modules/
 
-bandit_test*
-bandit_dev*
+lynx_test*
+lynx_dev*
 .vscode
 
 .terraform

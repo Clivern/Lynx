@@ -1,6 +1,6 @@
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-var bandit_app = bandit_app || {};
+var lynx_app = lynx_app || {};
 
 function show_notification(text) {
     $("#toast_notification").removeClass("hide");
@@ -9,7 +9,7 @@ function show_notification(text) {
 }
 
 // Install Page
-bandit_app.install_screen = (Vue, axios, $) => {
+lynx_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -51,7 +51,7 @@ bandit_app.install_screen = (Vue, axios, $) => {
 }
 
 // Login Page
-bandit_app.login_screen = (Vue, axios, $) => {
+lynx_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ bandit_app.login_screen = (Vue, axios, $) => {
 }
 
 // Settings Page
-bandit_app.settings_screen = (Vue, axios, $) => {
+lynx_app.settings_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -136,7 +136,7 @@ bandit_app.settings_screen = (Vue, axios, $) => {
 }
 
 // Profile Page
-bandit_app.profile_screen = (Vue, axios, $) => {
+lynx_app.profile_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -177,7 +177,7 @@ bandit_app.profile_screen = (Vue, axios, $) => {
 }
 
 // Add User Modal
-bandit_app.add_user_modal = (Vue, axios, $) => {
+lynx_app.add_user_modal = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -219,7 +219,7 @@ bandit_app.add_user_modal = (Vue, axios, $) => {
 }
 
 // Add Team Modal
-bandit_app.add_team_modal = (Vue, axios, $) => {
+lynx_app.add_team_modal = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -263,7 +263,7 @@ bandit_app.add_team_modal = (Vue, axios, $) => {
 }
 
 // Add Group Modal
-bandit_app.add_group_modal = (Vue, axios, $) => {
+lynx_app.add_group_modal = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -305,7 +305,7 @@ bandit_app.add_group_modal = (Vue, axios, $) => {
 }
 
 // Add Host Modal
-bandit_app.add_host_modal = (Vue, axios, $) => {
+lynx_app.add_host_modal = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -355,7 +355,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_install")) {
-        bandit_app.install_screen(
+        lynx_app.install_screen(
             Vue,
             axios,
             $
@@ -363,7 +363,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_login")) {
-        bandit_app.login_screen(
+        lynx_app.login_screen(
             Vue,
             axios,
             $
@@ -371,7 +371,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_settings")) {
-        bandit_app.settings_screen(
+        lynx_app.settings_screen(
             Vue,
             axios,
             $
@@ -379,7 +379,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_profile")) {
-        bandit_app.profile_screen(
+        lynx_app.profile_screen(
             Vue,
             axios,
             $
@@ -387,7 +387,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("add_user_modal")) {
-        bandit_app.add_user_modal(
+        lynx_app.add_user_modal(
             Vue,
             axios,
             $
@@ -395,7 +395,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("add_team_modal")) {
-        bandit_app.add_team_modal(
+        lynx_app.add_team_modal(
             Vue,
             axios,
             $
@@ -403,7 +403,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("add_group_modal")) {
-        bandit_app.add_group_modal(
+        lynx_app.add_group_modal(
             Vue,
             axios,
             $
@@ -411,7 +411,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("add_host_modal")) {
-        bandit_app.add_host_modal(
+        lynx_app.add_host_modal(
             Vue,
             axios,
             $

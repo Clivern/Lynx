@@ -5,7 +5,7 @@ services:
     build:
       context: .
     environment:
-      APP_NAME: Bandit
+      APP_NAME: Lynx
       APP_PORT: 4000
       APP_SECRET: koPmu7TJCwD8mttV9vgWUeU7iuu/zTPOR3sX4UalM9KkYEVGPfyi0PeTVzu1TT8C
       APP_HOST: localhost
@@ -13,7 +13,7 @@ services:
       DB_USERNAME: root
       DB_PASSWORD: D1q9f0C2&PEW
       DB_HOSTNAME: db
-      DB_DATABASE: bandit
+      DB_DATABASE: lynx
       DB_PORT: 5432
       DB_SSL: null
       DB_CA_CERTFILE_PATH: null
@@ -26,7 +26,7 @@ services:
  db:
     image: postgres:15.6
     environment:
-      POSTGRES_DB: bandit
+      POSTGRES_DB: lynx
       POSTGRES_USER: root
       POSTGRES_PASSWORD: D1q9f0C2&PEW
     restart: unless-stopped

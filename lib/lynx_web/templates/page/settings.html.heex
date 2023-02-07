@@ -1,0 +1,315 @@
+<main class="hp-bg-color-dark-90 d-flex min-vh-100">
+    <div class="hp-main-layout hp-main-layout-horizontal">
+        <header>
+            <div class="row w-100 m-0">
+                <div class="col ps-18 pe-16 px-sm-24">
+                    <div class="row w-100 align-items-center justify-content-between position-relative">
+                        <div class="col w-auto hp-flex-none hp-mobile-sidebar-button me-24 px-0" data-bs-toggle="offcanvas" data-bs-target="#mobileMenu" aria-controls="mobileMenu">
+                            <button type="button" class="btn btn-text btn-icon-only">
+                                <i class="ri-menu-fill hp-text-color-black-80 hp-text-color-dark-30 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+
+                        <div class="col hp-flex-none w-auto hp-horizontal-block">
+                            <div class="hp-header-logo d-flex align-items-end">
+                                <a href={Routes.page_path(@conn, :dashboard)}>
+                                    <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                    <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                    <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                    <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                    <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                </a>
+                            </div>
+                        </div>
+
+                        <div class="col hp-flex-none w-auto hp-horizontal-block hp-horizontal-menu ps-24">
+                            <ul class="d-flex flex-wrap align-items-center">
+                                <li class="px-6">
+                                    <a href={Routes.page_path(@conn, :dashboard)} class="px-12 py-4">
+                                        <span><%= gettext "Dashboard" %></span>
+                                    </a>
+                                </li>
+
+                                <li class="px-6">
+                                    <a href={Routes.page_path(@conn, :list_projects)} class="px-12 py-4">
+                                        <span><%= gettext "Projects" %></span>
+                                    </a>
+                                </li>
+
+                                <%= if @data.is_super do %>
+                                    <li class="px-6">
+                                        <a href={Routes.page_path(@conn, :list_teams)} class="px-12 py-4">
+                                            <span><%= gettext "Teams" %></span>
+                                        </a>
+                                    </li>
+
+                                    <li class="px-6">
+                                        <a href={Routes.page_path(@conn, :list_users)} class="px-12 py-4">
+                                            <span><%= gettext "Users" %></span>
+                                        </a>
+                                    </li>
+                                    <li class="px-6">
+                                        <a href={Routes.page_path(@conn, :settings)} class="px-12 py-4">
+                                            <span><%= gettext "Settings" %></span>
+                                        </a>
+                                    </li>
+                                <% end %>
+                            </ul>
+                        </div>
+                        <div class="col hp-flex-none w-auto pe-0">
+                            <div class="row align-items-center justify-content-end">
+                                <div class="hover-dropdown-fade w-auto px-0 ms-6 position-relative hp-cursor-pointer">
+                                    <div class="avatar-item d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;">
+                                        <img src={Routes.static_path(@conn, "/theme/app/avatar.png")}>
+                                    </div>
+
+                                    <div class="hp-header-profile-menu dropdown-fade position-absolute pt-18" style="top: 100%; width: 260px;">
+                                        <div class="rounded border hp-border-color-black-40 hp-bg-black-0 hp-bg-dark-100 hp-border-color-dark-80 p-24">
+                                            <span class="d-block h5 hp-text-color-black-100 hp-text-color-dark-0 mb-6"><%= gettext "Profile Settings" %></span>
+
+                                            <a href={Routes.page_path(@conn, :profile)} class="hp-p1-body hp-text-color-primary-1 hp-text-color-dark-primary-2 hp-hover-text-color-primary-2"><%= gettext "Profile" %></a>
+
+                                            <div class="divider my-12"></div>
+
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <a href="https://github.com/clivern/lynx/issues" class="d-flex align-items-center hp-p1-body py-4 px-10 hp-transition hp-hover-bg-primary-4 hp-hover-bg-dark-primary hp-hover-bg-dark-80 rounded" style="margin-left: -10px; margin-right: -10px;">
+                                                        <i class="iconly-Curved-Game me-8" style="font-size: 16px;"></i>
+
+                                                        <span class="hp-ml-8"><%= gettext "Support" %></span>
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                            <div class="divider my-12"></div>
+
+                                            <a class="hp-p1-body" href={Routes.page_path(@conn, :logout)}><%= gettext "Logout" %></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="offcanvas offcanvas-start hp-mobile-sidebar" tabindex="-1" id="mobileMenu" aria-labelledby="mobileMenuLabel" style="width: 256px;">
+            <div class="offcanvas-header justify-content-between align-items-end me-16 ms-24 mt-16 p-0">
+                <div class="w-auto px-0">
+                    <div class="hp-header-logo d-flex align-items-end">
+                        <a href={Routes.page_path(@conn, :dashboard)}>
+                            <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                            <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                            <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                            <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                            <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="w-auto px-0 hp-sidebar-collapse-button hp-sidebar-hidden" data-bs-dismiss="offcanvas" aria-label="Close">
+                    <button type="button" class="btn btn-text btn-icon-only">
+                        <i class="ri-close-fill lh-1 hp-text-color-black-80" style="font-size: 24px;"></i>
+                    </button>
+                </div>
+            </div>
+
+            <div class="hp-sidebar hp-bg-color-black-0 hp-bg-color-dark-100">
+                <div class="hp-sidebar-container">
+                    <div class="hp-sidebar-header-menu">
+                        <div class="row justify-content-between align-items-end me-12 ms-24 mt-24">
+                            <div class="w-auto px-0 hp-sidebar-collapse-button hp-sidebar-visible">
+                                <button type="button" class="btn btn-text btn-icon-only">
+                                    <i class="ri-menu-unfold-line" style="font-size: 16px;"></i>
+                                </button>
+                            </div>
+
+                            <div class="w-auto px-0">
+                                <div class="hp-header-logo d-flex align-items-end">
+                                    <a href={Routes.page_path(@conn, :dashboard)}>
+                                        <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                        <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                        <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                        <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                        <img class="hp-logo hp-sidebar-hidden hp-dir-block hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="w-auto px-0 hp-sidebar-collapse-button hp-sidebar-hidden">
+                                <button type="button" class="btn btn-text btn-icon-only">
+                                    <i class="ri-menu-fold-line" style="font-size: 16px;"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <ul>
+                            <li>
+                                <div class="menu-title"><%= gettext "PAGES" %></div>
+                                <ul>
+                                    <li>
+                                        <a href={Routes.page_path(@conn, :dashboard)}>
+                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
+                                            <span>
+                                                <i class="iconly-Curved-PaperPlus"></i>
+                                                <span><%= gettext "Dashboard" %></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href={Routes.page_path(@conn, :list_projects)}>
+                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
+                                            <span>
+                                                <i class="iconly-Curved-PaperPlus"></i>
+                                                <span><%= gettext "Projects" %></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <%= if @data.is_super do %>
+                                        <li>
+                                            <a href={Routes.page_path(@conn, :list_teams)}>
+                                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
+                                                <span>
+                                                    <i class="iconly-Curved-PaperPlus"></i>
+                                                    <span><%= gettext "Teams" %></span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href={Routes.page_path(@conn, :list_users)}>
+                                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
+                                                <span>
+                                                    <i class="iconly-Curved-PaperPlus"></i>
+                                                    <span><%= gettext "Users" %></span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <a href={Routes.page_path(@conn, :settings)}>
+                                                <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
+                                                <span>
+                                                    <i class="iconly-Curved-PaperPlus"></i>
+                                                    <span><%= gettext "Settings" %></span>
+                                                </span>
+                                            </a>
+                                        </li>
+                                    <% end %>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div class="row justify-content-between align-items-center hp-sidebar-footer pb-24 px-24 mx-0 hp-bg-color-dark-100">
+                        <div class="divider border-black-20 hp-border-color-dark-70 hp-sidebar-hidden px-0"></div>
+
+                        <div class="col">
+                            <div class="row align-items-center">
+                                <div class="me-8 w-auto px-0">
+                                    <div class="avatar-item d-flex align-items-center justify-content-center rounded-circle" style="width: 36px; height: 36px;">
+                                        <img src={Routes.static_path(@conn, "/theme/app/avatar.png")}>
+                                    </div>
+                                </div>
+
+                                <div class="w-auto px-0 hp-sidebar-hidden">
+                                    <span class="d-block hp-text-color-black-100 hp-text-color-dark-0 hp-p1-body lh-1"><%= @data.user_name %></span>
+                                    <a href={Routes.page_path(@conn, :profile)} class="hp-badge-text hp-text-color-dark-30"><%= gettext "Profile" %></a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="hp-main-layout-content">
+            <div class="row g-32">
+               <div class="col-12">
+                    <div class="hp-bg-black-bg py-32 py-sm-64 px-24 px-sm-48 px-md-80 position-relative overflow-hidden hp-page-content" style="border-radius: 32px;">
+                        <svg width="358" height="336" fill="none" xmlns="http://www.w3.org/2000/svg" class="position-absolute hp-rtl-scale-x-n1" style="bottom: 0px; right: 0px;">
+                            <path d="M730.404 135.471 369.675-6.641l88.802 164.001-243.179-98.8 246.364 263.281-329.128-126.619 114.698 166.726-241.68-62.446" stroke="url(#a)" stroke-width="40" stroke-linejoin="bevel"></path>
+                            <defs>
+                                <linearGradient id="a" x1="315.467" y1="6.875" x2="397.957" y2="337.724" gradientUnits="userSpaceOnUse">
+                                    <stop stop-color="#fff"></stop>
+                                    <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
+                                </linearGradient>
+                            </defs>
+                        </svg>
+
+                        <div class="row">
+                            <div class="col-sm-6 col-12">
+                                <div class="row">
+                                    <div class="col-12">
+                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Settings" %> </h1>
+                                    </div>
+                                    <div class="col-12">
+                                        <ol class="breadcrumb mt-24">
+                                            <li class="breadcrumb-item breadcrumb-link">
+                                                <a href={Routes.page_path(@conn, :dashboard)}> <%= gettext "Dashboard" %> </a>
+                                            </li>
+
+                                            <li class="breadcrumb-item active">
+                                                <%= gettext "Settings" %>
+                                            </li>
+                                        </ol>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-12" id="app_settings">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row justify-content-between">
+                                <div class="col pe-md-32 pe-md-120">
+                                    <h4><%= gettext "Settings" %></h4>
+                                </div>
+                                <div class="col-12 mt-16">
+                                    <form action={Routes.settings_path(@conn, :update)} method="post" v-on:submit.prevent="settingsAction">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Application Name" %></label>
+                                            <input class="form-control" name="app_name" type="text" value={@data.app_name} required="required">
+                                        </div>
+
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Application URL" %></label>
+                                            <input class="form-control" name="app_url" type="url" value={@data.app_url} required="required">
+                                        </div>
+
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Application Email" %></label>
+                                            <input class="form-control" name="app_email" type="email" value={@data.app_email} required="required">
+                                        </div>
+                                        <button type="submit" class="btn btn-primary"><%= gettext "Submit" %></button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="w-100 py-18 px-16 py-sm-24 px-sm-32 hp-bg-color-black-20 hp-bg-color-dark-90">
+            <div class="row">
+                <div class="col-12">
+                    <p class="hp-badge-text fw-semibold mb-0 text-center text-sm-start hp-text-color-dark-30"><%= gettext "Copyright © 2024 Clivern. All rights Reserved" %></p>
+                </div>
+            </div>
+        </footer>
+    </div>
+</main>
+
+<div class="position-fixed top-0 end-0 p-16" style="z-index: 99">
+    <div class="toast fade hide" id="toast_notification" role="alert" aria-live="assertive" aria-atomic="true">
+        <div class="toast-header">
+            <img class="me-8" src={Routes.static_path(@conn, "/images/ico.png")} width="20">
+            <strong class="me-auto"><%= gettext "Lynx" %></strong>
+            <small><%= gettext "Just Now" %></small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+        </div>
+        <div class="toast-body"></div>
+    </div>
+</div>

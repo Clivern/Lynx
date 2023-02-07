@@ -4,7 +4,7 @@ iex          ?= iex
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in Bandit:"
+	@echo " Choose a command run in Lynx:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
@@ -68,10 +68,10 @@ migrate:
 	@$(mix) ecto.setup
 
 
-## run: Run bandit
+## run: Run lynx
 .PHONY: run
 run:
-	@echo ">> ============= Run bandit ============= <<"
+	@echo ">> ============= Run lynx ============= <<"
 	@$(mix) phx.server
 
 

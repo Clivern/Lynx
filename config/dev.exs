@@ -6,13 +6,13 @@ import Config
 
 # Configure your database
 if (System.get_env("DB_SSL") || "off") == "on" do
-  config :bandit, Bandit.Repo,
-    username: System.get_env("DB_USERNAME") || "bandit",
-    password: System.get_env("DB_PASSWORD") || "bandit",
+  config :lynx, Lynx.Repo,
+    username: System.get_env("DB_USERNAME") || "lynx",
+    password: System.get_env("DB_PASSWORD") || "lynx",
     hostname: System.get_env("DB_HOSTNAME") || "localhost",
-    database: System.get_env("DB_DATABASE") || "bandit_dev",
+    database: System.get_env("DB_DATABASE") || "lynx_dev",
     port: String.to_integer(System.get_env("DB_PORT") || "5432"),
-    maintenance_database: System.get_env("DB_DATABASE") || "bandit_dev",
+    maintenance_database: System.get_env("DB_DATABASE") || "lynx_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
@@ -22,13 +22,13 @@ if (System.get_env("DB_SSL") || "off") == "on" do
       cacertfile: System.get_env("DB_CA_CERTFILE_PATH") || ""
     ]
 else
-  config :bandit, Bandit.Repo,
-    username: System.get_env("DB_USERNAME") || "bandit",
-    password: System.get_env("DB_PASSWORD") || "bandit",
+  config :lynx, Lynx.Repo,
+    username: System.get_env("DB_USERNAME") || "lynx",
+    password: System.get_env("DB_PASSWORD") || "lynx",
     hostname: System.get_env("DB_HOSTNAME") || "localhost",
-    database: System.get_env("DB_DATABASE") || "bandit_dev",
+    database: System.get_env("DB_DATABASE") || "lynx_dev",
     port: String.to_integer(System.get_env("DB_PORT") || "5432"),
-    maintenance_database: System.get_env("DB_DATABASE") || "bandit_dev",
+    maintenance_database: System.get_env("DB_DATABASE") || "lynx_dev",
     stacktrace: true,
     show_sensitive_data_on_connection_error: true,
     pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10")
@@ -40,7 +40,7 @@ end
 # The watchers configuration can be used to run external
 # watchers to your application. For example, we use it
 # with esbuild to bundle .js and .css sources.
-config :bandit, BanditWeb.Endpoint,
+config :lynx, LynxWeb.Endpoint,
   # Binding to loopback ipv4 address prevents access from other machines.
   # Change to `ip: {0, 0, 0, 0}` to allow access from other machines.
   http: [ip: {127, 0, 0, 1}, port: String.to_integer(System.get_env("APP_PORT") || "4000")],
@@ -78,13 +78,13 @@ config :bandit, BanditWeb.Endpoint,
 # different ports.
 
 # Watch static and templates for browser reloading.
-config :bandit, BanditWeb.Endpoint,
+config :lynx, LynxWeb.Endpoint,
   live_reload: [
     patterns: [
       ~r"priv/static/.*(js|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
-      ~r"lib/bandit_web/(live|views)/.*(ex)$",
-      ~r"lib/bandit_web/templates/.*(eex)$"
+      ~r"lib/lynx_web/(live|views)/.*(ex)$",
+      ~r"lib/lynx_web/templates/.*(eex)$"
     ]
   ]
 

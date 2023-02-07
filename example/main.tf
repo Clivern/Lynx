@@ -9,9 +9,9 @@ terraform {
   backend "http" {
     username = "admin"
     password = "secret"
-    address = "http://localhost:4000/api/v1/bandit/prod/state"
-    lock_address = "http://localhost:4000/api/v1/bandit/prod/lock"
-    unlock_address = "http://localhost:4000/api/v1/bandit/prod/unlock"
+    address = "http://localhost:4000/api/v1/lynx/prod/state"
+    lock_address = "http://localhost:4000/api/v1/lynx/prod/lock"
+    unlock_address = "http://localhost:4000/api/v1/lynx/prod/unlock"
     lock_method = "POST"
     unlock_method = "POST"
   }

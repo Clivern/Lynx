@@ -1,1 +1,1 @@
-call "%~dp0\bandit" eval Bandit.Release.migrate
+call "%~dp0\lynx" eval Lynx.Release.migrate

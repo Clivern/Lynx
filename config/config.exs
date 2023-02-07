@@ -7,14 +7,14 @@
 # General application configuration
 import Config
 
-config :bandit,
-  ecto_repos: [Bandit.Repo]
+config :lynx,
+  ecto_repos: [Lynx.Repo]
 
 # Configures the endpoint
-config :bandit, BanditWeb.Endpoint,
+config :lynx, LynxWeb.Endpoint,
   url: [host: System.get_env("APP_HOST") || "localhost"],
-  render_errors: [view: BanditWeb.ErrorView, accepts: ~w(html json), layout: false],
-  pubsub_server: Bandit.PubSub,
+  render_errors: [view: LynxWeb.ErrorView, accepts: ~w(html json), layout: false],
+  pubsub_server: Lynx.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]
 
 # Configures the mailer
@@ -24,7 +24,7 @@ config :bandit, BanditWeb.Endpoint,
 #
 # For production it's recommended to configure a different adapter
 # at the `config/runtime.exs`.
-config :bandit, Bandit.Mailer, adapter: Swoosh.Adapters.Local
+config :lynx, Lynx.Mailer, adapter: Swoosh.Adapters.Local
 
 # Swoosh API client is needed for adapters other than SMTP.
 config :swoosh, :api_client, false

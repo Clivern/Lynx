@@ -2,7 +2,7 @@
 # Use of this source code is governed by the MIT
 # license that can be found in the LICENSE file.
 
-defmodule Bandit.MixProject do
+defmodule Lynx.MixProject do
   use Mix.Project
 
   @version "0.5.0"
@@ -11,7 +11,7 @@ defmodule Bandit.MixProject do
 
   def project do
     [
-      app: :bandit,
+      app: :lynx,
       version: @version,
       elixir: "~> 1.12",
       elixirc_paths: elixirc_paths(Mix.env()),
@@ -27,7 +27,7 @@ defmodule Bandit.MixProject do
   # Type `mix help compile.app` for more information.
   def application do
     [
-      mod: {Bandit.Application, []},
+      mod: {Lynx.Application, []},
       extra_applications: [:logger, :runtime_tools, :os_mon]
     ]
   end
@@ -82,6 +82,6 @@ defmodule Mix.Tasks.Version do
   use Mix.Task
 
   def run(_) do
-    Mix.shell().info("Currnt Version: v#{Bandit.MixProject.get_version()}")
+    Mix.shell().info("Currnt Version: v#{Lynx.MixProject.get_version()}")
   end
 end

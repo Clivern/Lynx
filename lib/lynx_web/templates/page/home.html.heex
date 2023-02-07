@@ -1,0 +1,38 @@
+<style type="text/css">
+  #app {
+    text-align: center;
+    color: #2c3e50;
+  }
+  #nav {
+    padding: 30px;
+  }
+  #nav a {
+    font-weight: bold;
+    color: #2c3e50;
+  }
+  #nav a.router-link-exact-active {
+    color: #42b983;
+  }
+</style>
+
+<div id="app">
+  <div class="home">
+    <br /><br /><br />
+    <img alt="logo" src={Routes.static_path(@conn, "/images/logo.png")} width="150" />
+    <div class="hello">
+      <br /><br />
+      <strong><%= gettext "Welcome to Lynx" %></strong>
+      <br /><br />
+      <p>
+        <%= gettext "If you have any suggestions, bug reports, or annoyances" %><br/>
+        <%= gettext "please report them to our" %>
+        <a href="https://github.com/clivern/lynx/issues" target="_blank" rel="noopener"><%= gettext "issue tracker" %>.</a>
+      </p>
+      <p><a href={Routes.page_path(@conn, :login)}><%= gettext "Login into your Account" %></a></p>
+      <br />
+      <small>
+        <%= gettext "Copyright © 2024" %> <a href="https://github.com/clivern" target="_blank" rel="noopener">Clivern</a><br/>
+      </small>
+    </div>
+  </div>
+</div>
