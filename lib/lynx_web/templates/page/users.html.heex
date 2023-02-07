@@ -260,7 +260,7 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12" id="users_list" data-action={Routes.user_path(@conn, :list)}>
                     <div class="card hp-contact-card mb-32">
                         <div class="card-body px-0">
                             <div class="table-responsive">
@@ -277,37 +277,53 @@
                                     </thead>
 
                                     <tbody>
-
+                                      <tr v-for="user in users">
+                                        <td>
+                                          <a href="javascript:;">
+                                            <div class="avatar-item avatar-lg d-flex align-items-center justify-content-center bg-primary-4 hp-bg-dark-primary text-primary hp-text-color-dark-0 rounded-circle">
+                                              <i class="iconly-Light-TwoUsers"></i>
+                                            </div>
+                                          </a>
+                                        </td>
+                                        <td>${user.name}</td>
+                                        <td>${user.email}</td>
+                                        <td>${user.role}</td>
+                                        <td>${user.createdAt}</td>
+                                        <td>
+                                          <button @click="editUserAction(user.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
+                                          <button @click="deleteUserAction(user.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
+                                        </td>
+                                      </tr>
+                                      <tr v-if="users.length == 0">
+                                        <td colspan="6" style="text-align: center;"><%= gettext "No Records Found!" %></td>
+                                      </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <!--
-                            TODO
                             <nav>
                                 <ul class="pagination justify-content-end px-32">
                                     <li class="page-item">
-                                        <a class="page-link" href="javascript:;">
+                                        <button class="page-link" @click="loadPreviousPageAction" v-if="currentPage > 1">
                                             <svg viewBox="64 64 896 896" focusable="false" data-icon="left" width="12px" height="12px" fill="currentColor" aria-hidden="true">
                                                 <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </li>
 
                                     <li class="page-item">
-                                        <a class="page-link" href="javascript:;">1</a>
+                                        <button class="page-link">${currentPage}</button>
                                     </li>
 
                                     <li class="page-item">
-                                        <a class="page-link" href="javascript:;">
+                                        <button class="page-link" @click="loadNextPageAction" v-if="currentPage != totalPages">
                                             <svg viewBox="64 64 896 896" focusable="false" data-icon="right" width="12px" height="12px" fill="currentColor" aria-hidden="true">
                                                 <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"></path>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </li>
                                 </ul>
                             </nav>
-                            --->
                         </div>
                     </div>
                 </div>

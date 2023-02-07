@@ -1,6 +1,6 @@
 let csrfToken = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-var scuti_app = scuti_app || {};
+var lynx_app = lynx_app || {};
 
 function show_notification(text) {
     $("#toast_notification").removeClass("hide");
@@ -9,7 +9,7 @@ function show_notification(text) {
 }
 
 // Install Page
-scuti_app.install_screen = (Vue, axios, $) => {
+lynx_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -51,7 +51,7 @@ scuti_app.install_screen = (Vue, axios, $) => {
 }
 
 // Login Page
-scuti_app.login_screen = (Vue, axios, $) => {
+lynx_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -95,7 +95,7 @@ scuti_app.login_screen = (Vue, axios, $) => {
 }
 
 // Settings Page
-scuti_app.settings_screen = (Vue, axios, $) => {
+lynx_app.settings_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -136,7 +136,7 @@ scuti_app.settings_screen = (Vue, axios, $) => {
 }
 
 // Profile Page
-scuti_app.profile_screen = (Vue, axios, $) => {
+lynx_app.profile_screen = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -177,7 +177,7 @@ scuti_app.profile_screen = (Vue, axios, $) => {
 }
 
 // Add User Modal
-scuti_app.add_user_modal = (Vue, axios, $) => {
+lynx_app.add_user_modal = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -221,7 +221,7 @@ scuti_app.add_user_modal = (Vue, axios, $) => {
 }
 
 // Add Team Modal
-scuti_app.add_team_modal = (Vue, axios, $) => {
+lynx_app.add_team_modal = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -292,7 +292,7 @@ scuti_app.add_team_modal = (Vue, axios, $) => {
 }
 
 // Teams list
-scuti_app.teams_list = (Vue, axios, $) => {
+lynx_app.teams_list = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
@@ -306,7 +306,7 @@ scuti_app.teams_list = (Vue, axios, $) => {
             }
         },
         mounted() {
-            this.loadData();
+            this.loadDataAction();
         },
         computed: {
             totalPages() {
@@ -314,13 +314,13 @@ scuti_app.teams_list = (Vue, axios, $) => {
             }
         },
         methods: {
-            editTeam(id) {
-                console.log('Edit team with ID:', id);
+            editTeamAction(id) {
+                console.log("Edit team with ID:", id);
             },
-            deleteTeam(id) {
-                console.log('Delete team with ID:', id);
+            deleteTeamAction(id) {
+                console.log("Delete team with ID:", id);
             },
-            loadData() {
+            loadDataAction() {
                 var offset = (this.currentPage - 1) * this.limit;
 
                 axios.get($("#teams_list").attr("data-action"), {
@@ -341,27 +341,95 @@ scuti_app.teams_list = (Vue, axios, $) => {
                         show_notification(error.response.data.errorMessage);
                     });
             },
-            loadPreviousPage(event) {
+            loadPreviousPageAction(event) {
                 event.preventDefault();
 
                 if (this.currentPage > 1) {
                     this.currentPage--;
-                    this.loadData();
+                    this.loadDataAction();
                 }
             },
-            loadNextPage(event) {
+            loadNextPageAction(event) {
                 event.preventDefault();
 
                 if (this.currentPage < this.totalPages) {
                     this.currentPage++;
-                    this.loadData();
+                    this.loadDataAction();
                 }
             }
         }
     });
-
 }
 
+// Users list
+lynx_app.users_list = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#users_list',
+        data() {
+            return {
+                currentPage: 1,
+                limit: 10,
+                totalCount: 5,
+                users: []
+            }
+        },
+        mounted() {
+            this.loadDataAction();
+        },
+        computed: {
+            totalPages() {
+                return Math.ceil(this.totalCount / this.limit);
+            }
+        },
+        methods: {
+            editUserAction(id) {
+                console.log("Edit user with ID:", id);
+            },
+            deleteUserAction(id) {
+                console.log("Delete user with ID:", id);
+            },
+            loadDataAction() {
+                var offset = (this.currentPage - 1) * this.limit;
+
+                axios.get($("#users_list").attr("data-action"), {
+                        params: {
+                            offset: offset,
+                            limit: this.limit
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.users = response.data.users;
+                            this.limit = response.data._metadata.limit;
+                            this.offset = response.data._metadata.offset;
+                            this.totalCount = response.data._metadata.totalCount;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+            loadPreviousPageAction(event) {
+                event.preventDefault();
+
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.loadDataAction();
+                }
+            },
+            loadNextPageAction(event) {
+                event.preventDefault();
+
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                    this.loadDataAction();
+                }
+            }
+        }
+    });
+}
 
 $(document).ready(() => {
     axios.defaults.headers.common = {
@@ -372,7 +440,7 @@ $(document).ready(() => {
     };
 
     if (document.getElementById("app_install")) {
-        scuti_app.install_screen(
+        lynx_app.install_screen(
             Vue,
             axios,
             $
@@ -380,7 +448,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_login")) {
-        scuti_app.login_screen(
+        lynx_app.login_screen(
             Vue,
             axios,
             $
@@ -388,7 +456,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_settings")) {
-        scuti_app.settings_screen(
+        lynx_app.settings_screen(
             Vue,
             axios,
             $
@@ -396,7 +464,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("app_profile")) {
-        scuti_app.profile_screen(
+        lynx_app.profile_screen(
             Vue,
             axios,
             $
@@ -404,7 +472,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("add_user_modal")) {
-        scuti_app.add_user_modal(
+        lynx_app.add_user_modal(
             Vue,
             axios,
             $
@@ -412,7 +480,7 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("add_team_modal")) {
-        scuti_app.add_team_modal(
+        lynx_app.add_team_modal(
             Vue,
             axios,
             $
@@ -420,7 +488,15 @@ $(document).ready(() => {
     }
 
     if (document.getElementById("teams_list")) {
-        scuti_app.teams_list(
+        lynx_app.teams_list(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("users_list")) {
+        lynx_app.users_list(
             Vue,
             axios,
             $

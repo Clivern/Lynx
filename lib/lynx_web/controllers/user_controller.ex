@@ -63,7 +63,7 @@ defmodule LynxWeb.UserController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, user} ->
         conn
@@ -104,7 +104,7 @@ defmodule LynxWeb.UserController do
         {:ok, user} ->
           conn
           |> put_status(:created)
-          |> render("create.json", %{user: user})
+          |> render("index.json", %{user: user})
       end
     rescue
       e in InvalidRequest ->
@@ -139,7 +139,7 @@ defmodule LynxWeb.UserController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, _} ->
         conn
