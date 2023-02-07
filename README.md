@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.5.0" width="250" />
+    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.5.0" width="180" />
     <h3 align="center">Lynx</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
