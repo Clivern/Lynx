@@ -277,25 +277,7 @@
                                     </thead>
 
                                     <tbody>
-                                      <%= for user <- @data.users do %>
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <div class="avatar-item avatar-lg d-flex align-items-center justify-content-center bg-primary-4 hp-bg-dark-primary text-primary hp-text-color-dark-0 rounded-circle">
-                                                        <i class="iconly-Light-User"></i>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td><%= user.name %></td>
-                                            <td><%= user.email %></td>
-                                            <td><%= String.capitalize(user.role) %></td>
-                                            <td><%= user.inserted_at %></td>
-                                            <td>
-                                                <button class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-id={user.id} data-uuid={user.uuid}><%= gettext "Edit" %></button>
-                                                <button class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2" data-id={user.id} data-uuid={user.uuid}><%= gettext "Delete" %></button>
-                                            </td>
-                                        </tr>
-                                      <% end %>
+
                                     </tbody>
                                 </table>
                             </div>

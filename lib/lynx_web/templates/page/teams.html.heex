@@ -276,24 +276,7 @@
                                     </thead>
 
                                     <tbody>
-                                      <%= for team <- @data.teams do %>
-                                        <tr>
-                                            <td>
-                                                <a href="#">
-                                                    <div class="avatar-item avatar-lg d-flex align-items-center justify-content-center bg-primary-4 hp-bg-dark-primary text-primary hp-text-color-dark-0 rounded-circle">
-                                                        <i class="iconly-Light-TwoUsers"></i>
-                                                    </div>
-                                                </a>
-                                            </td>
-                                            <td><%= team.name %></td>
-                                            <td><%= team.count %></td>
-                                            <td><%= team.inserted_at %></td>
-                                            <td>
-                                                <button class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-id={team.id} data-uuid={team.uuid}><%= gettext "Edit" %></button>
-                                                <button class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2" data-id={team.id} data-uuid={team.uuid}><%= gettext "Delete" %></button>
-                                            </td>
-                                        </tr>
-                                      <% end %>
+
                                     </tbody>
                                 </table>
                             </div>
@@ -362,9 +345,7 @@
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Members" %></label>
                                             <select class="form-select" multiple name="members" required="required">
-                                            <%= for user <- @data.users do %>
-                                              <option value={user.id}><%= user.name %> (<%= user.email %>)</option>
-                                            <% end %>
+
                                             </select>
                                         </div>
                                     </div>
