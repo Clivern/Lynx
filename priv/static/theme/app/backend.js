@@ -204,7 +204,9 @@ scuti_app.add_user_modal = (Vue, axios, $) => {
                     .then((response) => {
                         if (response.status >= 200) {
                             show_notification(i18n_globals.new_user);
-                            setTimeout(() => { location.reload(); }, 2000);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
                         }
                     })
                     .catch((error) => {
@@ -227,9 +229,34 @@ scuti_app.add_team_modal = (Vue, axios, $) => {
         data() {
             return {
                 isInProgress: false,
+                users: [],
+                teamName: '',
+                teamSlug: ''
             }
         },
+        mounted() {
+            this.loadData();
+        },
         methods: {
+            slugifyTeamName() {
+                this.teamSlug = this.teamName.toLowerCase().replace(/\s+/g, '-');
+            },
+            loadData() {
+                axios.get($("#add_team_modal").attr("data-action"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.users = response.data.users;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
             addTeamAction(event) {
                 event.preventDefault();
                 this.isInProgress = true;
@@ -248,7 +275,9 @@ scuti_app.add_team_modal = (Vue, axios, $) => {
                     .then((response) => {
                         if (response.status >= 200) {
                             show_notification(i18n_globals.new_team);
-                            setTimeout(() => { location.reload(); }, 2000);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
                         }
                     })
                     .catch((error) => {
@@ -262,133 +291,77 @@ scuti_app.add_team_modal = (Vue, axios, $) => {
 
 }
 
-// Add Group Modal
-scuti_app.add_group_modal = (Vue, axios, $) => {
+// Teams list
+scuti_app.teams_list = (Vue, axios, $) => {
 
     return new Vue({
         delimiters: ['${', '}'],
-        el: '#add_group_modal',
+        el: '#teams_list',
         data() {
             return {
-                isInProgress: false,
+                currentPage: 1,
+                limit: 10,
+                totalCount: 5,
+                teams: []
+            }
+        },
+        mounted() {
+            this.loadData();
+        },
+        computed: {
+            totalPages() {
+                return Math.ceil(this.totalCount / this.limit);
             }
         },
         methods: {
-            addGroupAction(event) {
-                event.preventDefault();
-                this.isInProgress = true;
+            editTeam(id) {
+                console.log('Edit team with ID:', id);
+            },
+            deleteTeam(id) {
+                console.log('Delete team with ID:', id);
+            },
+            loadData() {
+                var offset = (this.currentPage - 1) * this.limit;
 
-                let inputs = {};
-                let _self = $(event.target);
-                let _form = _self.closest("form");
-
-                _form.serializeArray().map((item, index) => {
-                    inputs[item.name] = item.value;
-                });
-
-                axios.post(_form.attr('action'), inputs)
+                axios.get($("#teams_list").attr("data-action"), {
+                        params: {
+                            offset: offset,
+                            limit: this.limit
+                        }
+                    })
                     .then((response) => {
                         if (response.status >= 200) {
-                            show_notification(i18n_globals.new_group);
-                            setTimeout(() => { location.reload(); }, 2000);
+                            this.teams = response.data.teams;
+                            this.limit = response.data._metadata.limit;
+                            this.offset = response.data._metadata.offset;
+                            this.totalCount = response.data._metadata.totalCount;
                         }
                     })
                     .catch((error) => {
-                        this.isInProgress = false;
-                        // Show error
                         show_notification(error.response.data.errorMessage);
                     });
+            },
+            loadPreviousPage(event) {
+                event.preventDefault();
+
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.loadData();
+                }
+            },
+            loadNextPage(event) {
+                event.preventDefault();
+
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                    this.loadData();
+                }
             }
         }
     });
 
 }
 
-// Add Host Modal
-scuti_app.add_host_modal = (Vue, axios, $) => {
-
-    return new Vue({
-        delimiters: ['${', '}'],
-        el: '#add_host_modal',
-        data() {
-            return {
-                isInProgress: false,
-            }
-        },
-        methods: {
-            addGroupAction(event) {
-                event.preventDefault();
-                this.isInProgress = true;
-
-                let inputs = {};
-                let _self = $(event.target);
-                let _form = _self.closest("form");
-
-                _form.serializeArray().map((item, index) => {
-                    inputs[item.name] = item.value;
-                });
-
-                axios.post(_form.attr('action'), inputs)
-                    .then((response) => {
-                        if (response.status >= 200) {
-                            show_notification(i18n_globals.new_host);
-                            location.reload();
-                        }
-                    })
-                    .catch((error) => {
-                        this.isInProgress = false;
-                        // Show error
-                        show_notification(error.response.data.errorMessage);
-                    });
-            }
-        }
-    });
-
-}
-
-// Add Host Modal
-scuti_app.add_deployment_modal = (Vue, axios, $) => {
-
-    return new Vue({
-        delimiters: ['${', '}'],
-        el: '#add_deployment_modal',
-        data() {
-            return {
-                isInProgress: false,
-                rolloutStrategy: 'one_by_one',
-                patchType: 'os_upgrade',
-            }
-        },
-        methods: {
-            addDeploymentAction(event) {
-                event.preventDefault();
-                this.isInProgress = true;
-
-                let inputs = {};
-                let _self = $(event.target);
-                let _form = _self.closest("form");
-
-                _form.serializeArray().map((item, index) => {
-                    inputs[item.name] = item.value;
-                });
-
-                axios.post(_form.attr('action'), inputs)
-                    .then((response) => {
-                        if (response.status >= 200) {
-                            show_notification(i18n_globals.new_host);
-                            location.reload();
-                        }
-                    })
-                    .catch((error) => {
-                        this.isInProgress = false;
-                        // Show error
-                        show_notification(error.response.data.errorMessage);
-                    });
-            }
-        }
-    });
-
-}
 
 $(document).ready(() => {
     axios.defaults.headers.common = {
@@ -446,24 +419,8 @@ $(document).ready(() => {
         );
     }
 
-    if (document.getElementById("add_group_modal")) {
-        scuti_app.add_group_modal(
-            Vue,
-            axios,
-            $
-        );
-    }
-
-    if (document.getElementById("add_host_modal")) {
-        scuti_app.add_host_modal(
-            Vue,
-            axios,
-            $
-        );
-    }
-
-    if (document.getElementById("add_deployment_modal")) {
-        scuti_app.add_deployment_modal(
+    if (document.getElementById("teams_list")) {
+        scuti_app.teams_list(
             Vue,
             axios,
             $

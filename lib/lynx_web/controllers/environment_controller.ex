@@ -53,9 +53,9 @@ defmodule LynxWeb.EnvironmentController do
         |> put_status(:not_found)
         |> render("error.json", %{error: msg})
 
-      {:ok, projects} ->
+      {:ok, environments} ->
         render(conn, "list.json", %{
-          projects: projects,
+          environments: environments,
           metadata: %{
             limit: limit,
             offset: offset,

@@ -44,7 +44,7 @@ defmodule LynxWeb.TeamController do
     offset = ValidatorService.get_int(params["offset"], @default_list_offset)
 
     render(conn, "list.json", %{
-      users: TeamModule.get_teams(offset, limit),
+      teams: TeamModule.get_teams(offset, limit),
       metadata: %{
         limit: limit,
         offset: offset,
@@ -87,7 +87,7 @@ defmodule LynxWeb.TeamController do
         {:error, msg} ->
           conn
           |> put_status(:bad_request)
-          |> render("error.json", %{error: msg})
+          |> render("error.json", %{message: msg})
       end
     rescue
       e in InvalidRequest ->
@@ -110,7 +110,7 @@ defmodule LynxWeb.TeamController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, team} ->
         conn
@@ -146,7 +146,7 @@ defmodule LynxWeb.TeamController do
         {:error, msg} ->
           conn
           |> put_status(:bad_request)
-          |> render("error.json", %{error: msg})
+          |> render("error.json", %{message: msg})
       end
     rescue
       e in InvalidRequest ->
@@ -178,7 +178,7 @@ defmodule LynxWeb.TeamController do
 
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, _} ->
         Logger.info("Team with uuid #{uuid} is deleted")

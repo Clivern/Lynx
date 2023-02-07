@@ -26,8 +26,8 @@ defmodule LynxWeb.TeamView do
   end
 
   # Render errors
-  def render("error.json", %{error: error}) do
-    %{errorMessage: error}
+  def render("error.json", %{message: message}) do
+    %{errorMessage: message}
   end
 
   # Format team
