@@ -135,15 +135,21 @@ defmodule LynxWeb.UserController do
   def delete(conn, %{"uuid" => uuid}) do
     Logger.info("Attempt to delete user with uuid #{uuid}")
 
-    case UserModule.delete_user_by_uuid(uuid) do
-      {:not_found, msg} ->
-        conn
-        |> put_status(:not_found)
-        |> render("error.json", %{message: msg})
+    if conn.assigns[:user_uuid] == uuid do
+      conn
+      |> put_status(:bad_request)
+      |> render("error.json", %{message: "User can't delete his account!"})
+    else
+      case UserModule.delete_user_by_uuid(uuid) do
+        {:not_found, msg} ->
+          conn
+          |> put_status(:not_found)
+          |> render("error.json", %{message: msg})
 
-      {:ok, _} ->
-        conn
-        |> send_resp(:no_content, "")
+        {:ok, _} ->
+          conn
+          |> send_resp(:no_content, "")
+      end
     end
   end
 

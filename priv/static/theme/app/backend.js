@@ -317,8 +317,22 @@ lynx_app.teams_list = (Vue, axios, $) => {
             editTeamAction(id) {
                 console.log("Edit team with ID:", id);
             },
+
             deleteTeamAction(id) {
-                console.log("Delete team with ID:", id);
+                if (confirm(i18n_globals.delete_team_alert) != true) {
+                    return;
+                }
+
+                axios.delete(i18n_globals.delete_team_endpoint.replace("UUID", id), {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.delete_team_message);
+                            setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
             },
             loadDataAction() {
                 var offset = (this.currentPage - 1) * this.limit;
@@ -387,9 +401,24 @@ lynx_app.users_list = (Vue, axios, $) => {
             editUserAction(id) {
                 console.log("Edit user with ID:", id);
             },
+
             deleteUserAction(id) {
-                console.log("Delete user with ID:", id);
+                if (confirm(i18n_globals.delete_user_alert) != true) {
+                    return;
+                }
+
+                axios.delete(i18n_globals.delete_user_endpoint.replace("UUID", id), {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.delete_user_message);
+                            setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
             },
+
             loadDataAction() {
                 var offset = (this.currentPage - 1) * this.limit;
 

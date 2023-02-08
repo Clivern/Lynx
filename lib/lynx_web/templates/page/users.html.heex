@@ -1,6 +1,9 @@
 <script type="text/javascript">
   var i18n_globals = {
-    new_user: '<%= gettext "User created successfully!" %>'
+    new_user: '<%= gettext "User created successfully!" %>',
+    delete_user_message: '<%= gettext "User deleted successfully!" %>',
+    delete_user_alert: '<%= gettext "You are trying to delete a user! are you sure?" %>',
+    delete_user_endpoint: '<%= Routes.user_path(@conn, :delete, "UUID") %>'
   }
 </script>
 

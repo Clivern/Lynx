@@ -1,6 +1,9 @@
 <script type="text/javascript">
   var i18n_globals = {
-    new_team: '<%= gettext "Team created successfully!" %>'
+    new_team: '<%= gettext "Team created successfully!" %>',
+    delete_team_message: '<%= gettext "Team deleted successfully!" %>',
+    delete_team_alert: '<%= gettext "You are trying to delete a team! are you sure?" %>',
+    delete_team_endpoint: '<%= Routes.team_path(@conn, :delete, "UUID") %>'
   }
 </script>
 
@@ -290,8 +293,8 @@
                                         <td>${team.projectsCount}</td>
                                         <td>${team.createdAt}</td>
                                         <td>
-                                          <button @click="editTeam(team.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
-                                          <button @click="deleteTeam(team.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
+                                          <button @click="editTeamAction(team.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
+                                          <button @click="deleteTeamAction(team.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>
                                       </tr>
                                       <tr v-if="teams.length == 0">
