@@ -66,7 +66,7 @@
     <div class="toast fade hide" id="toast_notification" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <img class="me-8" src={Routes.static_path(@conn, "/images/ico.png")} width="20">
-            <strong class="me-auto"><%= gettext "Lynx" %></strong>
+            <strong class="me-auto"><%= @data.app_name %></strong>
             <small><%= gettext "Just Now" %></small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

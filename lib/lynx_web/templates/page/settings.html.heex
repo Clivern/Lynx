@@ -61,7 +61,7 @@
                             <div class="row align-items-center justify-content-end">
                                 <div class="hover-dropdown-fade w-auto px-0 ms-6 position-relative hp-cursor-pointer">
                                     <div class="avatar-item d-flex align-items-center justify-content-center rounded-circle" style="width: 40px; height: 40px;">
-                                        <img src={Routes.static_path(@conn, "/theme/app/avatar.png")}>
+                                        <img src={@data.avatar_url}>
                                     </div>
 
                                     <div class="hp-header-profile-menu dropdown-fade position-absolute pt-18" style="top: 100%; width: 260px;">
@@ -208,7 +208,7 @@
                             <div class="row align-items-center">
                                 <div class="me-8 w-auto px-0">
                                     <div class="avatar-item d-flex align-items-center justify-content-center rounded-circle" style="width: 36px; height: 36px;">
-                                        <img src={Routes.static_path(@conn, "/theme/app/avatar.png")}>
+                                        <img src={@data.avatar_url}>
                                     </div>
                                 </div>
 
@@ -307,7 +307,7 @@
     <div class="toast fade hide" id="toast_notification" role="alert" aria-live="assertive" aria-atomic="true">
         <div class="toast-header">
             <img class="me-8" src={Routes.static_path(@conn, "/images/ico.png")} width="20">
-            <strong class="me-auto"><%= gettext "Lynx" %></strong>
+            <strong class="me-auto"><%= @data.app_name %></strong>
             <small><%= gettext "Just Now" %></small>
             <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
         </div>

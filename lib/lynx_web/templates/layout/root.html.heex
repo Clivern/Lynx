@@ -43,7 +43,7 @@
       <!-- Horizontal -->
       <link rel="stylesheet" type="text/css" href={Routes.static_path(@conn, "/theme/app/css/layouts/horizontal-menu.css")}>
 
-      <%= live_title_tag assigns[:page_title] || "Lynx" %>
+      <%= live_title_tag assigns[:page_title] || "#{@data.app_name} - A Fast, Secure and Reliable Terraform Backend" %>
   </head>
 
   <body class="horizontal-active">
