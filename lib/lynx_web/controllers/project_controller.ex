@@ -11,6 +11,7 @@ defmodule LynxWeb.ProjectController do
 
   require Logger
 
+  alias Lynx.Exception.InvalidRequest
   alias Lynx.Module.ProjectModule
   alias Lynx.Module.TeamModule
   alias Lynx.Service.ValidatorService
@@ -65,27 +66,45 @@ defmodule LynxWeb.ProjectController do
   Create Project Endpoint
   """
   def create(conn, params) do
-    # Get Team ID from UUID
-    team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
+    try do
+      validate_create_request(params)
 
-    result =
-      ProjectModule.create_project(%{
-        name: ValidatorService.get_str(params["name"], ""),
-        description: ValidatorService.get_str(params["description"], ""),
-        slug: ValidatorService.get_str(params["slug"], ""),
-        team_id: team_id
-      })
+      slug = ValidatorService.get_str(params["slug"], "")
+      team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
 
-    case result do
-      {:ok, project} ->
-        conn
-        |> put_status(:created)
-        |> render("index.json", %{project: project})
+      if ProjectModule.is_slug_used_in_team(slug, team_id) do
+        raise InvalidRequest, message: "Team slug is used"
+      end
 
-      {:error, msg} ->
+      result =
+        ProjectModule.create_project(%{
+          name: ValidatorService.get_str(params["name"], ""),
+          description: ValidatorService.get_str(params["description"], ""),
+          slug: ValidatorService.get_str(params["slug"], ""),
+          team_id: team_id
+        })
+
+      case result do
+        {:ok, project} ->
+          conn
+          |> put_status(:created)
+          |> render("index.json", %{project: project})
+
+        {:error, msg} ->
+          conn
+          |> put_status(:bad_request)
+          |> render("error.json", %{message: msg})
+      end
+    rescue
+      e in InvalidRequest ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: e.message})
+
+      _ ->
+        conn
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{message: "Internal server error"})
     end
   end
 
@@ -110,32 +129,42 @@ defmodule LynxWeb.ProjectController do
   Update Project Endpoint
   """
   def update(conn, params) do
-    # Get Team ID from UUID
-    team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
+    try do
+      validate_update_request(params)
 
-    result =
-      ProjectModule.update_project(%{
-        uuid: ValidatorService.get_str(params["uuid"], ""),
-        name: ValidatorService.get_str(params["name"], ""),
-        description: ValidatorService.get_str(params["description"], ""),
-        team_id: team_id
-      })
+      result =
+        ProjectModule.update_project(%{
+          uuid: ValidatorService.get_str(params["uuid"], ""),
+          name: ValidatorService.get_str(params["name"], ""),
+          description: ValidatorService.get_str(params["description"], "")
+        })
 
-    case result do
-      {:not_found, msg} ->
-        conn
-        |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+      case result do
+        {:ok, project} ->
+          conn
+          |> put_status(:ok)
+          |> render("index.json", %{project: project})
 
-      {:error, msg} ->
+        {:not_found, msg} ->
+          conn
+          |> put_status(:not_found)
+          |> render("error.json", %{message: msg})
+
+        {:error, msg} ->
+          conn
+          |> put_status(:bad_request)
+          |> render("error.json", %{message: msg})
+      end
+    rescue
+      e in InvalidRequest ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: e.message})
 
-      {:ok, project} ->
+      _ ->
         conn
-        |> put_status(:ok)
-        |> render("index.json", %{project: project})
+        |> put_status(:internal_server_error)
+        |> render("error.json", %{message: "Internal server error"})
     end
   end
 
@@ -171,6 +200,10 @@ defmodule LynxWeb.ProjectController do
 
     if ValidatorService.is_empty(slug) do
       raise InvalidRequest, message: "Project slug is required"
+    end
+
+    if ValidatorService.is_empty(team_id) do
+      raise InvalidRequest, message: "Team is required"
     end
   end
 

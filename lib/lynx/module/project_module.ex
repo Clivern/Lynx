@@ -98,7 +98,7 @@ defmodule Lynx.Module.ProjectModule do
           ProjectContext.new_project(%{
             name: ValidatorService.get_str(data[:name], project.name),
             description: ValidatorService.get_str(data[:description], project.description),
-            team_id: ValidatorService.get_int(data[:team_id], project.team_id),
+            team_id: project.team_id,
             slug: project.slug
           })
 

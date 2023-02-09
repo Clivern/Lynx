@@ -26,8 +26,8 @@ defmodule LynxWeb.ProjectView do
   end
 
   # Render errors
-  def render("error.json", %{error: error}) do
-    %{errorMessage: error}
+  def render("error.json", %{message: message}) do
+    %{errorMessage: message}
   end
 
   # Format project
@@ -41,7 +41,7 @@ defmodule LynxWeb.ProjectView do
       description: project.description,
       team: %{
         id: team.uuid,
-        name: team.uuid
+        name: team.name
       },
       envCount: EnvironmentModule.count_project_envs(project.id),
       createdAt: project.inserted_at,

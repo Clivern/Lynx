@@ -271,10 +271,10 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th><%= gettext "Name" %></th>
-                                            <th><%= gettext "Members" %></th>
-                                            <th><%= gettext "Projects" %></th>
-                                            <th><%= gettext "Created at" %></th>
+                                            <th style="text-align: center"><%= gettext "Name" %></th>
+                                            <th style="text-align: center"><%= gettext "Members" %></th>
+                                            <th style="text-align: center"><%= gettext "Projects" %></th>
+                                            <th style="text-align: center"><%= gettext "Created at" %></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -288,10 +288,10 @@
                                             </div>
                                           </a>
                                         </td>
-                                        <td>${team.name}</td>
-                                        <td>${team.usersCount}</td>
-                                        <td>${team.projectsCount}</td>
-                                        <td>${team.createdAt}</td>
+                                        <td style="text-align: center">${team.name}</td>
+                                        <td style="text-align: center">${team.usersCount}</td>
+                                        <td style="text-align: center">${team.projectsCount}</td>
+                                        <td style="text-align: center">${team.createdAt}</td>
                                         <td>
                                           <button @click="editTeamAction(team.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
                                           <button @click="deleteTeamAction(team.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>

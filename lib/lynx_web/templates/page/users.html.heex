@@ -271,10 +271,10 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th><%= gettext "Name" %></th>
-                                            <th><%= gettext "Email" %></th>
-                                            <th><%= gettext "Role" %></th>
-                                            <th><%= gettext "Created at" %></th>
+                                            <th style="text-align: center"><%= gettext "Name" %></th>
+                                            <th style="text-align: center"><%= gettext "Email" %></th>
+                                            <th style="text-align: center"><%= gettext "Role" %></th>
+                                            <th style="text-align: center"><%= gettext "Created at" %></th>
                                             <th></th>
                                         </tr>
                                     </thead>
@@ -288,10 +288,10 @@
                                             </div>
                                           </a>
                                         </td>
-                                        <td>${user.name}</td>
-                                        <td>${user.email}</td>
-                                        <td>${user.role}</td>
-                                        <td>${user.createdAt}</td>
+                                        <td style="text-align: center">${user.name}</td>
+                                        <td style="text-align: center">${user.email}</td>
+                                        <td style="text-align: center">${user.role}</td>
+                                        <td style="text-align: center">${user.createdAt}</td>
                                         <td>
                                           <button @click="editUserAction(user.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
                                           <button @click="deleteUserAction(user.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>

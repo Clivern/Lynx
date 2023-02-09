@@ -487,6 +487,10 @@ lynx_app.projects_list = (Vue, axios, $) => {
                 console.log("Edit project with ID:", id);
             },
 
+            viewProjectAction(id) {
+                console.log("View project with ID:", id);
+            },
+
             deleteProjectAction(id) {
                 if (confirm(i18n_globals.delete_project_alert) != true) {
                     return;
