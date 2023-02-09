@@ -460,6 +460,160 @@ lynx_app.users_list = (Vue, axios, $) => {
     });
 }
 
+// Projects list
+lynx_app.projects_list = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#projects_list',
+        data() {
+            return {
+                currentPage: 1,
+                limit: 10,
+                totalCount: 5,
+                projects: []
+            }
+        },
+        mounted() {
+            this.loadDataAction();
+        },
+        computed: {
+            totalPages() {
+                return Math.ceil(this.totalCount / this.limit);
+            }
+        },
+        methods: {
+            editProjectAction(id) {
+                console.log("Edit project with ID:", id);
+            },
+
+            deleteProjectAction(id) {
+                if (confirm(i18n_globals.delete_project_alert) != true) {
+                    return;
+                }
+
+                axios.delete(i18n_globals.delete_project_endpoint.replace("UUID", id), {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.delete_project_message);
+                            setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            loadDataAction() {
+                var offset = (this.currentPage - 1) * this.limit;
+
+                axios.get($("#projects_list").attr("data-action"), {
+                        params: {
+                            offset: offset,
+                            limit: this.limit
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.projects = response.data.projects;
+                            this.limit = response.data._metadata.limit;
+                            this.offset = response.data._metadata.offset;
+                            this.totalCount = response.data._metadata.totalCount;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+            loadPreviousPageAction(event) {
+                event.preventDefault();
+
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.loadDataAction();
+                }
+            },
+            loadNextPageAction(event) {
+                event.preventDefault();
+
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                    this.loadDataAction();
+                }
+            }
+        }
+    });
+}
+
+// Add Project Modal
+lynx_app.add_project_modal = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#add_project_modal',
+        data() {
+            return {
+                isInProgress: false,
+                teams: [],
+                projectName: '',
+                projectSlug: ''
+            }
+        },
+        mounted() {
+            this.loadData();
+        },
+        methods: {
+            slugifyProjectName() {
+                this.projectSlug = this.projectName.toLowerCase().replace(/\s+/g, '-');
+            },
+            loadData() {
+                axios.get($("#add_project_modal").attr("data-action"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.teams = response.data.teams;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+            addProjectAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.post(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.new_project);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+
+}
+
 $(document).ready(() => {
     axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
@@ -532,8 +686,24 @@ $(document).ready(() => {
         );
     }
 
+    if (document.getElementById("projects_list")) {
+        lynx_app.projects_list(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("add_project_modal")) {
+        lynx_app.add_project_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+    /*
     if (document.querySelector("#hosts_chart")) {
         let chart = new ApexCharts(document.querySelector("#hosts_chart"), hostsChart);
         chart.render();
-    }
+    }*/
 });

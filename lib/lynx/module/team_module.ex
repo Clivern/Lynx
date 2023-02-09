@@ -198,6 +198,10 @@ defmodule Lynx.Module.TeamModule do
     TeamContext.get_team_id_with_uuid(uuid)
   end
 
+  def get_team_uuid_with_id(id) do
+    TeamContext.get_team_uuid_with_id(id)
+  end
+
   def get_user_id_with_uuid(uuid) do
     UserContext.get_user_id_with_uuid(uuid)
   end

@@ -179,4 +179,11 @@ defmodule Lynx.Module.EnvironmentModule do
         true
     end
   end
+
+  @doc """
+  Count project envs
+  """
+  def count_project_envs(project_id) do
+    EnvironmentContext.count_project_envs(project_id)
+  end
 end

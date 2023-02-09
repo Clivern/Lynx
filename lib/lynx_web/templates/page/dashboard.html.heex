@@ -252,23 +252,6 @@
 
                 <div class="col-12">
                     <div class="row g-32">
-                        <div class="col-12">
-                            <div class="card">
-                                <div class="card-body">
-                                    <div class="row align-items-center">
-                                        <div class="col-12 col-sm-2">
-                                            <h5>Hosts</h5>
-                                            <h4 class="mb-0">1000</h4>
-                                        </div>
-
-                                        <div class="col-12 col-sm-10 overflow-hidden">
-                                            <div id="hosts_chart" class="w-100"></div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <div class="col-12 col-sm-6 col-xl-3">
                             <div class="card hp-card-1">
                                 <div class="card-body p-16">
@@ -533,70 +516,5 @@
 </main>
 
 <script type="text/javascript">
-let hostsChart = {
-    series: [
-        {
-            name: "UP",
-            data: [200],
-        },
-        {
-            name: "DOWN",
-            data: [300],
-        },
-        {
-            name: "UNKNOWN",
-            data: [500],
-        },
-    ],
-    chart: {
-        type: "bar",
-        height: 100,
-        stacked: true,
-        stackType: "100%",
-        toolbar: {
-            show: false,
-        },
-    },
-    grid: {
-        show: false,
-    },
-    plotOptions: {
-        bar: {
-            horizontal: true,
-            barHeight: "100%",
-            startingShape: "rounded",
-            endingShape: "rounded",
-        },
-    },
 
-    colors: ["#00F7BF", "#1BE7FF", "#0010F7"],
-    fill: {
-        type: "solid",
-    },
-    xaxis: {
-        type: "datetime",
-        labels: {
-            show: false,
-        },
-        axisBorder: {
-            show: false,
-        },
-        axisTicks: {
-            show: false,
-        },
-    },
-
-    yaxis: {
-        show: false,
-    },
-
-    legend: {
-        position: "left",
-    },
-    tooltip: {
-        x: {
-            show: false,
-        },
-    },
-};
 </script>

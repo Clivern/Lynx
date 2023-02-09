@@ -154,4 +154,36 @@ defmodule LynxWeb.ProjectController do
         |> send_resp(:no_content, "")
     end
   end
+
+  defp validate_create_request(params) do
+    name = ValidatorService.get_str(params["name"], "")
+    description = ValidatorService.get_str(params["description"], "")
+    slug = ValidatorService.get_str(params["slug"], "")
+    team_id = ValidatorService.get_str(params["team_id"], "")
+
+    if ValidatorService.is_empty(name) do
+      raise InvalidRequest, message: "Project name is required"
+    end
+
+    if ValidatorService.is_empty(description) do
+      raise InvalidRequest, message: "Project description is required"
+    end
+
+    if ValidatorService.is_empty(slug) do
+      raise InvalidRequest, message: "Project slug is required"
+    end
+  end
+
+  defp validate_update_request(params) do
+    name = ValidatorService.get_str(params["name"], "")
+    description = ValidatorService.get_str(params["description"], "")
+
+    if ValidatorService.is_empty(name) do
+      raise InvalidRequest, message: "Project name is required"
+    end
+
+    if ValidatorService.is_empty(description) do
+      raise InvalidRequest, message: "Project description is required"
+    end
+  end
 end

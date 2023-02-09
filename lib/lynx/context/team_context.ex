@@ -58,6 +58,19 @@ defmodule Lynx.Context.TeamContext do
   end
 
   @doc """
+  Get Team UUID with ID
+  """
+  def get_team_uuid_with_id(id) do
+    case get_team_by_id(id) do
+      nil ->
+        nil
+
+      team ->
+        team.uuid
+    end
+  end
+
+  @doc """
   Retrieve a team by ID
   """
   def get_team_by_id(id) do

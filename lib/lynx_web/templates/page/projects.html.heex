@@ -1,6 +1,9 @@
 <script type="text/javascript">
   var i18n_globals = {
-    new_team: '<%= gettext "Team created successfully!" %>'
+    new_project: '<%= gettext "Project created successfully!" %>',
+    delete_project_message: '<%= gettext "Project deleted successfully!" %>',
+    delete_project_alert: '<%= gettext "You are trying to delete a project! are you sure?" %>',
+    delete_project_endpoint: '<%= Routes.project_path(@conn, :delete, "UUID") %>'
   }
 </script>
 
@@ -241,7 +244,7 @@
                                         <a href={Routes.page_path(@conn, :dashboard)}><%= gettext "Dashboard" %></a>
                                     </li>
                                     <li class="breadcrumb-item active">
-                                        <%= gettext "Teams" %>
+                                        <%= gettext "Projects" %>
                                     </li>
                                 </ol>
                             </nav>
@@ -250,9 +253,9 @@
                         <div class="col-12 col-md-7">
                             <div class="row g-16 align-items-center justify-content-end">
                                 <div class="col hp-flex-none w-auto">
-                                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#add_team_modal">
+                                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#add_project_modal">
                                         <i class="ri-user-add-line remix-icon"></i>
-                                        <span><%= gettext "Add New Team" %></span>
+                                        <span><%= gettext "Add New Project" %></span>
                                     </button>
                                 </div>
                             </div>
@@ -260,7 +263,7 @@
                     </div>
                 </div>
 
-                <div class="col-12">
+                <div class="col-12" id="projects_list" data-action={Routes.project_path(@conn, :list)}>
                     <div class="card hp-contact-card mb-32">
                         <div class="card-body px-0">
                             <div class="table-responsive">
@@ -268,55 +271,73 @@
                                     <thead>
                                         <tr>
                                             <th></th>
-                                            <th><%= gettext "Team Name" %></th>
-                                            <th><%= gettext "Team Members" %></th>
+                                            <th><%= gettext "Name" %></th>
+                                            <th><%= gettext "Environments" %></th>
+                                            <th><%= gettext "Team" %></th>
                                             <th><%= gettext "Created at" %></th>
                                             <th></th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
-
+                                      <tr v-for="project in projects">
+                                        <td>
+                                          <a href="javascript:;">
+                                            <div class="avatar-item avatar-lg d-flex align-items-center justify-content-center bg-primary-4 hp-bg-dark-primary text-primary hp-text-color-dark-0 rounded-circle">
+                                              <i class="iconly-Light-TwoUsers"></i>
+                                            </div>
+                                          </a>
+                                        </td>
+                                        <td>${project.name}</td>
+                                        <td>${project.envCount}</td>
+                                        <td>${project.team.name}</td>
+                                        <td>${project.createdAt}</td>
+                                        <td>
+                                          <button @click="editProjectAction(project.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
+                                          <button @click="deleteProjectAction(project.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
+                                        </td>
+                                      </tr>
+                                      <tr v-if="projects.length == 0">
+                                        <td colspan="6" style="text-align: center;"><%= gettext "No Records Found!" %></td>
+                                      </tr>
                                     </tbody>
                                 </table>
                             </div>
 
-                            <!--
-                            TODO
                             <nav>
                                 <ul class="pagination justify-content-end px-32">
                                     <li class="page-item">
-                                        <a class="page-link" href="javascript:;">
+                                        <button class="page-link" @click="loadPreviousPageAction" v-if="currentPage > 1">
                                             <svg viewBox="64 64 896 896" focusable="false" data-icon="left" width="12px" height="12px" fill="currentColor" aria-hidden="true">
                                                 <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </li>
 
                                     <li class="page-item">
-                                        <a class="page-link" href="javascript:;">1</a>
+                                        <button class="page-link">${currentPage}</button>
                                     </li>
 
                                     <li class="page-item">
-                                        <a class="page-link" href="javascript:;">
+                                        <button class="page-link" @click="loadNextPageAction" v-if="currentPage != totalPages">
                                             <svg viewBox="64 64 896 896" focusable="false" data-icon="right" width="12px" height="12px" fill="currentColor" aria-hidden="true">
                                                 <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"></path>
                                             </svg>
-                                        </a>
+                                        </button>
                                     </li>
                                 </ul>
                             </nav>
-                            --->
+
                         </div>
                     </div>
                 </div>
             </div>
 
-            <div class="modal fade" id="add_team_modal" tabindex="-1" aria-labelledby="addNewTeamLabel" aria-hidden="true">
+            <div class="modal fade" id="add_project_modal" tabindex="-1" aria-labelledby="addNewProjectLabel" aria-hidden="true" data-action={Routes.team_path(@conn, :list)}>
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">
                         <div class="modal-header py-16 px-24">
-                            <h5 class="modal-title" id="addNewTeamLabel"><%= gettext "Add New Team" %></h5>
+                            <h5 class="modal-title" id="addNewProjectLabel"><%= gettext "Add New Project" %></h5>
                             <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
                                 <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
                             </button>
@@ -324,13 +345,20 @@
 
                         <div class="divider m-0"></div>
 
-                        <form action={Routes.team_path(@conn, :create)} method="post" v-on:submit.prevent="addTeamAction">
+                        <form action={Routes.project_path(@conn, :create)} method="post" v-on:submit.prevent="addProjectAction">
                             <div class="modal-body">
                                 <div class="row gx-8">
                                     <div class="col-12">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Name" %></label>
-                                            <input type="text" class="form-control" name="name" required="required">
+                                            <input type="text" v-model="projectName" @input="slugifyProjectName" class="form-control" name="name" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Slug" %></label>
+                                            <input type="text" v-model="projectSlug" class="form-control" name="slug" required="required">
                                         </div>
                                     </div>
 
@@ -343,9 +371,11 @@
 
                                     <div class="col-12">
                                         <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Members" %></label>
-                                            <select class="form-select" multiple name="members" required="required">
-
+                                            <label class="form-label"><%= gettext "Team" %></label>
+                                            <select class="form-select" name="team_id" required="required">
+                                                <template v-for="team in teams">
+                                                    <option :value="team.id">${team.name}</option>
+                                                </template>
                                             </select>
                                         </div>
                                     </div>
