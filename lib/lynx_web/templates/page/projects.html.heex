@@ -3,7 +3,8 @@
     new_project: '<%= gettext "Project created successfully!" %>',
     delete_project_message: '<%= gettext "Project deleted successfully!" %>',
     delete_project_alert: '<%= gettext "You are trying to delete a project! are you sure?" %>',
-    delete_project_endpoint: '<%= Routes.project_path(@conn, :delete, "UUID") %>'
+    delete_project_endpoint: '<%= Routes.project_path(@conn, :delete, "UUID") %>',
+    project_view_page: '<%= Routes.page_path(@conn, :project, "UUID") %>'
   }
 </script>
 

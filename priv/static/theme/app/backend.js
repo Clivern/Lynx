@@ -488,7 +488,7 @@ lynx_app.projects_list = (Vue, axios, $) => {
             },
 
             viewProjectAction(id) {
-                console.log("View project with ID:", id);
+                window.location.href = i18n_globals.project_view_page.replace("UUID", id);
             },
 
             deleteProjectAction(id) {

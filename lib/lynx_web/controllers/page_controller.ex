@@ -316,6 +316,10 @@ defmodule LynxWeb.PageController do
     end
   end
 
+  defp get_gavatar(nil) do
+    ""
+  end
+
   defp get_gavatar(email) do
     hash = Base.encode16(:crypto.hash(:sha256, email)) |> String.downcase()
     "https://gravatar.com/avatar/#{hash}?s=200"
