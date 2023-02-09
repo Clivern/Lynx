@@ -8,6 +8,26 @@ function show_notification(text) {
     $("#toast_notification").find(".toast-body").text(text);
 }
 
+function generateRandomCredentials() {
+  // Define character sets for username and password
+  const usernameChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+  const passwordChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+
+  // Generate random username
+  let username = '';
+  for (let i = 0; i < 8; i++) {
+    username += usernameChars.charAt(Math.floor(Math.random() * usernameChars.length));
+  }
+
+  // Generate random password
+  let password = '';
+  for (let i = 0; i < 12; i++) {
+    password += passwordChars.charAt(Math.floor(Math.random() * passwordChars.length));
+  }
+
+  return { username, password };
+}
+
 // Install Page
 lynx_app.install_screen = (Vue, axios, $) => {
 
@@ -618,6 +638,123 @@ lynx_app.add_project_modal = (Vue, axios, $) => {
 
 }
 
+// Add Project Modal
+lynx_app.add_environment_modal = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#add_environment_modal',
+        data() {
+            return {
+                isInProgress: false,
+                environmentName: '',
+                environmentSlug: '',
+                environmentUsername: '',
+                environmentSecret: ''
+            }
+        },
+        mounted() {
+            this.loadData();
+        },
+        methods: {
+            slugifyEnvironmentName() {
+                this.environmentSlug = this.environmentName.toLowerCase().replace(/\s+/g, '-');
+            },
+            loadData() {
+                let credentials = generateRandomCredentials();
+
+                this.environmentUsername = credentials.username;
+                this.environmentSecret = credentials.password;
+
+            },
+            addEnvironmentAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                axios.post(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.new_environment);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+
+}
+
+// Environments list
+lynx_app.environments_list = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#environments_list',
+        data() {
+            return {
+                environments: []
+            }
+        },
+        mounted() {
+            this.loadDataAction();
+        },
+        methods: {
+            editEnvironmentAction(id) {
+                console.log("Edit environment with ID:", id);
+            },
+
+            deleteEnvironmentAction(id) {
+                if (confirm(i18n_globals.delete_environment_alert) != true) {
+                    return;
+                }
+
+                axios.delete(i18n_globals.delete_environment_endpoint.replace("UUID", id), {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.delete_environment_message);
+                            setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            loadDataAction() {
+                axios.get($("#environments_list").attr("data-action"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.environments = response.data.environments;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+}
+
 $(document).ready(() => {
     axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
@@ -700,6 +837,22 @@ $(document).ready(() => {
 
     if (document.getElementById("add_project_modal")) {
         lynx_app.add_project_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("add_environment_modal")) {
+        lynx_app.add_environment_modal(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("environments_list")) {
+        lynx_app.environments_list(
             Vue,
             axios,
             $

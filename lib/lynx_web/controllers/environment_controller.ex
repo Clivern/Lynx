@@ -51,7 +51,7 @@ defmodule LynxWeb.EnvironmentController do
       {:error, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, environments} ->
         render(conn, "list.json", %{
@@ -73,7 +73,7 @@ defmodule LynxWeb.EnvironmentController do
       validate_create_request(params)
 
       project_id =
-        ProjectModule.get_project_id_with_uuid(ValidatorService.get_str(params["project_id"], ""))
+        ProjectModule.get_project_id_with_uuid(ValidatorService.get_str(params["p_uuid"], ""))
 
       slug = ValidatorService.get_str(params["slug"], "")
 
@@ -100,7 +100,7 @@ defmodule LynxWeb.EnvironmentController do
         {:error, msg} ->
           conn
           |> put_status(:bad_request)
-          |> render("error.json", %{error: msg})
+          |> render("error.json", %{message: msg})
       end
     rescue
       e in InvalidRequest ->
@@ -123,7 +123,7 @@ defmodule LynxWeb.EnvironmentController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, environment} ->
         conn
@@ -156,7 +156,7 @@ defmodule LynxWeb.EnvironmentController do
         {:error, msg} ->
           conn
           |> put_status(:bad_request)
-          |> render("error.json", %{error: msg})
+          |> render("error.json", %{message: msg})
       end
     rescue
       e in InvalidRequest ->
@@ -179,7 +179,7 @@ defmodule LynxWeb.EnvironmentController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, _} ->
         conn
@@ -192,7 +192,6 @@ defmodule LynxWeb.EnvironmentController do
     username = ValidatorService.get_str(params["username"], "")
     secret = ValidatorService.get_str(params["secret"], "")
     slug = ValidatorService.get_str(params["slug"], "")
-    project_id = ValidatorService.get_str(params["project_id"], "")
 
     if ValidatorService.is_empty(name) do
       raise InvalidRequest, message: "Environment name is required"
@@ -208,10 +207,6 @@ defmodule LynxWeb.EnvironmentController do
 
     if ValidatorService.is_empty(slug) do
       raise InvalidRequest, message: "Environment slug is required"
-    end
-
-    if ValidatorService.is_empty(project_id) do
-      raise InvalidRequest, message: "Project ID is required"
     end
   end
 

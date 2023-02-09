@@ -1,3 +1,13 @@
+<script type="text/javascript">
+  var i18n_globals = {
+    new_environment: '<%= gettext "Environment created successfully!" %>',
+    delete_environment_message: '<%= gettext "Environment deleted successfully!" %>',
+    delete_environment_alert: '<%= gettext "You are trying to delete an environment! are you sure?" %>',
+    delete_environment_endpoint: '<%= Routes.environment_path(@conn, :delete, @data.uuid, "UUID") %>',
+    project_uuid: '<%= @data.uuid %>'
+  }
+</script>
+
 <main class="hp-bg-color-dark-90 d-flex min-vh-100">
     <div class="hp-main-layout hp-main-layout-horizontal">
         <header>
@@ -225,66 +235,124 @@
 
         <div class="hp-main-layout-content">
             <div class="row g-32">
-               <div class="col-12">
-                    <div class="hp-bg-black-bg py-32 py-sm-64 px-24 px-sm-48 px-md-80 position-relative overflow-hidden hp-page-content" style="border-radius: 32px;">
-                        <svg width="358" height="336" fill="none" xmlns="http://www.w3.org/2000/svg" class="position-absolute hp-rtl-scale-x-n1" style="bottom: 0px; right: 0px;">
-                            <path d="M730.404 135.471 369.675-6.641l88.802 164.001-243.179-98.8 246.364 263.281-329.128-126.619 114.698 166.726-241.68-62.446" stroke="url(#a)" stroke-width="40" stroke-linejoin="bevel"></path>
-                            <defs>
-                                <linearGradient id="a" x1="315.467" y1="6.875" x2="397.957" y2="337.724" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#fff"></stop>
-                                    <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
-                                </linearGradient>
-                            </defs>
-                        </svg>
+                <div class="col-12">
+                    <div class="row justify-content-between gy-32">
+                        <div class="col hp-flex-none w-auto">
+                            <h1 class="mb-8"><%= gettext "Project" %></h1>
+                        </div>
 
-                        <div class="row">
-                            <div class="col-sm-6 col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Profile" %> </h1>
-                                    </div>
-                                    <div class="col-12">
-                                        <ol class="breadcrumb mt-24">
-                                            <li class="breadcrumb-item breadcrumb-link">
-                                                <a href={Routes.page_path(@conn, :dashboard)}> <%= gettext "Dashboard" %> </a>
-                                            </li>
-
-                                            <li class="breadcrumb-item active">
-                                                <%= gettext "Profile" %>
-                                            </li>
-                                        </ol>
-                                    </div>
+                        <div class="col-12 col-md-7">
+                            <div class="row g-16 align-items-center justify-content-end">
+                                <div class="col hp-flex-none w-auto">
+                                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#add_environment_modal">
+                                        <i class="ri-user-add-line remix-icon"></i>
+                                        <span><%= gettext "Add New Environment" %></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12" id="app_profile">
-                    <div class="card">
+
+                <div class="col-12" id="environments_list" data-action={Routes.environment_path(@conn, :list, @data.uuid)}>
+                    <div class="card hp-card-6 hp-order-table-card">
                         <div class="card-body">
-                            <div class="row justify-content-between">
-                                <div class="col pe-md-32 pe-md-120">
-                                    <h4><%= gettext "Profile" %></h4>
-                                </div>
-                                <div class="col-12 mt-16">
-                                    <form action={Routes.profile_path(@conn, :update)} method="post" v-on:submit.prevent="profileAction">
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Nick Name" %></label>
-                                            <input class="form-control" name="name" type="text" value={@data.user_name} required="required">
-                                        </div>
-
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Email" %></label>
-                                            <input class="form-control" name="email" type="email" value={@data.user_email} required="required">
-                                        </div>
-
-                                        <button type="submit" class="btn btn-primary"><%= gettext "Submit" %></button>
-                                    </form>
-                                </div>
+                            <h5 class="mb-8"><%= gettext "Environments" %></h5>
+                            <div class="table-responsive">
+                                <table class="table align-middle">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th style="text-align: center;">
+                                                <span class="hp-badge-size fw-normal text-black-60 hp-text-color-dark-50 text-uppercase"><%= gettext "Name" %></span>
+                                            </th>
+                                            <th style="text-align: center;">
+                                                <span class="hp-badge-size fw-normal text-black-60 hp-text-color-dark-50 text-uppercase"><%= gettext "Created at" %></span>
+                                            </th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                      <tr v-for="environment in environments">
+                                        <td>
+                                          <a href="javascript:;">
+                                            <div class="avatar-item avatar-lg d-flex align-items-center justify-content-center bg-primary-4 hp-bg-dark-primary text-primary hp-text-color-dark-0 rounded-circle">
+                                              <i class="iconly-Light-TwoUsers"></i>
+                                            </div>
+                                          </a>
+                                        </td>
+                                        <td style="text-align: center">${environment.name}</td>
+                                        <td style="text-align: center">${environment.createdAt}</td>
+                                        <td style="text-align: center">
+                                            <button @click="viewEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "View" %></button>
+                                            <button @click="editEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
+                                            <button @click="deleteEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
+                                        </td>
+                                      </tr>
+                                      <tr v-if="environments.length == 0">
+                                        <td colspan="4" style="text-align: center;"><%= gettext "No Records Found!" %></td>
+                                      </tr>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="modal fade" id="add_environment_modal" tabindex="-1" aria-labelledby="addNewEnvironmentLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header py-16 px-24">
+                        <h5 class="modal-title" id="addNewEnvironmentLabel"><%= gettext "Add New Environment" %></h5>
+                        <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                        </button>
+                    </div>
+
+                    <div class="divider m-0"></div>
+
+                    <form action={Routes.environment_path(@conn, :create, @data.uuid)} method="post" v-on:submit.prevent="addEnvironmentAction">
+                        <div class="modal-body">
+                            <div class="row gx-8">
+                                <div class="col-12">
+                                    <div class="mb-24">
+                                        <label class="form-label"><%= gettext "Name" %></label>
+                                        <input type="text" v-model="environmentName" @input="slugifyEnvironmentName" class="form-control" name="name" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="mb-24">
+                                        <label class="form-label"><%= gettext "Slug" %></label>
+                                        <input type="text" v-model="environmentSlug" class="form-control" name="slug" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="mb-24">
+                                        <label class="form-label"><%= gettext "Username" %></label>
+                                        <input type="text" v-model="environmentUsername" class="form-control" name="username" required="required">
+                                    </div>
+                                </div>
+
+                                <div class="col-12">
+                                    <div class="mb-24">
+                                        <label class="form-label"><%= gettext "Secret" %></label>
+                                        <input type="text" v-model="environmentSecret" class="form-control" name="secret" required="required">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer pt-0 px-24 pb-24">
+                            <div class="divider"></div>
+                            <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>

@@ -309,8 +309,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            uuid: uuid,
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            uuid: uuid
           }
         )
     end
