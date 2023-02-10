@@ -127,7 +127,7 @@ defmodule LynxWeb.UserController do
     # @TODO: User Update Endpoint
     conn
     |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+    |> send_resp(:ok, Jason.encode!(%{status: "ok"}))
   end
 
   @doc """

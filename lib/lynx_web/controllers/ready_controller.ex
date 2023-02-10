@@ -11,14 +11,24 @@ defmodule LynxWeb.ReadyController do
 
   require Logger
 
+  alias Lynx.Module.SettingsModule
+
   @doc """
   Ready Endpoint
   """
   def ready(conn, _params) do
     Logger.info("Application is ready")
 
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(200, Jason.encode!(%{status: "ok"}))
+    app_name = SettingsModule.get_config("app_name", "")
+
+    if app_name == "" do
+      conn
+      |> put_resp_content_type("application/json")
+      |> send_resp(:internal_server_error, Jason.encode!(%{status: "not ok"}))
+    else
+      conn
+      |> put_resp_content_type("application/json")
+      |> send_resp(:ok, Jason.encode!(%{status: "ok"}))
+    end
   end
 end

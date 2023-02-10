@@ -19,6 +19,10 @@ services:
       DB_CA_CERTFILE_PATH: null
     restart: unless-stopped
     command: sh -c "/app/bin/migrate && /app/bin/server"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:4000/_ready"]
+      interval: 30s
+      retries: 3
     ports:
       - '4000:4000'
     depends_on:
