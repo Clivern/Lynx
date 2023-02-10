@@ -30,12 +30,64 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 - **Terraform Locking Support:** The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
 
 
-### Deployment
+### Docker Deployment
 
 To run with docker and docker-compose
 
 ```zsh
 $ docker-compose up -d
+```
+
+
+### Ubuntu Deployment
+
+1. Install Elixir: You can install Elixir on Ubuntu using the following commands:
+
+```zsh
+$ sudo apt-get update
+$ sudo apt-get install elixir
+```
+
+2. Install PostgreSQL: Install PostgreSQL on Ubuntu with:
+
+```zsh
+$ sudo apt-get install postgresql postgresql-contrib
+```
+
+3. Configure Environment Variables: Set up the required environment variables from `.env.example`.
+
+```zsh
+$ mkdir -p /etc/lynx
+$ cd /etc/lynx
+$ git clone https://github.com/Clivern/Lynx.git app
+$ cp app/.env.example .env.local # Adjust the database configs
+```
+
+4. Migrate the database
+
+```zsh
+$ cd /etc/lynx/app
+$ make migrate
+```
+
+5. Create a Systemd Service File.
+
+```zsh
+[Unit]
+Description=Lynx
+
+[Service]
+Type=simple
+EnvironmentFile=/etc/lynx/app/.env.local
+ExecStart=/usr/bin/mix phx.server
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```zsh
+sudo systemctl enable lynx.service
+sudo systemctl start lynx.service
 ```
 
 
