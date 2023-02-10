@@ -1,1 +1,2 @@
 priv/static/** linguist-vendored
+lib/lynx_web/templates/page/** linguist-vendored
