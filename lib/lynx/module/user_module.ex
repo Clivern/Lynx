@@ -89,43 +89,32 @@ defmodule Lynx.Module.UserModule do
   Update User
   """
   def update_user(params \\ %{}) do
-    id = params[:id]
+    user =
+      params[:id]
+      |> ValidatorService.parse_int()
+      |> UserContext.get_user_by_id()
 
-    case ValidatorService.validate_int(id) do
-      true ->
-        user =
-          id
-          |> ValidatorService.parse_int()
-          |> UserContext.get_user_by_id()
+    case user do
+      nil ->
+        {:not_found, "User with ID #{params[:id]} not found"}
 
-        case user do
-          nil ->
-            {:not_found, "User with ID #{id} not found"}
+      _ ->
+        new_user = %{
+          email: ValidatorService.get_str(params[:email], user.email),
+          name: ValidatorService.get_str(params[:name], user.name)
+        }
 
-          _ ->
-            new_user =
-              UserContext.new_user(%{
-                email: ValidatorService.get_str(params[:email], user.email),
-                name: ValidatorService.get_str(params[:name], user.name),
-                api_key: ValidatorService.get_str(params[:api_key], user.api_key),
-                role: ValidatorService.get_str(params[:role], user.role)
-              })
+        case UserContext.update_user(user, new_user) do
+          {:ok, user} ->
+            {:ok, user}
 
-            case UserContext.update_user(user, new_user) do
-              {:ok, user} ->
-                {:ok, user}
+          {:error, changeset} ->
+            messages =
+              changeset.errors()
+              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
 
-              {:error, changeset} ->
-                messages =
-                  changeset.errors()
-                  |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
-
-                {:error, Enum.at(messages, 0)}
-            end
+            {:error, Enum.at(messages, 0)}
         end
-
-      false ->
-        {:error, "Invalid User ID"}
     end
   end
 

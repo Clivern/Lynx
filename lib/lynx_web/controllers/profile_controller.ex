@@ -11,6 +11,9 @@ defmodule LynxWeb.ProfileController do
 
   require Logger
 
+  alias Lynx.Module.UserModule
+  alias Lynx.Service.ValidatorService
+
   plug :regular_user when action in [:update]
 
   defp regular_user(conn, _opts) do
@@ -33,9 +36,29 @@ defmodule LynxWeb.ProfileController do
   @doc """
   Update Profile Endpoint
   """
-  def update(conn, _params) do
-    conn
-    |> put_status(:ok)
-    |> render("success.json", %{message: "Profile updated successfully"})
+  def update(conn, params) do
+    result =
+      UserModule.update_user(%{
+        id: conn.assigns[:user_id],
+        email: ValidatorService.get_str(params["email"], ""),
+        name: ValidatorService.get_str(params["name"], "")
+      })
+
+    case result do
+      {:not_found, _} ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: "Invalid Request"})
+
+      {:ok, _} ->
+        conn
+        |> put_status(:ok)
+        |> render("success.json", %{message: "Profile updated successfully"})
+
+      {:error, msg} ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: msg})
+    end
   end
 end
