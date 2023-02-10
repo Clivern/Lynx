@@ -238,4 +238,30 @@ defmodule Lynx.Context.ProjectContext do
     )
     |> Repo.all()
   end
+
+  @doc """
+  Get project by UUID and team ids
+  """
+  def get_project_by_uuid_teams(uuid, teams_ids) do
+    from(
+      p in Project,
+      where: p.uuid == ^uuid,
+      where: p.team_id in ^teams_ids
+    )
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  @doc """
+  Get project by ID and team ids
+  """
+  def get_project_by_id_teams(id, teams_ids) do
+    from(
+      p in Project,
+      where: p.id == ^id,
+      where: p.team_id in ^teams_ids
+    )
+    |> limit(1)
+    |> Repo.one()
+  end
 end
