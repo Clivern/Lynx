@@ -151,17 +151,16 @@ defmodule Lynx.Module.EnvironmentModule do
             {:error, "Invalid project slug"}
 
           project ->
-            case EnvironmentContext.get_env_by_slug_credentials(
-                   data[:env_slug],
-                   project.id,
-                   data[:username],
-                   data[:secret]
-                 ) do
+            case EnvironmentContext.get_env_by_slug_project(project.id, data[:env_slug]) do
               nil ->
                 {:error, "Invalid environment credentials"}
 
               env ->
-                {:ok, team, project, env}
+                if env.username == data[:username] and env.secret == data[:secret] do
+                  {:ok, team, project, env}
+                else
+                  {:error, "Invalid environment credentials"}
+                end
             end
         end
     end

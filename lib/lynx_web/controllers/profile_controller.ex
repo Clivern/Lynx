@@ -32,9 +32,7 @@ defmodule LynxWeb.ProfileController do
   @doc """
   Update Profile Endpoint
   """
-  def update(conn, params) do
-    IO.inspect(params)
-
+  def update(conn, _params) do
     conn
     |> put_status(:ok)
     |> render("success.json", %{message: "Profile updated successfully"})

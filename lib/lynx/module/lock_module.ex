@@ -39,6 +39,7 @@ defmodule Lynx.Module.LockModule do
                     who: params[:who],
                     version: params[:version],
                     path: params[:path],
+                    uuid: params[:uuid],
                     is_active: true
                   })
 

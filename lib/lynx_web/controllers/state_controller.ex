@@ -38,7 +38,7 @@ defmodule LynxWeb.StateController do
             message: "Access is forbidden"
           })
 
-        {:ok, _} ->
+        {:ok, _, _, _} ->
           conn
       end
     else

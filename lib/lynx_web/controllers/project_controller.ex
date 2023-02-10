@@ -116,7 +116,7 @@ defmodule LynxWeb.ProjectController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, project} ->
         conn
@@ -176,7 +176,7 @@ defmodule LynxWeb.ProjectController do
       {:not_found, msg} ->
         conn
         |> put_status(:not_found)
-        |> render("error.json", %{error: msg})
+        |> render("error.json", %{message: msg})
 
       {:ok, _} ->
         conn

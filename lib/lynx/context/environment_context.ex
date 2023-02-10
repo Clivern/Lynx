@@ -67,21 +67,6 @@ defmodule Lynx.Context.EnvironmentContext do
   end
 
   @doc """
-  Get environment by slug, project id, username and password
-  """
-  def get_env_by_slug_credentials(slug, project_id, username, secret) do
-    from(
-      e in Environment,
-      where: e.slug == ^slug,
-      where: e.project_id == ^project_id,
-      where: e.username == ^username,
-      where: e.secret == ^secret
-    )
-    |> limit(1)
-    |> Repo.one()
-  end
-
-  @doc """
   Get environment by slug, project id
   """
   def get_env_by_slug_project(project_id, slug) do

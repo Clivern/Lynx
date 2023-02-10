@@ -41,7 +41,8 @@ defmodule LynxWeb.ProjectView do
       description: project.description,
       team: %{
         id: team.uuid,
-        name: team.name
+        name: team.name,
+        slug: team.slug
       },
       envCount: EnvironmentModule.count_project_envs(project.id),
       createdAt: project.inserted_at,

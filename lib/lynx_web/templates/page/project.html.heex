@@ -4,6 +4,8 @@
     delete_environment_message: '<%= gettext "Environment deleted successfully!" %>',
     delete_environment_alert: '<%= gettext "You are trying to delete an environment! are you sure?" %>',
     delete_environment_endpoint: '<%= Routes.environment_path(@conn, :delete, @data.uuid, "UUID") %>',
+    get_environment_endpoint: '<%= Routes.environment_path(@conn, :index, @data.uuid, "UUID") %>',
+    get_project_endpoint: '<%= Routes.project_path(@conn, :index, "UUID") %>',
     project_uuid: '<%= @data.uuid %>'
   }
 </script>
@@ -254,6 +256,7 @@
                     </div>
                 </div>
 
+                <button style="display: none;" class="btn btn-primary w-100" type="button" data-bs-toggle="modal" data-bs-target="#show_environment_modal">env</button>
 
                 <div class="col-12" id="environments_list" data-action={Routes.environment_path(@conn, :list, @data.uuid)}>
                     <div class="card hp-card-6 hp-order-table-card">
@@ -300,7 +303,6 @@
                     </div>
                 </div>
             </div>
-
         </div>
 
         <div class="modal fade" id="add_environment_modal" tabindex="-1" aria-labelledby="addNewEnvironmentLabel" aria-hidden="true">
@@ -312,9 +314,7 @@
                             <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
                         </button>
                     </div>
-
                     <div class="divider m-0"></div>
-
                     <form action={Routes.environment_path(@conn, :create, @data.uuid)} method="post" v-on:submit.prevent="addEnvironmentAction">
                         <div class="modal-body">
                             <div class="row gx-8">
@@ -347,12 +347,41 @@
                                 </div>
                             </div>
                         </div>
-
                         <div class="modal-footer pt-0 px-24 pb-24">
                             <div class="divider"></div>
                             <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
                         </div>
                     </form>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="show_environment_modal" tabindex="-1" aria-labelledby="showEnvironmentLabel" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header py-16 px-24">
+                        <h5 class="modal-title" id="showEnvironmentLabel"><%= gettext "Environment Information" %></h5>
+                        <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                            <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                        </button>
+                    </div>
+                    <div class="divider m-0"></div>
+                    <pre id="env_data"></pre>
+                    <pre id="proto_env_data" style="display:none;">
+    terraform {
+      required_providers {}
+
+      backend "http" {
+        username = "$username"
+        password = "$secret"
+        address = "<%= @data.app_url %>/client/$team/$project/$env/state"
+        lock_address = "<%= @data.app_url %>/client/$team/$project/$env/lock"
+        unlock_address = "<%= @data.app_url %>/client/$team/$project/$env/unlock"
+        lock_method = "POST"
+        unlock_method = "POST"
+      }
+    }
+                    </pre>
                 </div>
             </div>
         </div>

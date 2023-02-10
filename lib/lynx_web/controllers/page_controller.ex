@@ -37,7 +37,8 @@ defmodule LynxWeb.PageController do
             user_role: conn.assigns[:user_role],
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -97,7 +98,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -125,7 +127,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -151,7 +154,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -177,7 +181,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -203,7 +208,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -229,7 +235,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -256,7 +263,7 @@ defmodule LynxWeb.PageController do
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
             app_name: SettingsModule.get_config("app_name", ""),
-            app_url: SettingsModule.get_config("app_url", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url,
             app_email: SettingsModule.get_config("app_email", "")
           }
         )
@@ -283,7 +290,8 @@ defmodule LynxWeb.PageController do
             user_name: conn.assigns[:user_name],
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
           }
         )
     end
@@ -310,6 +318,7 @@ defmodule LynxWeb.PageController do
             user_email: conn.assigns[:user_email],
             avatar_url: get_gavatar(conn.assigns[:user_email]),
             app_name: SettingsModule.get_config("app_name", ""),
+            app_url: add_backslash_to_url(SettingsModule.get_config("app_url", "")),
             uuid: uuid
           }
         )
@@ -323,5 +332,17 @@ defmodule LynxWeb.PageController do
   defp get_gavatar(email) do
     hash = Base.encode16(:crypto.hash(:sha256, email)) |> String.downcase()
     "https://gravatar.com/avatar/#{hash}?s=200"
+  end
+
+  defp add_backslash_to_url(nil) do
+    ""
+  end
+
+  defp add_backslash_to_url(url) do
+    if String.last(url) == "/" do
+      String.slice(url, 0..-2//1)
+    else
+      url
+    end
   end
 end

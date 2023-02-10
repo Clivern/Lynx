@@ -42,3 +42,5 @@ lynx_dev*
 !.env.example
 .env.*
 .env
+
+example/hello.txt

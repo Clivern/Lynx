@@ -11,7 +11,7 @@ function show_notification(text) {
 function generateRandomCredentials() {
   // Define character sets for username and password
   const usernameChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
-  const passwordChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+  const passwordChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#^&*()';
 
   // Generate random username
   let username = '';
@@ -716,6 +716,47 @@ lynx_app.environments_list = (Vue, axios, $) => {
         methods: {
             editEnvironmentAction(id) {
                 console.log("Edit environment with ID:", id);
+            },
+
+            viewEnvironmentAction(id) {
+                let data = $("#proto_env_data").text();
+                let env_endpoint = i18n_globals.get_environment_endpoint.replaceAll("UUID", id);
+                let project_endpoint = i18n_globals.get_project_endpoint.replaceAll("UUID", i18n_globals.project_uuid);
+
+                axios.get(env_endpoint, {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+
+                            let env_slug = response.data.slug;
+                            let env_username = response.data.username;
+                            let env_secret = response.data.secret;
+
+                            axios.get(project_endpoint, {})
+                                .then((response) => {
+                                    if (response.status >= 200) {
+                                        let project_slug = response.data.slug;
+                                        let team_slug = response.data.team.slug;
+
+                                        data = data.replaceAll("$team", team_slug);
+                                        data = data.replaceAll("$project", project_slug);
+                                        data = data.replaceAll("$env", env_slug);
+                                        data = data.replaceAll("$username", env_username);
+                                        data = data.replaceAll("$secret", env_secret);
+
+                                        $("#env_data").text(data);
+
+                                        $("button[data-bs-target='#show_environment_modal']").click();
+                                    }
+                                })
+                                .catch((error) => {
+                                    show_notification(error.response.data.errorMessage);
+                                });
+
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
             },
 
             deleteEnvironmentAction(id) {

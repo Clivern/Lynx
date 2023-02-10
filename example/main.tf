@@ -1,34 +1,23 @@
 terraform {
-  required_providers {
-    docker = {
-      source  = "kreuzwerker/docker"
-      version = "~> 2.25.0"
-    }
-  }
+  required_providers {}
 
   backend "http" {
-    username = "admin"
-    password = "secret"
-    address = "http://localhost:4000/api/v1/lynx/prod/state"
-    lock_address = "http://localhost:4000/api/v1/lynx/prod/lock"
-    unlock_address = "http://localhost:4000/api/v1/lynx/prod/unlock"
+    username = "arv5w7pc"
+    password = "#k7zR7akXhpF"
+    address = "http://localhost:4000/client/lynx/nagios/prod/state"
+    lock_address = "http://localhost:4000/client/lynx/nagios/prod/lock"
+    unlock_address = "http://localhost:4000/client/lynx/nagios/prod/unlock"
     lock_method = "POST"
     unlock_method = "POST"
   }
 
-  required_version = "1.7.5"
+  required_version = "1.3.7"
 }
 
-provider "docker" {}
-
-variable "app_image" {
-  type        = string
-  description = "The docker image name"
-  default     = "nginx"
+provider "local" {
 }
 
-variable "app_version" {
-  type        = string
-  description = "The docker image version"
-  default     = "latest"
+resource "local_file" "hello_world" {
+  content  = "Hello, World!"
+  filename = "${path.module}/hello.txt"
 }
