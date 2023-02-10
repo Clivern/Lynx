@@ -16,18 +16,26 @@
 </p>
 
 
+Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir with Phoenix framework.
+
+#### Features:
+
+- **Simplified Setup:** Easy installation and maintenance for hassle-free usage.
+- **Team Collaboration:** Manage multiple teams and users seamlessly.
+- **User-Friendly Interface:** Enjoy a visually appealing dashboard for intuitive navigation.
+- **Project Flexibility:** Support for multiple projects within each team.
+- **Environment Management:** Create and manage multiple environments per project.
+- **State Versioning:** Keep track of Terraform state versions for better control.
+- **Rollback Capability:** Easily revert to previous states for efficient infrastructure management.
+- **Terraform Locking Support:** The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
+
+
 ### Deployment
 
 To run with docker and docker-compose
 
 ```zsh
 $ docker-compose up -d
-```
-
-To run on linux server
-
-```zsh
-
 ```
 
 
