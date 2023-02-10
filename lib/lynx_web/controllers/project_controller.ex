@@ -15,11 +15,13 @@ defmodule LynxWeb.ProjectController do
   alias Lynx.Module.ProjectModule
   alias Lynx.Module.TeamModule
   alias Lynx.Service.ValidatorService
+  alias Lynx.Module.PermissionModule
 
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :regular_user, only: [:list, :index, :create, :update, :delete]
+  plug :regular_user when action in [:list, :index, :create, :update, :delete]
+  plug :access_check when action in [:index, :update, :delete]
 
   defp regular_user(conn, _opts) do
     Logger.info("Validate user permissions")
@@ -30,8 +32,31 @@ defmodule LynxWeb.ProjectController do
       conn
       |> put_status(:forbidden)
       |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
     else
       Logger.info("User has the right access permissions")
+
+      conn
+    end
+  end
+
+  defp access_check(conn, _opts) do
+    Logger.info("Validate if user can access project")
+
+    if not PermissionModule.can_access_project_uuid(
+         :project,
+         conn.assigns[:user_role],
+         conn.params["uuid"],
+         conn.assigns[:user_id]
+       ) do
+      Logger.info("User doesn't own the project")
+
+      conn
+      |> put_status(:forbidden)
+      |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
+    else
+      Logger.info("User can access the project")
 
       conn
     end

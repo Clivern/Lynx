@@ -15,7 +15,7 @@ defmodule LynxWeb.StateController do
   alias Lynx.Module.EnvironmentModule
   alias Lynx.Service.ValidatorService
 
-  plug :auth, only: [:create, :index]
+  plug :auth when action in [:create, :index]
 
   defp auth(conn, _opts) do
     with {user, secret} <- Plug.BasicAuth.parse_basic_auth(conn) do
@@ -37,6 +37,7 @@ defmodule LynxWeb.StateController do
           |> render("error.json", %{
             message: "Access is forbidden"
           })
+          |> halt
 
         {:ok, _, _, _} ->
           conn

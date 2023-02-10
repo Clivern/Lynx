@@ -163,6 +163,19 @@ defmodule Lynx.Context.TeamContext do
   end
 
   @doc """
+  Retrieve teams
+  """
+  def get_teams(teams_ids, offset, limit) do
+    from(t in Team,
+      order_by: [desc: t.inserted_at],
+      where: t.id in ^teams_ids,
+      limit: ^limit,
+      offset: ^offset
+    )
+    |> Repo.all()
+  end
+
+  @doc """
   Count all teams
   """
   def count_teams() do

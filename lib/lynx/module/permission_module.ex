@@ -10,6 +10,10 @@ defmodule Lynx.Module.PermissionModule do
   alias Lynx.Context.ProjectContext
   alias Lynx.Module.TeamModule
 
+  def can_access_project_id(:anonymous, :super, _id, _user_id) do
+    false
+  end
+
   def can_access_project_id(:project, :super, _id, _user_id) do
     true
   end
@@ -26,6 +30,10 @@ defmodule Lynx.Module.PermissionModule do
 
   def can_access_project_uuid(:project, :super, _uuid, _user_id) do
     true
+  end
+
+  def can_access_project_uuid(:anonymous, :super, _uuid, _user_id) do
+    false
   end
 
   def can_access_project_uuid(:project, :regular, uuid, user_id) do

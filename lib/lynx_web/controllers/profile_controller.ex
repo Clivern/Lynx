@@ -11,7 +11,7 @@ defmodule LynxWeb.ProfileController do
 
   require Logger
 
-  plug :regular_user, only: [:update]
+  plug :regular_user when action in [:update]
 
   defp regular_user(conn, _opts) do
     Logger.info("Validate user permissions")
@@ -22,6 +22,7 @@ defmodule LynxWeb.ProfileController do
       conn
       |> put_status(:forbidden)
       |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
     else
       Logger.info("User has the right access permissions")
 

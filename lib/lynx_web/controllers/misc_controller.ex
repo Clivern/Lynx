@@ -25,7 +25,7 @@ defmodule LynxWeb.MiscController do
         conn
         |> put_status(:bad_request)
         |> render("error.json", %{message: "Application is installed"})
-        |> halt()
+        |> halt
 
       false ->
         nil
@@ -48,7 +48,7 @@ defmodule LynxWeb.MiscController do
           conn
           |> put_status(:bad_request)
           |> render("error.json", %{message: msg})
-          |> halt()
+          |> halt
 
         _ ->
           nil

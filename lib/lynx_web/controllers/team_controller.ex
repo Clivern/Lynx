@@ -18,7 +18,8 @@ defmodule LynxWeb.TeamController do
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :super_user, only: [:list, :index, :create, :update, :delete]
+  plug :regular_user when action in [:list]
+  plug :super_user when action in [:index, :create, :update, :delete]
 
   defp super_user(conn, _opts) do
     Logger.info("Validate user permissions")
@@ -29,6 +30,24 @@ defmodule LynxWeb.TeamController do
       conn
       |> put_status(:forbidden)
       |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
+    else
+      Logger.info("User has the right access permissions")
+
+      conn
+    end
+  end
+
+  defp regular_user(conn, _opts) do
+    Logger.info("Validate user permissions")
+
+    if not conn.assigns[:is_logged] do
+      Logger.info("User doesn't have the right access permissions")
+
+      conn
+      |> put_status(:forbidden)
+      |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
     else
       Logger.info("User has the right access permissions")
 
@@ -44,12 +63,20 @@ defmodule LynxWeb.TeamController do
     limit = ValidatorService.get_int(params["limit"], @default_list_limit)
     offset = ValidatorService.get_int(params["offset"], @default_list_offset)
 
+    {teams, count} =
+      if conn.assigns[:is_super] do
+        {TeamModule.get_teams(offset, limit), TeamModule.count_teams()}
+      else
+        {TeamModule.get_teams(conn.assigns[:user_id], offset, limit),
+         TeamModule.count_teams(conn.assigns[:user_id])}
+      end
+
     render(conn, "list.json", %{
-      teams: TeamModule.get_teams(offset, limit),
+      teams: teams,
       metadata: %{
         limit: limit,
         offset: offset,
-        totalCount: TeamModule.count_teams()
+        totalCount: count
       }
     })
   end

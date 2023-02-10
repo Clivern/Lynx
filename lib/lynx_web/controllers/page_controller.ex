@@ -11,6 +11,7 @@ defmodule LynxWeb.PageController do
   alias Lynx.Module.InstallModule
   alias Lynx.Service.AuthService
   alias Lynx.Module.SettingsModule
+  alias Lynx.Module.PermissionModule
 
   @doc """
   Login Page
@@ -274,7 +275,7 @@ defmodule LynxWeb.PageController do
   Projects Page
   """
   def projects(conn, _params) do
-    case conn.assigns[:is_super] do
+    case conn.assigns[:is_logged] do
       false ->
         conn
         |> redirect(to: "/")
@@ -301,27 +302,37 @@ defmodule LynxWeb.PageController do
   Project Page
   """
   def project(conn, %{"uuid" => uuid}) do
-    case conn.assigns[:is_super] do
+    case conn.assigns[:is_logged] do
       false ->
         conn
         |> redirect(to: "/")
 
       true ->
-        conn
-        |> render("project.html",
-          data: %{
-            is_logged: conn.assigns[:is_logged],
-            is_super: conn.assigns[:is_super],
-            user_id: conn.assigns[:user_id],
-            user_role: conn.assigns[:user_role],
-            user_name: conn.assigns[:user_name],
-            user_email: conn.assigns[:user_email],
-            avatar_url: get_gavatar(conn.assigns[:user_email]),
-            app_name: SettingsModule.get_config("app_name", ""),
-            app_url: add_backslash_to_url(SettingsModule.get_config("app_url", "")),
-            uuid: uuid
-          }
-        )
+        if not PermissionModule.can_access_project_uuid(
+             :project,
+             conn.assigns[:user_role],
+             uuid,
+             conn.assigns[:user_id]
+           ) do
+          conn
+          |> redirect(to: "/404")
+        else
+          conn
+          |> render("project.html",
+            data: %{
+              is_logged: conn.assigns[:is_logged],
+              is_super: conn.assigns[:is_super],
+              user_id: conn.assigns[:user_id],
+              user_role: conn.assigns[:user_role],
+              user_name: conn.assigns[:user_name],
+              user_email: conn.assigns[:user_email],
+              avatar_url: get_gavatar(conn.assigns[:user_email]),
+              app_name: SettingsModule.get_config("app_name", ""),
+              app_url: add_backslash_to_url(SettingsModule.get_config("app_url", "")),
+              uuid: uuid
+            }
+          )
+        end
     end
   end
 

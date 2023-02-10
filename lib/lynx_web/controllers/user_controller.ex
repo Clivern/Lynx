@@ -20,7 +20,7 @@ defmodule LynxWeb.UserController do
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :super_user, only: [:list, :index, :create, :update, :delete]
+  plug :super_user when action in [:list, :index, :create, :update, :delete]
 
   defp super_user(conn, _opts) do
     Logger.info("Validate user permissions")
@@ -31,6 +31,7 @@ defmodule LynxWeb.UserController do
       conn
       |> put_status(:forbidden)
       |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
     else
       Logger.info("User has the right access permissions")
 

@@ -143,10 +143,17 @@ defmodule Lynx.Module.TeamModule do
   end
 
   @doc """
-  Count Users
+  Count Teams
   """
   def count_teams() do
     TeamContext.count_teams()
+  end
+
+  @doc """
+  Count Teams
+  """
+  def count_teams(user_id) do
+    length(get_user_teams(user_id))
   end
 
   @doc """
@@ -161,6 +168,22 @@ defmodule Lynx.Module.TeamModule do
   """
   def get_teams(offset, limit) do
     TeamContext.get_teams(offset, limit)
+  end
+
+  @doc """
+  Get teams
+  """
+  def get_teams(user_id, offset, limit) do
+    user_teams = get_user_teams(user_id)
+
+    teams_ids = []
+
+    teams_ids =
+      for user_team <- user_teams do
+        teams_ids ++ user_team.id
+      end
+
+    TeamContext.get_teams(teams_ids, offset, limit)
   end
 
   @doc """

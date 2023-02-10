@@ -15,7 +15,7 @@ defmodule LynxWeb.SettingsController do
   alias Lynx.Service.ValidatorService
   alias Lynx.Exception.InvalidRequest
 
-  plug :super_user, only: [:update]
+  plug :super_user when action in [:update]
 
   defp super_user(conn, _opts) do
     Logger.info("Validate user permissions")
@@ -26,6 +26,7 @@ defmodule LynxWeb.SettingsController do
       conn
       |> put_status(:forbidden)
       |> render("error.json", %{message: "Forbidden Access"})
+      |> halt
     else
       Logger.info("User has the right access permissions")
 
