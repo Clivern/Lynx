@@ -7,11 +7,11 @@ terraform {
   }
 
   backend "http" {
-    username       = "dd2vt9yc"
-    password       = "YNYFDJzLsH(0"
-    address        = "http://localhost:4000/client/moon/grafana/prod/state"
-    lock_address   = "http://localhost:4000/client/moon/grafana/prod/lock"
-    unlock_address = "http://localhost:4000/client/moon/grafana/prod/unlock"
+    username       = "vf41bkwj"
+    password       = "2sTb&N*gvyXj"
+    address        = "http://64.225.70.88:4000/client/temper/monitoring/prod/state"
+    lock_address   = "http://64.225.70.88:4000/client/temper/monitoring/prod/lock"
+    unlock_address = "http://64.225.70.88:4000/client/temper/monitoring/prod/unlock"
     lock_method    = "POST"
     unlock_method  = "POST"
   }
