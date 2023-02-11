@@ -13,7 +13,11 @@
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
+    <p align="center">
+        <a href="https://www.producthunt.com/posts/lynx-4?utm_source=badge-featured&utm_medium=badge&utm_souce=badge-lynx&#0045;4" target="_blank"><img src="https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=446391&theme=neutral" alt="Lynx - A&#0032;Fast&#0044;&#0032;Secure&#0032;and&#0032;Reliable&#0032;Terraform&#0032;Backend&#0046; | Product Hunt" style="width: 250px; height: 54px;" width="250" height="54" /></a>
+    </p>
 </p>
+<br/>
 
 
 Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir with Phoenix framework.
