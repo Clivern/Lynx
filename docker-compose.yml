@@ -17,6 +17,7 @@ services:
       DB_PORT: 5432
       DB_SSL: null
       DB_CA_CERTFILE_PATH: null
+      MIX_ENV: prod
     restart: unless-stopped
     command: sh -c "/app/bin/migrate && /app/bin/server"
     healthcheck:
