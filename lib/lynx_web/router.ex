@@ -40,7 +40,6 @@ defmodule LynxWeb.Router do
     get "/", PageController, :home
     get "/login", PageController, :login
     get "/logout", PageController, :logout
-    get "/admin/dashboard", PageController, :dashboard
     get "/admin/profile", PageController, :profile
     get "/admin/teams", PageController, :teams
     get "/admin/users", PageController, :users

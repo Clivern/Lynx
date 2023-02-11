@@ -21,7 +21,7 @@
 
                         <div class="col hp-flex-none w-auto hp-horizontal-block">
                             <div class="hp-header-logo d-flex align-items-end">
-                                <a href={Routes.page_path(@conn, :dashboard)}>
+                                <a href={Routes.page_path(@conn, :projects)}>
                                     <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
                                     <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
                                     <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
@@ -33,12 +33,6 @@
 
                         <div class="col hp-flex-none w-auto hp-horizontal-block hp-horizontal-menu ps-24">
                             <ul class="d-flex flex-wrap align-items-center">
-                                <li class="px-6">
-                                    <a href={Routes.page_path(@conn, :dashboard)} class="px-12 py-4">
-                                        <span><%= gettext "Dashboard" %></span>
-                                    </a>
-                                </li>
-
                                 <li class="px-6">
                                     <a href={Routes.page_path(@conn, :projects)} class="px-12 py-4">
                                         <span><%= gettext "Projects" %></span>
@@ -108,7 +102,7 @@
             <div class="offcanvas-header justify-content-between align-items-end me-16 ms-24 mt-16 p-0">
                 <div class="w-auto px-0">
                     <div class="hp-header-logo d-flex align-items-end">
-                        <a href={Routes.page_path(@conn, :dashboard)}>
+                        <a href={Routes.page_path(@conn, :projects)}>
                             <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
                             <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
                             <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
@@ -137,7 +131,7 @@
 
                             <div class="w-auto px-0">
                                 <div class="hp-header-logo d-flex align-items-end">
-                                    <a href={Routes.page_path(@conn, :dashboard)}>
+                                    <a href={Routes.page_path(@conn, :projects)}>
                                         <img class="hp-logo hp-sidebar-visible" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
                                         <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-none" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
                                         <img class="hp-logo hp-sidebar-hidden hp-dir-none hp-dark-block" src={Routes.static_path(@conn, "/images/ico.png")} alt="logo">
@@ -158,15 +152,6 @@
                             <li>
                                 <div class="menu-title"><%= gettext "PAGES" %></div>
                                 <ul>
-                                    <li>
-                                        <a href={Routes.page_path(@conn, :dashboard)}>
-                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
-                                            <span>
-                                                <i class="iconly-Curved-PaperPlus"></i>
-                                                <span><%= gettext "Dashboard" %></span>
-                                            </span>
-                                        </a>
-                                    </li>
                                     <li>
                                         <a href={Routes.page_path(@conn, :projects)}>
                                             <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
@@ -241,7 +226,7 @@
                             <nav aria-label="breadcrumb">
                                 <ol class="breadcrumb">
                                     <li class="breadcrumb-item">
-                                        <a href={Routes.page_path(@conn, :dashboard)}><%= gettext "Dashboard" %></a>
+                                        <a href="javascript:;"><%= gettext "Dashboard" %></a>
                                     </li>
                                     <li class="breadcrumb-item active">
                                         <%= gettext "Users" %>
