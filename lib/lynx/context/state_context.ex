@@ -86,6 +86,17 @@ defmodule Lynx.Context.StateContext do
   end
 
   @doc """
+  Count environment states
+  """
+  def count_states(environment_id) do
+    from(s in State,
+      select: count(s.id),
+      where: s.environment_id == ^environment_id
+    )
+    |> Repo.one()
+  end
+
+  @doc """
   Update a state
   """
   def update_state(state, attrs) do

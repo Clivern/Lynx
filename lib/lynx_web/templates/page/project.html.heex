@@ -271,6 +271,12 @@
                                                 <span class="hp-badge-size fw-normal text-black-60 hp-text-color-dark-50 text-uppercase"><%= gettext "Name" %></span>
                                             </th>
                                             <th style="text-align: center;">
+                                                <span class="hp-badge-size fw-normal text-black-60 hp-text-color-dark-50 text-uppercase"><%= gettext "Locked" %></span>
+                                            </th>
+                                            <th style="text-align: center;">
+                                                <span class="hp-badge-size fw-normal text-black-60 hp-text-color-dark-50 text-uppercase"><%= gettext "State Version" %></span>
+                                            </th>
+                                            <th style="text-align: center;">
                                                 <span class="hp-badge-size fw-normal text-black-60 hp-text-color-dark-50 text-uppercase"><%= gettext "Created at" %></span>
                                             </th>
                                             <th></th>
@@ -286,6 +292,17 @@
                                           </a>
                                         </td>
                                         <td style="text-align: center">${environment.name}</td>
+                                        <template v-if="environment.isLocked">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-danger-4 hp-bg-dark-danger text-danger border-danger">Locked</div>
+                                            </td>
+                                        </template>
+                                        <template v-else>
+                                            <td style="text-align: center">
+                                                <div class="badge bg-success-4 hp-bg-dark-success text-success border-success">Not Locked</div>
+                                            </td>
+                                        </template>
+                                        <td style="text-align: center">${environment.stateVersion}</td>
                                         <td style="text-align: center">${environment.createdAt}</td>
                                         <td style="text-align: center">
                                             <button @click="viewEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "View" %></button>
@@ -294,7 +311,7 @@
                                         </td>
                                       </tr>
                                       <tr v-if="environments.length == 0">
-                                        <td colspan="4" style="text-align: center;"><%= gettext "No Records Found!" %></td>
+                                        <td colspan="6" style="text-align: center;"><%= gettext "No Records Found!" %></td>
                                       </tr>
                                     </tbody>
                                 </table>

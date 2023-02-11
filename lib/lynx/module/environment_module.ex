@@ -7,6 +7,7 @@ defmodule Lynx.Module.EnvironmentModule do
   Environment Module
   """
 
+  alias Lynx.Context.LockContext
   alias Lynx.Context.TeamContext
   alias Lynx.Context.ProjectContext
   alias Lynx.Context.EnvironmentContext
@@ -184,5 +185,12 @@ defmodule Lynx.Module.EnvironmentModule do
   """
   def count_project_envs(project_id) do
     EnvironmentContext.count_project_envs(project_id)
+  end
+
+  @doc """
+  Check if environment is locked
+  """
+  def is_environment_locked(environment_id) do
+    LockContext.is_environment_locked(environment_id)
   end
 end

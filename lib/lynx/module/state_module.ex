@@ -84,4 +84,11 @@ defmodule Lynx.Module.StateModule do
         end
     end
   end
+
+  @doc """
+  Count environment states
+  """
+  def count_states(environment_id) do
+    StateContext.count_states(environment_id)
+  end
 end

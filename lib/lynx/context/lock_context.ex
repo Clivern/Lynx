@@ -82,6 +82,28 @@ defmodule Lynx.Context.LockContext do
   end
 
   @doc """
+  Check if environment is locked
+  """
+  def is_environment_locked(environment_id) do
+    env =
+      from(
+        l in Lock,
+        where: l.environment_id == ^environment_id,
+        where: l.is_active == true
+      )
+      |> limit(1)
+      |> Repo.one()
+
+    case env do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
+  end
+
+  @doc """
   Update a lock
   """
   def update_lock(lock, attrs) do

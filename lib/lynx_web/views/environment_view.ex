@@ -5,6 +5,9 @@
 defmodule LynxWeb.EnvironmentView do
   use LynxWeb, :view
 
+  alias Lynx.Module.EnvironmentModule
+  alias Lynx.Module.StateModule
+
   # Render environments list
   def render("list.json", %{environments: environments, metadata: metadata}) do
     %{
@@ -29,11 +32,15 @@ defmodule LynxWeb.EnvironmentView do
 
   # Format environment
   defp render_environment(environment) do
+    count = StateModule.count_states(environment.id)
+
     %{
       id: environment.uuid,
       name: environment.name,
       slug: environment.slug,
       username: environment.username,
+      isLocked: EnvironmentModule.is_environment_locked(environment.id),
+      stateVersion: "v#{count}",
       secret: environment.secret,
       createdAt: environment.inserted_at,
       updatedAt: environment.updated_at
