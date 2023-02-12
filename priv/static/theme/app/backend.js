@@ -9,17 +9,14 @@ function show_notification(text) {
 }
 
 function generateRandomCredentials() {
-  // Define character sets for username and password
   const usernameChars = 'abcdefghijklmnopqrstuvwxyz0123456789';
   const passwordChars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#^&*()';
 
-  // Generate random username
   let username = '';
   for (let i = 0; i < 8; i++) {
     username += usernameChars.charAt(Math.floor(Math.random() * usernameChars.length));
   }
 
-  // Generate random password
   let password = '';
   for (let i = 0; i < 12; i++) {
     password += passwordChars.charAt(Math.floor(Math.random() * passwordChars.length));
@@ -30,9 +27,18 @@ function generateRandomCredentials() {
 
 function format_datetime(datetime) {
     const originalDate = new Date(datetime);
+
     const formattedDate = originalDate.toLocaleString(
         'en-US',
-        { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }
+        {
+            year: 'numeric',
+            month: '2-digit',
+            day: '2-digit',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: true
+        }
     );
 
     return formattedDate;
