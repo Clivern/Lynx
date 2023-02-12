@@ -9,7 +9,7 @@ info:
     url: https://github.com/Clivern/Lynx/blob/main/LICENSE
   version: 0.9.0
 externalDocs:
-  description: Find out more about cattle
+  description: Find out more about lynx
   url: https://github.com/Clivern/Lynx
 servers:
   - url: https://localhost:4000/
