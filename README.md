@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.8.1" width="180" />
+    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.9.0" width="180" />
     <h3 align="center">Lynx</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
@@ -7,7 +7,7 @@
             <img src="https://github.com/Clivern/Lynx/actions/workflows/server_ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Lynx/releases">
-            <img src="https://img.shields.io/badge/Version-0.8.1-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.9.0-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/Lynx/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
@@ -32,10 +32,14 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 - **State Versioning:** Keep track of Terraform state versions for better control.
 - **Rollback Capability:** Easily revert to previous states for efficient infrastructure management.
 - **Terraform Locking Support:** The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
+- **RESTful Endpoints:** for seamless team, user, project, environment management, and snapshots management.
+
 
 #### Upcoming Features:
+
 - **Automated Scheduled Backups**: Enable automated scheduled backups for both project and environment state files to ensure data integrity and offer a recovery option at specific points in time.
 - **Snapshot Creation**: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
+- **RESTful Endpoints Documentations:** Provide a documentations for all the supported endpoints.
 
 
 ### Docker Deployment
