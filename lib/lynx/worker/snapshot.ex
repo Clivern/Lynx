@@ -14,7 +14,7 @@ defmodule Lynx.Worker.SnapshotWorker do
   ## Callbacks
   @impl true
   def init(state) do
-    Logger.info("Snapshor Worker Started")
+    Logger.info("Snapshot Worker Started")
 
     schedule_work()
 
