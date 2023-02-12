@@ -171,6 +171,6 @@ We are an open source, community-driven project so please feel free to join us. 
 
 ### License
 
-© 2022, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
+© 2023, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
 **Lynx** is authored and maintained by [@clivern](http://github.com/clivern).
