@@ -32,7 +32,7 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 - **State Versioning:** Keep track of Terraform state versions for better control.
 - **Rollback Capability:** Easily revert to previous states for efficient infrastructure management.
 - **Terraform Locking Support:** The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
-- **RESTful Endpoints:** for seamless team, user, project, environment management, and snapshots management.
+- **RESTful Endpoints:** for seamless teams, users, projects, environments, and snapshots management.
 
 
 #### Upcoming Features:
