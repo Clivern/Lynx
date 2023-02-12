@@ -1,0 +1,62 @@
+openapi: 3.0.1
+info:
+  title: Lynx
+  description: 🐺 A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.
+  contact:
+    email: hello@clivern.com
+  license:
+    name: Apache License 2.0
+    url: https://github.com/Clivern/Lynx/blob/main/LICENSE
+  version: 0.9.0
+externalDocs:
+  description: Find out more about cattle
+  url: https://github.com/Clivern/Lynx
+servers:
+  - url: https://localhost:4000/
+paths:
+  /_health:
+    get:
+      tags:
+        - Liveness
+      summary: Get system health status
+      responses:
+        '200':
+          description: System is healthy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '500':
+          description: System is down
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+  /_ready:
+    get:
+      tags:
+        - Readiness
+      summary: Get system readiness
+      responses:
+        '200':
+          description: System is ready to accept traffic
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+        '500':
+          description: System not ready to accept traffic
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+components:
+  schemas:
+    HealthResponse:
+      type: object
+      properties:
+        status:
+          type: string
+        errorMessage:
+          type: string
