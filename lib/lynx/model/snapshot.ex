@@ -17,6 +17,7 @@ defmodule Lynx.Model.Snapshot do
     field :record_type, :string
     field :record_uuid, :string
     field :data, :string
+    field :team_id, :id
 
     timestamps()
   end
@@ -30,7 +31,8 @@ defmodule Lynx.Model.Snapshot do
       :description,
       :record_type,
       :record_uuid,
-      :data
+      :data,
+      :team_id
     ])
     |> validate_required([
       :uuid,
@@ -38,7 +40,8 @@ defmodule Lynx.Model.Snapshot do
       :description,
       :record_type,
       :record_uuid,
-      :data
+      :data,
+      :team_id
     ])
   end
 end

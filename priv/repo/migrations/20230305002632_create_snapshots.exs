@@ -13,6 +13,7 @@ defmodule Lynx.Repo.Migrations.CreateSnapshots do
       add :record_type, :string
       add :record_uuid, :string
       add :data, :text
+      add :team_id, references(:teams, on_delete: :delete_all)
 
       timestamps()
     end
