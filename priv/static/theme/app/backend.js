@@ -28,6 +28,16 @@ function generateRandomCredentials() {
   return { username, password };
 }
 
+function format_datetime(datetime) {
+    const originalDate = new Date(datetime);
+    const formattedDate = originalDate.toLocaleString(
+        'en-US',
+        { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: true }
+    );
+
+    return formattedDate;
+}
+
 // Install Page
 lynx_app.install_screen = (Vue, axios, $) => {
 
@@ -338,6 +348,10 @@ lynx_app.teams_list = (Vue, axios, $) => {
                 console.log("Edit team with ID:", id);
             },
 
+            formatDatetime(datatime) {
+                return format_datetime(datatime);
+            },
+
             deleteTeamAction(id) {
                 if (confirm(i18n_globals.delete_team_alert) != true) {
                     return;
@@ -420,6 +434,10 @@ lynx_app.users_list = (Vue, axios, $) => {
         methods: {
             editUserAction(id) {
                 console.log("Edit user with ID:", id);
+            },
+
+            formatDatetime(datatime) {
+                return format_datetime(datatime);
             },
 
             deleteUserAction(id) {
@@ -505,6 +523,10 @@ lynx_app.projects_list = (Vue, axios, $) => {
         methods: {
             editProjectAction(id) {
                 console.log("Edit project with ID:", id);
+            },
+
+            formatDatetime(datatime) {
+                return format_datetime(datatime);
             },
 
             viewProjectAction(id) {
@@ -716,6 +738,10 @@ lynx_app.environments_list = (Vue, axios, $) => {
         methods: {
             editEnvironmentAction(id) {
                 console.log("Edit environment with ID:", id);
+            },
+
+            formatDatetime(datatime) {
+                return format_datetime(datatime);
             },
 
             viewEnvironmentAction(id) {

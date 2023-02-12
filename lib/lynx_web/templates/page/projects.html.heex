@@ -277,7 +277,7 @@
                                         <td style="text-align: center">${project.name}</td>
                                         <td style="text-align: center">${project.envCount}</td>
                                         <td style="text-align: center">${project.team.name}</td>
-                                        <td style="text-align: center">${project.createdAt}</td>
+                                        <td style="text-align: center">${formatDatetime(project.createdAt)}</td>
                                         <td>
                                             <button @click="viewProjectAction(project.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "View" %></button>
                                             <button @click="editProjectAction(project.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>
