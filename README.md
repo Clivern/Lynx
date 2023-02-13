@@ -9,6 +9,9 @@
         <a href="https://github.com/Clivern/Lynx/releases">
             <img src="https://img.shields.io/badge/Version-0.9.0-1abc9c.svg">
         </a>
+        <a href="https://hub.docker.com/r/clivern/lynx/tags">
+            <img src="https://img.shields.io/badge/Docker-0.9.0-1abc9c.svg">
+        </a>
         <a href="https://github.com/Clivern/Lynx/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
@@ -42,7 +45,7 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 ### Docker Deployment
 
-To run with docker and docker-compose
+1. To run with docker and docker-compose. Make sure you update `server_name` in `nginx.conf` file.
 
 ```zsh
 $ git clone https://github.com/Clivern/Lynx.git app
@@ -171,6 +174,6 @@ We are an open source, community-driven project so please feel free to join us. 
 
 ### License
 
-© 2022, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
+© 2023, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
 **Lynx** is authored and maintained by [@clivern](http://github.com/clivern).
