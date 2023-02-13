@@ -3,7 +3,6 @@
 # license that can be found in the LICENSE file.
 
 defmodule Lynx.Worker.SnapshotWorker do
-
   use GenServer
 
   require Logger
