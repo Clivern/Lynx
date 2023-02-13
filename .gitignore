@@ -44,3 +44,5 @@ lynx_dev*
 .env
 
 example/hello.txt
+
+.vagrant
