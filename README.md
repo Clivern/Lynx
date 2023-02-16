@@ -53,6 +53,8 @@ $ cd app
 $ docker-compose up -d
 ```
 
+Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
+
 
 ### Ubuntu Deployment
 
