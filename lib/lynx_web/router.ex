@@ -90,6 +90,12 @@ defmodule LynxWeb.Router do
     put "/project/:uuid", ProjectController, :update
     delete "/project/:uuid", ProjectController, :delete
 
+    # Snapshot Endpoints
+    get "/snapshot", SnapshotController, :list
+    post "/snapshot", SnapshotController, :create
+    get "/snapshot/:uuid", SnapshotController, :index
+    delete "/snapshot/:uuid", SnapshotController, :delete
+
     # Environment Endpoints
     get "/project/:p_uuid/environment", EnvironmentController, :list
     post "/project/:p_uuid/environment", EnvironmentController, :create

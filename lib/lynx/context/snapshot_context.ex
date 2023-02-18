@@ -60,8 +60,55 @@ defmodule Lynx.Context.SnapshotContext do
   """
   def get_snapshot_by_uuid(uuid) do
     from(
-      t in Snapshot,
-      where: t.uuid == ^uuid
+      s in Snapshot,
+      where: s.uuid == ^uuid
+    )
+    |> Repo.one()
+  end
+
+  @doc """
+  Get snapshot by UUID and team ids
+  """
+  def get_snapshot_by_uuid_teams(uuid, teams_ids) do
+    from(
+      s in Snapshot,
+      where: s.uuid == ^uuid,
+      where: s.team_id in ^teams_ids
+    )
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  @doc """
+  Get snapshot by ID and team ids
+  """
+  def get_snapshot_by_id_teams(id, teams_ids) do
+    from(
+      s in Snapshot,
+      where: s.id == ^id,
+      where: s.team_id in ^teams_ids
+    )
+    |> limit(1)
+    |> Repo.one()
+  end
+
+  @doc """
+  Count snapshots
+  """
+  def count_snapshots() do
+    from(s in Snapshot,
+      select: count(s.id)
+    )
+    |> Repo.one()
+  end
+
+  @doc """
+  Count snapshots by teams
+  """
+  def count_snapshots_by_teams(teams_ids) do
+    from(s in Snapshot,
+      select: count(s.id),
+      where: s.team_id in ^teams_ids
     )
     |> Repo.one()
   end
@@ -93,7 +140,20 @@ defmodule Lynx.Context.SnapshotContext do
   Retrieve snapshots
   """
   def get_snapshots(offset, limit) do
-    from(t in Snapshot,
+    from(s in Snapshot,
+      limit: ^limit,
+      offset: ^offset
+    )
+    |> Repo.all()
+  end
+
+  @doc """
+  Get snapshots by teams
+  """
+  def get_snapshots_by_teams(teams_ids, offset, limit) do
+    from(s in Snapshot,
+      order_by: [desc: s.inserted_at],
+      where: s.team_id in ^teams_ids,
       limit: ^limit,
       offset: ^offset
     )
@@ -137,9 +197,9 @@ defmodule Lynx.Context.SnapshotContext do
   """
   def get_snapshot_meta_by_id_key(snapshot_id, meta_key) do
     from(
-      e in SnapshotMeta,
-      where: e.snapshot_id == ^snapshot_id,
-      where: e.key == ^meta_key
+      m in SnapshotMeta,
+      where: m.snapshot_id == ^snapshot_id,
+      where: m.key == ^meta_key
     )
     |> Repo.one()
   end
@@ -149,8 +209,8 @@ defmodule Lynx.Context.SnapshotContext do
   """
   def get_snapshot_metas(snapshot_id) do
     from(
-      e in SnapshotMeta,
-      where: e.snapshot_id == ^snapshot_id
+      m in SnapshotMeta,
+      where: m.snapshot_id == ^snapshot_id
     )
     |> Repo.all()
   end
