@@ -272,6 +272,7 @@
                                         <tr>
                                             <th></th>
                                             <th style="text-align: center"><%= gettext "Title" %></th>
+                                            <th style="text-align: center"><%= gettext "Status" %></th>
                                             <th style="text-align: center"><%= gettext "Team" %></th>
                                             <th style="text-align: center"><%= gettext "Created at" %></th>
                                             <th></th>
@@ -288,6 +289,31 @@
                                           </a>
                                         </td>
                                         <td style="text-align: center">${snapshot.title}</td>
+                                        <template v-if="snapshot.status == 'unknown'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-warning-4 hp-bg-dark-warning text-warning border-warning">UNKNOWN</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'pending'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-warning-4 hp-bg-dark-warning text-warning border-warning">PENDING</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'running'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-info-4 hp-bg-dark-info text-info border-info">RUNNING</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'success'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-success-4 hp-bg-dark-success text-success border-success">SUCCESS</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'failure'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-danger-4 hp-bg-dark-danger text-danger border-danger">FAILURE</div>
+                                            </td>
+                                        </template>
                                         <td style="text-align: center">${snapshot.team.name}</td>
                                         <td style="text-align: center">${formatDatetime(snapshot.createdAt)}</td>
                                         <td>
@@ -296,7 +322,7 @@
                                         </td>
                                       </tr>
                                       <tr v-if="snapshots.length == 0">
-                                        <td colspan="5" style="text-align: center;"><%= gettext "No Records Found!" %></td>
+                                        <td colspan="6" style="text-align: center;"><%= gettext "No Records Found!" %></td>
                                       </tr>
                                     </tbody>
                                 </table>
