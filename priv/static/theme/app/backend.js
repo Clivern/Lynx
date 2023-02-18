@@ -828,6 +828,200 @@ lynx_app.environments_list = (Vue, axios, $) => {
     });
 }
 
+// Snapshots list
+lynx_app.snapshots_list = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#snapshots_list',
+        data() {
+            return {
+                currentPage: 1,
+                limit: 10,
+                totalCount: 5,
+                snapshots: []
+            }
+        },
+        mounted() {
+            this.loadDataAction();
+        },
+        computed: {
+            totalPages() {
+                return Math.ceil(this.totalCount / this.limit);
+            }
+        },
+        methods: {
+            formatDatetime(datatime) {
+                return format_datetime(datatime);
+            },
+
+            deleteSnapshotAction(id) {
+                if (confirm(i18n_globals.delete_snapshot_alert) != true) {
+                    return;
+                }
+
+                axios.delete(i18n_globals.delete_snapshot_endpoint.replace("UUID", id), {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.delete_snapshot_message);
+                            setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            loadDataAction() {
+                var offset = (this.currentPage - 1) * this.limit;
+
+                axios.get($("#snapshots_list").attr("data-action"), {
+                        params: {
+                            offset: offset,
+                            limit: this.limit
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.snapshots = response.data.snapshots;
+                            this.limit = response.data._metadata.limit;
+                            this.offset = response.data._metadata.offset;
+                            this.totalCount = response.data._metadata.totalCount;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+            loadPreviousPageAction(event) {
+                event.preventDefault();
+
+                if (this.currentPage > 1) {
+                    this.currentPage--;
+                    this.loadDataAction();
+                }
+            },
+            loadNextPageAction(event) {
+                event.preventDefault();
+
+                if (this.currentPage < this.totalPages) {
+                    this.currentPage++;
+                    this.loadDataAction();
+                }
+            }
+        }
+    });
+}
+
+// Add Snapshot Modal
+lynx_app.add_snapshot_modal = (Vue, axios, $) => {
+
+    return new Vue({
+        delimiters: ['${', '}'],
+        el: '#add_snapshot_modal',
+        data() {
+            return {
+                isInProgress: false,
+                teams: [],
+                projects: [],
+                environments: [],
+                projectID: "",
+                environmentID: "all"
+            }
+        },
+        mounted() {
+            this.loadData();
+        },
+        methods: {
+            loadData() {
+                axios.get($("#add_snapshot_modal").attr("data-team"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.teams = response.data.teams;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+
+                axios.get($("#add_snapshot_modal").attr("data-project"), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.projects = response.data.projects;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            changeProjectAction(event) {
+                axios.get($("#add_snapshot_modal").attr("data-environment").replace("UUID", this.projectID), {
+                        params: {
+                            offset: 0,
+                            limit: 10000
+                        }
+                    })
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            this.environments = response.data.environments;
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            addSnapshotAction(event) {
+                event.preventDefault();
+                this.isInProgress = true;
+
+                let inputs = {};
+                let _self = $(event.target);
+                let _form = _self.closest("form");
+
+                _form.serializeArray().map((item, index) => {
+                    inputs[item.name] = item.value;
+                });
+
+                if (this.environmentID == "all") {
+                    inputs["record_type"] = "project";
+                    inputs["record_uuid"] = this.projectID;
+                } else{
+                    inputs["record_type"] = "environment";
+                    inputs["record_uuid"] = this.environmentID;
+                }
+
+                axios.post(_form.attr('action'), inputs)
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.new_snapshot);
+                            setTimeout(() => {
+                                location.reload();
+                            }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        this.isInProgress = false;
+                        // Show error
+                        show_notification(error.response.data.errorMessage);
+                    });
+            }
+        }
+    });
+
+}
+
 $(document).ready(() => {
     axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
@@ -926,6 +1120,22 @@ $(document).ready(() => {
 
     if (document.getElementById("environments_list")) {
         lynx_app.environments_list(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("snapshots_list")) {
+        lynx_app.snapshots_list(
+            Vue,
+            axios,
+            $
+        );
+    }
+
+    if (document.getElementById("add_snapshot_modal")) {
+        lynx_app.add_snapshot_modal(
             Vue,
             axios,
             $
