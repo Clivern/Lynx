@@ -148,6 +148,16 @@ defmodule Lynx.Context.SnapshotContext do
   end
 
   @doc """
+  Retrieve snapshots by status
+  """
+  def get_snapshots_by_status(status) do
+    from(s in Snapshot,
+      where: s.status == ^status
+    )
+    |> Repo.all()
+  end
+
+  @doc """
   Get snapshots by teams
   """
   def get_snapshots_by_teams(teams_ids, offset, limit) do

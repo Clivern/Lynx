@@ -289,11 +289,6 @@
                                           </a>
                                         </td>
                                         <td style="text-align: center">${snapshot.title}</td>
-                                        <template v-if="snapshot.status == 'unknown'">
-                                            <td style="text-align: center">
-                                                <div class="badge bg-warning-4 hp-bg-dark-warning text-warning border-warning">UNKNOWN</div>
-                                            </td>
-                                        </template>
                                         <template v-if="snapshot.status == 'pending'">
                                             <td style="text-align: center">
                                                 <div class="badge bg-warning-4 hp-bg-dark-warning text-warning border-warning">PENDING</div>

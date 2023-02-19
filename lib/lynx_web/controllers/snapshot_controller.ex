@@ -102,7 +102,7 @@ defmodule LynxWeb.SnapshotController do
           description: ValidatorService.get_str(params["description"], ""),
           record_type: ValidatorService.get_str(params["record_type"], ""),
           record_uuid: ValidatorService.get_str(params["record_uuid"], ""),
-          status: "unknown",
+          status: "pending",
           data: "{}",
           team_id: team_id
         })

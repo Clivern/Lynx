@@ -9,6 +9,9 @@ defmodule Lynx.Module.SnapshotModule do
 
   alias Lynx.Context.SnapshotContext
   alias Lynx.Module.TeamModule
+  alias Lynx.Context.ProjectContext
+  alias Lynx.Context.EnvironmentContext
+  alias Lynx.Context.StateContext
 
   @doc """
   Get Snapshot by UUID
@@ -100,13 +103,133 @@ defmodule Lynx.Module.SnapshotModule do
   @doc """
   Take Snapshot
   """
-  def take_snapshot(_uuid) do
+  def take_snapshot(uuid) do
+    case get_snapshot_by_uuid(uuid) do
+      {:ok, snapshot} ->
+        case {String.to_atom(snapshot.record_type), snapshot.record_uuid} do
+          {:project, p_uuid} ->
+            project_snapshot_data(p_uuid)
+
+          {:environment, e_uuid} ->
+            environment_snapshot_data(e_uuid)
+        end
+
+      {:not_found, msg} ->
+        {:error, msg}
+    end
   end
 
   @doc """
   Restore Snapshot
   """
-  def restore_snapshot(_uuid) do
+  def restore_snapshot(uuid) do
+  end
+
+  def project_snapshot_data(uuid) do
+    case ProjectContext.get_project_by_uuid(uuid) do
+      nil ->
+        {:error, "Project with ID #{uuid} not found"}
+
+      project ->
+        data = %{
+          id: project.id,
+          uuid: project.uuid,
+          name: project.name,
+          slug: project.slug,
+          description: project.description,
+          team_id: project.team_id,
+          inserted_at: project.inserted_at,
+          updated_at: project.updated_at,
+          environments: []
+        }
+
+        environments =
+          for environment <- EnvironmentContext.get_project_envs(project.id, 0, 10000) do
+            states =
+              for state <- StateContext.get_states_by_environment_id(environment.id) do
+                %{
+                  id: state.id,
+                  uuid: state.uuid,
+                  name: state.name,
+                  value: state.value,
+                  environment_id: state.environment_id,
+                  inserted_at: state.inserted_at,
+                  updated_at: state.updated_at
+                }
+              end
+
+            %{
+              id: environment.id,
+              uuid: environment.uuid,
+              name: environment.name,
+              slug: environment.slug,
+              username: environment.username,
+              secret: environment.secret,
+              project_id: environment.project_id,
+              inserted_at: environment.inserted_at,
+              updated_at: environment.updated_at,
+              states: states
+            }
+          end
+
+        {:ok, %{data | environments: environments}}
+    end
+  end
+
+  def environment_snapshot_data(uuid) do
+    case EnvironmentContext.get_env_by_uuid(uuid) do
+      nil ->
+        {:error, "Environment with ID #{uuid} not found"}
+
+      environment ->
+        case ProjectContext.get_project_by_id(environment.project_id) do
+          nil ->
+            {:error, "Project with ID #{environment.project_id} not found"}
+
+          project ->
+            data = %{
+              id: project.id,
+              uuid: project.uuid,
+              name: project.name,
+              slug: project.slug,
+              description: project.description,
+              team_id: project.team_id,
+              inserted_at: project.inserted_at,
+              updated_at: project.updated_at,
+              environments: []
+            }
+
+            states =
+              for state <- StateContext.get_states_by_environment_id(environment.id) do
+                %{
+                  id: state.id,
+                  uuid: state.uuid,
+                  name: state.name,
+                  value: state.value,
+                  environment_id: state.environment_id,
+                  inserted_at: state.inserted_at,
+                  updated_at: state.updated_at
+                }
+              end
+
+            environments = [
+              %{
+                id: environment.id,
+                uuid: environment.uuid,
+                name: environment.name,
+                slug: environment.slug,
+                username: environment.username,
+                secret: environment.secret,
+                project_id: environment.project_id,
+                inserted_at: environment.inserted_at,
+                updated_at: environment.updated_at,
+                states: states
+              }
+            ]
+
+            {:ok, %{data | environments: environments}}
+        end
+    end
   end
 
   @doc """

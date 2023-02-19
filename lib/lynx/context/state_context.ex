@@ -86,6 +86,17 @@ defmodule Lynx.Context.StateContext do
   end
 
   @doc """
+  Get states by environment id
+  """
+  def get_states_by_environment_id(environment_id) do
+    from(
+      s in State,
+      where: s.environment_id == ^environment_id
+    )
+    |> Repo.all()
+  end
+
+  @doc """
   Count environment states
   """
   def count_states(environment_id) do

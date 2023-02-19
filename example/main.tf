@@ -7,11 +7,11 @@ terraform {
   }
 
   backend "http" {
-    # username     = ""
-    # password     = ""
-    address        = "http://64.225.70.88/client/temper/monitoring/prod/state"
-    lock_address   = "http://64.225.70.88/client/temper/monitoring/prod/lock"
-    unlock_address = "http://64.225.70.88/client/temper/monitoring/prod/unlock"
+    username       = "hjrghhio"
+    password       = "QkVGP&xhEDGB"
+    address        = "http://localhost:4000/client/clivern/monitoring/prod/state"
+    lock_address   = "http://localhost:4000/client/clivern/monitoring/prod/lock"
+    unlock_address = "http://localhost:4000/client/clivern/monitoring/prod/unlock"
     lock_method    = "POST"
     unlock_method  = "POST"
   }
