@@ -3,7 +3,13 @@
     new_snapshot: '<%= gettext "Snapshot created successfully!" %>',
     delete_snapshot_message: '<%= gettext "Snapshot deleted successfully!" %>',
     delete_snapshot_alert: '<%= gettext "You are trying to delete a snapshot! are you sure?" %>',
-    delete_snapshot_endpoint: '<%= Routes.snapshot_path(@conn, :delete, "UUID") %>'
+    delete_snapshot_endpoint: '<%= Routes.snapshot_path(@conn, :delete, "UUID") %>',
+    restore_snapshot_endpoint: '<%= Routes.snapshot_path(@conn, :restore, "UUID") %>',
+    restore_snapshot_alert: '<%= gettext "You are trying to restore a snapshot! are you sure?" %>',
+    restore_snapshot_pending_message: '<%= gettext "Snapshot restore is in progress!" %>',
+    restore_snapshot_success_message: '<%= gettext "Snapshot restored successfully!" %>',
+    restore_snapshot_failed_message: '<%= gettext "Snapshot restore has failed!" %>',
+    task_status_endpoint: '<%= Routes.task_path(@conn, :index, "UUID") %>'
   }
 </script>
 

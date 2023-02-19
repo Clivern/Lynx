@@ -62,7 +62,7 @@ defmodule Lynx.Worker.SnapshotWorker do
 
           SnapshotContext.update_snapshot(snapshot, %{
             status: "failure",
-            data: Jason.encode!(reason: msg)
+            data: Jason.encode!(%{reason: msg})
           })
       end
     end
@@ -73,7 +73,7 @@ defmodule Lynx.Worker.SnapshotWorker do
   end
 
   defp schedule_work do
-    # We schedule the work to happen in 60 seconds
-    Process.send_after(self(), :fire, 60 * 1000)
+    # We schedule the work to happen in 30 seconds
+    Process.send_after(self(), :fire, 30 * 1000)
   end
 end

@@ -20,8 +20,8 @@ defmodule LynxWeb.SnapshotController do
   @default_list_limit "10"
   @default_list_offset "0"
 
-  plug :regular_user when action in [:list, :index, :create, :delete]
-  plug :access_check when action in [:index, :delete]
+  plug :regular_user when action in [:list, :index, :create, :delete, :restore]
+  plug :access_check when action in [:index, :delete, :restore]
 
   defp regular_user(conn, _opts) do
     Logger.info("Validate user permissions")
@@ -161,6 +161,28 @@ defmodule LynxWeb.SnapshotController do
       {:ok, _} ->
         conn
         |> send_resp(:no_content, "")
+    end
+  end
+
+  @doc """
+  Restore Snapshot Endpoint
+  """
+  def restore(conn, %{"uuid" => uuid}) do
+    case SnapshotModule.restore_snapshot_by_uuid(uuid) do
+      {:error, msg} ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: msg})
+
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{message: msg})
+
+      {:ok, task} ->
+        conn
+        |> put_status(:accepted)
+        |> render("restore.json", %{task: task})
     end
   end
 

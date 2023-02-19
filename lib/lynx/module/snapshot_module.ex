@@ -12,6 +12,7 @@ defmodule Lynx.Module.SnapshotModule do
   alias Lynx.Context.ProjectContext
   alias Lynx.Context.EnvironmentContext
   alias Lynx.Context.StateContext
+  alias Lynx.Module.TaskModule
 
   @doc """
   Get Snapshot by UUID
@@ -101,6 +102,38 @@ defmodule Lynx.Module.SnapshotModule do
   end
 
   @doc """
+  Restore Snapshots By UUID
+  """
+  def restore_snapshot_by_uuid(uuid) do
+    case get_snapshot_by_uuid(uuid) do
+      {:ok, snapshot} ->
+        result =
+          TaskModule.create_task(%{
+            payload:
+              Jason.encode!(%{
+                action: "restore_snapshot",
+                snapshot_uuid: snapshot.uuid,
+                snapshot_id: snapshot.id
+              }),
+            result: "{}",
+            status: "pending",
+            run_at: DateTime.utc_now()
+          })
+
+        case result do
+          {:error, msg} ->
+            {:error, msg}
+
+          {:ok, task} ->
+            {:ok, task}
+        end
+
+      {:not_found, msg} ->
+        {:not_found, msg}
+    end
+  end
+
+  @doc """
   Take Snapshot
   """
   def take_snapshot(uuid) do
@@ -122,7 +155,7 @@ defmodule Lynx.Module.SnapshotModule do
   @doc """
   Restore Snapshot
   """
-  def restore_snapshot(uuid) do
+  def restore_snapshot(_uuid) do
   end
 
   def project_snapshot_data(uuid) do

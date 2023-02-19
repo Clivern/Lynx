@@ -29,6 +29,17 @@ defmodule LynxWeb.SnapshotView do
     %{errorMessage: message}
   end
 
+  # Render restore task
+  def render("restore.json", %{task: task}) do
+    %{
+      id: task.uuid,
+      status: task.status,
+      runAt: task.run_at,
+      createdAt: task.inserted_at,
+      updatedAt: task.updated_at
+    }
+  end
+
   # Format snapshot
   defp render_snapshot(snapshot) do
     {_, team} = TeamModule.get_team_by_id(snapshot.team_id)

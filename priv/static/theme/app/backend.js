@@ -44,6 +44,28 @@ function format_datetime(datetime) {
     return formattedDate;
 }
 
+function snapshot_restore_followup(id) {
+    axios.get(i18n_globals.task_status_endpoint.replace("UUID", id))
+        .then((response) => {
+            if (response.status >= 200) {
+                show_notification(response.data.status);
+
+                if (response.data.status == 'success') {
+                    show_notification(i18n_globals.restore_snapshot_success_message);
+                } else if (response.data.status === 'failure') {
+                    show_notification(i18n_globals.restore_snapshot_failed_message);
+                } else {
+                    show_notification(i18n_globals.restore_snapshot_pending_message);
+                    setTimeout(() => { snapshot_restore_followup(id) }, 6000);
+                }
+            }
+        })
+        .catch((error) => {
+            // Show error
+            show_notification(error.response.data.errorMessage);
+        });
+}
+
 // Install Page
 lynx_app.install_screen = (Vue, axios, $) => {
 
@@ -865,6 +887,23 @@ lynx_app.snapshots_list = (Vue, axios, $) => {
                         if (response.status >= 200) {
                             show_notification(i18n_globals.delete_snapshot_message);
                             setTimeout(() => { location.reload(); }, 2000);
+                        }
+                    })
+                    .catch((error) => {
+                        show_notification(error.response.data.errorMessage);
+                    });
+            },
+
+            restoreSnapshotAction(id) {
+                if (confirm(i18n_globals.restore_snapshot_alert) != true) {
+                    return;
+                }
+
+                axios.post(i18n_globals.restore_snapshot_endpoint.replace("UUID", id), {})
+                    .then((response) => {
+                        if (response.status >= 200) {
+                            show_notification(i18n_globals.restore_snapshot_pending_message);
+                            snapshot_restore_followup(response.data.id);
                         }
                     })
                     .catch((error) => {

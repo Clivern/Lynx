@@ -10,6 +10,31 @@ defmodule Lynx.Module.TaskModule do
   alias Lynx.Context.TaskContext
 
   @doc """
+  Create Task
+  """
+  def create_task(data \\ %{}) do
+    task =
+      TaskContext.new_task(%{
+        payload: data[:payload],
+        result: data[:result],
+        status: data[:status],
+        run_at: data[:run_at]
+      })
+
+    case TaskContext.create_task(task) do
+      {:ok, task} ->
+        {:ok, task}
+
+      {:error, changeset} ->
+        messages =
+          changeset.errors()
+          |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+        {:error, Enum.at(messages, 0)}
+    end
+  end
+
+  @doc """
   Get task by UUID
   """
   def get_task_by_uuid(uuid) do
