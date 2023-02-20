@@ -361,10 +361,14 @@ defmodule LynxWeb.PageController do
             nil ->
               conn
               |> redirect(to: "/404")
+
             state ->
               conn
               |> put_resp_content_type("application/octet-stream")
-              |> put_resp_header("content-disposition", "attachment; filename=\"state.#{uuid}.json\"")
+              |> put_resp_header(
+                "content-disposition",
+                "attachment; filename=\"state.#{uuid}.json\""
+              )
               |> send_resp(200, state.value)
           end
         end
@@ -394,10 +398,14 @@ defmodule LynxWeb.PageController do
             nil ->
               conn
               |> redirect(to: "/404")
+
             state ->
               conn
               |> put_resp_content_type("application/octet-stream")
-              |> put_resp_header("content-disposition", "attachment; filename=\"state.#{state.uuid}.json\"")
+              |> put_resp_header(
+                "content-disposition",
+                "attachment; filename=\"state.#{state.uuid}.json\""
+              )
               |> send_resp(200, state.value)
           end
         end

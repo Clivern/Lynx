@@ -22,7 +22,7 @@ terraform {
 provider "local" {}
 
 resource "local_file" "hello_world" {
-  content  = "Hello, World! v3"
+  content  = "Hello, World!"
   filename = "${path.module}/hello.txt"
 }
 

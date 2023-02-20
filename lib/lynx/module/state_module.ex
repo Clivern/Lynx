@@ -86,7 +86,6 @@ defmodule Lynx.Module.StateModule do
     end
   end
 
-
   @doc """
   Get latest state by environment uuid
   """

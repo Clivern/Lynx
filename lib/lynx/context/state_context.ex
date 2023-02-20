@@ -81,7 +81,8 @@ defmodule Lynx.Context.StateContext do
       s in State,
       where: s.environment_id == ^environment_id
     )
-    |> last(:inserted_at)
+    # |> last(:inserted_at)
+    |> last(:id)
     |> Repo.one()
   end
 
