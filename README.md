@@ -10,7 +10,7 @@
             <img src="https://img.shields.io/badge/Version-0.10.0-1abc9c.svg">
         </a>
         <a href="https://hub.docker.com/r/clivern/lynx/tags">
-            <img src="https://img.shields.io/badge/Docker-0.9.0-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Docker-0.10.0-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/Lynx/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
