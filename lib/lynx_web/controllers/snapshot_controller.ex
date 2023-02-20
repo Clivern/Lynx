@@ -95,6 +95,17 @@ defmodule LynxWeb.SnapshotController do
       validate_create_request(params)
 
       team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
+      record_type = ValidatorService.get_str(params["record_type"], "")
+      record_uuid = ValidatorService.get_str(params["record_uuid"], "")
+
+      data =
+        case SnapshotModule.take_snapshot(record_type, record_uuid) do
+          {:error, msg} ->
+            raise InvalidRequest, message: msg
+
+          {:ok, data} ->
+            data
+        end
 
       result =
         SnapshotModule.create_snapshot(%{
@@ -102,8 +113,8 @@ defmodule LynxWeb.SnapshotController do
           description: ValidatorService.get_str(params["description"], ""),
           record_type: ValidatorService.get_str(params["record_type"], ""),
           record_uuid: ValidatorService.get_str(params["record_uuid"], ""),
-          status: "pending",
-          data: "{}",
+          status: "success",
+          data: data,
           team_id: team_id
         })
 
@@ -168,21 +179,16 @@ defmodule LynxWeb.SnapshotController do
   Restore Snapshot Endpoint
   """
   def restore(conn, %{"uuid" => uuid}) do
-    case SnapshotModule.restore_snapshot_by_uuid(uuid) do
+    case SnapshotModule.restore_snapshot(uuid) do
       {:error, msg} ->
         conn
         |> put_status(:bad_request)
         |> render("error.json", %{message: msg})
 
-      {:not_found, msg} ->
+      {:ok, _} ->
         conn
-        |> put_status(:not_found)
-        |> render("error.json", %{message: msg})
-
-      {:ok, task} ->
-        conn
-        |> put_status(:accepted)
-        |> render("restore.json", %{task: task})
+        |> put_status(:ok)
+        |> render("restore.json", %{message: "Snapshot restored successfully!"})
     end
   end
 
