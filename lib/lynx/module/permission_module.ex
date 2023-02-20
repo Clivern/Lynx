@@ -9,6 +9,7 @@ defmodule Lynx.Module.PermissionModule do
 
   alias Lynx.Context.ProjectContext
   alias Lynx.Context.SnapshotContext
+  alias Lynx.Context.EnvironmentContext
   alias Lynx.Module.TeamModule
 
   def can_access_project_id(:project, :anonymous, _id, _user_id) do
@@ -80,6 +81,30 @@ defmodule Lynx.Module.PermissionModule do
 
       _ ->
         true
+    end
+  end
+
+  def can_access_environment_uuid(:environment, :super, _uuid, _user_id) do
+    true
+  end
+
+  def can_access_environment_uuid(:environment, :anonymous, _uuid, _user_id) do
+    false
+  end
+
+  def can_access_environment_uuid(:environment, :regular, uuid, user_id) do
+    case EnvironmentContext.get_env_by_uuid(uuid) do
+      nil ->
+        false
+
+      env ->
+        case ProjectContext.get_project_by_id_teams(env.project_id, get_user_teams_ids(user_id)) do
+          nil ->
+            false
+
+          _ ->
+            true
+        end
     end
   end
 

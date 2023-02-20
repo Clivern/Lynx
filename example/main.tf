@@ -7,8 +7,8 @@ terraform {
   }
 
   backend "http" {
-    username       = "qy8aq4jz"
-    password       = "edsP4XhtDVc4"
+    username       = "hs2d21pk"
+    password       = "pO(BwDTjs5ND"
     address        = "http://localhost:4000/client/clivern/monitoring/prod/state"
     lock_address   = "http://localhost:4000/client/clivern/monitoring/prod/lock"
     unlock_address = "http://localhost:4000/client/clivern/monitoring/prod/unlock"
@@ -22,7 +22,7 @@ terraform {
 provider "local" {}
 
 resource "local_file" "hello_world" {
-  content  = "Hello, World!"
+  content  = "Hello, World! v3"
   filename = "${path.module}/hello.txt"
 }
 

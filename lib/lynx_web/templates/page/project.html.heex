@@ -5,6 +5,7 @@
     delete_environment_alert: '<%= gettext "You are trying to delete an environment! are you sure?" %>',
     delete_environment_endpoint: '<%= Routes.environment_path(@conn, :delete, @data.uuid, "UUID") %>',
     get_environment_endpoint: '<%= Routes.environment_path(@conn, :index, @data.uuid, "UUID") %>',
+    download_environment_state_endpoint: '<%= Routes.page_path(@conn, :environment, "UUID") %>',
     get_project_endpoint: '<%= Routes.project_path(@conn, :index, "UUID") %>',
     project_uuid: '<%= @data.uuid %>'
   }
@@ -306,6 +307,9 @@
                                         <td style="text-align: center">${formatDatetime(environment.createdAt)}</td>
                                         <td style="text-align: center">
                                             <button @click="viewEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "View" %></button>
+                                            <template v-if="environment.stateVersion != 'v0'">
+                                                <a target="_blank" @click="downloadEnvironmentStateAction(environment.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "Download State" %></a>
+                                            </template>
                                             <!--<button @click="editEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80"><%= gettext "Edit" %></button>-->
                                             <button @click="deleteEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
                                         </td>

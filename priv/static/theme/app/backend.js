@@ -772,6 +772,10 @@ lynx_app.environments_list = (Vue, axios, $) => {
                 return format_datetime(datatime);
             },
 
+            downloadEnvironmentStateAction(id) {
+                window.location.href = i18n_globals.download_environment_state_endpoint.replace("UUID", id);
+            },
+
             viewEnvironmentAction(id) {
                 let data = $("#proto_env_data").text();
                 let env_endpoint = i18n_globals.get_environment_endpoint.replaceAll("UUID", id);
