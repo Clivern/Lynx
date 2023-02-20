@@ -212,6 +212,22 @@ defmodule LynxWeb.EnvironmentController do
     end
   end
 
+  @doc """
+  Download Action
+  """
+  def download(conn, %{"p_uuid" => p_uuid, "e_uuid" => e_uuid}) do
+    case EnvironmentModule.delete_environment_by_uuid(p_uuid, e_uuid) do
+      {:not_found, msg} ->
+        conn
+        |> put_status(:not_found)
+        |> render("error.json", %{message: msg})
+
+      {:ok, _} ->
+        conn
+        |> send_resp(:no_content, "")
+    end
+  end
+
   defp validate_create_request(params) do
     name = ValidatorService.get_str(params["name"], "")
     username = ValidatorService.get_str(params["username"], "")

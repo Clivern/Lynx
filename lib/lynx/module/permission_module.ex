@@ -8,9 +8,11 @@ defmodule Lynx.Module.PermissionModule do
   """
 
   alias Lynx.Context.ProjectContext
+  alias Lynx.Context.SnapshotContext
+  alias Lynx.Context.EnvironmentContext
   alias Lynx.Module.TeamModule
 
-  def can_access_project_id(:anonymous, :super, _id, _user_id) do
+  def can_access_project_id(:project, :anonymous, _id, _user_id) do
     false
   end
 
@@ -32,7 +34,7 @@ defmodule Lynx.Module.PermissionModule do
     true
   end
 
-  def can_access_project_uuid(:anonymous, :super, _uuid, _user_id) do
+  def can_access_project_uuid(:project, :anonymous, _uuid, _user_id) do
     false
   end
 
@@ -43,6 +45,66 @@ defmodule Lynx.Module.PermissionModule do
 
       _ ->
         true
+    end
+  end
+
+  def can_access_snapshot_id(:snapshot, :anonymous, _id, _user_id) do
+    false
+  end
+
+  def can_access_snapshot_id(:snapshot, :super, _id, _user_id) do
+    true
+  end
+
+  def can_access_snapshot_id(:snapshot, :regular, id, user_id) do
+    case SnapshotContext.get_snapshot_by_id_teams(id, get_user_teams_ids(user_id)) do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
+  end
+
+  def can_access_snapshot_uuid(:snapshot, :anonymous, _id, _user_id) do
+    false
+  end
+
+  def can_access_snapshot_uuid(:snapshot, :super, _id, _user_id) do
+    true
+  end
+
+  def can_access_snapshot_uuid(:snapshot, :regular, uuid, user_id) do
+    case SnapshotContext.get_snapshot_by_uuid_teams(uuid, get_user_teams_ids(user_id)) do
+      nil ->
+        false
+
+      _ ->
+        true
+    end
+  end
+
+  def can_access_environment_uuid(:environment, :super, _uuid, _user_id) do
+    true
+  end
+
+  def can_access_environment_uuid(:environment, :anonymous, _uuid, _user_id) do
+    false
+  end
+
+  def can_access_environment_uuid(:environment, :regular, uuid, user_id) do
+    case EnvironmentContext.get_env_by_uuid(uuid) do
+      nil ->
+        false
+
+      env ->
+        case ProjectContext.get_project_by_id_teams(env.project_id, get_user_teams_ids(user_id)) do
+          nil ->
+            false
+
+          _ ->
+            true
+        end
     end
   end
 

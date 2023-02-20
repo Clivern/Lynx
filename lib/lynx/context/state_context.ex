@@ -20,7 +20,7 @@ defmodule Lynx.Context.StateContext do
       name: attrs.name,
       value: attrs.value,
       environment_id: attrs.environment_id,
-      uuid: Ecto.UUID.generate()
+      uuid: attrs.uuid || Ecto.UUID.generate()
     }
   end
 
@@ -81,8 +81,20 @@ defmodule Lynx.Context.StateContext do
       s in State,
       where: s.environment_id == ^environment_id
     )
-    |> last(:inserted_at)
+    # |> last(:inserted_at)
+    |> last(:id)
     |> Repo.one()
+  end
+
+  @doc """
+  Get states by environment id
+  """
+  def get_states_by_environment_id(environment_id) do
+    from(
+      s in State,
+      where: s.environment_id == ^environment_id
+    )
+    |> Repo.all()
   end
 
   @doc """

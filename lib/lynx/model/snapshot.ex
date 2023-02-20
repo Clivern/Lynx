@@ -16,6 +16,7 @@ defmodule Lynx.Model.Snapshot do
     field :description, :string
     field :record_type, :string
     field :record_uuid, :string
+    field :status, :string
     field :data, :string
     field :team_id, :id
 
@@ -23,14 +24,15 @@ defmodule Lynx.Model.Snapshot do
   end
 
   @doc false
-  def changeset(state, attrs) do
-    state
+  def changeset(snapshot, attrs) do
+    snapshot
     |> cast(attrs, [
       :uuid,
       :title,
       :description,
       :record_type,
       :record_uuid,
+      :status,
       :data,
       :team_id
     ])
@@ -40,6 +42,7 @@ defmodule Lynx.Model.Snapshot do
       :description,
       :record_type,
       :record_uuid,
+      :status,
       :data,
       :team_id
     ])

@@ -1,3 +1,18 @@
+<script type="text/javascript">
+  var i18n_globals = {
+    new_snapshot: '<%= gettext "Snapshot created successfully!" %>',
+    delete_snapshot_message: '<%= gettext "Snapshot deleted successfully!" %>',
+    delete_snapshot_alert: '<%= gettext "You are trying to delete a snapshot! are you sure?" %>',
+    delete_snapshot_endpoint: '<%= Routes.snapshot_path(@conn, :delete, "UUID") %>',
+    restore_snapshot_endpoint: '<%= Routes.snapshot_path(@conn, :restore, "UUID") %>',
+    restore_snapshot_alert: '<%= gettext "You are trying to restore a snapshot! are you sure?" %>',
+    restore_snapshot_pending_message: '<%= gettext "Snapshot restore is in progress!" %>',
+    restore_snapshot_success_message: '<%= gettext "Snapshot restored successfully!" %>',
+    restore_snapshot_failed_message: '<%= gettext "Snapshot restore has failed!" %>',
+    task_status_endpoint: '<%= Routes.task_path(@conn, :index, "UUID") %>'
+  }
+</script>
+
 <main class="hp-bg-color-dark-90 d-flex min-vh-100">
     <div class="hp-main-layout hp-main-layout-horizontal">
         <header>
@@ -224,73 +239,197 @@
         </div>
 
         <div class="hp-main-layout-content">
-            <div class="row g-32">
-               <div class="col-12">
-                    <div class="hp-bg-black-bg py-32 py-sm-64 px-24 px-sm-48 px-md-80 position-relative overflow-hidden hp-page-content" style="border-radius: 32px;">
-                        <svg width="358" height="336" fill="none" xmlns="http://www.w3.org/2000/svg" class="position-absolute hp-rtl-scale-x-n1" style="bottom: 0px; right: 0px;">
-                            <path d="M730.404 135.471 369.675-6.641l88.802 164.001-243.179-98.8 246.364 263.281-329.128-126.619 114.698 166.726-241.68-62.446" stroke="url(#a)" stroke-width="40" stroke-linejoin="bevel"></path>
-                            <defs>
-                                <linearGradient id="a" x1="315.467" y1="6.875" x2="397.957" y2="337.724" gradientUnits="userSpaceOnUse">
-                                    <stop stop-color="#fff"></stop>
-                                    <stop offset="1" stop-color="#fff" stop-opacity="0"></stop>
-                                </linearGradient>
-                            </defs>
-                        </svg>
 
-                        <div class="row">
-                            <div class="col-sm-6 col-12">
-                                <div class="row">
-                                    <div class="col-12">
-                                        <h1 class="mb-0 hp-text-color-black-0"> <%= gettext "Settings" %> </h1>
-                                    </div>
-                                    <div class="col-12">
-                                        <ol class="breadcrumb mt-24">
-                                            <li class="breadcrumb-item breadcrumb-link">
-                                                <a href="javascript:;"> <%= gettext "Dashboard" %> </a>
-                                            </li>
+            <div class="row mb-32 gy-32">
+                <div class="col-12">
+                    <div class="row justify-content-between gy-32">
+                        <div class="col hp-flex-none w-auto">
+                            <nav aria-label="breadcrumb">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item">
+                                        <a href="javascript:;"><%= gettext "Dashboard" %></a>
+                                    </li>
+                                    <li class="breadcrumb-item active">
+                                        <%= gettext "Projects" %>
+                                    </li>
+                                </ol>
+                            </nav>
+                        </div>
 
-                                            <li class="breadcrumb-item active">
-                                                <%= gettext "Settings" %>
-                                            </li>
-                                        </ol>
-                                    </div>
+                        <div class="col-12 col-md-7">
+                            <div class="row g-16 align-items-center justify-content-end">
+                                <div class="col hp-flex-none w-auto">
+                                    <button type="button" class="btn btn-primary w-100" data-bs-toggle="modal" data-bs-target="#add_snapshot_modal">
+                                        <i class="ri-add-fill remix-icon"></i>
+                                        <span><%= gettext "Create a Snapshot" %></span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <div class="col-12" id="app_settings">
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="row justify-content-between">
-                                <div class="col pe-md-32 pe-md-120">
-                                    <h4><%= gettext "Settings" %></h4>
-                                </div>
-                                <div class="col-12 mt-16">
-                                    <form action={Routes.settings_path(@conn, :update)} method="post" v-on:submit.prevent="settingsAction">
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application Name" %></label>
-                                            <input class="form-control" name="app_name" type="text" value={@data.app_name} required="required">
-                                        </div>
+                <div class="col-12" id="snapshots_list" data-action={Routes.snapshot_path(@conn, :list)}>
+                    <div class="card hp-contact-card mb-32">
+                        <div class="card-body px-0">
+                            <div class="table-responsive">
+                                <table class="table align-middle table-hover table-borderless">
+                                    <thead>
+                                        <tr>
+                                            <th></th>
+                                            <th style="text-align: center"><%= gettext "Title" %></th>
+                                            <th style="text-align: center"><%= gettext "Status" %></th>
+                                            <th style="text-align: center"><%= gettext "Team" %></th>
+                                            <th style="text-align: center"><%= gettext "Created at" %></th>
+                                            <th></th>
+                                        </tr>
+                                    </thead>
 
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application URL" %></label>
-                                            <input class="form-control" name="app_url" type="url" value={@data.app_url} required="required">
-                                        </div>
-
-                                        <div class="mb-24">
-                                            <label class="form-label"><%= gettext "Application Email" %></label>
-                                            <input class="form-control" name="app_email" type="email" value={@data.app_email} required="required">
-                                        </div>
-                                        <button type="submit" class="btn btn-primary"><%= gettext "Submit" %></button>
-                                    </form>
-                                </div>
+                                    <tbody>
+                                      <tr v-for="snapshot in snapshots">
+                                        <td>
+                                          <a href="javascript:;">
+                                            <div class="avatar-item avatar-lg d-flex align-items-center justify-content-center bg-primary-4 hp-bg-dark-primary text-primary hp-text-color-dark-0 rounded-circle">
+                                              <i class="iconly-Curved-Document"></i>
+                                            </div>
+                                          </a>
+                                        </td>
+                                        <td style="text-align: center">${snapshot.title}</td>
+                                        <template v-if="snapshot.status == 'pending'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-warning-4 hp-bg-dark-warning text-warning border-warning">PENDING</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'running'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-info-4 hp-bg-dark-info text-info border-info">RUNNING</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'success'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-success-4 hp-bg-dark-success text-success border-success">SUCCESS</div>
+                                            </td>
+                                        </template>
+                                        <template v-if="snapshot.status == 'failure'">
+                                            <td style="text-align: center">
+                                                <div class="badge bg-danger-4 hp-bg-dark-danger text-danger border-danger">FAILURE</div>
+                                            </td>
+                                        </template>
+                                        <td style="text-align: center">${snapshot.team.name}</td>
+                                        <td style="text-align: center">${formatDatetime(snapshot.createdAt)}</td>
+                                        <td>
+                                            <button @click="restoreSnapshotAction(snapshot.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "Restore" %></button>
+                                            <button @click="deleteSnapshotAction(snapshot.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
+                                        </td>
+                                      </tr>
+                                      <tr v-if="snapshots.length == 0">
+                                        <td colspan="6" style="text-align: center;"><%= gettext "No Records Found!" %></td>
+                                      </tr>
+                                    </tbody>
+                                </table>
                             </div>
+
+                            <nav>
+                                <ul class="pagination justify-content-end px-32">
+                                    <li class="page-item">
+                                        <button class="page-link" @click="loadPreviousPageAction" v-if="currentPage > 1">
+                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="left" width="12px" height="12px" fill="currentColor" aria-hidden="true">
+                                                <path d="M724 218.3V141c0-6.7-7.7-10.4-12.9-6.3L260.3 486.8a31.86 31.86 0 000 50.3l450.8 352.1c5.3 4.1 12.9.4 12.9-6.3v-77.3c0-4.9-2.3-9.6-6.1-12.6l-360-281 360-281.1c3.8-3 6.1-7.7 6.1-12.6z"></path>
+                                            </svg>
+                                        </button>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <button class="page-link">${currentPage}</button>
+                                    </li>
+
+                                    <li class="page-item">
+                                        <button class="page-link" @click="loadNextPageAction" v-if="currentPage != totalPages">
+                                            <svg viewBox="64 64 896 896" focusable="false" data-icon="right" width="12px" height="12px" fill="currentColor" aria-hidden="true">
+                                                <path d="M765.7 486.8L314.9 134.7A7.97 7.97 0 00302 141v77.3c0 4.9 2.3 9.6 6.1 12.6l360 281.1-360 281.1c-3.9 3-6.1 7.7-6.1 12.6V883c0 6.7 7.7 10.4 12.9 6.3l450.8-352.1a31.96 31.96 0 000-50.4z"></path>
+                                            </svg>
+                                        </button>
+                                    </li>
+                                </ul>
+                            </nav>
+
                         </div>
                     </div>
                 </div>
             </div>
+
+            <div class="modal fade" id="add_snapshot_modal" tabindex="-1" aria-labelledby="addNewSnapshotLabel" aria-hidden="true" data-team={Routes.team_path(@conn, :list)} data-project={Routes.project_path(@conn, :list)} data-environment={Routes.environment_path(@conn, :list, "UUID")}>
+                <div class="modal-dialog modal-dialog-centered">
+                    <div class="modal-content">
+                        <div class="modal-header py-16 px-24">
+                            <h5 class="modal-title" id="addNewSnapshotLabel"><%= gettext "Create Snapshot" %></h5>
+                            <button type="button" class="btn-close hp-bg-none d-flex align-items-center justify-content-center" data-bs-dismiss="modal" aria-label="Close">
+                                <i class="ri-close-line hp-text-color-dark-0 lh-1" style="font-size: 24px;"></i>
+                            </button>
+                        </div>
+                        <div class="divider m-0"></div>
+                        <form action={Routes.snapshot_path(@conn, :create)} method="post" v-on:submit.prevent="addSnapshotAction">
+                            <div class="modal-body">
+                                <div class="row gx-8">
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Title" %></label>
+                                            <input type="text" class="form-control" name="title" required="required">
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Description" %></label>
+                                            <textarea name="description" class="form-control" required="required"></textarea>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Projects" %></label>
+                                            <select class="form-select" v-model="projectID" @change="changeProjectAction" name="project_id" required="required">
+                                                <template v-for="project in projects">
+                                                    <option :value="project.id">${project.name}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Environments" %></label>
+                                            <select class="form-select" v-model="environmentID" name="environment_id" required="required">
+                                                <option value="all"><%= gettext "All" %></option>
+                                                <template v-for="environment in environments">
+                                                    <option :value="environment.id">${environment.name}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-12">
+                                        <div class="mb-24">
+                                            <label class="form-label"><%= gettext "Team" %></label>
+                                            <select class="form-select" name="team_id" required="required">
+                                                <template v-for="team in teams">
+                                                    <option :value="team.id">${team.name}</option>
+                                                </template>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="modal-footer pt-0 px-24 pb-24">
+                                <div class="divider"></div>
+                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
         <footer class="w-100 py-18 px-16 py-sm-24 px-sm-32 hp-bg-color-black-20 hp-bg-color-dark-90">

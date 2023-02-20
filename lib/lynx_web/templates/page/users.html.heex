@@ -39,6 +39,12 @@
                                     </a>
                                 </li>
 
+                                <li class="px-6">
+                                    <a href={Routes.page_path(@conn, :snapshots)} class="px-12 py-4">
+                                        <span><%= gettext "Snapshots" %></span>
+                                    </a>
+                                </li>
+
                                 <%= if @data.is_super do %>
                                     <li class="px-6">
                                         <a href={Routes.page_path(@conn, :teams)} class="px-12 py-4">
@@ -158,6 +164,15 @@
                                             <span>
                                                 <i class="iconly-Curved-PaperPlus"></i>
                                                 <span><%= gettext "Projects" %></span>
+                                            </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href={Routes.page_path(@conn, :snapshots)}>
+                                            <div class="tooltip-item in-active" data-bs-toggle="tooltip" data-bs-placement="right" title="Blank Page" data-bs-original-title="Blank Page" aria-label="Blank Page"></div>
+                                            <span>
+                                                <i class="iconly-Curved-PaperPlus"></i>
+                                                <span><%= gettext "Snapshots" %></span>
                                             </span>
                                         </a>
                                     </li>

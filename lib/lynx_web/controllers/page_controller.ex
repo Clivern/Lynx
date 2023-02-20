@@ -12,6 +12,7 @@ defmodule LynxWeb.PageController do
   alias Lynx.Service.AuthService
   alias Lynx.Module.SettingsModule
   alias Lynx.Module.PermissionModule
+  alias Lynx.Module.StateModule
 
   @doc """
   Login Page
@@ -142,7 +143,7 @@ defmodule LynxWeb.PageController do
     case conn.assigns[:is_logged] do
       false ->
         conn
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       true ->
         conn
@@ -170,7 +171,7 @@ defmodule LynxWeb.PageController do
     case conn.assigns[:is_super] do
       false ->
         conn
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       true ->
         conn
@@ -197,7 +198,7 @@ defmodule LynxWeb.PageController do
     case conn.assigns[:is_super] do
       false ->
         conn
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       true ->
         conn
@@ -224,7 +225,7 @@ defmodule LynxWeb.PageController do
     case conn.assigns[:is_super] do
       false ->
         conn
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       true ->
         conn
@@ -252,11 +253,38 @@ defmodule LynxWeb.PageController do
     case conn.assigns[:is_logged] do
       false ->
         conn
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       true ->
         conn
         |> render("projects.html",
+          data: %{
+            is_logged: conn.assigns[:is_logged],
+            is_super: conn.assigns[:is_super],
+            user_id: conn.assigns[:user_id],
+            user_role: conn.assigns[:user_role],
+            user_name: conn.assigns[:user_name],
+            user_email: conn.assigns[:user_email],
+            avatar_url: get_gavatar(conn.assigns[:user_email]),
+            app_name: SettingsModule.get_config("app_name", ""),
+            app_url: SettingsModule.get_config("app_url", "") |> add_backslash_to_url
+          }
+        )
+    end
+  end
+
+  @doc """
+  Snapshots Page
+  """
+  def snapshots(conn, _params) do
+    case conn.assigns[:is_logged] do
+      false ->
+        conn
+        |> redirect(to: "/login")
+
+      true ->
+        conn
+        |> render("snapshots.html",
           data: %{
             is_logged: conn.assigns[:is_logged],
             is_super: conn.assigns[:is_super],
@@ -279,7 +307,7 @@ defmodule LynxWeb.PageController do
     case conn.assigns[:is_logged] do
       false ->
         conn
-        |> redirect(to: "/")
+        |> redirect(to: "/login")
 
       true ->
         if not PermissionModule.can_access_project_uuid(
@@ -306,6 +334,80 @@ defmodule LynxWeb.PageController do
               uuid: uuid
             }
           )
+        end
+    end
+  end
+
+  @doc """
+  State Download Page
+  """
+  def state(conn, %{"uuid" => uuid}) do
+    case conn.assigns[:is_logged] do
+      false ->
+        conn
+        |> redirect(to: "/login")
+
+      true ->
+        if not PermissionModule.can_access_snapshot_uuid(
+             :snapshot,
+             conn.assigns[:user_role],
+             uuid,
+             conn.assigns[:user_id]
+           ) do
+          conn
+          |> redirect(to: "/404")
+        else
+          case StateModule.get_state_by_uuid(uuid) do
+            nil ->
+              conn
+              |> redirect(to: "/404")
+
+            state ->
+              conn
+              |> put_resp_content_type("application/octet-stream")
+              |> put_resp_header(
+                "content-disposition",
+                "attachment; filename=\"state.#{uuid}.json\""
+              )
+              |> send_resp(200, state.value)
+          end
+        end
+    end
+  end
+
+  @doc """
+  Environment State Download Page
+  """
+  def environment(conn, %{"uuid" => uuid}) do
+    case conn.assigns[:is_logged] do
+      false ->
+        conn
+        |> redirect(to: "/login")
+
+      true ->
+        if not PermissionModule.can_access_environment_uuid(
+             :environment,
+             conn.assigns[:user_role],
+             uuid,
+             conn.assigns[:user_id]
+           ) do
+          conn
+          |> redirect(to: "/404")
+        else
+          case StateModule.get_latest_state_by_env_uuid(uuid) do
+            nil ->
+              conn
+              |> redirect(to: "/404")
+
+            state ->
+              conn
+              |> put_resp_content_type("application/octet-stream")
+              |> put_resp_header(
+                "content-disposition",
+                "attachment; filename=\"state.#{state.uuid}.json\""
+              )
+              |> send_resp(200, state.value)
+          end
         end
     end
   end

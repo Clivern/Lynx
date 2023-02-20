@@ -66,7 +66,8 @@ defmodule Lynx.Module.StateModule do
                   StateContext.new_state(%{
                     environment_id: env.id,
                     name: params[:name],
-                    value: params[:value]
+                    value: params[:value],
+                    uuid: nil
                   })
 
                 case StateContext.create_state(state) do
@@ -83,6 +84,32 @@ defmodule Lynx.Module.StateModule do
             end
         end
     end
+  end
+
+  @doc """
+  Get latest state by environment uuid
+  """
+  def get_latest_state_by_env_uuid(uuid) do
+    case EnvironmentContext.get_env_by_uuid(uuid) do
+      nil ->
+        nil
+
+      env ->
+        case StateContext.get_latest_state_by_environment_id(env.id) do
+          nil ->
+            nil
+
+          state ->
+            state
+        end
+    end
+  end
+
+  @doc """
+  Get state by uuid
+  """
+  def get_state_by_uuid(uuid) do
+    StateContext.get_state_by_uuid(uuid)
   end
 
   @doc """

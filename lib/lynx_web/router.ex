@@ -41,11 +41,14 @@ defmodule LynxWeb.Router do
     get "/login", PageController, :login
     get "/logout", PageController, :logout
     get "/admin/profile", PageController, :profile
+    get "/admin/snapshots", PageController, :snapshots
     get "/admin/teams", PageController, :teams
     get "/admin/users", PageController, :users
     get "/admin/projects", PageController, :projects
     get "/admin/projects/:uuid", PageController, :project
     get "/admin/settings", PageController, :settings
+    get "/admin/state/download/:uuid", PageController, :state
+    get "/admin/environment/download/:uuid", PageController, :environment
   end
 
   scope "/", LynxWeb do
@@ -60,34 +63,44 @@ defmodule LynxWeb.Router do
   scope "/api/v1", LynxWeb do
     pipe_through :api
 
-    # User CRUD
+    # User Endpoints
     get "/user", UserController, :list
     post "/user", UserController, :create
     get "/user/:uuid", UserController, :index
     put "/user/:uuid", UserController, :update
     delete "/user/:uuid", UserController, :delete
 
-    # Team CRUD
+    # Team Endpoints
     get "/team", TeamController, :list
     post "/team", TeamController, :create
     get "/team/:uuid", TeamController, :index
     put "/team/:uuid", TeamController, :update
     delete "/team/:uuid", TeamController, :delete
 
-    # Settings Endpoint
+    # Settings Endpoints
     put "/settings", SettingsController, :update
 
-    # Profile Endpoint
+    # Profile Endpoints
     post "/profile", ProfileController, :update
 
-    # Project CRUD
+    # Task Endpoints
+    get "/task/:uuid", TaskController, :index
+
+    # Project Endpoints
     get "/project", ProjectController, :list
     post "/project", ProjectController, :create
     get "/project/:uuid", ProjectController, :index
     put "/project/:uuid", ProjectController, :update
     delete "/project/:uuid", ProjectController, :delete
 
-    # Environment CRUD
+    # Snapshot Endpoints
+    get "/snapshot", SnapshotController, :list
+    post "/snapshot", SnapshotController, :create
+    get "/snapshot/:uuid", SnapshotController, :index
+    delete "/snapshot/:uuid", SnapshotController, :delete
+    post "/snapshot/restore/:uuid", SnapshotController, :restore
+
+    # Environment Endpoints
     get "/project/:p_uuid/environment", EnvironmentController, :list
     post "/project/:p_uuid/environment", EnvironmentController, :create
     get "/project/:p_uuid/environment/:e_uuid", EnvironmentController, :index
@@ -98,11 +111,11 @@ defmodule LynxWeb.Router do
   scope "/client", LynxWeb do
     pipe_through :client
 
-    # Locking API
+    # Locking API Endpoints
     post "/:t_slug/:p_slug/:e_slug/lock", LockController, :lock
     post "/:t_slug/:p_slug/:e_slug/unlock", LockController, :unlock
 
-    # State API
+    # State API Endpoints
     get "/:t_slug/:p_slug/:e_slug/state", StateController, :index
     post "/:t_slug/:p_slug/:e_slug/state", StateController, :create
   end

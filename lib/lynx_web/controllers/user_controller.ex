@@ -139,7 +139,7 @@ defmodule LynxWeb.UserController do
     if conn.assigns[:user_uuid] == uuid do
       conn
       |> put_status(:bad_request)
-      |> render("error.json", %{message: "User can't delete his account!"})
+      |> render("error.json", %{message: "User can't delete his own account!"})
     else
       case UserModule.delete_user_by_uuid(uuid) do
         {:not_found, msg} ->

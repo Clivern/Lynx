@@ -10,6 +10,7 @@ defmodule Lynx.Repo.Migrations.CreateSnapshots do
       add :uuid, :uuid
       add :title, :string
       add :description, :string
+      add :status, :string
       add :record_type, :string
       add :record_uuid, :string
       add :data, :text

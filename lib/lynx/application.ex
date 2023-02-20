@@ -19,9 +19,9 @@ defmodule Lynx.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Lynx.PubSub},
       # Start the Endpoint (http/https)
-      LynxWeb.Endpoint
+      LynxWeb.Endpoint,
       # Start a worker by calling: Lynx.Worker.start_link(arg)
-      # {Lynx.Worker, arg}
+      {Lynx.Workers, %{}}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
