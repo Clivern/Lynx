@@ -9,6 +9,7 @@ defmodule Lynx.Worker.SnapshotWorker do
 
   alias Lynx.Context.SnapshotContext
   alias Lynx.Module.SnapshotModule
+  alias Lynx.Module.TaskModule
 
   def start_link(state) do
     GenServer.start_link(__MODULE__, state, name: __MODULE__)
@@ -70,10 +71,28 @@ defmodule Lynx.Worker.SnapshotWorker do
 
   defp restore_snapshots do
     Logger.info("Restore any Outstanding Snapshot")
+
+    tasks = TaskModule.get_pending_tasks()
+
+    for task <- tasks do
+      payload = Jason.decode!(task.payload)
+
+      case {String.to_atom(payload["action"]), payload["snapshot_uuid"]} do
+        {:restore_snapshot, uuid} ->
+          case SnapshotModule.restore_snapshot(uuid) do
+            {:ok, _} ->
+              TaskModule.update_task_status(task.uuid, "success", "{}")
+
+            {:error, msg} ->
+              Logger.error("Snapshot restore with ID #{uuid} failed: #{msg}")
+              TaskModule.update_task_status(task.uuid, "failure", Jason.encode!(%{reason: msg}))
+          end
+      end
+    end
   end
 
   defp schedule_work do
-    # We schedule the work to happen in 30 seconds
-    Process.send_after(self(), :fire, 30 * 1000)
+    # We schedule the work to happen in 10 seconds
+    Process.send_after(self(), :fire, 10 * 1000)
   end
 end

@@ -4,7 +4,7 @@
 
 defmodule Lynx.Module.TaskModule do
   @moduledoc """
-  User Module
+  Task Module
   """
 
   alias Lynx.Context.TaskContext
@@ -44,6 +44,32 @@ defmodule Lynx.Module.TaskModule do
 
       task ->
         {:ok, task}
+    end
+  end
+
+  @doc """
+  Get Pending Tasks
+  """
+  def get_pending_tasks() do
+    TaskContext.get_pending_tasks()
+  end
+
+  @doc """
+  Update Task Status
+  """
+  def update_task_status(uuid, status, result) do
+    case get_task_by_uuid(uuid) do
+      {:not_found, msg} ->
+        {:error, msg}
+
+      {:ok, task} ->
+        TaskContext.update_task(task, %{
+          status: status,
+          result: result,
+          run_at: DateTime.utc_now()
+        })
+
+        {:ok, ""}
     end
   end
 end

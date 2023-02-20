@@ -75,7 +75,8 @@ defmodule Lynx.Module.EnvironmentModule do
             username: ValidatorService.get_str(data[:username], env.username),
             secret: ValidatorService.get_str(data[:secret], env.secret),
             slug: env.slug,
-            project_id: env.project_id
+            project_id: env.project_id,
+            uuid: nil
           })
 
         case EnvironmentContext.update_env(env, new_env) do
@@ -102,7 +103,8 @@ defmodule Lynx.Module.EnvironmentModule do
         slug: data[:slug],
         username: data[:username],
         secret: data[:secret],
-        project_id: data[:project_id]
+        project_id: data[:project_id],
+        uuid: nil
       })
 
     case EnvironmentContext.create_env(env) do

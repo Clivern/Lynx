@@ -155,10 +155,77 @@ defmodule Lynx.Module.SnapshotModule do
   @doc """
   Restore Snapshot
   """
-  def restore_snapshot(_uuid) do
+  def restore_snapshot(uuid) do
+    case get_snapshot_by_uuid(uuid) do
+      {:ok, snapshot} ->
+        data = Jason.decode!(snapshot.data)
+
+        for environment <- data["environments"] do
+          case EnvironmentContext.get_env_by_uuid(environment["uuid"]) do
+            nil ->
+              recreate_environment(environment)
+              {:ok, ""}
+
+            env ->
+              EnvironmentContext.delete_env(env)
+              recreate_environment(environment)
+              {:ok, ""}
+          end
+        end
+
+      {:not_found, msg} ->
+        {:error, msg}
+    end
+
+    {:ok, ""}
   end
 
-  def project_snapshot_data(uuid) do
+  defp recreate_environment(new_environment) do
+    # @TODO: Raise error on failure
+    data =
+      EnvironmentContext.new_env(%{
+        slug: new_environment["slug"],
+        name: new_environment["name"],
+        username: new_environment["username"],
+        secret: new_environment["secret"],
+        project_id: new_environment["project_id"],
+        uuid: new_environment["uuid"]
+      })
+
+    case EnvironmentContext.create_env(data) do
+      {:ok, environment} ->
+        for state <- new_environment["states"] do
+          data =
+            StateContext.new_state(%{
+              name: state["name"],
+              value: state["value"],
+              environment_id: environment.id,
+              uuid: state["uuid"]
+            })
+
+          case StateContext.create_state(data) do
+            {:ok, _} ->
+              {:ok, ""}
+
+            {:error, changeset} ->
+              messages =
+                changeset.errors()
+                |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+              {:error, Enum.at(messages, 0)}
+          end
+        end
+
+      {:error, changeset} ->
+        messages =
+          changeset.errors()
+          |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+        {:error, Enum.at(messages, 0)}
+    end
+  end
+
+  defp project_snapshot_data(uuid) do
     case ProjectContext.get_project_by_uuid(uuid) do
       nil ->
         {:error, "Project with ID #{uuid} not found"}
@@ -209,7 +276,7 @@ defmodule Lynx.Module.SnapshotModule do
     end
   end
 
-  def environment_snapshot_data(uuid) do
+  defp environment_snapshot_data(uuid) do
     case EnvironmentContext.get_env_by_uuid(uuid) do
       nil ->
         {:error, "Environment with ID #{uuid} not found"}
