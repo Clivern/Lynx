@@ -89,4 +89,106 @@ defmodule Lynx.Service.ValidatorService do
         default
     end
   end
+
+
+
+
+  def is_number?(value, err) do
+    case Validate.validate(value, type: :number) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_integer?(value, err) do
+    case Validate.validate(value, type: :integer) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_float?(value, err) do
+    case Validate.validate(value, type: :float) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_string?(value, err) do
+    case Validate.validate(value, type: :string) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_list?(value, err) do
+    case Validate.validate(value, type: :list) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def not_in?(value, list, err) do
+    case Validate.validate(value, type: :string, not_in: list) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def in?(value, list, err) do
+    case Validate.validate(value, type: :string, in: list) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_not_empty?(value, err) do
+    case Validate.validate(value, required: true) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_uuid?(value, err) do
+    case Validate.validate(value, type: :string, uuid: true) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_url?(value, err) do
+    case Validate.validate(value, type: :string, url: true) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_email?(value, err) do
+    case Validate.validate(value, type: :string, regex: ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/) do
+      {:ok, value} ->
+        {:ok, value}
+      {:error, _} ->
+        {:error, err}
+    end
+  end
 end

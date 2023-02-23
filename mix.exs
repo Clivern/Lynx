@@ -58,7 +58,7 @@ defmodule Lynx.MixProject do
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
       {:bcrypt_elixir, "~> 3.0"},
-      {:saturn, "~> 0.1.1"}
+      {:validate, "~> 1.3"}
     ]
   end
 
