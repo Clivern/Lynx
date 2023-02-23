@@ -59,7 +59,6 @@ defmodule LynxWeb.TeamController do
   List Action Endpoint
   """
   def list(conn, params) do
-    # @TODO: Get User Teams Only
     limit = ValidatorService.get_int(params["limit"], @default_list_limit)
     offset = ValidatorService.get_int(params["offset"], @default_list_offset)
 
