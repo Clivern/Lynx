@@ -90,13 +90,11 @@ defmodule Lynx.Service.ValidatorService do
     end
   end
 
-
-
-
   def is_number?(value, err) do
     case Validate.validate(value, type: :number) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -106,6 +104,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :integer) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -115,6 +114,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :float) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -124,6 +124,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :string) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -133,6 +134,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :list) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -142,6 +144,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :string, not_in: list) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -151,6 +154,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :string, in: list) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -160,6 +164,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, required: true) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -169,6 +174,7 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :string, uuid: true) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
@@ -178,15 +184,30 @@ defmodule Lynx.Service.ValidatorService do
     case Validate.validate(value, type: :string, url: true) do
       {:ok, value} ->
         {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
   end
 
   def is_email?(value, err) do
-    case Validate.validate(value, type: :string, regex: ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/) do
+    case Validate.validate(value,
+           type: :string,
+           regex: ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
+         ) do
       {:ok, value} ->
         {:ok, value}
+
+      {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_password?(value) do
+    case Validate.validate(value, type: :string, regex: ~r/^(?=.*\D)[^\s]{6,32}$/) do
+      {:ok, value} ->
+        {:ok, value}
+
       {:error, _} ->
         {:error, err}
     end
