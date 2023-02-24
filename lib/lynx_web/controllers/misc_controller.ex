@@ -81,29 +81,41 @@ defmodule LynxWeb.MiscController do
   Auth Action Endpoint
   """
   def auth(conn, params) do
-    result =
-      AuthService.login(
-        params["email"],
-        params["password"]
-      )
+    err = "Invalid email or password!"
 
-    case result do
-      {:success, session} ->
-        conn
-        |> put_status(:ok)
-        |> render(
-          "token_success.json",
-          %{
-            message: "User logged in successfully!",
-            token: session.value,
-            user: session.user_id
-          }
+    with {:ok, _} <- ValidatorService.is_string?(params["password"], err),
+         {:ok, password} <- ValidatorService.is_password?(params["password"], err),
+         {:ok, _} <- ValidatorService.is_string?(params["email"], err),
+         {:ok, email} <- ValidatorService.is_email?(params["email"], err) do
+      result =
+        AuthService.login(
+          email,
+          password
         )
 
-      {:error, message} ->
+      case result do
+        {:success, session} ->
+          conn
+          |> put_status(:ok)
+          |> render(
+            "token_success.json",
+            %{
+              message: "User logged in successfully!",
+              token: session.value,
+              user: session.user_id
+            }
+          )
+
+        {:error, message} ->
+          conn
+          |> put_status(:bad_request)
+          |> render("error.json", %{message: message})
+      end
+    else
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: message})
+        |> render("error.json", %{message: reason})
     end
   end
 end

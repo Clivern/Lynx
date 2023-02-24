@@ -212,4 +212,8 @@ defmodule Lynx.Service.ValidatorService do
         {:error, err}
     end
   end
+
+  def is_length_between?(value, min, max) do
+    String.length(value) >= min and String.length(value) <= max
+  end
 end

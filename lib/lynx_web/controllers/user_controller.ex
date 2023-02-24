@@ -155,7 +155,6 @@ defmodule LynxWeb.UserController do
   end
 
   defp validate_create_request(params) do
-
     with {:ok, name} <- Validate.validate_one(name),
          {:ok, email} <- Validate.validate_two(email),
          {:ok, address} <- Validate.validate_three(address),
