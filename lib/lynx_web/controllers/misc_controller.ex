@@ -87,6 +87,7 @@ defmodule LynxWeb.MiscController do
          {:ok, password} <- ValidatorService.is_password?(params["password"], err),
          {:ok, _} <- ValidatorService.is_string?(params["email"], err),
          {:ok, email} <- ValidatorService.is_email?(params["email"], err) do
+      # Authenticate
       result =
         AuthService.login(
           email,
