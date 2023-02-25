@@ -133,7 +133,7 @@ defmodule LynxWeb.Router do
 
   defp add_server_header(conn, _opts) do
     conn
-    |> put_resp_header("x-server-version", "lynx/0.12.8")
+    |> put_resp_header("x-server-version", "lynx/0.12.9")
   end
 
   # Enables LiveDashboard only for development
