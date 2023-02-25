@@ -5,7 +5,7 @@
 defmodule Lynx.MixProject do
   use Mix.Project
 
-  @version "0.12.7"
+  @version "0.12.8"
 
   def get_version, do: @version
 
@@ -57,7 +57,8 @@ defmodule Lynx.MixProject do
       {:gettext, "~> 0.25"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
-      {:bcrypt_elixir, "~> 3.0"}
+      {:bcrypt_elixir, "~> 3.0"},
+      {:sleeplocks, "~> 1.0"}
     ]
   end
 

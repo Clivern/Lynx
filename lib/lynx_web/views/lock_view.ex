@@ -10,13 +10,13 @@ defmodule LynxWeb.LockView do
   """
   def render("lock_data.json", %{lock: lock}) do
     %{
-      ID: lock.tf_uuid,
-      Path: lock.tf_path,
-      Operation: lock.tf_operation,
-      Who: lock.tf_who,
-      Version: lock.tf_version,
+      ID: lock.uuid,
+      Path: lock.path,
+      Operation: lock.operation,
+      Who: lock.who,
+      Version: lock.version,
       Created: lock.updated_at,
-      Info: lock.tf_info
+      Info: lock.info
     }
   end
 

@@ -76,7 +76,6 @@ defmodule Lynx.Context.LockContext do
       where: l.environment_id == ^environment_id,
       where: l.is_active == true
     )
-    |> lock("FOR UPDATE")
     |> limit(1)
     |> Repo.one()
   end

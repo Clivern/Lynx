@@ -16,6 +16,8 @@ defmodule Lynx.Module.LockModule do
   Lock an environment
   """
   def lock_action(params \\ %{}) do
+    :sleeplocks.new(1, name: :lynx_lock)
+
     case TeamContext.get_team_by_slug(params[:t_slug]) do
       nil ->
         {:not_found, "Team not found"}
@@ -43,16 +45,27 @@ defmodule Lynx.Module.LockModule do
                     is_active: true
                   })
 
-                case LockContext.create_lock(lock) do
-                  {:ok, _} ->
-                    {:success, ""}
+                case :sleeplocks.attempt(:lynx_lock) do
+                  :ok ->
+                    case LockContext.create_lock(lock) do
+                      {:ok, _} ->
+                        :sleeplocks.release(:lynx_lock)
+                        {:success, ""}
 
-                  {:error, changeset} ->
-                    messages =
-                      changeset.errors()
-                      |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+                      {:error, changeset} ->
+                        :sleeplocks.release(:lynx_lock)
 
-                    {:error, Enum.at(messages, 0)}
+                        messages =
+                          changeset.errors()
+                          |> Enum.map(fn {field, {message, _options}} ->
+                            "#{field}: #{message}"
+                          end)
+
+                        {:error, Enum.at(messages, 0)}
+                    end
+
+                  {:error, :unavailable} ->
+                    {:error, "Unable to hold a lock on environment"}
                 end
             end
         end
