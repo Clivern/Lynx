@@ -37,7 +37,7 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 #### Upcoming Features:
 
-- **Terraform Provider**: Automate creation of teams, users, projects, environments and snapshots with terraform.
+- **[Terraform Provider](https://github.com/Clivern/terraform-provider-lynx)**: Automate creation of teams, users, projects, environments and snapshots with terraform.
 - **Automated Scheduled Backups**: Enable automated scheduled backups for both project and environment state files to ensure data integrity and offer a recovery option at specific points in time.
 - **RESTful Endpoints Documentations:** Provide a documentations for all the supported endpoints.
 - **OAuth2 Authentication Support:** Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc

@@ -203,7 +203,7 @@ defmodule Lynx.Service.ValidatorService do
     end
   end
 
-  def is_password?(value) do
+  def is_password?(value, err) do
     case Validate.validate(value, type: :string, regex: ~r/^(?=.*\D)[^\s]{6,32}$/) do
       {:ok, value} ->
         {:ok, value}
@@ -213,7 +213,11 @@ defmodule Lynx.Service.ValidatorService do
     end
   end
 
-  def is_length_between?(value, min, max) do
-    String.length(value) >= min and String.length(value) <= max
+  def is_length_between?(value, min, max, err) do
+    if String.length(value) >= min and String.length(value) <= max do
+      {:ok, value}
+    else
+      {:error, err}
+    end
   end
 end

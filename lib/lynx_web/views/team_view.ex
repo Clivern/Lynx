@@ -6,6 +6,7 @@ defmodule LynxWeb.TeamView do
   use LynxWeb, :view
 
   alias Lynx.Module.UserModule
+  alias Lynx.Module.TeamModule
   alias Lynx.Module.ProjectModule
 
   # Render teams list
@@ -39,6 +40,7 @@ defmodule LynxWeb.TeamView do
       usersCount: UserModule.count_team_users(team.id),
       projectsCount: ProjectModule.count_projects_by_team(team.id),
       description: team.description,
+      members: TeamModule.get_team_members(team.id),
       createdAt: team.inserted_at,
       updatedAt: team.updated_at
     }

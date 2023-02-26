@@ -68,6 +68,20 @@ defmodule Lynx.Module.TeamModule do
   end
 
   @doc """
+  Get team members
+  """
+  def get_team_members(team_id) do
+    current_members = []
+
+    current_members =
+      for member <- UserContext.get_team_users(team_id) do
+        current_members ++ member.uuid
+      end
+
+    current_members
+  end
+
+  @doc """
   Update a team
   """
   def update_team(data \\ %{}) do
