@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.10.1" width="180" />
+    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.11.0" width="180" />
     <h3 align="center">Lynx</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
@@ -7,10 +7,10 @@
             <img src="https://github.com/Clivern/Lynx/actions/workflows/server_ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Lynx/releases">
-            <img src="https://img.shields.io/badge/Version-0.10.1-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.11.0-1abc9c.svg">
         </a>
         <a href="https://hub.docker.com/r/clivern/lynx/tags">
-            <img src="https://img.shields.io/badge/Docker-0.10.1-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Docker-0.11.0-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/Lynx/blob/master/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
