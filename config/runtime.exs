@@ -21,20 +21,34 @@ if System.get_env("PHX_SERVER") do
 end
 
 if config_env() == :prod do
-  database_url =
-    System.get_env("DATABASE_URL") ||
-      raise """
-      environment variable DATABASE_URL is missing.
-      For example: ecto://USER:PASS@HOST/DATABASE
-      """
-
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 
-  config :campfire, Campfire.Repo,
-    # ssl: true,
-    url: database_url,
-    pool_size: String.to_integer(System.get_env("POOL_SIZE") || "10"),
-    socket_options: maybe_ipv6
+  if System.get_env("DB_SSL") == "on" do
+    config :campfire, Campfire.Repo,
+      username: System.get_env("DB_USERNAME"),
+      password: System.get_env("DB_PASSWORD"),
+      hostname: System.get_env("DB_HOSTNAME"),
+      database: System.get_env("DB_DATABASE"),
+      port: String.to_integer(System.get_env("DB_PORT")),
+      maintenance_database: System.get_env("DB_DATABASE"),
+      pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
+      socket_options: maybe_ipv6,
+      ssl: true,
+      ssl_opts: [
+        verify: :verify_peer,
+        cacertfile: System.get_env("DB_CA_CERTFILE_PATH")
+      ]
+  else
+    config :campfire, Campfire.Repo,
+      username: System.get_env("DB_USERNAME"),
+      password: System.get_env("DB_PASSWORD"),
+      hostname: System.get_env("DB_HOSTNAME"),
+      database: System.get_env("DB_DATABASE"),
+      port: String.to_integer(System.get_env("DB_PORT")),
+      maintenance_database: System.get_env("DB_DATABASE"),
+      pool_size: String.to_integer(System.get_env("DB_POOL_SIZE") || "10"),
+      socket_options: maybe_ipv6
+  end
 
   # The secret key base is used to sign/encrypt cookies and other secrets.
   # A default value is used in config/dev.exs and config/test.exs but you
@@ -42,17 +56,17 @@ if config_env() == :prod do
   # to check this value into version control, so we use an environment
   # variable instead.
   secret_key_base =
-    System.get_env("SECRET_KEY_BASE") ||
+    System.get_env("APP_SECRET") ||
       raise """
       environment variable SECRET_KEY_BASE is missing.
       You can generate one by calling: mix phx.gen.secret
       """
 
-  host = System.get_env("PHX_HOST") || "example.com"
-  port = String.to_integer(System.get_env("PORT") || "4000")
+  host = System.get_env("APP_HOST") || "example.com"
+  port = String.to_integer(System.get_env("APP_PORT") || "4000")
 
   config :campfire, CampfireWeb.Endpoint,
-    url: [host: host, port: 443, scheme: "https"],
+    url: [host: host, port: port, scheme: System.get_env("APP_HTTP_SCHEMA") || "http"],
     http: [
       # Enable IPv6 and bind on all interfaces.
       # Set it to  {0, 0, 0, 0, 0, 0, 0, 1} for local network only access.

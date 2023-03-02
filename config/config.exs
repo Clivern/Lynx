@@ -12,7 +12,7 @@ config :campfire,
 
 # Configures the endpoint
 config :campfire, CampfireWeb.Endpoint,
-  url: [host: "localhost"],
+  url: [host: System.get_env("APP_HOST") || "localhost"],
   render_errors: [view: CampfireWeb.ErrorView, accepts: ~w(html json), layout: false],
   pubsub_server: Campfire.PubSub,
   live_view: [signing_salt: "/FQ30bq7"]

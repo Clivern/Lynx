@@ -38,3 +38,5 @@ campfire_dev*
 
 .terraform
 .terraform.lock.hcl
+
+.env

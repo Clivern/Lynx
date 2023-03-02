@@ -4,7 +4,7 @@ iex          ?= iex
 
 help: Makefile
 	@echo
-	@echo " Choose a command run in campfire:"
+	@echo " Choose a command run in Campfire:"
 	@echo
 	@sed -n 's/^##//p' $< | column -t -s ':' |  sed -e 's/^/ /'
 	@echo
@@ -50,6 +50,7 @@ build:
 release:
 	@echo ">> ============= Release the code ============= <<"
 	-rm -rf _build
+	mix phx.digest
 	MIX_ENV=prod mix release
 
 
