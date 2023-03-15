@@ -15,7 +15,10 @@
         <a href="https://github.com/Clivern/terraform-provider-lynx">
             <img src="https://img.shields.io/badge/Terraform-Provider-yellow.svg">
         </a>
-        <a href="https://github.com/Clivern/Lynx/blob/master/LICENSE">
+        <a href="https://github.com/Clivern/Lynx/actions/workflows/docker.yml">
+            <img src="https://github.com/Clivern/Lynx/actions/workflows/docker.yml/badge.svg">
+        </a>
+        <a href="https://github.com/Clivern/Lynx/blob/main/LICENSE">
             <img src="https://img.shields.io/badge/LICENSE-MIT-orange.svg">
         </a>
     </p>
