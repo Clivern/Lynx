@@ -44,6 +44,7 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 #### Upcoming Features:
 
+- **State Navigation:** Add ability to view current and old states for each environment.
 - **OAuth2 Authentication Support:** Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
 
 
