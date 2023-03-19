@@ -14,6 +14,7 @@ defmodule LynxWeb.Endpoint do
     signing_salt: "Z+Rs6bdk"
   ]
 
+
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
 
   # Serve at "/" the static files from "priv/static" directory.
@@ -40,6 +41,9 @@ defmodule LynxWeb.Endpoint do
     cookie_key: "request_logger"
 
   plug Plug.RequestId
+
+  plug PromEx.Plug, prom_ex_module: Lynx.PromEx
+
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug Plug.Parsers,

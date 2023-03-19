@@ -19,7 +19,9 @@ defmodule Lynx.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Lynx.PubSub},
       # Start the Endpoint (http/https)
-      LynxWeb.Endpoint
+      LynxWeb.Endpoint,
+      # PromEx
+      Lynx.PromEx
       # Start a worker by calling: Lynx.Worker.start_link(arg)
       # {Lynx.Workers, %{}}
     ]

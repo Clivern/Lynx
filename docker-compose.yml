@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   app:
-    image: clivern/lynx:0.11.3
+    image: clivern/lynx:0.11.4
     environment:
       APP_NAME: Lynx
       APP_PORT: 4000
