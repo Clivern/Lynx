@@ -62,7 +62,7 @@ defmodule Lynx.PromEx do
       # PromEx built in plugins
       Plugins.Application,
       Plugins.Beam,
-      {Plugins.Phoenix, router: LynxWeb.Router, endpoint: LynxWeb.Endpoint},
+      {Plugins.Phoenix, router: LynxWeb.Router, endpoint: LynxWeb.Endpoint}
       # Plugins.Ecto,
       # Plugins.Oban,
       # Plugins.PhoenixLiveView,
