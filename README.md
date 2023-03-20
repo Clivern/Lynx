@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.11.5" width="180" />
+    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.11.6" width="180" />
     <h3 align="center">Lynx</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
@@ -7,10 +7,10 @@
             <img src="https://github.com/Clivern/Lynx/actions/workflows/server_ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Lynx/releases">
-            <img src="https://img.shields.io/badge/Version-0.11.5-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.11.6-1abc9c.svg">
         </a>
         <a href="https://hub.docker.com/r/clivern/lynx/tags">
-            <img src="https://img.shields.io/badge/Docker-0.11.5-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Docker-0.11.6-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/terraform-provider-lynx">
             <img src="https://img.shields.io/badge/Terraform-Provider-yellow.svg">
@@ -44,7 +44,6 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 #### Upcoming Features:
 
-- **State Navigation:** Add ability to view current and old states for each environment.
 - **OAuth2 Authentication Support:** Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
 
 
@@ -63,17 +62,30 @@ Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 
 ### Ubuntu Deployment
 
-1. Install Elixir: You can install Elixir on Ubuntu using the following commands:
+1. Install elixir and `PostgreSQL`
 
 ```zsh
-$ sudo apt-get update
-$ sudo apt-get install elixir
+$ apt-get update
+$ apt-get upgrade -y
+$ apt-get install -y postgresql \
+    elixir \
+    erlang-dev \
+    make \
+    build-essential \
+    erlang-os-mon \
+    inotify-tools \
+    erlang-xmerl
 ```
 
-2. Install PostgreSQL: Install PostgreSQL on Ubuntu with:
+2. Setup `PostgreSQL` database, username and password
 
 ```zsh
-$ sudo apt-get install postgresql postgresql-contrib
+# Create PostgreSQL user with password
+$ sudo -u postgres psql -c "CREATE USER lynx WITH PASSWORD 'lynx';"
+$ sudo -u postgres psql -c "ALTER USER lynx CREATEDB;"
+
+# Create database
+$ sudo -u postgres psql -c "CREATE DATABASE lynx_dev OWNER lynx;"
 ```
 
 3. Configure Environment Variables: Set up the required environment variables from `.env.example`.
@@ -82,17 +94,18 @@ $ sudo apt-get install postgresql postgresql-contrib
 $ mkdir -p /etc/lynx
 $ cd /etc/lynx
 $ git clone https://github.com/Clivern/Lynx.git app
-$ cp app/.env.example .env.local # Adjust the database configs
+$ cd /etc/lynx/app
+$ cp .env.example .env.local # Adjust the database configs
 ```
 
 4. Migrate the database
 
 ```zsh
-$ cd /etc/lynx/app
+$ make deps
 $ make migrate
 ```
 
-5. Create a Systemd Service File.
+5. Create a systemd service file `/etc/systemd/system/lynx.service`
 
 ```zsh
 [Unit]
@@ -100,7 +113,9 @@ Description=Lynx
 
 [Service]
 Type=simple
+Environment=HOME=/root
 EnvironmentFile=/etc/lynx/app/.env.local
+WorkingDirectory=/etc/lynx/app
 ExecStart=/usr/bin/mix phx.server
 
 [Install]
@@ -108,8 +123,8 @@ WantedBy=multi-user.target
 ```
 
 ```zsh
-sudo systemctl enable lynx.service
-sudo systemctl start lynx.service
+$ systemctl enable lynx.service
+$ systemctl start lynx.service
 ```
 
 
