@@ -84,7 +84,7 @@ defmodule Lynx.Service.ValidatorService do
   end
 
   def is_url?(value, err) do
-    case URI.parse(url) do
+    case URI.parse(value) do
       %URI{scheme: nil} -> {:error, err}
       %URI{host: nil} -> {:error, err}
       _ -> {:ok, value}
