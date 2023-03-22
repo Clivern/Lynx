@@ -72,7 +72,7 @@ defmodule LynxWeb.PageController do
         conn
         |> render("install.html",
           data: %{
-            app_name: SettingsModule.get_config("app_name", "")
+            app_name: SettingsModule.get_config("app_name", "Lynx")
           }
         )
     end
