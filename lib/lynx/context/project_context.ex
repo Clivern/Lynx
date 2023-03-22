@@ -21,7 +21,7 @@ defmodule Lynx.Context.ProjectContext do
       description: attrs.description,
       slug: attrs.slug,
       team_id: attrs.team_id,
-      uuid: Ecto.UUID.generate()
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 

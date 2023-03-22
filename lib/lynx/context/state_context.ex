@@ -20,7 +20,7 @@ defmodule Lynx.Context.StateContext do
       name: attrs.name,
       value: attrs.value,
       environment_id: attrs.environment_id,
-      uuid: attrs.uuid || Ecto.UUID.generate()
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 

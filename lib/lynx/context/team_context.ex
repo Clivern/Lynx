@@ -15,12 +15,12 @@ defmodule Lynx.Context.TeamContext do
   @doc """
   Get a new team
   """
-  def new_team(team \\ %{}) do
+  def new_team(attrs \\ %{}) do
     %{
-      name: team.name,
-      description: team.description,
-      slug: team.slug,
-      uuid: Ecto.UUID.generate()
+      name: attrs.name,
+      description: attrs.description,
+      slug: attrs.slug,
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 

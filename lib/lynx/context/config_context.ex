@@ -13,30 +13,18 @@ defmodule Lynx.Context.ConfigContext do
   alias Lynx.Model.Config
 
   @doc """
-  Retrieves a new configuration with the provided attributes.
-
-  ## Parameters:
-    - attrs (map): A map containing configuration attributes like name, value.
-
-  ## Returns:
-    - Map: A new configuration map with name, value, and a generated UUID.
+  Retrieves a new configuration with the provided attributes
   """
   def new_config(attrs \\ %{}) do
     %{
       name: attrs.name,
       value: attrs.value,
-      uuid: Ecto.UUID.generate()
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 
   @doc """
-  Creates a new configuration record in the database.
-
-  ## Parameters:
-    - attrs (map): A map containing configuration attributes like name, value.
-
-  ## Returns:
-    - Config: The newly created configuration record.
+  Creates a new configuration record
   """
   def create_config(attrs \\ %{}) do
     %Config{}
@@ -45,26 +33,14 @@ defmodule Lynx.Context.ConfigContext do
   end
 
   @doc """
-  Retrieves a configuration record by its ID.
-
-  ## Parameters:
-    - id (integer): The ID of the configuration record.
-
-  ## Returns:
-    - Config: The configuration record with the specified ID.
+  Retrieves a configuration record by its ID
   """
   def get_config_by_id(id) do
     Repo.get(Config, id)
   end
 
   @doc """
-  Retrieves a configuration record by its UUID.
-
-  ## Parameters:
-    - uuid (string): The UUID of the configuration record.
-
-  ## Returns:
-    - Config: The configuration record with the specified UUID.
+  Retrieves a configuration record by its UUID
   """
   def get_config_by_uuid(uuid) do
     from(
@@ -76,13 +52,7 @@ defmodule Lynx.Context.ConfigContext do
   end
 
   @doc """
-  Retrieves a configuration record by its name.
-
-  ## Parameters:
-    - name (string): The name of the configuration record.
-
-  ## Returns:
-    - Config: The configuration record with the specified name.
+  Retrieves a configuration record by its name
   """
   def get_config_by_name(name) do
     from(
@@ -94,14 +64,7 @@ defmodule Lynx.Context.ConfigContext do
   end
 
   @doc """
-  Updates an existing configuration record with new attributes.
-
-  ## Parameters:
-    - config (Config): The existing configuration record to update.
-    - attrs (map): A map containing new attributes to update in the configuration record.
-
-  ## Returns:
-    - Config: The updated configuration record.
+  Updates an existing configuration record
   """
   def update_config(config, attrs) do
     config
@@ -110,13 +73,7 @@ defmodule Lynx.Context.ConfigContext do
   end
 
   @doc """
-  Deletes an existing configuration record from the database.
-
-  ## Parameters:
-    - config (Config): The existing configuration record to delete.
-
-  ## Returns:
-    - :ok if successful, otherwise an error message.
+  Deletes an existing configuration record
   """
   def delete_config(config) do
     Repo.delete(config)

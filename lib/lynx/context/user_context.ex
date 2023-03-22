@@ -13,35 +13,23 @@ defmodule Lynx.Context.UserContext do
   alias Lynx.Model.{Team, UserMeta, User, UserSession, UserTeam}
 
   @doc """
-  Creates a new user with the provided attributes.
-
-  ## Parameters:
-    - user (map): A map containing user attributes like email, name, password_hash, verified, last_seen, role, api_key.
-
-  ## Returns:
-    - Map: A new user map with email, name, password_hash, verified, last_seen, role, api_key, and a generated UUID.
+  Creates a new user with the provided attributes
   """
-  def new_user(user \\ %{}) do
+  def new_user(attrs \\ %{}) do
     %{
-      email: user.email,
-      name: user.name,
-      password_hash: user.password_hash,
-      verified: user.verified,
-      last_seen: user.last_seen,
-      role: user.role,
-      api_key: user.api_key,
-      uuid: Ecto.UUID.generate()
+      email: attrs.email,
+      name: attrs.name,
+      password_hash: attrs.password_hash,
+      verified: attrs.verified,
+      last_seen: attrs.last_seen,
+      role: attrs.role,
+      api_key: attrs.api_key,
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 
   @doc """
-  Creates a new user meta with the provided attributes.
-
-  ## Parameters:
-    - meta (map): A map containing meta attributes like key, value, user_id.
-
-  ## Returns:
-    - Map: A new user meta map with key, value, and user_id.
+  Creates a new user meta with the provided attributes
   """
   def new_meta(meta \\ %{}) do
     %{
@@ -52,13 +40,7 @@ defmodule Lynx.Context.UserContext do
   end
 
   @doc """
-  Creates a new user session with the provided attributes.
-
-  ## Parameters:
-    - session (map): A map containing session attributes like value, expire_at, user_id.
-
-  ## Returns:
-    - Map: A new session map with value, expire_at, and user_id.
+  Creates a new user session with the provided attributes
   """
   def new_session(session \\ %{}) do
     %{
@@ -69,13 +51,7 @@ defmodule Lynx.Context.UserContext do
   end
 
   @doc """
-  Creates a new user record in the database.
-
-  ## Parameters:
-    - attrs (map): A map containing user attributes to create the user.
-
-  ## Returns:
-    - User: The newly created user record.
+  Creates a new user record in the database
   """
   def create_user(attrs \\ %{}) do
     %User{}
@@ -84,26 +60,14 @@ defmodule Lynx.Context.UserContext do
   end
 
   @doc """
-  Retrieves a user record by its ID.
-
-  ## Parameters:
-    - id (integer): The ID of the user record.
-
-  ## Returns:
-    - User: The user record with the specified ID.
+  Retrieves a user record by its ID
   """
   def get_user_by_id(id) do
     Repo.get(User, id)
   end
 
   @doc """
-  Retrieves the ID of a user by its UUID.
-
-  ## Parameters:
-    - uuid (string): The UUID of the user.
-
-  ## Returns:
-    - integer: The ID of the user with the specified UUID.
+  Retrieves the ID of a user by its UUID
   """
   def get_user_id_with_uuid(uuid) do
     case get_user_by_uuid(uuid) do
@@ -116,13 +80,7 @@ defmodule Lynx.Context.UserContext do
   end
 
   @doc """
-  Retrieves a user record by its UUID.
-
-  ## Parameters:
-    - uuid (string): The UUID of the user.
-
-  ## Returns:
-    - User: The user record with the specified UUID.
+  Retrieves a user record by its UUID
   """
   def get_user_by_uuid(uuid) do
     from(

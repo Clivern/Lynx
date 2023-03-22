@@ -15,13 +15,13 @@ defmodule Lynx.Context.TaskContext do
   @doc """
   Get a new task
   """
-  def new_task(task \\ %{}) do
+  def new_task(attrs \\ %{}) do
     %{
-      payload: task.payload,
-      result: task.result,
-      status: task.status,
-      run_at: task.run_at,
-      uuid: Ecto.UUID.generate()
+      payload: attrs.payload,
+      result: attrs.result,
+      status: attrs.status,
+      run_at: attrs.run_at,
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 

@@ -15,16 +15,16 @@ defmodule Lynx.Context.SnapshotContext do
   @doc """
   Get a new snapshot
   """
-  def new_snapshot(snapshot \\ %{}) do
+  def new_snapshot(attrs \\ %{}) do
     %{
-      title: snapshot.title,
-      description: snapshot.description,
-      record_type: snapshot.record_type,
-      record_uuid: snapshot.record_uuid,
-      status: snapshot.status,
-      data: snapshot.data,
-      team_id: snapshot.team_id,
-      uuid: Ecto.UUID.generate()
+      title: attrs.title,
+      description: attrs.description,
+      record_type: attrs.record_type,
+      record_uuid: attrs.record_uuid,
+      status: attrs.status,
+      data: attrs.data,
+      team_id: attrs.team_id,
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 

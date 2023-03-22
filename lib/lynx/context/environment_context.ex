@@ -22,7 +22,7 @@ defmodule Lynx.Context.EnvironmentContext do
       username: attrs.username,
       secret: attrs.secret,
       project_id: attrs.project_id,
-      uuid: attrs.uuid || Ecto.UUID.generate()
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 

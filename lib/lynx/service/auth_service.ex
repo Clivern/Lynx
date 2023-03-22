@@ -65,36 +65,6 @@ defmodule Lynx.Service.AuthService do
   end
 
   @doc """
-  Refresh Session
-  """
-  def refresh_session(session) do
-    diff = DateTime.diff(session.expire_at, DateTime.utc_now(), :second)
-
-    # If expired
-    if diff < 1 do
-      result =
-        UserContext.update_user_session(session, %{
-          expire_at: DateTime.utc_now() |> DateTime.add(600, :second),
-          value: get_random_salt(30)
-        })
-
-      case result do
-        {:ok, session} ->
-          {true, session}
-
-        {:error, changeset} ->
-          messages =
-            changeset.errors()
-            |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
-
-          {:error, Enum.at(messages, 0)}
-      end
-    else
-      {false, session}
-    end
-  end
-
-  @doc """
   Is Authenticated
   """
   def is_authenticated(user_id, session_value)

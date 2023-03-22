@@ -17,14 +17,14 @@ defmodule Lynx.Context.LockContext do
   """
   def new_lock(attrs \\ %{}) do
     %{
-      uuid: attrs.uuid,
       environment_id: attrs.environment_id,
       operation: attrs.operation,
       info: attrs.info,
       who: attrs.who,
       version: attrs.version,
       path: attrs.path,
-      is_active: attrs.is_active
+      is_active: attrs.is_active,
+      uuid: Map.get(attrs, :uuid, Ecto.UUID.generate())
     }
   end
 
