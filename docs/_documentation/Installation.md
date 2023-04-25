@@ -12,3 +12,136 @@ hero:
 ---
 
 ## What is Lynx?
+
+Lynx is a Fast, Secure and Reliable Terraform Backend. A Terraform backend is a resource that stores the state file for a Terraform configuration. The state file is a crucial component in Terraform, as it keeps track of the resources created by your configuration and their metadata. This allows Terraform to map the real-world resources to the configuration, perform reconciliation, and plan future changes.
+
+There are two main types of Terraform backends:
+
+- Local Backend: This is the default backend where the state file is stored locally on the filesystem. It's suitable for small, single-user configurations but not recommended for team environments or production use due to the risk of state file corruption or conflicts.
+- Remote Backends: These backends store the state file in a remote, shared storage location like cloud storage services (e.g., AWS S3, Azure Blob Storage), HashiCorp Terraform Cloud, or a database. Remote backends are essential for team collaboration, enforcing state locking to prevent corruptions, and providing durability and backups for state files.
+
+Some key benefits of using remote backends include:
+
+- Collaboration: Multiple users can access and update the same state file concurrently without conflicts or corruption.
+- State Locking: Prevents concurrent operations from corrupting the state file by allowing only one user to modify it at a time.
+- Encryption: Many remote backends support encrypting the state file at rest for enhanced security.
+- Versioning: Some backends support state file versioning, allowing you to revert to previous versions if needed.
+
+
+## Lynx Features
+
+- Simplified Setup: Easy installation and maintenance for hassle-free usage.
+- Team Collaboration: Manage multiple teams and users seamlessly.
+- User-Friendly Interface: Enjoy a visually appealing dashboard for intuitive navigation.
+- Project Flexibility: Support for multiple projects within each team.
+- Environment Management: Create and manage multiple environments per project.
+- State Versioning: Keep track of Terraform state versions for better control.
+- Rollback Capability: Easily revert to previous states for efficient infrastructure management.
+- Terraform Locking Support: The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
+- RESTful Endpoints: for seamless teams, users, projects, environments, and snapshots management.
+- Snapshots Support: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
+- [Terraform Provider](https://github.com/Clivern/terraform-provider-lynx): Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
+- OAuth2 Authentication Support: Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
+
+
+## Deployment
+
+### With docker and docker compose
+
+Lynx requires a [PostgreSQL](https://www.postgresql.org/) database. No Object Storage is required.
+
+To run `Lynx` alone on port `4000` on docker.
+
+```bash
+$ apt-get install docker.io docker-compose -y
+
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml \
+    -O docker-compose.yml
+
+$ docker-compose up -d
+```
+
+To run `Lynx` behind nginx reverse proxy on port `80` on docker.
+
+```bash
+$ apt-get install docker.io docker-compose -y
+
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-nginx.yml \
+    -O docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf \
+    -O nginx.conf
+
+$ docker-compose up -d
+```
+
+Then go to the public URL (for example `http://lynx.sh/` or `http://localhost` or `http://localhost:4000`) and provide the required informtaion to install Lynx.
+
+
+### Manually on Ubuntu
+
+1. Install elixir and `PostgreSQL`
+
+```zsh
+$ apt-get update
+$ apt-get upgrade -y
+$ apt-get install -y postgresql \
+    elixir \
+    erlang-dev \
+    make \
+    build-essential \
+    erlang-os-mon \
+    inotify-tools \
+    erlang-xmerl
+```
+
+2. Setup `PostgreSQL` database, username and password
+
+```zsh
+# Create PostgreSQL user with password
+$ sudo -u postgres psql -c "CREATE USER lynx WITH PASSWORD 'lynx';"
+$ sudo -u postgres psql -c "ALTER USER lynx CREATEDB;"
+
+# Create database
+$ sudo -u postgres psql -c "CREATE DATABASE lynx_dev OWNER lynx;"
+```
+
+3. Configure Environment Variables: Set up the required environment variables from `.env.example`.
+
+```zsh
+$ mkdir -p /etc/lynx
+$ cd /etc/lynx
+$ git clone https://github.com/Clivern/Lynx.git app
+$ cd /etc/lynx/app
+$ cp .env.example .env.local # Adjust the database configs and application port
+```
+
+4. Migrate the database
+
+```zsh
+$ make deps
+$ make migrate
+```
+
+5. Create a systemd service file `/etc/systemd/system/lynx.service`
+
+```zsh
+[Unit]
+Description=Lynx
+
+[Service]
+Type=simple
+Environment=HOME=/root
+EnvironmentFile=/etc/lynx/app/.env.local
+WorkingDirectory=/etc/lynx/app
+ExecStart=/usr/bin/mix phx.server
+
+[Install]
+WantedBy=multi-user.target
+```
+
+```zsh
+$ systemctl enable lynx.service
+$ systemctl start lynx.service
+```
+
+Then go to the public URL (for example `http://lynx.sh/` or `http://localhost` or `http://localhost:4000`) and provide the required informtaion to install Lynx.

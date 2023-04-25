@@ -11,10 +11,8 @@ tok:
         nav:
             - item_name: Homepage
               item_url: /
-        cta:
-            label: Documentation
-            url: /documentation
-            icon: book
+            - item_name: Documentation
+              item_url: /documentation
     footer:
         logo:
             text: Lynx
