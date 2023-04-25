@@ -13,7 +13,7 @@ hero:
       url: https://github.com/Clivern/Lynx
       external_url: true
       style: bordered
-      icon: gitlab
+      icon: github
     - label: Support
       url: https://github.com/Clivern/Lynx/issues
       external_url: true
