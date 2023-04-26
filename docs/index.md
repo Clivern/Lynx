@@ -7,7 +7,7 @@ keywords: terraform-backend, lynx, terraform, clivern
 hero:
   title: A Fast, Secure and Reliable Terraform Backend
   text: Lynx is the Ultimate Terraform backend solution, engineered to streamline your Infrastructure Management process. It's built with the Phoenix Framework.
-  background_image:
+  background_image: https://images.unsplash.com/photo-1474031317822-f51f48735ddd?q=80&w=2670&auto=format&fit=crop
   buttons:
     - label: Github
       url: https://github.com/Clivern/Lynx
