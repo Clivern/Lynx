@@ -46,7 +46,7 @@ Some key benefits of using remote backends include:
 
 ## Deployment
 
-### With docker and docker compose
+#### With docker and docker compose
 
 Lynx requires a [PostgreSQL](https://www.postgresql.org/) database. No Object Storage is required.
 
@@ -77,9 +77,9 @@ $ docker-compose up -d
 Then go to the public URL (for example `http://lynx.sh/` or `http://localhost` or `http://localhost:4000`) and provide the required informtaion to install Lynx.
 
 
-### Manually on Ubuntu
+#### Manually on Ubuntu
 
-1. Install elixir and `PostgreSQL`
+- Install `elixir`, `erlang` and `PostgreSQL`
 
 ```zsh
 $ apt-get update
@@ -94,7 +94,7 @@ $ apt-get install -y postgresql \
     erlang-xmerl
 ```
 
-2. Setup `PostgreSQL` database, username and password
+- Setup `PostgreSQL` database, username and password
 
 ```zsh
 # Create PostgreSQL user with password
@@ -105,24 +105,24 @@ $ sudo -u postgres psql -c "ALTER USER lynx CREATEDB;"
 $ sudo -u postgres psql -c "CREATE DATABASE lynx_dev OWNER lynx;"
 ```
 
-3. Configure Environment Variables: Set up the required environment variables from `.env.example`.
+- Configure Environment Variables: Set up the required environment variables from `.env.example`.
 
 ```zsh
 $ mkdir -p /etc/lynx
 $ cd /etc/lynx
 $ git clone https://github.com/Clivern/Lynx.git app
 $ cd /etc/lynx/app
-$ cp .env.example .env.local # Adjust the database configs and application port
+$ cp .env.example .env.local # Adjust the database configs and application port to be 80 for example
 ```
 
-4. Migrate the database
+- Install dependencies and migrate the database
 
 ```zsh
 $ make deps
 $ make migrate
 ```
 
-5. Create a systemd service file `/etc/systemd/system/lynx.service`
+- Create a systemd service file `/etc/systemd/system/lynx.service`
 
 ```zsh
 [Unit]
