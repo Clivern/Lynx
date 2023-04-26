@@ -44,6 +44,21 @@ Some key benefits of using remote backends include:
 - OAuth2 Authentication Support: Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
 
 
+## Why Lynx?
+
+There are several compelling reasons to choose a custom Terraform backend over AWS `S3`, `PostgreSQL`, or `Terraform Cloud`, especially when considering the cost:
+
+- Team Collaboration and User Management: The custom backend offers robust team collaboration and user management capabilities, which can be particularly valuable for organizations with multiple teams and users working on different projects. This feature is not readily available in AWS S3 or PostgreSQL backends, and while Terraform Cloud provides similar functionality, it comes at a cost.
+
+- Project and Environment Management: The ability to manage multiple projects and environments within each project is a significant advantage. This level of organization and separation can be challenging to achieve with AWS S3 or PostgreSQL backends, and Terraform Cloud's pricing model can become expensive for organizations with numerous projects and environments.
+
+- State Versioning and Rollback: The state versioning and rollback capabilities provided by the custom backend can be invaluable for maintaining control over your infrastructure and ensuring data integrity. While AWS S3 and PostgreSQL backends offer some versioning capabilities, the custom backend's rollback feature can simplify the process of reverting to previous states, potentially saving time and effort.
+
+- RESTful Endpoints and Automation: The availability of RESTful endpoints and a Terraform provider can greatly simplify the automation and management of teams, users, projects, environments, and snapshots. This level of automation can be challenging to achieve with AWS S3 or PostgreSQL backends and may require additional tooling or custom scripts.
+
+- Authentication Support: The support for OAuth2 authentication providers like Azure AD, Keycloak, and Okta can be a significant advantage for organizations with existing authentication infrastructure or specific security requirements. Integrating with these providers can be more complex with AWS S3 or PostgreSQL backends.
+
+
 ## Deployment
 
 #### With docker and docker compose
