@@ -394,7 +394,9 @@
       // required_providers {}
 
       backend "http" {
+        // Best to define as environment variable $ export TF_HTTP_USERNAME=$username
         username = "$username"
+        // Best to define as environment variable $ export TF_HTTP_PASSWORD=$secret
         password = "$secret"
         address = "<%= @data.app_url %>/client/$team/$project/$env/state"
         lock_address = "<%= @data.app_url %>/client/$team/$project/$env/lock"

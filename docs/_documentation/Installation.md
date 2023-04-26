@@ -160,3 +160,9 @@ $ systemctl start lynx.service
 ```
 
 Then go to the public URL (for example `http://lynx.sh/` or `http://localhost` or `http://localhost:4000`) and provide the required informtaion to install Lynx.
+
+
+![Image](/assets/images/install_page.png)
+
+![Image](/assets/images/home_page.png)
+
