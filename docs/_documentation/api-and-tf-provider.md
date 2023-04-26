@@ -194,12 +194,12 @@ resource "lynx_snapshot" "my_snapshot" {
 }
 ```
 
-The provided code is a Terraform configuration that uses the "lynx" provider to manage resources in a hypothetical API. Here's a brief explanation:
+The provided code is a Terraform configuration that uses the `lynx` provider to manage resources in a hypothetical API. Here's a brief explanation:
 
 
 #### Providers
 
-The `required_providers` block specifies that the `lynx provider` (version 0.3.0) should be used. The provider block configures the `lynx provider` with the `API URL` and `API key`.
+The `required_providers` block specifies that the `lynx provider` (version `0.3.0`) should be used. The provider block configures the `lynx provider` with the `API URL` and `API key`.
 
 
 #### Resources
