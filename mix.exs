@@ -58,7 +58,8 @@ defmodule Lynx.MixProject do
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
       {:bcrypt_elixir, "~> 3.0"},
-      {:prom_ex, "~> 1.9.0"}
+      {:prom_ex, "~> 1.9.0"},
+      {:httpoison, "~> 2.2"}
     ]
   end
 
