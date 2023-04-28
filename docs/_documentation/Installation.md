@@ -41,7 +41,7 @@ Some key benefits of using remote backends include:
 - RESTful Endpoints: for seamless teams, users, projects, environments, and snapshots management.
 - Snapshots Support: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
 - [Terraform Provider](https://github.com/Clivern/terraform-provider-lynx): Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
-- OAuth2 Authentication Support: Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
+- Single Sign-On (SSO): Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
 
 
 ## Why Lynx?
