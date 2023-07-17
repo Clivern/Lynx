@@ -13,7 +13,7 @@ hero:
 
 ## Lynx RESTful API
 
-We provide a [Swagger/OpenAPI Specification](https://raw.githubusercontent.com/Clivern/Lynx/main/api.yml) that defines the structure and behavior of a RESTful API. You can use [the swagger editor](https://editor.swagger.io/) to render the API documentation.
+We provide a [Swagger/OpenAPI Specification](https://raw.githubusercontent.com/Clivern/Lynx/main/api.yml) that defines the structure and behavior of a RESTful API. You can use [the swagger editor](https://editor.swagger.io/) to render the API documentation or [check this online guide](https://lynx.apidocumentation.com/reference)
 
 Here's a brief documentation on how to use this API:
 

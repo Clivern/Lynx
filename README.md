@@ -37,7 +37,7 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 - State Versioning: Keep track of Terraform state versions for better control.
 - Rollback Capability: Easily revert to previous states for efficient infrastructure management.
 - Terraform Locking Support: The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
-- RESTful Endpoints: for seamless teams, users, projects, environments, and snapshots management.
+- [RESTful Endpoints](https://lynx.apidocumentation.com/reference): for seamless teams, users, projects, environments, and snapshots management.
 - Snapshots Support: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
 - [Terraform Provider](https://github.com/Clivern/terraform-provider-lynx): Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
 
@@ -90,16 +90,17 @@ Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 
 #### Manual Installation
 
-Please check [this guide](./docs/how-to/deploy-on-ubuntu) for a manual setup on Ubuntu server.
+Please check [this guide](https://lynx.clivern.com/documentation/Installation/) for a manual setup on Ubuntu server.
 
 
 #### Important Links
 
-| Name            | Description                                                                                        |
-| --------------- | -------------------------------------------------------------------------------------------------- |
-| Bug Tracker     | [Submit issues on GitHub](https://github.com/clivern/lynx/issues)                                  |
-| Security Issues | [Submit security vulnerability on GitHub](https://github.com/Clivern/Lynx/security/advisories/new) |
-| Contributing    | [Read the contribution guide here](./docs/how-to/development/Reamd.md)                             |
+| Name             | Description                                                                                        |
+| ---------------- | -------------------------------------------------------------------------------------------------- |
+| API Documentation| [https://lynx.apidocumentation.com/reference](https://lynx.apidocumentation.com/reference)
+| Bug Tracker      | [Submit issues on GitHub](https://github.com/clivern/lynx/issues)                                  |
+| Security Issues  | [Submit security vulnerability on GitHub](https://github.com/Clivern/Lynx/security/advisories/new) |
+| Contributing     | [Read the contribution guide here](./docs/how-to/development/Reamd.md)                             |
 
 
 #### License
