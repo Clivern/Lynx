@@ -1169,12 +1169,6 @@ components:
         secret:
           type: string
 
-    ErrorResponse:
-      type: object
-      properties:
-        errorMessage:
-          type: string
-
     Snapshot:
       type: object
       properties:
@@ -1246,6 +1240,12 @@ components:
         updatedAt:
           type: string
           format: date-time
+
+    ErrorResponse:
+      type: object
+      properties:
+        errorMessage:
+          type: string
 
   securitySchemes:
     api_key:
