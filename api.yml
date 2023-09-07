@@ -12,7 +12,7 @@ externalDocs:
   description: Find out more about lynx
   url: https://github.com/Clivern/Lynx
 servers:
-  - url: https://localhost:4000/api/v1
+  - url: https://localhost:4000
 paths:
   /_health:
     get:
@@ -52,7 +52,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/HealthResponse'
 
-  /user:
+  /api/v1/user:
     get:
       tags:
         - Users
@@ -123,7 +123,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /user/{id}:
+  /api/v1/user/{id}:
     get:
       tags:
         - Users
@@ -221,7 +221,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /team:
+  /api/v1/team:
     post:
       tags:
         - Teams
@@ -292,7 +292,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /team/{id}:
+  /api/v1/team/{id}:
     get:
       tags:
         - Teams
@@ -390,7 +390,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /project:
+  /api/v1/project:
     post:
       tags:
         - Projects
@@ -461,7 +461,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /project/{id}:
+  /api/v1/project/{id}:
     get:
       tags:
         - Projects
@@ -560,7 +560,7 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 
 
-  /project/{projectId}/environment:
+  /api/v1/project/{projectId}/environment:
     post:
       tags:
         - Environments
@@ -642,7 +642,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /project/{projectId}/environment/{environmentId}:
+  /api/v1/project/{projectId}/environment/{environmentId}:
     get:
       tags:
         - Environments
@@ -755,7 +755,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /snapshot:
+  /api/v1/snapshot:
     post:
       tags:
         - Snapshots
@@ -826,7 +826,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /snapshot/{id}:
+  /api/v1/snapshot/{id}:
     get:
       tags:
         - Snapshots
@@ -924,7 +924,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ErrorResponse'
 
-  /task/{id}:
+  /api/v1/task/{id}:
     get:
       tags:
         - Tasks
