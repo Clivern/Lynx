@@ -153,6 +153,11 @@ $ make test
 ```
 
 
+### API Documentation
+
+To explore the API documentation, copy the content of `api.yml` and paste in https://editor.swagger.io/.
+
+
 ### Versioning
 
 For transparency into our release cycle and in striving to maintain backward compatibility, `Lynx` is maintained under the [Semantic Versioning guidelines](https://semver.org/) and release process is predictable and business-friendly.
