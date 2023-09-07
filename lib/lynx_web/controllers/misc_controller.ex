@@ -88,13 +88,7 @@ defmodule LynxWeb.MiscController do
          {:ok, _} <- ValidatorService.is_string?(params["email"], err),
          {:ok, email} <- ValidatorService.is_email?(params["email"], err) do
       # Authenticate
-      result =
-        AuthService.login(
-          email,
-          password
-        )
-
-      case result do
+      case AuthService.login(email, password) do
         {:success, session} ->
           conn
           |> put_status(:ok)
