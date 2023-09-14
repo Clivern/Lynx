@@ -15,6 +15,13 @@ defmodule LynxWeb.TeamController do
 
   require Logger
 
+  @name_min_length 2
+  @name_max_length 60
+  @description_min_length 2
+  @description_max_length 250
+  @slug_min_length 2
+  @slug_max_length 60
+
   @default_list_limit "10"
   @default_list_offset "0"
 
@@ -59,8 +66,8 @@ defmodule LynxWeb.TeamController do
   List Action Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params["limit"], @default_list_limit)
-    offset = ValidatorService.get_int(params["offset"], @default_list_offset)
+    limit = ValidatorService.get_int(params[:limit], @default_list_limit)
+    offset = ValidatorService.get_int(params[:offset], @default_list_offset)
 
     {teams, count} =
       if conn.assigns[:is_super] do
@@ -84,55 +91,40 @@ defmodule LynxWeb.TeamController do
   Create Action Endpoint
   """
   def create(conn, params) do
-    try do
-      validate_create_request(params)
+    case validate_create_request(params) do
+      {:ok, _} ->
+        result =
+          TeamModule.create_team(%{
+            slug: params[:slug],
+            name: params[:name],
+            description: params[:description]
+          })
 
-      slug = ValidatorService.get_str(params["slug"], "")
+        case result do
+          {:ok, team} ->
+            TeamModule.sync_team_members(team.id, params[:members])
 
-      # Validate if slug is used before
-      if TeamModule.is_slug_used(slug) do
-        raise InvalidRequest, message: "Team slug is used"
-      end
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{team: team})
 
-      members = ValidatorService.get_list(params["members"], [])
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
 
-      result =
-        TeamModule.create_team(%{
-          slug: slug,
-          name: ValidatorService.get_str(params["name"], ""),
-          description: ValidatorService.get_str(params["description"], "")
-        })
-
-      case result do
-        {:ok, team} ->
-          TeamModule.sync_team_members(team.id, members)
-
-          conn
-          |> put_status(:created)
-          |> render("index.json", %{team: team})
-
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> render("error.json", %{message: reason})
     end
   end
 
   @doc """
   Index Action Endpoint
   """
-  def index(conn, %{"uuid" => uuid}) do
+  def index(conn, %{:uuid => uuid}) do
     case TeamModule.get_team_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
@@ -150,53 +142,41 @@ defmodule LynxWeb.TeamController do
   Update Action Endpoint
   """
   def update(conn, params) do
-    try do
-      validate_update_request(params)
+    case validate_update_request(params, params[:uuid]) do
+      {:ok, _} ->
+        result =
+          TeamModule.update_team(%{
+            uuid: params[:uuid],
+            slug: params[:slug],
+            name: params[:name],
+            description: params[:description]
+          })
 
-      members = ValidatorService.get_list(params["members"], [])
+        case result do
+          {:ok, team} ->
+            TeamModule.sync_team_members(team.id, params[:members])
 
-      result =
-        TeamModule.update_team(%{
-          uuid: ValidatorService.get_str(params["uuid"], ""),
-          name: ValidatorService.get_str(params["name"], ""),
-          description: ValidatorService.get_str(params["description"], "")
-        })
+            conn
+            |> put_status(:ok)
+            |> render("index.json", %{team: team})
 
-      case result do
-        {:ok, team} ->
-          TeamModule.sync_team_members(team.id, members)
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
 
-          conn
-          |> put_status(:ok)
-          |> render("index.json", %{team: team})
-
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
-    else
-      _ ->
-        conn
-        |> put_status(:ok)
-        |> render("success.json", %{message: "Team updated successfully"})
+        |> render("error.json", %{message: reason})
     end
   end
 
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{"uuid" => uuid}) do
+  def delete(conn, %{:uuid => uuid}) do
     Logger.info("Attempt to delete team with uuid #{uuid}")
 
     case TeamModule.delete_team_by_uuid(uuid) do
@@ -227,28 +207,28 @@ defmodule LynxWeb.TeamController do
       members_invalid: "Team members are required"
     }
 
-    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+    with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
          {:ok, _} <-
-           ValidatorService.is_string?(params["description"], errs.description_required),
-         {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_invalid),
+           ValidatorService.is_string?(params[:description], errs.description_required),
+         {:ok, _} <- ValidatorService.is_string?(params[:slug], errs.slug_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_invalid),
          {:ok, _} <-
-           ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["slug"], errs.slug_invalid),
+           ValidatorService.is_not_empty?(params[:description], errs.description_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:slug], errs.slug_invalid),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+           ValidatorService.is_length_between?(params[:name], 2, 60, errs.name_invalid),
          {:ok, _} <-
            ValidatorService.is_length_between?(
-             params["description"],
+             params[:description],
              2,
              250,
              errs.description_invalid
            ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
-         {:ok, _} <- ValidatorService.is_team_slug_used?(params["slug"], nil, errs.slug_used),
-         {:ok, _} <- ValidatorService.is_list?(params["members"], errs.members_invalid),
-         {:ok, _} <- ValidatorService.is_not_empty_list?(params["members"], errs.members_invalid) do
+           ValidatorService.is_length_between?(params[:slug], 2, 60, errs.slug_invalid),
+         {:ok, _} <- ValidatorService.is_team_slug_used?(params[:slug], nil, errs.slug_used),
+         {:ok, _} <- ValidatorService.is_list?(params[:members], errs.members_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty_list?(params[:members], errs.members_invalid) do
       {:ok, ""}
     else
       {:error, reason} -> {:error, reason}
@@ -267,29 +247,39 @@ defmodule LynxWeb.TeamController do
       members_invalid: "Team members are required"
     }
 
-    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+    with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
          {:ok, _} <-
-           ValidatorService.is_string?(params["description"], errs.description_required),
-         {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_invalid),
+           ValidatorService.is_string?(params[:description], errs.description_required),
+         {:ok, _} <- ValidatorService.is_string?(params[:slug], errs.slug_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_invalid),
          {:ok, _} <-
-           ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["slug"], errs.slug_invalid),
-         {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+           ValidatorService.is_not_empty?(params[:description], errs.description_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:slug], errs.slug_invalid),
          {:ok, _} <-
            ValidatorService.is_length_between?(
-             params["description"],
-             2,
-             250,
+             params[:name],
+             @name_min_length,
+             @name_max_length,
+             errs.name_invalid
+           ),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(
+             params[:description],
+             @description_min_length,
+             @description_max_length,
              errs.description_invalid
            ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+           ValidatorService.is_length_between?(
+             params[:slug],
+             @slug_min_length,
+             @slug_max_length,
+             errs.slug_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_team_slug_used?(params["slug"], team_uuid, errs.slug_used),
-         {:ok, _} <- ValidatorService.is_list?(params["members"], errs.members_invalid),
-         {:ok, _} <- ValidatorService.is_not_empty_list?(params["members"], errs.members_invalid) do
+           ValidatorService.is_team_slug_used?(params[:slug], team_uuid, errs.slug_used),
+         {:ok, _} <- ValidatorService.is_list?(params[:members], errs.members_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty_list?(params[:members], errs.members_invalid) do
       {:ok, ""}
     else
       {:error, reason} -> {:error, reason}

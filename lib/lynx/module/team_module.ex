@@ -9,7 +9,6 @@ defmodule Lynx.Module.TeamModule do
 
   alias Lynx.Context.TeamContext
   alias Lynx.Context.UserContext
-  alias Lynx.Service.ValidatorService
 
   @doc """
   Create a team
@@ -85,19 +84,16 @@ defmodule Lynx.Module.TeamModule do
   Update a team
   """
   def update_team(data \\ %{}) do
-    uuid = ValidatorService.get_str(data[:uuid], "")
-
-    case TeamContext.get_team_by_uuid(uuid) do
+    case TeamContext.get_team_by_uuid(data[:uuid]) do
       nil ->
-        {:not_found, "Team with UUID #{uuid} not found"}
+        {:not_found, "Team with ID #{data[:uuid]} not found"}
 
       team ->
-        new_team =
-          TeamContext.new_team(%{
-            name: ValidatorService.get_str(data[:name], team.name),
-            description: ValidatorService.get_str(data[:description], team.description),
-            slug: team.slug
-          })
+        new_team = %{
+          name: data[:name] || team.name,
+          description: data[:description] || team.description,
+          slug: data[:slug] || team.slug
+        }
 
         case TeamContext.update_team(team, new_team) do
           {:ok, team} ->
@@ -132,7 +128,7 @@ defmodule Lynx.Module.TeamModule do
   def get_team_by_uuid(uuid) do
     case TeamContext.get_team_by_uuid(uuid) do
       nil ->
-        {:not_found, "Team with UUID #{uuid} not found"}
+        {:not_found, "Team with ID #{uuid} not found"}
 
       team ->
         {:ok, team}
@@ -143,11 +139,7 @@ defmodule Lynx.Module.TeamModule do
   Get team by slug
   """
   def is_slug_used(slug) do
-    slug = ValidatorService.get_str(slug, "")
-
-    team = slug |> TeamContext.get_team_by_slug()
-
-    case team do
+    case TeamContext.get_team_by_slug(slug) do
       nil ->
         false
 
@@ -235,10 +227,16 @@ defmodule Lynx.Module.TeamModule do
     TeamContext.get_team_id_with_uuid(uuid)
   end
 
+  @doc """
+  Get Team UUID with ID
+  """
   def get_team_uuid_with_id(id) do
     TeamContext.get_team_uuid_with_id(id)
   end
 
+  @doc """
+  Get User ID with UUID
+  """
   def get_user_id_with_uuid(uuid) do
     UserContext.get_user_id_with_uuid(uuid)
   end

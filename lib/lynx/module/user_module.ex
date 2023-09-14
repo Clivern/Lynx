@@ -8,8 +8,8 @@ defmodule Lynx.Module.UserModule do
   """
 
   alias Lynx.Context.UserContext
-  alias Lynx.Service.ValidatorService
   alias Lynx.Service.AuthService
+  alias Lynx.Module.SettingsModule
 
   @doc """
   Get User By ID
@@ -30,7 +30,7 @@ defmodule Lynx.Module.UserModule do
   def get_user_by_uuid(uuid) do
     case UserContext.get_user_by_uuid(uuid) do
       nil ->
-        {:not_found, "Team with UUID #{uuid} not found"}
+        {:not_found, "Team with ID #{uuid} not found"}
 
       user ->
         {:ok, user}
@@ -55,11 +55,8 @@ defmodule Lynx.Module.UserModule do
   Create User
   """
   def create_user(params \\ %{}) do
-    hash =
-      AuthService.hash_password(
-        params[:password],
-        params[:app_key]
-      )
+    app_key = SettingsModule.get_config("app_key", "")
+    hash = AuthService.hash_password(params[:password], app_key)
 
     user =
       UserContext.new_user(%{
@@ -89,20 +86,31 @@ defmodule Lynx.Module.UserModule do
   Update User
   """
   def update_user(params \\ %{}) do
-    user =
-      params[:id]
-      |> ValidatorService.parse_int()
-      |> UserContext.get_user_by_id()
+    user = UserContext.get_user_by_uuid(params[:uuid])
 
     case user do
       nil ->
-        {:not_found, "User with ID #{params[:id]} not found"}
+        {:not_found, "User with ID #{params[:uuid]} not found"}
 
       _ ->
-        new_user = %{
-          email: ValidatorService.get_str(params[:email], user.email),
-          name: ValidatorService.get_str(params[:name], user.name)
-        }
+        new_user =
+          if params[:password] == nil or params[:password] == "" do
+            %{
+              email: params[:email] || user.email,
+              name: params[:name] || user.name,
+              role: params[:role] || user.role
+            }
+          else
+            app_key = SettingsModule.get_config("app_key", "")
+            hash = AuthService.hash_password(params[:password], app_key)
+
+            %{
+              email: params[:email] || user.email,
+              name: params[:name] || user.name,
+              role: params[:role] || user.role,
+              password_hash: hash
+            }
+          end
 
         case UserContext.update_user(user, new_user) do
           {:ok, user} ->

@@ -17,6 +17,9 @@ defmodule LynxWeb.UserController do
 
   require Logger
 
+  @name_min_length 2
+  @name_max_length 60
+
   @default_list_limit "10"
   @default_list_offset "0"
 
@@ -43,8 +46,8 @@ defmodule LynxWeb.UserController do
   List Action Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params["limit"], @default_list_limit)
-    offset = ValidatorService.get_int(params["offset"], @default_list_offset)
+    limit = ValidatorService.get_int(params[:limit], @default_list_limit)
+    offset = ValidatorService.get_int(params[:offset], @default_list_offset)
 
     render(conn, "list.json", %{
       users: UserModule.get_users(offset, limit),
@@ -59,7 +62,7 @@ defmodule LynxWeb.UserController do
   @doc """
   Index Action Endpoint
   """
-  def index(conn, %{"uuid" => uuid}) do
+  def index(conn, %{:uuid => uuid}) do
     case UserModule.get_user_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
@@ -77,63 +80,78 @@ defmodule LynxWeb.UserController do
   Create Action Endpoint
   """
   def create(conn, params) do
-    try do
-      validate_create_request(params)
+    case validate_create_request(params) do
+      {:ok, _} ->
+        result =
+          UserModule.create_user(%{
+            name: params[:name],
+            email: params[:email],
+            api_key: AuthService.get_random_salt(),
+            role: params[:role],
+            password: params[:password]
+          })
 
-      email = ValidatorService.get_str(params["email"], "")
-      name = ValidatorService.get_str(params["name"], "")
-      role = ValidatorService.get_str(params["role"], "")
-      password = ValidatorService.get_str(params["password"], "")
-      api_key = AuthService.get_random_salt()
-      app_key = SettingsModule.get_config("app_key", "")
+        case result do
+          {:error, msg} ->
+            Logger.info("Incoming request is invalid: #{msg}")
 
-      result =
-        UserModule.create_user(%{
-          name: name,
-          email: email,
-          api_key: api_key,
-          role: role,
-          password: password,
-          app_key: app_key
-        })
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: "Invalid Request"})
 
-      case result do
-        {:error, msg} ->
-          Logger.info("Incoming request is invalid: #{msg}")
-          raise InvalidRequest, message: "Invalid Request"
+          {:ok, user} ->
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{user: user})
+        end
 
-        {:ok, user} ->
-          conn
-          |> put_status(:created)
-          |> render("index.json", %{user: user})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> render("error.json", %{message: reason})
     end
   end
 
   @doc """
   Update Action Endpoint
   """
-  def update(conn, _params) do
-    # @TODO: User Update Endpoint
-    conn
-    |> put_resp_content_type("application/json")
-    |> send_resp(:ok, Jason.encode!(%{status: "ok"}))
+  def update(conn, params) do
+    case validate_update_request(params, params[:uuid]) do
+      {:ok, _} ->
+        result =
+          UserModule.update_user(%{
+            uuid: params[:uuid],
+            name: params[:name],
+            email: params[:email],
+            role: params[:role],
+            password: params[:password]
+          })
+
+        case result do
+          {:error, msg} ->
+            Logger.info("Incoming request is invalid: #{msg}")
+
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: "Invalid Request"})
+
+          {:ok, user} ->
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{user: user})
+        end
+
+      {:error, reason} ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: reason})
+    end
   end
 
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{"uuid" => uuid}) do
+  def delete(conn, %{:uuid => uuid}) do
     Logger.info("Attempt to delete user with uuid #{uuid}")
 
     if conn.assigns[:user_uuid] == uuid do
@@ -167,25 +185,30 @@ defmodule LynxWeb.UserController do
       email_used: "User email is already used"
     }
 
-    case ValidatorService.is_not_empty?(params["password"], "") do
+    case ValidatorService.is_not_empty?(params[:password], "") do
       {:ok, _} ->
-        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
-             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
-             {:ok, _} <- ValidatorService.is_string?(params["role"], errs.role_required),
-             {:ok, _} <- ValidatorService.is_string?(params["password"], errs.password_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params["role"], errs.role_required),
+        with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params[:email], errs.email_required),
+             {:ok, _} <- ValidatorService.is_string?(params[:role], errs.role_required),
+             {:ok, _} <- ValidatorService.is_string?(params[:password], errs.password_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params[:email], errs.email_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params[:role], errs.role_required),
              {:ok, _} <-
-               ValidatorService.is_not_empty?(params["password"], errs.password_required),
+               ValidatorService.is_not_empty?(params[:password], errs.password_required),
              {:ok, _} <-
-               ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
-             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+               ValidatorService.is_length_between?(
+                 params[:name],
+                 @name_min_length,
+                 @name_max_length,
+                 errs.name_invalid
+               ),
+             {:ok, _} <- ValidatorService.is_email?(params[:email], errs.email_invalid),
              {:ok, _} <-
-               ValidatorService.in?(params["role"], ["regular", "super"], errs.role_invalid),
-             {:ok, _} <- ValidatorService.is_password?(params["password"], errs.password_invalid),
+               ValidatorService.in?(params[:role], ["regular", "super"], errs.role_invalid),
+             {:ok, _} <- ValidatorService.is_password?(params[:password], errs.password_invalid),
              {:ok, _} <-
-               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
+               ValidatorService.is_email_used?(params[:email], user_uuid, errs.email_used) do
           {:ok, ""}
         else
           {:error, reason} -> {:error, reason}
@@ -193,19 +216,24 @@ defmodule LynxWeb.UserController do
 
       {:error, _} ->
         # password is not provided
-        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
-             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
-             {:ok, _} <- ValidatorService.is_string?(params["role"], errs.role_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params["role"], errs.role_required),
+        with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params[:email], errs.email_required),
+             {:ok, _} <- ValidatorService.is_string?(params[:role], errs.role_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params[:email], errs.email_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params[:role], errs.role_required),
              {:ok, _} <-
-               ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
-             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+               ValidatorService.is_length_between?(
+                 params[:name],
+                 @name_min_length,
+                 @name_max_length,
+                 errs.name_invalid
+               ),
+             {:ok, _} <- ValidatorService.is_email?(params[:email], errs.email_invalid),
              {:ok, _} <-
-               ValidatorService.in?(params["role"], ["regular", "super"], errs.role_invalid),
+               ValidatorService.in?(params[:role], ["regular", "super"], errs.role_invalid),
              {:ok, _} <-
-               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
+               ValidatorService.is_email_used?(params[:email], user_uuid, errs.email_used) do
           {:ok, ""}
         else
           {:error, reason} -> {:error, reason}
@@ -226,21 +254,26 @@ defmodule LynxWeb.UserController do
       email_used: "User email is already used"
     }
 
-    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
-         {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
-         {:ok, _} <- ValidatorService.is_string?(params["role"], errs.role_required),
-         {:ok, _} <- ValidatorService.is_string?(params["password"], errs.password_required),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["role"], errs.role_required),
-         {:ok, _} <- ValidatorService.is_not_empty?(params["password"], errs.password_required),
+    with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
+         {:ok, _} <- ValidatorService.is_string?(params[:email], errs.email_required),
+         {:ok, _} <- ValidatorService.is_string?(params[:role], errs.role_required),
+         {:ok, _} <- ValidatorService.is_string?(params[:password], errs.password_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:email], errs.email_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:role], errs.role_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params[:password], errs.password_required),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
-         {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+           ValidatorService.is_length_between?(
+             params[:name],
+             @name_min_length,
+             @name_max_length,
+             errs.name_invalid
+           ),
+         {:ok, _} <- ValidatorService.is_email?(params[:email], errs.email_invalid),
          {:ok, _} <-
-           ValidatorService.in?(params["role"], ["regular", "super"], errs.role_invalid),
-         {:ok, _} <- ValidatorService.is_password?(params["password"], errs.password_invalid),
-         {:ok, _} <- ValidatorService.is_email_used?(params["email"], nil, errs.email_used) do
+           ValidatorService.in?(params[:role], ["regular", "super"], errs.role_invalid),
+         {:ok, _} <- ValidatorService.is_password?(params[:password], errs.password_invalid),
+         {:ok, _} <- ValidatorService.is_email_used?(params[:email], nil, errs.email_used) do
       {:ok, ""}
     else
       {:error, reason} -> {:error, reason}
