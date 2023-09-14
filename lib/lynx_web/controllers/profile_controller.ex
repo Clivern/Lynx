@@ -37,6 +37,20 @@ defmodule LynxWeb.ProfileController do
   Update Profile Endpoint
   """
   def update(conn, params) do
+
+
+
+    case validate_update_request(params, conn.assigns[:user_uuid]) do
+      {:ok, _} ->
+        conn
+        |> put_status(:ok)
+        |> render("success.json", %{message: "Profile updated successfully"})
+      {:error, reason} ->
+        conn
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: reason})
+    end
+
     result =
       UserModule.update_user(%{
         id: conn.assigns[:user_id],
@@ -59,6 +73,55 @@ defmodule LynxWeb.ProfileController do
         conn
         |> put_status(:bad_request)
         |> render("error.json", %{message: msg})
+    end
+  end
+
+  defp validate_update_request(params, user_uuid) do
+    errs = %{
+      name_required: "User name is required",
+      name_invalid: "User name is invalid",
+      email_required: "User email is required",
+      email_invalid: "User email is invalid",
+      password_required: "User password is required",
+      password_invalid: "User password is invalid",
+      email_used: "User email is already used"
+    }
+
+    case ValidatorService.is_not_empty?(params["password"], "") do
+      {:ok, _} ->
+        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_string?(params["password"], errs.password_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
+             {:ok, _} <-
+               ValidatorService.is_not_empty?(params["password"], errs.password_required),
+             {:ok, _} <-
+               ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+             {:ok, _} <- ValidatorService.is_password?(params["password"], errs.password_invalid),
+             {:ok, _} <-
+               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
+          {:ok, ""}
+        else
+          {:error, reason} -> {:error, reason}
+        end
+
+      {:error, _} ->
+        # Password is not provided
+        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
+             {:ok, _} <-
+               ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+             {:ok, _} <-
+               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
+          {:ok, ""}
+        else
+          {:error, reason} -> {:error, reason}
+        end
     end
   end
 end

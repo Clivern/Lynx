@@ -216,33 +216,83 @@ defmodule LynxWeb.TeamController do
   end
 
   defp validate_create_request(params) do
-    name = ValidatorService.get_str(params["name"], "")
-    description = ValidatorService.get_str(params["description"], "")
-    slug = ValidatorService.get_str(params["slug"], "")
+    errs = %{
+      name_required: "Team name is required",
+      name_invalid: "Team name is invalid",
+      description_required: "Team description is required",
+      description_invalid: "Team description is invalid",
+      slug_required: "Team slug is required",
+      slug_invalid: "Team slug is invalid",
+      slug_used: "Team slug is already used",
+      members_invalid: "Team members are required"
+    }
 
-    if ValidatorService.is_empty(name) do
-      raise InvalidRequest, message: "Team name is required"
-    end
-
-    if ValidatorService.is_empty(description) do
-      raise InvalidRequest, message: "Team description is required"
-    end
-
-    if ValidatorService.is_empty(slug) do
-      raise InvalidRequest, message: "Team slug is required"
+    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["description"], errs.description_required),
+         {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_invalid),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["slug"], errs.slug_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(
+             params["description"],
+             2,
+             250,
+             errs.description_invalid
+           ),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+         {:ok, _} <- ValidatorService.is_team_slug_used?(params["slug"], nil, errs.slug_used),
+         {:ok, _} <- ValidatorService.is_list?(params["members"], errs.members_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty_list?(params["members"], errs.members_invalid) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
     end
   end
 
-  defp validate_update_request(params) do
-    name = ValidatorService.get_str(params["name"], "")
-    description = ValidatorService.get_str(params["description"], "")
+  defp validate_update_request(params, team_uuid) do
+    errs = %{
+      name_required: "Team name is required",
+      name_invalid: "Team name is invalid",
+      description_required: "Team description is required",
+      description_invalid: "Team description is invalid",
+      slug_required: "Team slug is required",
+      slug_invalid: "Team slug is invalid",
+      slug_used: "Team slug is already used",
+      members_invalid: "Team members are required"
+    }
 
-    if ValidatorService.is_empty(name) do
-      raise InvalidRequest, message: "Team name is required"
-    end
-
-    if ValidatorService.is_empty(description) do
-      raise InvalidRequest, message: "Team description is required"
+    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["description"], errs.description_required),
+         {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_invalid),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["slug"], errs.slug_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(
+             params["description"],
+             2,
+             250,
+             errs.description_invalid
+           ),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+         {:ok, _} <-
+           ValidatorService.is_team_slug_used?(params["slug"], team_uuid, errs.slug_used),
+         {:ok, _} <- ValidatorService.is_list?(params["members"], errs.members_invalid),
+         {:ok, _} <- ValidatorService.is_not_empty_list?(params["members"], errs.members_invalid) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
     end
   end
 end

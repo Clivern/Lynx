@@ -6,89 +6,11 @@ defmodule Lynx.Service.ValidatorService do
   @moduledoc """
   Validator Service
   """
-
-  @doc """
-  Check if a value is an integer
-  """
-  def validate_int(value) do
-    case is_integer(value) do
-      true ->
-        true
-
-      false ->
-        try do
-          _ = String.to_integer(value)
-          true
-        rescue
-          _ -> false
-        end
-    end
-  end
-
-  @doc """
-  Convert a value into an integer
-  """
-  def parse_int(value) do
-    case is_integer(value) do
-      true ->
-        value
-
-      false ->
-        String.to_integer(value)
-    end
-  end
-
-  @doc """
-  Check if value is empty or not
-  """
-  def is_empty(value) do
-    case {is_integer(value), String.valid?(value), value == nil} do
-      {_, _, true} ->
-        true
-
-      {true, _, _} ->
-        String.trim(to_string(value)) == ""
-
-      {false, true, _} ->
-        String.trim(value) == ""
-
-      {_, _, _} ->
-        true
-    end
-  end
-
-  @doc """
-  Get int value or default
-  """
-  def get_int(value, default) do
-    case validate_int(value) do
-      true -> parse_int(value)
-      false -> default
-    end
-  end
-
-  @doc """
-  Get string value or default
-  """
-  def get_str(value, default) do
-    case is_empty(value) do
-      true -> default
-      false -> value
-    end
-  end
-
-  @doc """
-  Get list value or default
-  """
-  def get_list(value, default) do
-    case is_list(value) do
-      true ->
-        value
-
-      false ->
-        default
-    end
-  end
+  alias Lynx.Context.UserContext
+  alias Lynx.Context.TeamContext
+  alias Lynx.Context.ProjectContext
+  alias Lynx.Context.EnvironmentContext
+  alias Lynx.Exception.InvalidRequest
 
   def is_number?(value, err) do
     case Validate.validate(value, type: :number) do
@@ -136,6 +58,16 @@ defmodule Lynx.Service.ValidatorService do
         {:ok, value}
 
       {:error, _} ->
+        {:error, err}
+    end
+  end
+
+  def is_not_empty_list?(value, err) do
+    case length(value) > 0 do
+      true ->
+        {:ok, value}
+
+      false ->
         {:error, err}
     end
   end
@@ -218,6 +150,94 @@ defmodule Lynx.Service.ValidatorService do
       {:ok, value}
     else
       {:error, err}
+    end
+  end
+
+  def is_email_used?(email, user_uuid, err) do
+    case UserContext.get_user_by_email(email) do
+      nil ->
+        {:ok, email}
+
+      user ->
+        case {user_uuid, user.id == user_uuid} do
+          {nil, _} ->
+            {:error, err}
+
+          {_, false} ->
+            {:error, err}
+
+          {_, true} ->
+            {:ok, email}
+        end
+    end
+  end
+
+  def is_team_slug_used?(slug, team_uuid, err) do
+    case TeamContext.get_team_by_slug(slug) do
+      nil ->
+        {:ok, slug}
+
+      team ->
+        case {team_uuid, team.uuid == team_uuid} do
+          {nil, _} ->
+            {:error, err}
+
+          {_, false} ->
+            {:error, err}
+
+          {_, true} ->
+            {:ok, slug}
+        end
+    end
+  end
+
+  def is_project_slug_used?(slug, team_uuid, project_uuid, err) do
+    case TeamContext.get_team_id_with_uuid(team_uuid) do
+      nil ->
+        raise InvalidRequest, message: "Team with id #{team_uuid} not found"
+
+      team_id ->
+        case ProjectContext.get_project_by_slug_team_id(slug, team_id) do
+          nil ->
+            {:ok, slug}
+
+          project ->
+            case {project_uuid, project.uuid == project_uuid} do
+              {nil, _} ->
+                {:error, err}
+
+              {_, false} ->
+                {:error, err}
+
+              {_, true} ->
+                {:ok, slug}
+            end
+        end
+    end
+  end
+
+  def is_environment_slug_used?(slug, project_uuid, environment_uuid, err) do
+    case ProjectContext.get_project_id_with_uuid(project_uuid) do
+      nil ->
+        raise InvalidRequest, message: "Project with id #{project_uuid} not found"
+
+      project_id ->
+        case EnvironmentContext.get_env_by_slug_project(project_id, slug) do
+          nil ->
+            {:ok, slug}
+
+          env ->
+            case {environment_uuid, env.uuid == environment_uuid} do
+              {nil, _} ->
+                {:error, err}
+
+              {_, false} ->
+                {:error, err}
+
+              {_, true} ->
+                {:ok, slug}
+            end
+        end
     end
   end
 end

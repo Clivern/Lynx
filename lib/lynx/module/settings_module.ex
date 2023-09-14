@@ -21,18 +21,7 @@ defmodule Lynx.Module.SettingsModule do
 
     for item <- items do
       config = ConfigContext.get_config_by_name(item.name)
-
-      case ConfigContext.update_config(config, %{value: item.value}) do
-        {:ok, _} ->
-          {:success, nil}
-
-        {:error, changeset} ->
-          messages =
-            changeset.errors()
-            |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
-
-          {:error, Enum.at(messages, 0)}
-      end
+      ConfigContext.update_config(config, %{value: item.value})
     end
   end
 

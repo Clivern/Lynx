@@ -193,30 +193,80 @@ defmodule LynxWeb.SnapshotController do
   end
 
   defp validate_create_request(params) do
-    title = ValidatorService.get_str(params["title"], "")
-    description = ValidatorService.get_str(params["description"], "")
-    record_type = ValidatorService.get_str(params["record_type"], "")
-    record_uuid = ValidatorService.get_str(params["record_uuid"], "")
-    team_id = ValidatorService.get_str(params["team_id"], "")
+    errs = %{
+      title_required: "Snapshot title is required",
+      title_invalid: "Snapshot title is invalid",
+      description_required: "Snapshot description is required",
+      description_invalid: "Snapshot description is invalid",
+      record_type_required: "Record type is required",
+      record_type_invalid: "Record type is invalid",
+      record_uuid_required: "Record ID is required",
+      record_uuid_invalid: "Record ID is invalid",
+      team_id_required: "Team is required"
+    }
 
-    if ValidatorService.is_empty(title) do
-      raise InvalidRequest, message: "Snapshot title is required"
+    with {:ok, _} <- ValidatorService.is_string?(params["title"], errs.title_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["description"], errs.description_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["record_type"], errs.record_type_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["record_uuid"], errs.record_uuid_required),
+         {:ok, _} <- ValidatorService.is_string?(params["team_id"], errs.team_id_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["title"], errs.title_invalid),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["record_type"], errs.record_type_invalid),
+         {:ok, _} <- ValidatorService.is_uuid?(params["record_uuid"], errs.record_uuid_invalid),
+         {:ok, _} <- ValidatorService.is_uuid?(params["team_id"], errs.team_id_required),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["title"], 2, 60, errs.title_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(
+             params["description"],
+             2,
+             250,
+             errs.description_invalid
+           ),
+         {:ok, _} <-
+           ValidatorService.in?(
+             params["record_type"],
+             ["project", "environment"],
+             errs.record_type_invalid
+           ) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
     end
+  end
 
-    if ValidatorService.is_empty(description) do
-      raise InvalidRequest, message: "Snapshot description is required"
-    end
+  defp validate_update_request(params) do
+    errs = %{
+      title_required: "Snapshot title is required",
+      title_invalid: "Snapshot title is invalid",
+      description_required: "Snapshot description is required",
+      description_invalid: "Snapshot description is invalid"
+    }
 
-    if ValidatorService.is_empty(record_type) do
-      raise InvalidRequest, message: "Snapshot record type is required"
-    end
-
-    if ValidatorService.is_empty(record_uuid) do
-      raise InvalidRequest, message: "Snapshot record ID is required"
-    end
-
-    if ValidatorService.is_empty(team_id) do
-      raise InvalidRequest, message: "Team is required"
+    with {:ok, _} <- ValidatorService.is_string?(params["title"], errs.title_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["description"], errs.description_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["title"], errs.title_invalid),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["title"], 2, 60, errs.title_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(
+             params["description"],
+             2,
+             250,
+             errs.description_invalid
+           ) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
     end
   end
 end

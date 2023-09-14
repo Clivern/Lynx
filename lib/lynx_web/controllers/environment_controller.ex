@@ -268,4 +268,84 @@ defmodule LynxWeb.EnvironmentController do
       raise InvalidRequest, message: "Environment secret is required"
     end
   end
+
+  defp validate_create_request(params, project_uuid) do
+    errs = %{
+      name_required: "Environment name is required",
+      name_invalid: "Environment name is invalid",
+      username_required: "Environment username is required",
+      username_invalid: "Environment username is invalid",
+      secret_required: "Environment secret is required",
+      secret_invalid: "Environment secret is invalid",
+      slug_required: "Environment slug is required",
+      slug_invalid: "Environment slug is invalid",
+      slug_used: "Environment slug is already used",
+      project_uuid_invalid: "Project ID is invalid"
+    }
+
+    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+         {:ok, _} <- ValidatorService.is_string?(params["username"], errs.username_required),
+         {:ok, _} <- ValidatorService.is_string?(params["secret"], errs.secret_required),
+         {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["username"], 2, 60, errs.username_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["secret"], 2, 60, errs.secret_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+         {:ok, _} <- ValidatorService.is_uuid?(project_uuid, errs.project_uuid_invalid),
+         {:ok, _} <-
+           ValidatorService.is_environment_slug_used?(
+             params["slug"],
+             project_uuid,
+             nil,
+             errs.slug_used
+           ) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
+    end
+  end
+
+  defp validate_update_request(params, project_uuid, environment_uuid) do
+    errs = %{
+      name_required: "Environment name is required",
+      name_invalid: "Environment name is invalid",
+      username_required: "Environment username is required",
+      username_invalid: "Environment username is invalid",
+      secret_required: "Environment secret is required",
+      secret_invalid: "Environment secret is invalid",
+      slug_required: "Environment slug is required",
+      slug_invalid: "Environment slug is invalid",
+      slug_used: "Environment slug is already used",
+      project_uuid_invalid: "Project ID is invalid"
+    }
+
+    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+         {:ok, _} <- ValidatorService.is_string?(params["username"], errs.username_required),
+         {:ok, _} <- ValidatorService.is_string?(params["secret"], errs.secret_required),
+         {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["username"], 2, 60, errs.username_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["secret"], 2, 60, errs.secret_invalid),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+         {:ok, _} <- ValidatorService.is_uuid?(project_uuid, errs.project_uuid_invalid),
+         {:ok, _} <-
+           ValidatorService.is_environment_slug_used?(
+             params["slug"],
+             project_uuid,
+             environment_uuid,
+             errs.slug_used
+           ) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
+    end
+  end
 end

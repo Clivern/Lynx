@@ -154,30 +154,96 @@ defmodule LynxWeb.UserController do
     end
   end
 
+  defp validate_update_request(params, user_uuid) do
+    errs = %{
+      name_required: "User name is required",
+      name_invalid: "User name is invalid",
+      email_required: "User email is required",
+      email_invalid: "User email is invalid",
+      role_required: "User role is required",
+      role_invalid: "User role is invalid",
+      password_required: "User password is required",
+      password_invalid: "User password is invalid",
+      email_used: "User email is already used"
+    }
+
+    case ValidatorService.is_not_empty?(params["password"], "") do
+      {:ok, _} ->
+        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_string?(params["role"], errs.role_required),
+             {:ok, _} <- ValidatorService.is_string?(params["password"], errs.password_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["role"], errs.role_required),
+             {:ok, _} <-
+               ValidatorService.is_not_empty?(params["password"], errs.password_required),
+             {:ok, _} <-
+               ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+             {:ok, _} <-
+               ValidatorService.in?(params["role"], ["regular", "super"], errs.role_invalid),
+             {:ok, _} <- ValidatorService.is_password?(params["password"], errs.password_invalid),
+             {:ok, _} <-
+               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
+          {:ok, ""}
+        else
+          {:error, reason} -> {:error, reason}
+        end
+
+      {:error, _} ->
+        # password is not provided
+        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_string?(params["role"], errs.role_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["role"], errs.role_required),
+             {:ok, _} <-
+               ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+             {:ok, _} <-
+               ValidatorService.in?(params["role"], ["regular", "super"], errs.role_invalid),
+             {:ok, _} <-
+               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
+          {:ok, ""}
+        else
+          {:error, reason} -> {:error, reason}
+        end
+    end
+  end
+
   defp validate_create_request(params) do
-    email = ValidatorService.get_str(params["email"], "")
-    name = ValidatorService.get_str(params["name"], "")
-    role = ValidatorService.get_str(params["role"], "regular")
-    password = ValidatorService.get_str(params["password"], "")
+    errs = %{
+      name_required: "User name is required",
+      name_invalid: "User name is invalid",
+      email_required: "User email is required",
+      email_invalid: "User email is invalid",
+      role_required: "User role is required",
+      role_invalid: "User role is invalid",
+      password_required: "User password is required",
+      password_invalid: "User password is invalid",
+      email_used: "User email is already used"
+    }
 
-    if ValidatorService.is_empty(email) do
-      raise InvalidRequest, message: "User email is required"
-    end
-
-    if ValidatorService.is_empty(name) do
-      raise InvalidRequest, message: "User name is required"
-    end
-
-    if ValidatorService.is_empty(role) do
-      raise InvalidRequest, message: "User role is required"
-    end
-
-    if ValidatorService.is_empty(password) do
-      raise InvalidRequest, message: "User password is required"
-    end
-
-    if UserModule.is_email_used(email) do
-      raise InvalidRequest, message: "Email is already used"
+    with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+         {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+         {:ok, _} <- ValidatorService.is_string?(params["role"], errs.role_required),
+         {:ok, _} <- ValidatorService.is_string?(params["password"], errs.password_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["role"], errs.role_required),
+         {:ok, _} <- ValidatorService.is_not_empty?(params["password"], errs.password_required),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+         {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+         {:ok, _} <-
+           ValidatorService.in?(params["role"], ["regular", "super"], errs.role_invalid),
+         {:ok, _} <- ValidatorService.is_password?(params["password"], errs.password_invalid),
+         {:ok, _} <- ValidatorService.is_email_used?(params["email"], nil, errs.email_used) do
+      {:ok, ""}
+    else
+      {:error, reason} -> {:error, reason}
     end
   end
 end
