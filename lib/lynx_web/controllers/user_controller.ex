@@ -10,18 +10,16 @@ defmodule LynxWeb.UserController do
   use LynxWeb, :controller
 
   alias Lynx.Module.UserModule
-  alias Lynx.Exception.InvalidRequest
   alias Lynx.Service.ValidatorService
   alias Lynx.Service.AuthService
-  alias Lynx.Module.SettingsModule
 
   require Logger
 
   @name_min_length 2
   @name_max_length 60
 
-  @default_list_limit "10"
-  @default_list_offset "0"
+  @default_list_limit 10
+  @default_list_offset 0
 
   plug :super_user when action in [:list, :index, :create, :update, :delete]
 
@@ -46,8 +44,8 @@ defmodule LynxWeb.UserController do
   List Action Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params[:limit], @default_list_limit)
-    offset = ValidatorService.get_int(params[:offset], @default_list_offset)
+    limit = params[:limit] || @default_list_limit
+    offset = params[:offset] || @default_list_offset
 
     render(conn, "list.json", %{
       users: UserModule.get_users(offset, limit),

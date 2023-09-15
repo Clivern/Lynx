@@ -11,14 +11,19 @@ defmodule LynxWeb.ProjectController do
 
   require Logger
 
-  alias Lynx.Exception.InvalidRequest
   alias Lynx.Module.ProjectModule
-  alias Lynx.Module.TeamModule
   alias Lynx.Service.ValidatorService
   alias Lynx.Module.PermissionModule
 
-  @default_list_limit "10"
-  @default_list_offset "0"
+  @name_min_length 2
+  @name_max_length 60
+  @slug_min_length 2
+  @slug_max_length 60
+  @description_min_length 2
+  @description_max_length 250
+
+  @default_list_limit 10
+  @default_list_offset 0
 
   plug :regular_user when action in [:list, :index, :create, :update, :delete]
   plug :access_check when action in [:index, :update, :delete]
@@ -46,7 +51,7 @@ defmodule LynxWeb.ProjectController do
     if not PermissionModule.can_access_project_uuid(
          :project,
          conn.assigns[:user_role],
-         conn.params["uuid"],
+         conn.params[:uuid],
          conn.assigns[:user_id]
        ) do
       Logger.info("User doesn't own the project")
@@ -66,8 +71,8 @@ defmodule LynxWeb.ProjectController do
   List Projects Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params["limit"], @default_list_limit)
-    offset = ValidatorService.get_int(params["offset"], @default_list_offset)
+    limit = params[:limit] || @default_list_limit
+    offset = params[:offset] || @default_list_offset
 
     {projects, count} =
       if conn.assigns[:is_super] do
@@ -91,45 +96,32 @@ defmodule LynxWeb.ProjectController do
   Create Project Endpoint
   """
   def create(conn, params) do
-    try do
-      validate_create_request(params)
+    case validate_create_request(params) do
+      {:ok, _} ->
+        result =
+          ProjectModule.create_project(%{
+            name: params[:name],
+            description: params[:description],
+            slug: params[:slug],
+            team_id: params[:team_id]
+          })
 
-      slug = ValidatorService.get_str(params["slug"], "")
-      team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
+        case result do
+          {:ok, project} ->
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{project: project})
 
-      if ProjectModule.is_slug_used_in_team(slug, team_id) do
-        raise InvalidRequest, message: "Team slug is used"
-      end
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
 
-      result =
-        ProjectModule.create_project(%{
-          name: ValidatorService.get_str(params["name"], ""),
-          description: ValidatorService.get_str(params["description"], ""),
-          slug: ValidatorService.get_str(params["slug"], ""),
-          team_id: team_id
-        })
-
-      case result do
-        {:ok, project} ->
-          conn
-          |> put_status(:created)
-          |> render("index.json", %{project: project})
-
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> render("error.json", %{message: reason})
     end
   end
 
@@ -154,42 +146,33 @@ defmodule LynxWeb.ProjectController do
   Update Project Endpoint
   """
   def update(conn, params) do
-    try do
-      validate_update_request(params)
+    case validate_update_request(params, params[:uuid]) do
+      {:ok, _} ->
+        result =
+          ProjectModule.update_project(%{
+            uuid: params[:uuid],
+            name: params[:name],
+            description: params[:description],
+            slug: params[:slug],
+            team_id: params[:team_id]
+          })
 
-      result =
-        ProjectModule.update_project(%{
-          uuid: ValidatorService.get_str(params["uuid"], ""),
-          name: ValidatorService.get_str(params["name"], ""),
-          description: ValidatorService.get_str(params["description"], "")
-        })
+        case result do
+          {:ok, project} ->
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{project: project})
 
-      case result do
-        {:ok, project} ->
-          conn
-          |> put_status(:ok)
-          |> render("index.json", %{project: project})
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
 
-        {:not_found, msg} ->
-          conn
-          |> put_status(:not_found)
-          |> render("error.json", %{message: msg})
-
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> render("error.json", %{message: reason})
     end
   end
 
@@ -230,16 +213,26 @@ defmodule LynxWeb.ProjectController do
            ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
          {:ok, _} <- ValidatorService.is_not_empty?(params["slug"], errs.slug_invalid),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+           ValidatorService.is_length_between?(
+             params["name"],
+             @name_min_length,
+             @name_max_length,
+             errs.name_invalid
+           ),
          {:ok, _} <-
            ValidatorService.is_length_between?(
              params["description"],
-             2,
-             250,
+             @description_min_length,
+             @description_max_length,
              errs.description_invalid
            ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+           ValidatorService.is_length_between?(
+             params["slug"],
+             @slug_min_length,
+             @slug_max_length,
+             errs.slug_invalid
+           ),
          {:ok, _} <-
            ValidatorService.is_uuid?(params["team_id"], errs.team_id_required),
          {:ok, _} <-
@@ -277,16 +270,26 @@ defmodule LynxWeb.ProjectController do
            ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
          {:ok, _} <- ValidatorService.is_not_empty?(params["slug"], errs.slug_invalid),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+           ValidatorService.is_length_between?(
+             params["name"],
+             @name_min_length,
+             @name_max_length,
+             errs.name_invalid
+           ),
          {:ok, _} <-
            ValidatorService.is_length_between?(
              params["description"],
-             2,
-             250,
+             @description_min_length,
+             @description_max_length,
              errs.description_invalid
            ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+           ValidatorService.is_length_between?(
+             params["slug"],
+             @slug_min_length,
+             @slug_max_length,
+             errs.slug_invalid
+           ),
          {:ok, _} <-
            ValidatorService.is_uuid?(params["team_id"], errs.team_id_required),
          {:ok, _} <-

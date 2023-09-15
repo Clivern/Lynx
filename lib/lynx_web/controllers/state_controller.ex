@@ -13,7 +13,6 @@ defmodule LynxWeb.StateController do
 
   alias Lynx.Module.StateModule
   alias Lynx.Module.EnvironmentModule
-  alias Lynx.Service.ValidatorService
 
   plug :auth when action in [:create, :index]
 
@@ -21,9 +20,9 @@ defmodule LynxWeb.StateController do
     with {user, secret} <- Plug.BasicAuth.parse_basic_auth(conn) do
       result =
         EnvironmentModule.is_access_allowed(%{
-          team_slug: conn.params["t_slug"],
-          project_slug: conn.params["p_slug"],
-          env_slug: conn.params["e_slug"],
+          team_slug: conn.params[:t_slug],
+          project_slug: conn.params[:p_slug],
+          env_slug: conn.params[:e_slug],
           username: user,
           secret: secret
         })
@@ -55,9 +54,9 @@ defmodule LynxWeb.StateController do
 
     result =
       StateModule.add_state(%{
-        t_slug: ValidatorService.get_str(params["t_slug"], ""),
-        p_slug: ValidatorService.get_str(params["p_slug"], ""),
-        e_slug: ValidatorService.get_str(params["e_slug"], ""),
+        t_slug: params[:t_slug] || "",
+        p_slug: params[:p_slug] || "",
+        e_slug: params[:e_slug] || "",
         name: "_tf_state_",
         value: body
       })
@@ -90,9 +89,9 @@ defmodule LynxWeb.StateController do
   def index(conn, params) do
     result =
       StateModule.get_latest_state(%{
-        t_slug: ValidatorService.get_str(params["t_slug"], ""),
-        p_slug: ValidatorService.get_str(params["p_slug"], ""),
-        e_slug: ValidatorService.get_str(params["e_slug"], "")
+        t_slug: params[:t_slug] || "",
+        p_slug: params[:p_slug] || "",
+        e_slug: params[:e_slug] || ""
       })
 
     case result do

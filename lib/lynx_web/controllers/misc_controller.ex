@@ -110,9 +110,9 @@ defmodule LynxWeb.MiscController do
          {:ok, _} <- ValidatorService.is_string?(params[:app_email], errs.app_email_required),
          {:ok, _} <-
            ValidatorService.is_length_between?(params[:app_name], 2, 60, errs.app_name_invalid),
-         {:ok, _} <- ValidatorService.is_url?(params[:app_url], 2, 60, errs.app_url_invalid),
+         {:ok, _} <- ValidatorService.is_url?(params[:app_url], errs.app_url_invalid),
          {:ok, _} <-
-           ValidatorService.is_email?(params[:app_email], 2, 60, errs.app_email_invalid),
+           ValidatorService.is_email?(params[:app_email], errs.app_email_invalid),
          {:ok, _} <- ValidatorService.is_string?(params[:admin_name], errs.admin_name_required),
          {:ok, _} <-
            ValidatorService.is_string?(params[:admin_email], errs.admin_email_required),

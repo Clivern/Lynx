@@ -11,14 +11,21 @@ defmodule LynxWeb.EnvironmentController do
 
   require Logger
 
-  alias Lynx.Module.ProjectModule
   alias Lynx.Module.EnvironmentModule
   alias Lynx.Service.ValidatorService
-  alias Lynx.Exception.InvalidRequest
   alias Lynx.Module.PermissionModule
 
-  @default_list_limit "10"
-  @default_list_offset "0"
+  @name_min_length 2
+  @name_max_length 60
+  @username_min_length 2
+  @username_max_length 60
+  @secret_min_length 2
+  @secret_max_length 60
+  @slug_min_length 2
+  @slug_max_length 60
+
+  @default_list_limit 10
+  @default_list_offset 0
 
   plug :regular_user when action in [:list, :index, :create, :update, :delete]
   plug :access_check when action in [:list, :index, :create, :update, :delete]
@@ -46,7 +53,7 @@ defmodule LynxWeb.EnvironmentController do
     if not PermissionModule.can_access_project_uuid(
          :project,
          conn.assigns[:user_role],
-         conn.params["p_uuid"],
+         conn.params[:p_uuid],
          conn.assigns[:user_id]
        ) do
       Logger.info("User doesn't own the project")
@@ -66,11 +73,11 @@ defmodule LynxWeb.EnvironmentController do
   List Action Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params["limit"], @default_list_limit)
-    offset = ValidatorService.get_int(params["offset"], @default_list_offset)
+    limit = params[:limit] || @default_list_limit
+    offset = params[:offset] || @default_list_offset
 
-    result = EnvironmentModule.get_project_environments(params["p_uuid"], offset, limit)
-    count = EnvironmentModule.count_project_environments(params["p_uuid"])
+    result = EnvironmentModule.get_project_environments(params[:p_uuid], offset, limit)
+    count = EnvironmentModule.count_project_environments(params[:p_uuid])
 
     case result do
       {:error, msg} ->
@@ -94,49 +101,33 @@ defmodule LynxWeb.EnvironmentController do
   Create Action Endpoint
   """
   def create(conn, params) do
-    try do
-      validate_create_request(params)
+    case validate_create_request(params, params[:p_uuid]) do
+      {:ok, ""} ->
+        result =
+          EnvironmentModule.create_environment(%{
+            name: params[:name],
+            slug: params[:slug],
+            username: params[:username],
+            secret: params[:secret],
+            project_id: params[:p_uuid]
+          })
 
-      project_id =
-        ProjectModule.get_project_id_with_uuid(ValidatorService.get_str(params["p_uuid"], ""))
+        case result do
+          {:ok, environment} ->
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{environment: environment})
 
-      slug = ValidatorService.get_str(params["slug"], "")
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
 
-      # Validate if slug is used before
-      if EnvironmentModule.is_slug_used(project_id, slug) do
-        raise InvalidRequest, message: "Environment slug is used"
-      end
-
-      result =
-        EnvironmentModule.create_environment(%{
-          name: ValidatorService.get_str(params["name"], ""),
-          slug: ValidatorService.get_str(params["slug"], ""),
-          username: ValidatorService.get_str(params["username"], ""),
-          secret: ValidatorService.get_str(params["secret"], ""),
-          project_id: project_id
-        })
-
-      case result do
-        {:ok, environment} ->
-          conn
-          |> put_status(:created)
-          |> render("index.json", %{environment: environment})
-
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> render("error.json", %{message: reason})
     end
   end
 
@@ -161,45 +152,41 @@ defmodule LynxWeb.EnvironmentController do
   Update Action Endpoint
   """
   def update(conn, params) do
-    try do
-      validate_update_request(params)
+    case validate_update_request(params, params[:p_uuid], params[:e_uuid]) do
+      {:ok, ""} ->
+        result =
+          EnvironmentModule.create_environment(%{
+            uuid: params[:e_uuid],
+            name: params[:name],
+            slug: params[:slug],
+            username: params[:username],
+            secret: params[:secret],
+            project_id: params[:p_uuid]
+          })
 
-      result =
-        EnvironmentModule.update_environment(%{
-          uuid: ValidatorService.get_str(params["e_uuid"], ""),
-          name: ValidatorService.get_str(params["name"], ""),
-          username: ValidatorService.get_str(params["username"], ""),
-          secret: ValidatorService.get_str(params["secret"], "")
-        })
+        case result do
+          {:ok, environment} ->
+            conn
+            |> put_status(:ok)
+            |> render("index.json", %{environment: environment})
 
-      case result do
-        {:ok, environment} ->
-          conn
-          |> put_status(:ok)
-          |> render("index.json", %{environment: environment})
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
 
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
-
-      _ ->
-        conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> render("error.json", %{message: reason})
     end
   end
 
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{"p_uuid" => p_uuid, "e_uuid" => e_uuid}) do
+  def delete(conn, %{:p_uuid => p_uuid, :e_uuid => e_uuid}) do
     case EnvironmentModule.delete_environment_by_uuid(p_uuid, e_uuid) do
       {:not_found, msg} ->
         conn
@@ -209,63 +196,6 @@ defmodule LynxWeb.EnvironmentController do
       {:ok, _} ->
         conn
         |> send_resp(:no_content, "")
-    end
-  end
-
-  @doc """
-  Download Action
-  """
-  def download(conn, %{"p_uuid" => p_uuid, "e_uuid" => e_uuid}) do
-    case EnvironmentModule.delete_environment_by_uuid(p_uuid, e_uuid) do
-      {:not_found, msg} ->
-        conn
-        |> put_status(:not_found)
-        |> render("error.json", %{message: msg})
-
-      {:ok, _} ->
-        conn
-        |> send_resp(:no_content, "")
-    end
-  end
-
-  defp validate_create_request(params) do
-    name = ValidatorService.get_str(params["name"], "")
-    username = ValidatorService.get_str(params["username"], "")
-    secret = ValidatorService.get_str(params["secret"], "")
-    slug = ValidatorService.get_str(params["slug"], "")
-
-    if ValidatorService.is_empty(name) do
-      raise InvalidRequest, message: "Environment name is required"
-    end
-
-    if ValidatorService.is_empty(username) do
-      raise InvalidRequest, message: "Environment username is required"
-    end
-
-    if ValidatorService.is_empty(secret) do
-      raise InvalidRequest, message: "Environment secret is required"
-    end
-
-    if ValidatorService.is_empty(slug) do
-      raise InvalidRequest, message: "Environment slug is required"
-    end
-  end
-
-  defp validate_update_request(params) do
-    name = ValidatorService.get_str(params["name"], "")
-    username = ValidatorService.get_str(params["username"], "")
-    secret = ValidatorService.get_str(params["secret"], "")
-
-    if ValidatorService.is_empty(name) do
-      raise InvalidRequest, message: "Environment name is required"
-    end
-
-    if ValidatorService.is_empty(username) do
-      raise InvalidRequest, message: "Environment username is required"
-    end
-
-    if ValidatorService.is_empty(secret) do
-      raise InvalidRequest, message: "Environment secret is required"
     end
   end
 
@@ -288,13 +218,33 @@ defmodule LynxWeb.EnvironmentController do
          {:ok, _} <- ValidatorService.is_string?(params["secret"], errs.secret_required),
          {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+           ValidatorService.is_length_between?(
+             params["name"],
+             @name_min_length,
+             @name_max_length,
+             errs.name_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["username"], 2, 60, errs.username_invalid),
+           ValidatorService.is_length_between?(
+             params["username"],
+             @username_min_length,
+             @username_max_length,
+             errs.username_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["secret"], 2, 60, errs.secret_invalid),
+           ValidatorService.is_length_between?(
+             params["secret"],
+             @secret_min_length,
+             @secret_max_length,
+             errs.secret_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+           ValidatorService.is_length_between?(
+             params["slug"],
+             @slug_min_length,
+             @slug_max_length,
+             errs.slug_invalid
+           ),
          {:ok, _} <- ValidatorService.is_uuid?(project_uuid, errs.project_uuid_invalid),
          {:ok, _} <-
            ValidatorService.is_environment_slug_used?(
@@ -328,13 +278,33 @@ defmodule LynxWeb.EnvironmentController do
          {:ok, _} <- ValidatorService.is_string?(params["secret"], errs.secret_required),
          {:ok, _} <- ValidatorService.is_string?(params["slug"], errs.slug_required),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["name"], 2, 60, errs.name_invalid),
+           ValidatorService.is_length_between?(
+             params["name"],
+             @name_min_length,
+             @name_max_length,
+             errs.name_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["username"], 2, 60, errs.username_invalid),
+           ValidatorService.is_length_between?(
+             params["username"],
+             @username_min_length,
+             @username_max_length,
+             errs.username_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["secret"], 2, 60, errs.secret_invalid),
+           ValidatorService.is_length_between?(
+             params["secret"],
+             @secret_min_length,
+             @secret_max_length,
+             errs.secret_invalid
+           ),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["slug"], 2, 60, errs.slug_invalid),
+           ValidatorService.is_length_between?(
+             params["slug"],
+             @slug_min_length,
+             @slug_max_length,
+             errs.slug_invalid
+           ),
          {:ok, _} <- ValidatorService.is_uuid?(project_uuid, errs.project_uuid_invalid),
          {:ok, _} <-
            ValidatorService.is_environment_slug_used?(

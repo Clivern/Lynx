@@ -35,7 +35,7 @@ defmodule LynxWeb.TaskController do
   @doc """
   Index Action Endpoint
   """
-  def index(conn, %{"uuid" => uuid}) do
+  def index(conn, %{:uuid => uuid}) do
     case TaskModule.get_task_by_uuid(uuid) do
       {:not_found, msg} ->
         conn

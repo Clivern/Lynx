@@ -8,7 +8,6 @@ defmodule Lynx.Module.ProjectModule do
   """
 
   alias Lynx.Context.ProjectContext
-  alias Lynx.Service.ValidatorService
   alias Lynx.Module.TeamModule
 
   @doc """
@@ -87,20 +86,24 @@ defmodule Lynx.Module.ProjectModule do
   Update Project
   """
   def update_project(data \\ %{}) do
-    uuid = ValidatorService.get_str(data[:uuid], "")
-
-    case get_project_by_uuid(uuid) do
+    case ProjectContext.get_project_by_uuid(data[:uuid]) do
       nil ->
-        {:not_found, "Project with ID #{uuid} not found"}
+        {:not_found, "Project with ID #{data[:uuid]} not found"}
 
       project ->
-        new_project =
-          ProjectContext.new_project(%{
-            name: ValidatorService.get_str(data[:name], project.name),
-            description: ValidatorService.get_str(data[:description], project.description),
-            team_id: project.team_id,
-            slug: project.slug
-          })
+        team_id =
+          if data[:team_id] == nil or data[:team_id] == "" do
+            project.team_id
+          else
+            TeamModule.get_team_id_with_uuid(data[:team_id])
+          end
+
+        new_project = %{
+          name: data[:name] || project.name,
+          description: data[:description] || project.description,
+          team_id: team_id,
+          slug: data[:slug] || project.slug
+        }
 
         case ProjectContext.update_project(project, new_project) do
           {:ok, project} ->
@@ -125,7 +128,7 @@ defmodule Lynx.Module.ProjectModule do
         name: data[:name],
         description: data[:description],
         slug: data[:slug],
-        team_id: data[:team_id]
+        team_id: TeamModule.get_team_id_with_uuid(data[:team_id])
       })
 
     case ProjectContext.create_project(project) do

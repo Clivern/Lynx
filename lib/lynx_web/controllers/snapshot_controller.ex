@@ -17,8 +17,8 @@ defmodule LynxWeb.SnapshotController do
   alias Lynx.Service.ValidatorService
   alias Lynx.Module.PermissionModule
 
-  @default_list_limit "10"
-  @default_list_offset "0"
+  @default_list_limit 10
+  @default_list_offset 0
 
   plug :regular_user when action in [:list, :index, :create, :delete, :restore]
   plug :access_check when action in [:index, :delete, :restore]
@@ -46,7 +46,7 @@ defmodule LynxWeb.SnapshotController do
     if not PermissionModule.can_access_snapshot_uuid(
          :snapshot,
          conn.assigns[:user_role],
-         conn.params["uuid"],
+         conn.params[:uuid],
          conn.assigns[:user_id]
        ) do
       Logger.info("User doesn't own the snapshot")

@@ -11,7 +11,7 @@ defmodule Lynx.Module.EnvironmentModule do
   alias Lynx.Context.TeamContext
   alias Lynx.Context.ProjectContext
   alias Lynx.Context.EnvironmentContext
-  alias Lynx.Service.ValidatorService
+  alias Lynx.Module.ProjectModule
 
   @doc """
   Get Environment by UUID and Project UUID
@@ -62,22 +62,25 @@ defmodule Lynx.Module.EnvironmentModule do
   Update environment
   """
   def update_environment(data \\ %{}) do
-    uuid = ValidatorService.get_str(data[:uuid], "")
-
-    case EnvironmentContext.get_env_by_uuid(uuid) do
+    case EnvironmentContext.get_env_by_uuid(data[:uuid]) do
       nil ->
-        {:not_found, "Environment with UUID #{uuid} not found"}
+        {:not_found, "Environment with UUID #{data[:uuid]} not found"}
 
       env ->
-        new_env =
-          EnvironmentContext.new_env(%{
-            name: ValidatorService.get_str(data[:name], env.name),
-            username: ValidatorService.get_str(data[:username], env.username),
-            secret: ValidatorService.get_str(data[:secret], env.secret),
-            slug: env.slug,
-            project_id: env.project_id,
-            uuid: nil
-          })
+        project_id =
+          if data[:project_id] == nil or data[:project_id] == "" do
+            env.project_id
+          else
+            ProjectModule.get_project_id_with_uuid(data[:project_id])
+          end
+
+        new_env = %{
+          name: data[:name] || env.name,
+          username: data[:username] || env.username,
+          secret: data[:secret] || env.secret,
+          slug: data[:slug] || env.slug,
+          project_id: project_id
+        }
 
         case EnvironmentContext.update_env(env, new_env) do
           {:ok, env} ->
@@ -97,13 +100,15 @@ defmodule Lynx.Module.EnvironmentModule do
   Create environment
   """
   def create_environment(data \\ %{}) do
+    project_id = ProjectModule.get_project_id_with_uuid(data[:project_id])
+
     env =
       EnvironmentContext.new_env(%{
         name: data[:name],
         slug: data[:slug],
         username: data[:username],
         secret: data[:secret],
-        project_id: data[:project_id],
+        project_id: project_id,
         uuid: nil
       })
 

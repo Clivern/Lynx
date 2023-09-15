@@ -11,7 +11,6 @@ defmodule LynxWeb.TeamController do
 
   alias Lynx.Module.TeamModule
   alias Lynx.Service.ValidatorService
-  alias Lynx.Exception.InvalidRequest
 
   require Logger
 
@@ -22,8 +21,8 @@ defmodule LynxWeb.TeamController do
   @slug_min_length 2
   @slug_max_length 60
 
-  @default_list_limit "10"
-  @default_list_offset "0"
+  @default_list_limit 10
+  @default_list_offset 0
 
   plug :regular_user when action in [:list]
   plug :super_user when action in [:index, :create, :update, :delete]
@@ -66,8 +65,8 @@ defmodule LynxWeb.TeamController do
   List Action Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params[:limit], @default_list_limit)
-    offset = ValidatorService.get_int(params[:offset], @default_list_offset)
+    limit = params[:limit] || @default_list_limit
+    offset = params[:offset] || @default_list_offset
 
     {teams, count} =
       if conn.assigns[:is_super] do
@@ -220,8 +219,8 @@ defmodule LynxWeb.TeamController do
          {:ok, _} <-
            ValidatorService.is_length_between?(
              params[:description],
-             2,
-             250,
+             @description_min_length,
+             @description_max_length,
              errs.description_invalid
            ),
          {:ok, _} <-
