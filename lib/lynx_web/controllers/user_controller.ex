@@ -135,7 +135,7 @@ defmodule LynxWeb.UserController do
 
           {:ok, user} ->
             conn
-            |> put_status(:created)
+            |> put_status(:ok)
             |> render("index.json", %{user: user})
         end
 

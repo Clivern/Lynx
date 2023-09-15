@@ -11,11 +11,14 @@ defmodule LynxWeb.SnapshotController do
 
   require Logger
 
-  alias Lynx.Exception.InvalidRequest
   alias Lynx.Module.SnapshotModule
-  alias Lynx.Module.TeamModule
   alias Lynx.Service.ValidatorService
   alias Lynx.Module.PermissionModule
+
+  @title_min_length 2
+  @title_max_length 60
+  @description_min_length 2
+  @description_max_length 250
 
   @default_list_limit 10
   @default_list_offset 0
@@ -66,8 +69,8 @@ defmodule LynxWeb.SnapshotController do
   List Snapshots Endpoint
   """
   def list(conn, params) do
-    limit = ValidatorService.get_int(params["limit"], @default_list_limit)
-    offset = ValidatorService.get_int(params["offset"], @default_list_offset)
+    limit = params[:limit] || @default_list_limit
+    offset = params[:offset] || @default_list_offset
 
     {snapshots, count} =
       if conn.assigns[:is_super] do
@@ -91,61 +94,85 @@ defmodule LynxWeb.SnapshotController do
   Create Snapshot Endpoint
   """
   def create(conn, params) do
-    try do
-      validate_create_request(params)
+    case validate_create_request(params) do
+      {:ok, _} ->
+        {data, status} =
+          case SnapshotModule.take_snapshot(params[:record_type], params[:record_uuid]) do
+            {:error, msg} ->
+              Logger.info("Snapshot failed with error: #{msg}")
+              {"", "failure"}
 
-      team_id = TeamModule.get_team_id_with_uuid(ValidatorService.get_str(params["team_id"], ""))
-      record_type = ValidatorService.get_str(params["record_type"], "")
-      record_uuid = ValidatorService.get_str(params["record_uuid"], "")
+            {:ok, data} ->
+              {data, "success"}
+          end
 
-      data =
-        case SnapshotModule.take_snapshot(record_type, record_uuid) do
+        result =
+          SnapshotModule.create_snapshot(%{
+            title: params[:title],
+            description: params[:description],
+            record_type: params[:record_type],
+            record_uuid: params[:record_uuid],
+            status: status,
+            data: data,
+            team_id: params[:team_id]
+          })
+
+        case result do
+          {:ok, snapshot} ->
+            conn
+            |> put_status(:created)
+            |> render("index.json", %{snapshot: snapshot})
+
           {:error, msg} ->
-            raise InvalidRequest, message: msg
-
-          {:ok, data} ->
-            data
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
         end
 
-      result =
-        SnapshotModule.create_snapshot(%{
-          title: ValidatorService.get_str(params["title"], ""),
-          description: ValidatorService.get_str(params["description"], ""),
-          record_type: ValidatorService.get_str(params["record_type"], ""),
-          record_uuid: ValidatorService.get_str(params["record_uuid"], ""),
-          status: "success",
-          data: data,
-          team_id: team_id
-        })
-
-      case result do
-        {:ok, snapshot} ->
-          conn
-          |> put_status(:created)
-          |> render("index.json", %{snapshot: snapshot})
-
-        {:error, msg} ->
-          conn
-          |> put_status(:bad_request)
-          |> render("error.json", %{message: msg})
-      end
-    rescue
-      e in InvalidRequest ->
+      {:error, reason} ->
         conn
         |> put_status(:bad_request)
-        |> render("error.json", %{message: e.message})
+        |> render("error.json", %{message: reason})
+    end
+  end
 
-      _ ->
+  @doc """
+  Update Snapshot Endpoint
+  """
+  def update(conn, params) do
+    case validate_update_request(params) do
+      {:ok, _} ->
+        result =
+          SnapshotModule.update_snapshot(%{
+            uuid: params[:uuid],
+            title: params[:title],
+            description: params[:description],
+            team_id: params[:team_id]
+          })
+
+        case result do
+          {:ok, snapshot} ->
+            conn
+            |> put_status(:ok)
+            |> render("index.json", %{snapshot: snapshot})
+
+          {:error, msg} ->
+            conn
+            |> put_status(:bad_request)
+            |> render("error.json", %{message: msg})
+        end
+
+      {:error, reason} ->
         conn
-        |> put_status(:internal_server_error)
-        |> render("error.json", %{message: "Internal server error"})
+        |> put_status(:bad_request)
+        |> render("error.json", %{message: reason})
     end
   end
 
   @doc """
   Index Snapshot Endpoint
   """
-  def index(conn, %{"uuid" => uuid}) do
+  def index(conn, %{:uuid => uuid}) do
     case SnapshotModule.get_snapshot_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
@@ -162,7 +189,7 @@ defmodule LynxWeb.SnapshotController do
   @doc """
   Delete Snapshot Endpoint
   """
-  def delete(conn, %{"uuid" => uuid}) do
+  def delete(conn, %{:uuid => uuid}) do
     case SnapshotModule.delete_snapshot_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
@@ -178,7 +205,7 @@ defmodule LynxWeb.SnapshotController do
   @doc """
   Restore Snapshot Endpoint
   """
-  def restore(conn, %{"uuid" => uuid}) do
+  def restore(conn, %{:uuid => uuid}) do
     case SnapshotModule.restore_snapshot(uuid) do
       {:error, msg} ->
         conn
@@ -221,12 +248,17 @@ defmodule LynxWeb.SnapshotController do
          {:ok, _} <- ValidatorService.is_uuid?(params["record_uuid"], errs.record_uuid_invalid),
          {:ok, _} <- ValidatorService.is_uuid?(params["team_id"], errs.team_id_required),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["title"], 2, 60, errs.title_invalid),
+           ValidatorService.is_length_between?(
+             params["title"],
+             @title_min_length,
+             @title_max_length,
+             errs.title_invalid
+           ),
          {:ok, _} <-
            ValidatorService.is_length_between?(
              params["description"],
-             2,
-             250,
+             @description_min_length,
+             @description_max_length,
              errs.description_invalid
            ),
          {:ok, _} <-
@@ -243,25 +275,36 @@ defmodule LynxWeb.SnapshotController do
 
   defp validate_update_request(params) do
     errs = %{
+      snapshot_id_invalid: "Snapshot ID is invalid",
       title_required: "Snapshot title is required",
       title_invalid: "Snapshot title is invalid",
       description_required: "Snapshot description is required",
-      description_invalid: "Snapshot description is invalid"
+      description_invalid: "Snapshot description is invalid",
+      team_id_required: "Team is required"
     }
 
-    with {:ok, _} <- ValidatorService.is_string?(params["title"], errs.title_required),
+    with {:ok, _} <- ValidatorService.is_string?(params["uuid"], errs.snapshot_id_invalid),
+         {:ok, _} <- ValidatorService.is_uuid?(params["uuid"], errs.snapshot_id_invalid),
+         {:ok, _} <- ValidatorService.is_string?(params["title"], errs.title_required),
+         {:ok, _} <- ValidatorService.is_string?(params["team_id"], errs.team_id_required),
          {:ok, _} <-
            ValidatorService.is_string?(params["description"], errs.description_required),
          {:ok, _} <- ValidatorService.is_not_empty?(params["title"], errs.title_invalid),
+         {:ok, _} <- ValidatorService.is_uuid?(params["team_id"], errs.team_id_required),
          {:ok, _} <-
            ValidatorService.is_not_empty?(params["description"], errs.description_invalid),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params["title"], 2, 60, errs.title_invalid),
+           ValidatorService.is_length_between?(
+             params["title"],
+             @title_min_length,
+             @title_max_length,
+             errs.title_invalid
+           ),
          {:ok, _} <-
            ValidatorService.is_length_between?(
              params["description"],
-             2,
-             250,
+             @description_min_length,
+             @description_max_length,
              errs.description_invalid
            ) do
       {:ok, ""}

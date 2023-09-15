@@ -10,25 +10,9 @@ defmodule Lynx.Service.ValidatorServiceTest do
   alias Lynx.Service.ValidatorService, as: ValidatorService
 
   describe "validator" do
-    test "validate_int/1 test cases" do
-      assert ValidatorService.validate_int(1) == true
-      assert ValidatorService.validate_int(10000) == true
-      assert ValidatorService.validate_int(01) == true
-      assert ValidatorService.validate_int(6781) == true
-      assert ValidatorService.validate_int("oran") == false
-      assert ValidatorService.validate_int(2.2) == false
-    end
-
-    test "parse_int/1 test cases" do
-      assert ValidatorService.parse_int("20") == 20
-      assert ValidatorService.parse_int(2) == 2
-      assert ValidatorService.parse_int(07) == 7
-    end
-
-    test "is_empty/1 test cases" do
-      assert ValidatorService.is_empty("") == true
-      assert ValidatorService.is_empty("  ") == true
-      assert ValidatorService.is_empty("hi") == false
+    test "is_not_empty?/2 test cases" do
+      assert ValidatorService.is_not_empty?("", "err1") == {:error, "err1"}
+      assert ValidatorService.is_not_empty?("hi", "err1") == {:ok, "hi"}
     end
   end
 end

@@ -38,7 +38,7 @@ defmodule Lynx.Module.SnapshotModule do
         record_uuid: data[:record_uuid],
         status: data[:status],
         data: data[:data],
-        team_id: data[:team_id]
+        team_id: TeamModule.get_team_id_with_uuid(data[:team_id])
       })
 
     case SnapshotContext.create_snapshot(snapshot) do
@@ -51,6 +51,42 @@ defmodule Lynx.Module.SnapshotModule do
           |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
 
         {:error, Enum.at(messages, 0)}
+    end
+  end
+
+  @doc """
+  Update A Snapshot
+  """
+  def update_snapshot(data \\ %{}) do
+    case SnapshotContext.get_snapshot_by_uuid(data[:uuid]) do
+      nil ->
+        {:not_found, "Snapshot with ID #{data[:uuid]} not found"}
+
+      snapshot ->
+        team_id =
+          if data[:team_id] == nil or data[:team_id] == "" do
+            snapshot.team_id
+          else
+            TeamModule.get_team_id_with_uuid(data[:team_id])
+          end
+
+        new_snapshot = %{
+          title: data[:title] || snapshot.title,
+          description: data[:description] || snapshot.description,
+          team_id: team_id
+        }
+
+        case SnapshotContext.update_snapshot(snapshot, new_snapshot) do
+          {:ok, snapshot} ->
+            {:ok, snapshot}
+
+          {:error, changeset} ->
+            messages =
+              changeset.errors()
+              |> Enum.map(fn {field, {message, _options}} -> "#{field}: #{message}" end)
+
+            {:error, Enum.at(messages, 0)}
+        end
     end
   end
 

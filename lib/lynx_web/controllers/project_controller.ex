@@ -160,7 +160,7 @@ defmodule LynxWeb.ProjectController do
         case result do
           {:ok, project} ->
             conn
-            |> put_status(:created)
+            |> put_status(:ok)
             |> render("index.json", %{project: project})
 
           {:error, msg} ->
