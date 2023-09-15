@@ -53,7 +53,7 @@ defmodule LynxWeb.EnvironmentController do
     if not PermissionModule.can_access_project_uuid(
          :project,
          conn.assigns[:user_role],
-         conn.params[:p_uuid],
+         conn.params["p_uuid"],
          conn.assigns[:user_id]
        ) do
       Logger.info("User doesn't own the project")
@@ -73,11 +73,11 @@ defmodule LynxWeb.EnvironmentController do
   List Action Endpoint
   """
   def list(conn, params) do
-    limit = params[:limit] || @default_list_limit
-    offset = params[:offset] || @default_list_offset
+    limit = params["limit"] || @default_list_limit
+    offset = params["offset"] || @default_list_offset
 
-    result = EnvironmentModule.get_project_environments(params[:p_uuid], offset, limit)
-    count = EnvironmentModule.count_project_environments(params[:p_uuid])
+    result = EnvironmentModule.get_project_environments(params["p_uuid"], offset, limit)
+    count = EnvironmentModule.count_project_environments(params["p_uuid"])
 
     case result do
       {:error, msg} ->
@@ -101,15 +101,15 @@ defmodule LynxWeb.EnvironmentController do
   Create Action Endpoint
   """
   def create(conn, params) do
-    case validate_create_request(params, params[:p_uuid]) do
+    case validate_create_request(params, params["p_uuid"]) do
       {:ok, ""} ->
         result =
           EnvironmentModule.create_environment(%{
-            name: params[:name],
-            slug: params[:slug],
-            username: params[:username],
-            secret: params[:secret],
-            project_id: params[:p_uuid]
+            name: params["name"],
+            slug: params["slug"],
+            username: params["username"],
+            secret: params["secret"],
+            project_id: params["p_uuid"]
           })
 
         case result do
@@ -152,16 +152,16 @@ defmodule LynxWeb.EnvironmentController do
   Update Action Endpoint
   """
   def update(conn, params) do
-    case validate_update_request(params, params[:p_uuid], params[:e_uuid]) do
+    case validate_update_request(params, params["p_uuid"], params["e_uuid"]) do
       {:ok, ""} ->
         result =
           EnvironmentModule.create_environment(%{
-            uuid: params[:e_uuid],
-            name: params[:name],
-            slug: params[:slug],
-            username: params[:username],
-            secret: params[:secret],
-            project_id: params[:p_uuid]
+            uuid: params["e_uuid"],
+            name: params["name"],
+            slug: params["slug"],
+            username: params["username"],
+            secret: params["secret"],
+            project_id: params["p_uuid"]
           })
 
         case result do

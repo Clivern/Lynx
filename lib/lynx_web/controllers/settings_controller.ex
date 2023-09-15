@@ -11,6 +11,9 @@ defmodule LynxWeb.SettingsController do
 
   require Logger
 
+  @app_name_min_length 2
+  @app_name_max_length 60
+
   alias Lynx.Module.SettingsModule
   alias Lynx.Service.ValidatorService
 
@@ -40,9 +43,9 @@ defmodule LynxWeb.SettingsController do
     case validate_update_request(params) do
       {:ok, _} ->
         SettingsModule.update_configs(%{
-          app_name: params[:app_name],
-          app_url: params[:app_url],
-          app_email: params[:app_email]
+          app_name: params["app_name"],
+          app_url: params["app_url"],
+          app_email: params["app_email"]
         })
 
         conn
@@ -66,14 +69,19 @@ defmodule LynxWeb.SettingsController do
       app_email_invalid: "Application email is invalid"
     }
 
-    with {:ok, _} <- ValidatorService.is_string?(params[:app_name], errs.app_name_required),
-         {:ok, _} <- ValidatorService.is_string?(params[:app_url], errs.app_url_required),
-         {:ok, _} <- ValidatorService.is_string?(params[:app_email], errs.app_email_required),
+    with {:ok, _} <- ValidatorService.is_string?(params["app_name"], errs.app_name_required),
+         {:ok, _} <- ValidatorService.is_string?(params["app_url"], errs.app_url_required),
+         {:ok, _} <- ValidatorService.is_string?(params["app_email"], errs.app_email_required),
          {:ok, _} <-
-           ValidatorService.is_length_between?(params[:app_name], 2, 60, errs.app_name_invalid),
-         {:ok, _} <- ValidatorService.is_url?(params[:app_url], errs.app_url_invalid),
+           ValidatorService.is_length_between?(
+             params["app_name"],
+             @app_name_min_length,
+             @app_name_max_length,
+             errs.app_name_invalid
+           ),
+         {:ok, _} <- ValidatorService.is_url?(params["app_url"], errs.app_url_invalid),
          {:ok, _} <-
-           ValidatorService.is_email?(params[:app_email], errs.app_email_invalid) do
+           ValidatorService.is_email?(params["app_email"], errs.app_email_invalid) do
       {:ok, ""}
     else
       {:error, reason} -> {:error, reason}

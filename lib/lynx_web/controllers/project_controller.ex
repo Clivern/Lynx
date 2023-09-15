@@ -51,7 +51,7 @@ defmodule LynxWeb.ProjectController do
     if not PermissionModule.can_access_project_uuid(
          :project,
          conn.assigns[:user_role],
-         conn.params[:uuid],
+         conn.params["uuid"],
          conn.assigns[:user_id]
        ) do
       Logger.info("User doesn't own the project")
@@ -71,8 +71,8 @@ defmodule LynxWeb.ProjectController do
   List Projects Endpoint
   """
   def list(conn, params) do
-    limit = params[:limit] || @default_list_limit
-    offset = params[:offset] || @default_list_offset
+    limit = params["limit"] || @default_list_limit
+    offset = params["offset"] || @default_list_offset
 
     {projects, count} =
       if conn.assigns[:is_super] do
@@ -100,10 +100,10 @@ defmodule LynxWeb.ProjectController do
       {:ok, _} ->
         result =
           ProjectModule.create_project(%{
-            name: params[:name],
-            description: params[:description],
-            slug: params[:slug],
-            team_id: params[:team_id]
+            name: params["name"],
+            description: params["description"],
+            slug: params["slug"],
+            team_id: params["team_id"]
           })
 
         case result do
@@ -146,15 +146,15 @@ defmodule LynxWeb.ProjectController do
   Update Project Endpoint
   """
   def update(conn, params) do
-    case validate_update_request(params, params[:uuid]) do
+    case validate_update_request(params, params["uuid"]) do
       {:ok, _} ->
         result =
           ProjectModule.update_project(%{
-            uuid: params[:uuid],
-            name: params[:name],
-            description: params[:description],
-            slug: params[:slug],
-            team_id: params[:team_id]
+            uuid: params["uuid"],
+            name: params["name"],
+            description: params["description"],
+            slug: params["slug"],
+            team_id: params["team_id"]
           })
 
         case result do

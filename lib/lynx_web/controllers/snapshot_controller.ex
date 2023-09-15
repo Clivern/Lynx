@@ -49,7 +49,7 @@ defmodule LynxWeb.SnapshotController do
     if not PermissionModule.can_access_snapshot_uuid(
          :snapshot,
          conn.assigns[:user_role],
-         conn.params[:uuid],
+         conn.params["uuid"],
          conn.assigns[:user_id]
        ) do
       Logger.info("User doesn't own the snapshot")
@@ -69,8 +69,8 @@ defmodule LynxWeb.SnapshotController do
   List Snapshots Endpoint
   """
   def list(conn, params) do
-    limit = params[:limit] || @default_list_limit
-    offset = params[:offset] || @default_list_offset
+    limit = params["limit"] || @default_list_limit
+    offset = params["offset"] || @default_list_offset
 
     {snapshots, count} =
       if conn.assigns[:is_super] do
@@ -97,7 +97,7 @@ defmodule LynxWeb.SnapshotController do
     case validate_create_request(params) do
       {:ok, _} ->
         {data, status} =
-          case SnapshotModule.take_snapshot(params[:record_type], params[:record_uuid]) do
+          case SnapshotModule.take_snapshot(params["record_type"], params["record_uuid"]) do
             {:error, msg} ->
               Logger.info("Snapshot failed with error: #{msg}")
               {"", "failure"}
@@ -108,13 +108,13 @@ defmodule LynxWeb.SnapshotController do
 
         result =
           SnapshotModule.create_snapshot(%{
-            title: params[:title],
-            description: params[:description],
-            record_type: params[:record_type],
-            record_uuid: params[:record_uuid],
+            title: params["title"],
+            description: params["description"],
+            record_type: params["record_type"],
+            record_uuid: params["record_uuid"],
             status: status,
             data: data,
-            team_id: params[:team_id]
+            team_id: params["team_id"]
           })
 
         case result do
@@ -144,10 +144,10 @@ defmodule LynxWeb.SnapshotController do
       {:ok, _} ->
         result =
           SnapshotModule.update_snapshot(%{
-            uuid: params[:uuid],
-            title: params[:title],
-            description: params[:description],
-            team_id: params[:team_id]
+            uuid: params["uuid"],
+            title: params["title"],
+            description: params["description"],
+            team_id: params["team_id"]
           })
 
         case result do
@@ -172,7 +172,7 @@ defmodule LynxWeb.SnapshotController do
   @doc """
   Index Snapshot Endpoint
   """
-  def index(conn, %{:uuid => uuid}) do
+  def index(conn, %{"uuid" => uuid}) do
     case SnapshotModule.get_snapshot_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
@@ -189,7 +189,7 @@ defmodule LynxWeb.SnapshotController do
   @doc """
   Delete Snapshot Endpoint
   """
-  def delete(conn, %{:uuid => uuid}) do
+  def delete(conn, %{"uuid" => uuid}) do
     case SnapshotModule.delete_snapshot_by_uuid(uuid) do
       {:not_found, msg} ->
         conn
@@ -205,7 +205,7 @@ defmodule LynxWeb.SnapshotController do
   @doc """
   Restore Snapshot Endpoint
   """
-  def restore(conn, %{:uuid => uuid}) do
+  def restore(conn, %{"uuid" => uuid}) do
     case SnapshotModule.restore_snapshot(uuid) do
       {:error, msg} ->
         conn

@@ -9,6 +9,11 @@ defmodule LynxWeb.MiscController do
 
   use LynxWeb, :controller
 
+  @admin_name_min_length 2
+  @admin_name_max_length 60
+  @app_name_min_length 2
+  @app_name_max_length 60
+
   alias Lynx.Module.InstallModule
   alias Lynx.Service.ValidatorService
   alias Lynx.Service.AuthService
@@ -23,16 +28,16 @@ defmodule LynxWeb.MiscController do
           app_key = InstallModule.get_app_key()
 
           InstallModule.store_configs(%{
-            app_name: params[:app_name] || "Lynx",
-            app_url: params[:app_url] || "http://lynx.sh",
-            app_email: params[:app_email] || "no_reply@lynx.sh",
+            app_name: params["app_name"] || "Lynx",
+            app_url: params["app_url"] || "http://lynx.sh",
+            app_email: params["app_email"] || "no_reply@lynx.sh",
             app_key: app_key
           })
 
           InstallModule.create_admin(%{
-            admin_name: params[:admin_name] || "",
-            admin_email: params[:admin_email] || "",
-            admin_password: params[:admin_password] || "",
+            admin_name: params["admin_name"] || "",
+            admin_email: params["admin_email"] || "",
+            admin_password: params["admin_password"] || "",
             app_key: app_key
           })
 
@@ -58,10 +63,10 @@ defmodule LynxWeb.MiscController do
   def auth(conn, params) do
     err = "Invalid email or password!"
 
-    with {:ok, _} <- ValidatorService.is_string?(params[:password], err),
-         {:ok, password} <- ValidatorService.is_password?(params[:password], err),
-         {:ok, _} <- ValidatorService.is_string?(params[:email], err),
-         {:ok, email} <- ValidatorService.is_email?(params[:email], err) do
+    with {:ok, _} <- ValidatorService.is_string?(params["password"], err),
+         {:ok, password} <- ValidatorService.is_password?(params["password"], err),
+         {:ok, _} <- ValidatorService.is_string?(params["email"], err),
+         {:ok, email} <- ValidatorService.is_email?(params["email"], err) do
       # Authenticate
       case AuthService.login(email, password) do
         {:success, session} ->
@@ -105,35 +110,40 @@ defmodule LynxWeb.MiscController do
       admin_password_invalid: "User password is invalid"
     }
 
-    with {:ok, _} <- ValidatorService.is_string?(params[:app_name], errs.app_name_required),
-         {:ok, _} <- ValidatorService.is_string?(params[:app_url], errs.app_url_required),
-         {:ok, _} <- ValidatorService.is_string?(params[:app_email], errs.app_email_required),
-         {:ok, _} <-
-           ValidatorService.is_length_between?(params[:app_name], 2, 60, errs.app_name_invalid),
-         {:ok, _} <- ValidatorService.is_url?(params[:app_url], errs.app_url_invalid),
-         {:ok, _} <-
-           ValidatorService.is_email?(params[:app_email], errs.app_email_invalid),
-         {:ok, _} <- ValidatorService.is_string?(params[:admin_name], errs.admin_name_required),
-         {:ok, _} <-
-           ValidatorService.is_string?(params[:admin_email], errs.admin_email_required),
-         {:ok, _} <-
-           ValidatorService.is_string?(params[:admin_password], errs.admin_password_required),
-         {:ok, _} <-
-           ValidatorService.is_not_empty?(params[:admin_name], errs.admin_name_required),
-         {:ok, _} <-
-           ValidatorService.is_not_empty?(params[:admin_email], errs.admin_email_required),
-         {:ok, _} <-
-           ValidatorService.is_not_empty?(params[:admin_password], errs.admin_password_required),
+    with {:ok, _} <- ValidatorService.is_string?(params["app_name"], errs.app_name_required),
+         {:ok, _} <- ValidatorService.is_string?(params["app_url"], errs.app_url_required),
+         {:ok, _} <- ValidatorService.is_string?(params["app_email"], errs.app_email_required),
          {:ok, _} <-
            ValidatorService.is_length_between?(
-             params[:admin_name],
-             2,
-             60,
+             params["app_name"],
+             @app_name_min_length,
+             @app_name_max_length,
+             errs.app_name_invalid
+           ),
+         {:ok, _} <- ValidatorService.is_url?(params["app_url"], errs.app_url_invalid),
+         {:ok, _} <-
+           ValidatorService.is_email?(params["app_email"], errs.app_email_invalid),
+         {:ok, _} <- ValidatorService.is_string?(params["admin_name"], errs.admin_name_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["admin_email"], errs.admin_email_required),
+         {:ok, _} <-
+           ValidatorService.is_string?(params["admin_password"], errs.admin_password_required),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["admin_name"], errs.admin_name_required),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["admin_email"], errs.admin_email_required),
+         {:ok, _} <-
+           ValidatorService.is_not_empty?(params["admin_password"], errs.admin_password_required),
+         {:ok, _} <-
+           ValidatorService.is_length_between?(
+             params["admin_name"],
+             @admin_name_min_length,
+             @admin_name_max_length,
              errs.admin_name_invalid
            ),
-         {:ok, _} <- ValidatorService.is_email?(params[:admin_email], errs.admin_email_invalid),
+         {:ok, _} <- ValidatorService.is_email?(params["admin_email"], errs.admin_email_invalid),
          {:ok, _} <-
-           ValidatorService.is_password?(params[:admin_password], errs.admin_password_invalid) do
+           ValidatorService.is_password?(params["admin_password"], errs.admin_password_invalid) do
       {:ok, ""}
     else
       {:error, reason} -> {:error, reason}

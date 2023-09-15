@@ -20,9 +20,9 @@ defmodule LynxWeb.LockController do
     with {user, secret} <- Plug.BasicAuth.parse_basic_auth(conn) do
       result =
         EnvironmentModule.is_access_allowed(%{
-          team_slug: conn.params[:t_slug],
-          project_slug: conn.params[:p_slug],
-          env_slug: conn.params[:e_slug],
+          team_slug: conn.params["t_slug"],
+          project_slug: conn.params["p_slug"],
+          env_slug: conn.params["e_slug"],
           username: user,
           secret: secret
         })
@@ -52,9 +52,9 @@ defmodule LynxWeb.LockController do
   def lock(conn, params) do
     is_locked =
       LockModule.is_locked(%{
-        t_slug: params[:t_slug] || "",
-        p_slug: params[:p_slug] || "",
-        e_slug: params[:e_slug] || ""
+        t_slug: params["t_slug"] || "",
+        p_slug: params["p_slug"] || "",
+        e_slug: params["e_slug"] || ""
       })
 
     case is_locked do
@@ -75,15 +75,15 @@ defmodule LynxWeb.LockController do
       {:success, _} ->
         action =
           LockModule.lock_action(%{
-            t_slug: params[:t_slug] || "",
-            p_slug: params[:p_slug] || "",
-            e_slug: params[:e_slug] || "",
-            uuid: params[:ID] || "",
-            operation: params[:Operation] || "",
-            info: params[:Info] || "",
-            who: params[:Who] || "",
-            version: params[:Version] || "",
-            path: params[:Path] || ""
+            t_slug: params["t_slug"] || "",
+            p_slug: params["p_slug"] || "",
+            e_slug: params["e_slug"] || "",
+            uuid: params["ID"] || "",
+            operation: params["Operation"] || "",
+            info: params["Info"] || "",
+            who: params["Who"] || "",
+            version: params["Version"] || "",
+            path: params["Path"] || ""
           })
 
         case action do
@@ -115,9 +115,9 @@ defmodule LynxWeb.LockController do
   def unlock(conn, params) do
     action =
       LockModule.unlock_action(%{
-        t_slug: params[:t_slug] || "",
-        p_slug: params[:p_slug] || "",
-        e_slug: params[:e_slug] || ""
+        t_slug: params["t_slug"] || "",
+        p_slug: params["p_slug"] || "",
+        e_slug: params["e_slug"] || ""
       })
 
     case action do

@@ -11,6 +11,9 @@ defmodule LynxWeb.ProfileController do
 
   require Logger
 
+  @name_min_length 2
+  @name_max_length 60
+
   alias Lynx.Module.UserModule
   alias Lynx.Service.ValidatorService
 
@@ -42,9 +45,9 @@ defmodule LynxWeb.ProfileController do
         result =
           UserModule.update_user(%{
             uuid: conn.assigns[:user_uuid],
-            email: params[:email],
-            name: params[:name],
-            password: params[:password]
+            email: params["email"],
+            name: params["name"],
+            password: params["password"]
           })
 
         case result do
@@ -82,21 +85,26 @@ defmodule LynxWeb.ProfileController do
       email_used: "User email is already used"
     }
 
-    case ValidatorService.is_not_empty?(params[:password], "") do
+    case ValidatorService.is_not_empty?(params["password"], "") do
       {:ok, _} ->
-        with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
-             {:ok, _} <- ValidatorService.is_string?(params[:email], errs.email_required),
-             {:ok, _} <- ValidatorService.is_string?(params[:password], errs.password_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params[:email], errs.email_required),
+        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_string?(params["password"], errs.password_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
              {:ok, _} <-
-               ValidatorService.is_not_empty?(params[:password], errs.password_required),
+               ValidatorService.is_not_empty?(params["password"], errs.password_required),
              {:ok, _} <-
-               ValidatorService.is_length_between?(params[:name], 2, 60, errs.name_invalid),
-             {:ok, _} <- ValidatorService.is_email?(params[:email], errs.email_invalid),
-             {:ok, _} <- ValidatorService.is_password?(params[:password], errs.password_invalid),
+               ValidatorService.is_length_between?(
+                 params["name"],
+                 @name_min_length,
+                 @name_max_length,
+                 errs.name_invalid
+               ),
+             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
+             {:ok, _} <- ValidatorService.is_password?(params["password"], errs.password_invalid),
              {:ok, _} <-
-               ValidatorService.is_email_used?(params[:email], user_uuid, errs.email_used) do
+               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
           {:ok, ""}
         else
           {:error, reason} -> {:error, reason}
@@ -104,15 +112,20 @@ defmodule LynxWeb.ProfileController do
 
       {:error, _} ->
         # Password is not provided
-        with {:ok, _} <- ValidatorService.is_string?(params[:name], errs.name_required),
-             {:ok, _} <- ValidatorService.is_string?(params[:email], errs.email_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params[:name], errs.name_required),
-             {:ok, _} <- ValidatorService.is_not_empty?(params[:email], errs.email_required),
+        with {:ok, _} <- ValidatorService.is_string?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_string?(params["email"], errs.email_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["name"], errs.name_required),
+             {:ok, _} <- ValidatorService.is_not_empty?(params["email"], errs.email_required),
              {:ok, _} <-
-               ValidatorService.is_length_between?(params[:name], 2, 60, errs.name_invalid),
-             {:ok, _} <- ValidatorService.is_email?(params[:email], errs.email_invalid),
+               ValidatorService.is_length_between?(
+                 params["name"],
+                 @name_min_length,
+                 @name_max_length,
+                 errs.name_invalid
+               ),
+             {:ok, _} <- ValidatorService.is_email?(params["email"], errs.email_invalid),
              {:ok, _} <-
-               ValidatorService.is_email_used?(params[:email], user_uuid, errs.email_used) do
+               ValidatorService.is_email_used?(params["email"], user_uuid, errs.email_used) do
           {:ok, ""}
         else
           {:error, reason} -> {:error, reason}
