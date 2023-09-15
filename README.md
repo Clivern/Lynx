@@ -37,7 +37,7 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 - **Terraform Locking Support:** The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
 - **RESTful Endpoints:** for seamless teams, users, projects, environments, and snapshots management.
 - **Snapshots Support**: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
-- **[Terraform Provider](https://github.com/Clivern/terraform-provider-lynx)**: Automate creation of teams, users, projects, environments and snapshots with terraform.
+- **[Terraform Provider](https://github.com/Clivern/terraform-provider-lynx)**: Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
 
 #### Upcoming Features:
 
