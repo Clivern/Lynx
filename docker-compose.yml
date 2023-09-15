@@ -16,7 +16,7 @@ services:
     depends_on:
       - db
  db:
-    image: postgres:15.2
+    image: postgres:16.0
     environment:
       POSTGRES_DB: campfire
       POSTGRES_USER: root
