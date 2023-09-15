@@ -271,7 +271,7 @@
                                     <form action={Routes.settings_path(@conn, :update)} method="post" v-on:submit.prevent="settingsAction">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Application Name" %></label>
-                                            <input class="form-control" name="app_name" type="text" value={@data.app_name} required="required">
+                                            <input class="form-control" name="app_name" type="text" value={@data.app_name} required="required" minlength="2" maxlength="60">
                                         </div>
 
                                         <div class="mb-24">

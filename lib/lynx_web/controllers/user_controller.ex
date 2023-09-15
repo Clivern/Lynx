@@ -179,7 +179,7 @@ defmodule LynxWeb.UserController do
       role_required: "User role is required",
       role_invalid: "User role is invalid",
       password_required: "User password is required",
-      password_invalid: "User password is invalid",
+      password_invalid: "User password is invalid, It must be alphanumeric and not less than 6 characters",
       email_used: "User email is already used"
     }
 
@@ -248,7 +248,7 @@ defmodule LynxWeb.UserController do
       role_required: "User role is required",
       role_invalid: "User role is invalid",
       password_required: "User password is required",
-      password_invalid: "User password is invalid",
+      password_invalid: "User password is invalid, It must be alphanumeric and not less than 6 characters",
       email_used: "User email is already used"
     }
 

@@ -107,7 +107,7 @@ defmodule LynxWeb.MiscController do
       admin_email_required: "User email is required",
       admin_email_invalid: "User email is invalid",
       admin_password_required: "User password is required",
-      admin_password_invalid: "User password is invalid"
+      admin_password_invalid: "User password is invalid, It must be alphanumeric and not less than 6 characters"
     }
 
     with {:ok, _} <- ValidatorService.is_string?(params["app_name"], errs.app_name_required),

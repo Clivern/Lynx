@@ -342,28 +342,28 @@
                                 <div class="col-12">
                                     <div class="mb-24">
                                         <label class="form-label"><%= gettext "Name" %></label>
-                                        <input type="text" v-model="environmentName" @input="slugifyEnvironmentName" class="form-control" name="name" required="required">
+                                        <input type="text" v-model="environmentName" @input="slugifyEnvironmentName" class="form-control" name="name" required="required" minlength="2" maxlength="60">
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="mb-24">
                                         <label class="form-label"><%= gettext "Slug" %></label>
-                                        <input type="text" v-model="environmentSlug" class="form-control" name="slug" required="required">
+                                        <input type="text" v-model="environmentSlug" class="form-control" name="slug" required="required" minlength="2" maxlength="60">
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="mb-24">
                                         <label class="form-label"><%= gettext "Username" %></label>
-                                        <input type="text" v-model="environmentUsername" class="form-control" name="username" required="required">
+                                        <input type="text" v-model="environmentUsername" class="form-control" name="username" required="required" minlength="2" maxlength="60">
                                     </div>
                                 </div>
 
                                 <div class="col-12">
                                     <div class="mb-24">
                                         <label class="form-label"><%= gettext "Secret" %></label>
-                                        <input type="text" v-model="environmentSecret" class="form-control" name="secret" required="required">
+                                        <input type="text" v-model="environmentSecret" class="form-control" name="secret" required="required" minlength="2" maxlength="60">
                                     </div>
                                 </div>
                             </div>

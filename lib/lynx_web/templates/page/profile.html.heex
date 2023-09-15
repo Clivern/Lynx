@@ -271,7 +271,7 @@
                                     <form action={Routes.profile_path(@conn, :update)} method="post" v-on:submit.prevent="profileAction">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Nick Name" %></label>
-                                            <input class="form-control" name="name" type="text" value={@data.user_name} required="required">
+                                            <input class="form-control" name="name" type="text" value={@data.user_name} required="required" minlength="2" maxlength="60">
                                         </div>
 
                                         <div class="mb-24">

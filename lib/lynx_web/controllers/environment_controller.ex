@@ -186,7 +186,7 @@ defmodule LynxWeb.EnvironmentController do
   @doc """
   Delete Action Endpoint
   """
-  def delete(conn, %{:p_uuid => p_uuid, :e_uuid => e_uuid}) do
+  def delete(conn, %{"p_uuid" => p_uuid, "e_uuid" => e_uuid}) do
     case EnvironmentModule.delete_environment_by_uuid(p_uuid, e_uuid) do
       {:not_found, msg} ->
         conn

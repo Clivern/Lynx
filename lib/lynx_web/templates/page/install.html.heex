@@ -44,7 +44,7 @@
                 <form action={Routes.misc_path(@conn, :install)} method="post" v-on:submit.prevent="installAction" class="mt-16 mt-sm-32 mb-8">
                     <div class="mb-16">
                         <label class="form-label"><%= gettext "Application Name" %>:</label>
-                        <input class="form-control" name="app_name" type="text" required>
+                        <input class="form-control" name="app_name" type="text" required minlength="2" maxlength="60">
                     </div>
                     <div class="mb-16">
                         <label class="form-label"><%= gettext "Application URL" %>:</label>
@@ -56,7 +56,7 @@
                     </div>
                     <div class="mb-16">
                         <label class="form-label"><%= gettext "Admin Nick Name" %>:</label>
-                        <input class="form-control" name="admin_name" type="text" required>
+                        <input class="form-control" name="admin_name" type="text" required minlength="2" maxlength="60">
                     </div>
                     <div class="mb-16">
                         <label class="form-label"><%= gettext "Admin Email" %>:</label>

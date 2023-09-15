@@ -351,7 +351,7 @@
                                     <div class="col-12">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Nick Name" %></label>
-                                            <input type="text" class="form-control" name="name" required="required">
+                                            <input type="text" class="form-control" name="name" required="required" minlength="2" maxlength="60">
                                         </div>
                                     </div>
 
@@ -375,7 +375,7 @@
                                     <div class="col-12">
                                         <div class="mb-24">
                                             <label class="form-label"><%= gettext "Password" %></label>
-                                            <input type="password" class="form-control" name="password" required="required">
+                                            <input type="password" class="form-control" name="password" required="required" minlength="6" maxlength="60">
                                         </div>
                                     </div>
                                 </div>
