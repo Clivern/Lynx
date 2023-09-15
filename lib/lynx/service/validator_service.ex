@@ -159,7 +159,7 @@ defmodule Lynx.Service.ValidatorService do
         {:ok, email}
 
       user ->
-        case {user_uuid, user.id == user_uuid} do
+        case {user_uuid, user.uuid == user_uuid} do
           {nil, _} ->
             {:error, err}
 
