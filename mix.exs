@@ -57,8 +57,7 @@ defmodule Lynx.MixProject do
       {:gettext, "~> 0.22"},
       {:jason, "~> 1.4"},
       {:plug_cowboy, "~> 2.5"},
-      {:bcrypt_elixir, "~> 3.0"},
-      {:validate, "~> 1.3"}
+      {:bcrypt_elixir, "~> 3.0"}
     ]
   end
 

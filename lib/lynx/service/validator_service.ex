@@ -13,143 +13,101 @@ defmodule Lynx.Service.ValidatorService do
   alias Lynx.Exception.InvalidRequest
 
   def is_number?(value, err) do
-    case Validate.validate(value, type: :number) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case is_number(value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_integer?(value, err) do
-    case Validate.validate(value, type: :integer) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case is_integer(value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_float?(value, err) do
-    case Validate.validate(value, type: :float) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case is_float(value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_string?(value, err) do
-    case Validate.validate(value, type: :string) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case is_binary(value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_list?(value, err) do
-    case Validate.validate(value, type: :list) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case is_list(value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_not_empty_list?(value, err) do
     case length(value) > 0 do
-      true ->
-        {:ok, value}
-
-      false ->
-        {:error, err}
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def not_in?(value, list, err) do
-    case Validate.validate(value, type: :string, not_in: list) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case value in list do
+      false -> {:ok, value}
+      true -> {:error, err}
     end
   end
 
   def in?(value, list, err) do
-    case Validate.validate(value, type: :string, in: list) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case value in list do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_not_empty?(value, err) do
-    case Validate.validate(value, required: true) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case value do
+      nil -> {:error, err}
+      "" -> {:error, err}
+      _ -> {:ok, value}
     end
   end
 
   def is_uuid?(value, err) do
-    case Validate.validate(value, type: :string, uuid: true) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case Regex.match?(~r/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/, value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_url?(value, err) do
-    case Validate.validate(value, type: :string, url: true) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case Regex.match?(~r/^(https?:\/\/)?([\da-z\.-]+)\.([a-z\.]{2,6})([\/\w \.-]*)*\/?$/, value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_email?(value, err) do
-    case Validate.validate(value,
-           type: :string,
-           regex: ~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/
-         ) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case Regex.match?(~r/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/, value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_password?(value, err) do
-    case Validate.validate(value, type: :string, regex: ~r/^(?=.*\D)[^\s]{6,32}$/) do
-      {:ok, value} ->
-        {:ok, value}
-
-      {:error, _} ->
-        {:error, err}
+    case Regex.match?(~r/^(?=.*\D)[^\s]{6,32}$/, value) do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
   def is_length_between?(value, min, max, err) do
-    if String.length(value) >= min and String.length(value) <= max do
-      {:ok, value}
-    else
-      {:error, err}
+    case String.length(value) >= min and String.length(value) <= max do
+      true -> {:ok, value}
+      false -> {:error, err}
     end
   end
 
