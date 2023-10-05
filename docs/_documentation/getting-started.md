@@ -52,4 +52,4 @@ You can update your profile like the screenshot
 
 You can update the settings like the screenshot if you are admin
 
-![Image](/assets/images/profile_page.png)
+![Image](/assets/images/settings_page.png)
