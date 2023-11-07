@@ -108,8 +108,7 @@ defmodule Lynx.Module.EnvironmentModule do
         slug: data[:slug],
         username: data[:username],
         secret: data[:secret],
-        project_id: project_id,
-        uuid: nil
+        project_id: project_id
       })
 
     case EnvironmentContext.create_env(env) do
