@@ -53,9 +53,11 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 ```zsh
 $ mkdir app
+$ cd app
+
 $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml
 $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf
-$ cd app
+
 $ docker-compose up -d
 ```
 
