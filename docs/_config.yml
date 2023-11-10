@@ -1,6 +1,6 @@
 # Theme settings
 tok:
-    baseurl: Lynx
+    baseurl: /Lynx
     title: Lynx - A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.
     theme_color: '#e74c3c'
     language: en-US
