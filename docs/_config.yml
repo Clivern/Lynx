@@ -1,0 +1,44 @@
+# Theme settings
+tok:
+    baseurl:
+    title: Lynx - A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.
+    theme_color: '#e74c3c'
+    language: en-US
+    header:
+        logo:
+            text: Lynx
+            image:
+        nav:
+            - item_name: Homepage
+              item_url: /
+        cta:
+            label: Documentation
+            url: /documentation
+            icon: book
+    footer:
+        logo:
+            text: Lynx
+            image:
+        text: Copyright &copy; 2024 Clivern <br>All rights reserved.
+    google_analytics:
+        tracking_code: G-V7G0HKSRRQ
+    comments:
+        disqus_forum_shortname:
+
+# Defining collections
+collections:
+    documentation:
+        output: true
+
+# Defining defaults
+defaults:
+    -
+        scope:
+            path: ''
+            type: 'documentation'
+        values:
+            layout: 'documentation-single'
+
+# Jekyll settings
+permalink: /:title/
+remote_theme: clivern/tokyo
