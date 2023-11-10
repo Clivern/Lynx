@@ -6,7 +6,7 @@ description: In this section you'll find basic information about different compo
 keywords: terraform-backend, lynx, terraform, clivern
 comments: false
 order: 2
-url: /Lynx/documentation/getting-started/
+permalink: /Lynx/documentation/getting-started/
 hero:
     title: Getting Started
     text: In this section you'll find basic information about different components inside lynx dashboard
