@@ -57,15 +57,18 @@ Lynx requires a [PostgreSQL](https://www.postgresql.org/) database. No Object St
 To run `Lynx` alone on port `4000` on docker.
 
 ```bash
-$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml -O docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml \
+    -O docker-compose.yml
 $ docker compose up -d
 ```
 
 To run `Lynx` behind nginx reverse proxy on port `80` on docker.
 
 ```bash
-$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-nginx.yml -O docker-compose.yml
-$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf -O nginx.conf
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-nginx.yml \
+    -O docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf \
+    -O nginx.conf
 $ docker compose up -d
 ```
 
