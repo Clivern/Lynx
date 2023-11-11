@@ -29,21 +29,21 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 #### Features:
 
-- **Simplified Setup:** Easy installation and maintenance for hassle-free usage.
-- **Team Collaboration:** Manage multiple teams and users seamlessly.
-- **User-Friendly Interface:** Enjoy a visually appealing dashboard for intuitive navigation.
-- **Project Flexibility:** Support for multiple projects within each team.
-- **Environment Management:** Create and manage multiple environments per project.
-- **State Versioning:** Keep track of Terraform state versions for better control.
-- **Rollback Capability:** Easily revert to previous states for efficient infrastructure management.
-- **Terraform Locking Support:** The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
-- **RESTful Endpoints:** for seamless teams, users, projects, environments, and snapshots management.
-- **Snapshots Support**: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
-- **[Terraform Provider](https://github.com/Clivern/terraform-provider-lynx)**: Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
+- Simplified Setup: Easy installation and maintenance for hassle-free usage.
+- Team Collaboration: Manage multiple teams and users seamlessly.
+- User-Friendly Interface: Enjoy a visually appealing dashboard for intuitive navigation.
+- Project Flexibility: Support for multiple projects within each team.
+- Environment Management: Create and manage multiple environments per project.
+- State Versioning: Keep track of Terraform state versions for better control.
+- Rollback Capability: Easily revert to previous states for efficient infrastructure management.
+- Terraform Locking Support: The project also supports Terraform locking, ensuring state integrity and preventing concurrent operations that could lead to data corruption
+- RESTful Endpoints: for seamless teams, users, projects, environments, and snapshots management.
+- Snapshots Support: for both projects and environments to ensure data integrity and provide recovery options at specific points in time.
+- [Terraform Provider](https://github.com/Clivern/terraform-provider-lynx): Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
 
 #### Upcoming Features:
 
-- **OAuth2 Authentication Support:** Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
+- OAuth2 Authentication Support: Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
 
 
 #### Quick Start
@@ -93,4 +93,4 @@ Please check [this guide](./docs/how-to/deploy-on-ubuntu/README.md) for a manual
 
 © 2023, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
-**Lynx** is authored and maintained by [@clivern](http://github.com/clivern).
+Lynx is authored and maintained by [@clivern](http://github.com/clivern).
