@@ -77,7 +77,7 @@ Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 
 #### Manual Installation
 
-Please check [this guide](./docs/how-to/deploy-on-ubuntu/README.md) for a manual setup on Ubuntu server.
+Please check [this guide](./docs/how-to/deploy-on-ubuntu) for a manual setup on Ubuntu server.
 
 
 #### Important Links
