@@ -5,7 +5,7 @@ terraform {
       version = "0.11.2"
     }
   }
-   required_version = ">= 1.3.7"
+  required_version = ">= 1.3.7"
 }
 
 provider "local" {}

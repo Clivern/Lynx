@@ -19,12 +19,6 @@ services:
       MIX_ENV: prod
     command: sh -c "/app/bin/migrate && /app/bin/server"
     restart: unless-stopped
-    ports:
-      - '4000:4000'
-    healthcheck:
-      test: ["CMD", "curl", "--fail", "http://localhost:4000/_health"]
-      interval: 30s
-      retries: 3
     depends_on:
       - db
 
@@ -37,6 +31,18 @@ services:
     restart: unless-stopped
     volumes:
       - db:/var/lib/postgresql/data
+
+  nginx:
+    image: nginx:1.25.4-alpine3.18
+    ports:
+      - '80:80'
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost/_ready"]
+      interval: 30s
+      retries: 3
+    restart: unless-stopped
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
 
 volumes:
   db:

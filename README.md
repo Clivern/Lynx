@@ -45,29 +45,39 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 - **OAuth2 Authentication Support:** Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
 
-## Deployment
+
+#### Quick Start
+
+> [!IMPORTANT]
+>
+> Make sure you have docker and docker-compose installed for the quick start.
+
 Lynx requires a [PostgreSQL](https://www.postgresql.org/) database. No Object Storage is required.
 
-### Docker Deployment
-
-To deploy a ready to use stack, you can go to [this docker-compose file](https://github.com/Clivern/Lynx/blob/main/docker-compose.yml) and execute it. All dependencies are already fulfilled. You can also download it directly via:
+To run `Lynx` alone on port `4000` on docker.
 
 ```bash
-wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml -O docker-compose.yml
-docker compose up -d
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml -O docker-compose.yml
+$ docker compose up -d
 ```
 
-The application will be now available on port 4000 (by default)
+To run `Lynx` behind nginx reverse proxy on port `80` on docker.
 
-### Deploy on Ubuntu
-
-[👉🏻 read here](./docs/how-to/deploy-on-ubuntu/Readme.md)
-
-### Demo Video
+```bash
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-nginx.yml -O docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf -O nginx.conf
+$ docker compose up -d
+```
 
 Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 
-## Important Links
+
+#### Manual Installation
+
+Please check [this guide](./docs/how-to/deploy-on-ubuntu/README.md) for a manual setup on Ubuntu server.
+
+
+#### Important Links
 
 | Name            | Description                                                                                        |
 | --------------- | -------------------------------------------------------------------------------------------------- |
@@ -75,7 +85,8 @@ Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 | Security Issues | [Submit security vulnerability on GitHub](https://github.com/Clivern/Lynx/security/advisories/new) |
 | Contributing    | [Read the contribution guide here](./docs/how-to/development/Reamd.md)                             |
 
-## License
+
+#### License
 
 © 2023, Clivern. Released under [MIT License](https://opensource.org/licenses/mit-license.php).
 
