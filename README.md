@@ -59,7 +59,8 @@ To run `Lynx` alone on port `4000` on docker.
 ```bash
 $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml \
     -O docker-compose.yml
-$ docker compose up -d
+
+$ docker-compose up -d
 ```
 
 To run `Lynx` behind nginx reverse proxy on port `80` on docker.
@@ -69,7 +70,8 @@ $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-nginx.
     -O docker-compose.yml
 $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf \
     -O nginx.conf
-$ docker compose up -d
+
+$ docker-compose up -d
 ```
 
 Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
