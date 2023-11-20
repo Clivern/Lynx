@@ -14,7 +14,8 @@ defmodule LynxWeb.Endpoint do
     signing_salt: "Z+Rs6bdk",
     encryption_salt:
       System.get_env("APP_SECRET") ||
-        "koPmu7TJCwD8mttV9vgWUeU7iuu/zTPOR3sX4UalM9KkYEVGPfyi0PeTVzu1TT8C"
+        "koPmu7TJCwD8mttV9vgWUeU7iuu/zTPOR3sX4UalM9KkYEVGPfyi0PeTVzu1TT8C",
+    extra: "SameSite=Strict"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]
