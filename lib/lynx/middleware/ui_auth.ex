@@ -11,6 +11,8 @@ defmodule Lynx.Middleware.UIAuthMiddleware do
 
   require Logger
 
+  import Plug.Conn
+
   alias Lynx.Module.UserModule
   alias Lynx.Service.AuthService
 
@@ -24,20 +26,22 @@ defmodule Lynx.Middleware.UIAuthMiddleware do
   _token: the session value
   """
   def call(conn, _opts) do
-    uid = conn.req_cookies["_uid"]
-    token = conn.req_cookies["_token"]
+    conn = fetch_session(conn)
+
+    token = get_session(conn, :token)
+    uid = get_session(conn, :uid)
 
     # Logging
     if is_nil(uid) do
-      Logger.info("_uid cookie is not in the request")
+      Logger.info("uid cookie is not in the request")
     else
-      Logger.info("_uid cookie is in the request")
+      Logger.info("uid cookie is in the request")
     end
 
     if is_nil(token) do
-      Logger.info("_token cookie is not in the request")
+      Logger.info("token cookie is not in the request")
     else
-      Logger.info("_token cookie is in the request")
+      Logger.info("token cookie is in the request")
     end
 
     result = AuthService.is_authenticated(uid, token)

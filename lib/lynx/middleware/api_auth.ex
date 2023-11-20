@@ -20,13 +20,9 @@ defmodule Lynx.Middleware.APIAuthMiddleware do
   Trigger the API Auth Middleware
   """
   def call(conn, _opts) do
-    {_, user_token} =
-      Enum.find(conn.req_headers, fn {key, _value} -> String.downcase(key) == "x-user-token" end) ||
-        {nil, nil}
-
-    {_, user_id} =
-      Enum.find(conn.req_headers, fn {key, _value} -> String.downcase(key) == "x-user-id" end) ||
-        {nil, nil}
+    conn = fetch_session(conn)
+    user_token = get_session(conn, :token)
+    user_id = get_session(conn, :uid)
 
     {_, api_key} =
       Enum.find(conn.req_headers, fn {key, _value} -> String.downcase(key) == "x-api-key" end) ||
@@ -34,15 +30,15 @@ defmodule Lynx.Middleware.APIAuthMiddleware do
 
     # Logging
     if is_nil(user_token) do
-      Logger.info("X-USER-TOKEN header is not in the request")
+      Logger.info("User token is not in the request")
     else
-      Logger.info("X-USER-TOKEN header is in the request")
+      Logger.info("User token is in the request")
     end
 
     if is_nil(user_id) do
-      Logger.info("X-USER-ID header is not in the request")
+      Logger.info("User id is not in the request")
     else
-      Logger.info("X-USER-ID header is in the request")
+      Logger.info("User id is in the request")
     end
 
     if is_nil(api_key) do

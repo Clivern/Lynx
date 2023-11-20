@@ -136,8 +136,6 @@ lynx_app.login_screen = (Vue, axios, $) => {
                     .then((response) => {
                         if (response.status >= 200) {
                             show_notification(response.data.successMessage);
-                            Cookies.set('_token', response.data.token);
-                            Cookies.set('_uid', response.data.user);
                             location.reload();
                         }
                     })
@@ -1067,9 +1065,7 @@ lynx_app.add_snapshot_modal = (Vue, axios, $) => {
 $(document).ready(() => {
     axios.defaults.headers.common = {
         'X-Requested-With': 'XMLHttpRequest',
-        'X-CSRF-Token': csrfToken,
-        'X-User-Token': Cookies.get('_token') || '',
-        'X-User-Id': Cookies.get('_uid') || ''
+        'X-CSRF-Token': csrfToken
     };
 
     if (document.getElementById("app_install")) {

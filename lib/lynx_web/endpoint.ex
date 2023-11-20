@@ -10,8 +10,11 @@ defmodule LynxWeb.Endpoint do
   # Set :encryption_salt if you would also like to encrypt it.
   @session_options [
     store: :cookie,
-    key: "_lynx_key",
-    signing_salt: "Z+Rs6bdk"
+    key: "_lynx_bag",
+    signing_salt: "Z+Rs6bdk",
+    encryption_salt:
+      System.get_env("APP_SECRET") ||
+        "koPmu7TJCwD8mttV9vgWUeU7iuu/zTPOR3sX4UalM9KkYEVGPfyi0PeTVzu1TT8C"
   ]
 
   socket "/live", Phoenix.LiveView.Socket, websocket: [connect_info: [session: @session_options]]

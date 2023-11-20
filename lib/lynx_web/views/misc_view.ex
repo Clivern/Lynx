@@ -13,11 +13,9 @@ defmodule LynxWeb.MiscView do
     %{successMessage: message}
   end
 
-  def render("token_success.json", %{message: message, token: token, user: user}) do
+  def render("token_success.json", %{message: message}) do
     %{
-      successMessage: message,
-      token: token,
-      user: user
+      successMessage: message
     }
   end
 end
