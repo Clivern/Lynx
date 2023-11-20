@@ -74,6 +74,17 @@ $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf \
 $ docker-compose up -d
 ```
 
+To run a 3 Nodes of `Lynx` behind nginx reverse proxy on port `80` on docker.
+
+```bash
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-cluster.yml \
+    -O docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx-cluster.conf \
+    -O nginx.conf
+
+$ docker-compose up -d
+```
+
 Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 
 
