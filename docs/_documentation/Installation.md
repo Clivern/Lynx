@@ -89,6 +89,19 @@ $ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf \
 $ docker-compose up -d
 ```
 
+To run a 3 Nodes of `Lynx` behind nginx reverse proxy on port 80 on docker.
+
+```bash
+$ apt-get install docker.io docker-compose -y
+
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose-cluster.yml \
+    -O docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx-cluster.conf \
+    -O nginx.conf
+
+$ docker-compose up -d
+```
+
 Then go to the public URL (for example `http://lynx.sh/` or `http://localhost` or `http://localhost:4000`) and provide the required informtaion to install Lynx.
 
 
