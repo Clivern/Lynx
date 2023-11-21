@@ -12,6 +12,7 @@ defmodule LynxWeb.Endpoint do
     store: :cookie,
     key: "_lynx_bag",
     signing_salt: "Z+Rs6bdk",
+    secure: System.get_env("APP_HTTP_SCHEMA") == "https",
     encryption_salt:
       System.get_env("APP_SECRET") ||
         "koPmu7TJCwD8mttV9vgWUeU7iuu/zTPOR3sX4UalM9KkYEVGPfyi0PeTVzu1TT8C",
