@@ -24,13 +24,6 @@ defmodule Lynx.Application do
       # {Lynx.Workers, %{}}
     ]
 
-    children =
-      if (System.get_env("EXPOSE_PROMETHEUS_METRICS") || "false") == "true" do
-        children ++ [Lynx.PromEx]
-      else
-        children
-      end
-
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
     opts = [strategy: :one_for_one, name: Lynx.Supervisor]

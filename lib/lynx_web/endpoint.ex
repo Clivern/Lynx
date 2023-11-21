@@ -46,10 +46,6 @@ defmodule LynxWeb.Endpoint do
 
   plug Plug.RequestId
 
-  if (System.get_env("EXPOSE_PROMETHEUS_METRICS") || "false") == "true" do
-    plug PromEx.Plug, prom_ex_module: Lynx.PromEx
-  end
-
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
   plug Plug.Parsers,
