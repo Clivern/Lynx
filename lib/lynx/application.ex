@@ -19,12 +19,17 @@ defmodule Lynx.Application do
       # Start the PubSub system
       {Phoenix.PubSub, name: Lynx.PubSub},
       # Start the Endpoint (http/https)
-      LynxWeb.Endpoint,
-      # PromEx
-      Lynx.PromEx
+      LynxWeb.Endpoint
       # Start a worker by calling: Lynx.Worker.start_link(arg)
       # {Lynx.Workers, %{}}
     ]
+
+    children =
+      if (System.get_env("EXPOSE_PROMETHEUS_METRICS") || "false") == "true" do
+        children ++ [Lynx.PromEx]
+      else
+        children
+      end
 
     # See https://hexdocs.pm/elixir/Supervisor.html
     # for other strategies and supported options
