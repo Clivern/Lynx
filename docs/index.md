@@ -73,7 +73,7 @@ features:
           description: Automate creation/updates of teams, users, projects, environments and snapshots with terraform.
           icon: terminal
 
-        - title: OAuth2 Authentication
+        - title: Single Sign-On (SSO)
           description: Support for OAuth2 Providers like Azure AD OAuth, Keycloak, Okta ... etc
           icon: user
 
