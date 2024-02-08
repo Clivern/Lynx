@@ -16,7 +16,7 @@ terraform {
     unlock_method = "POST"
   }
 
-  required_version = "1.4.6"
+  required_version = "1.7.3"
 }
 
 provider "docker" {}
