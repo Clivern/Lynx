@@ -11,7 +11,7 @@ terraform {
     unlock_method = "POST"
   }
 
-  required_version = "1.3.7"
+  required_version = "1.7.5"
 }
 
 provider "local" {
