@@ -47,11 +47,11 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 
 ## Deployment
 
-Lynx requires a modern postgres version to function. No Object Storage required
+Lynx requires a [PostgreSQL](https://www.postgresql.org/) database. No Object Storage is required.
 
 ### Docker Deployment
 
-To deploy a ready to use stack, you can go to [this docker-compose file](https://github.com/Clivern/Lynx/blob/main/docker-compose.yml) and execute it. All dependencies are already fulfilled. Make sure you update `server_name` in `nginx.conf` file. You can also download it directly via:
+To deploy a ready to use stack, you can go to [this docker-compose file](https://github.com/Clivern/Lynx/blob/main/docker-compose.yml) and execute it. All dependencies are already fulfilled. You can also download it directly via:
 
 ```bash
 wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml -o docker-compose.yml
@@ -70,7 +70,7 @@ Here is a [video demonstration](https://www.youtube.com/watch?v=YNkHfysr3-0)
 
 ## Important Links
 
-|                 |                                                                                                    |
+| Name            | Description                                                                                        |
 | --------------- | -------------------------------------------------------------------------------------------------- |
 | Bug Tracker     | [Submit issues on GitHub](https://github.com/clivern/lynx/issues)                                  |
 | Security Issues | [Submit security vulnerability on GitHub](https://github.com/Clivern/Lynx/security/advisories/new) |
