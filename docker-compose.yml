@@ -8,7 +8,7 @@ volumes:
 
 services:
   app:
-    image: clivern/lynx:0.11.8
+    image: clivern/lynx:0.11.9
     environment:
       APP_NAME: Lynx
       APP_PORT: 4000

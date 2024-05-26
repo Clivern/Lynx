@@ -66,8 +66,7 @@ defmodule Lynx.Module.StateModule do
                   StateContext.new_state(%{
                     environment_id: env.id,
                     name: params[:name],
-                    value: params[:value],
-                    uuid: nil
+                    value: params[:value]
                   })
 
                 case StateContext.create_state(state) do
