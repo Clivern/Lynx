@@ -35,7 +35,7 @@ deps:
 .PHONY: test
 test:
 	@echo ">> ============= Test code ============= <<"
-	@$(mix) test
+	@$(mix) test --trace
 
 
 ## build: Build code
