@@ -53,7 +53,7 @@ Lynx requires a [PostgreSQL](https://www.postgresql.org/) database. No Object St
 To deploy a ready to use stack, you can go to [this docker-compose file](https://github.com/Clivern/Lynx/blob/main/docker-compose.yml) and execute it. All dependencies are already fulfilled. You can also download it directly via:
 
 ```bash
-wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml -o docker-compose.yml
+wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml -O docker-compose.yml
 docker compose up -d
 ```
 
