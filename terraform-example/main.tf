@@ -5,18 +5,7 @@ terraform {
       version = "0.11.1"
     }
   }
-
-  backend "http" {
-    username       = "hs2d21pk"
-    password       = "pO(BwDTjs5ND"
-    address        = "http://localhost:4000/client/clivern/monitoring/prod/state"
-    lock_address   = "http://localhost:4000/client/clivern/monitoring/prod/lock"
-    unlock_address = "http://localhost:4000/client/clivern/monitoring/prod/unlock"
-    lock_method    = "POST"
-    unlock_method  = "POST"
-  }
-
-  required_version = "1.3.7"
+   required_version = "1.8.4"
 }
 
 provider "local" {}
