@@ -7,24 +7,15 @@ This directory provide you an example of Terraform code to provisioning resource
 | Backend.tf | Terraform Backend configuration example |
 | Main.tf | Resources provisioned by Terraform and stored as Terraform state in Lynx |
 
-More details about Terraform HTTP backend in https://developer.hashicorp.com/terraform/language/settings/backends/http
-
+<br/>
+More details about Terraform HTTP backend in https://developer.hashicorp.com/terraform/language/settings/backends/http<br/>
 More details about OpenTofu (Open alternative to Terraform) HTTP backend in https://opentofu.org/docs/language/settings/backends/http/
 
 ## Before You begin
 * You have to create in **Lynx**:
-    * add new Project (Monitoring in this example)
-    * add new Environment (Prod in this example).
+    * a new Project (Monitoring in this example)
+    * a new Environment (Prod in this example).
 * Username and Password would be unique for each Environment in Project.
-
-## Configuration
-
-In this directory you can find two files:
-
-
-
-
-In Production-ready configurations those file should NOT be located in same directory to avoid TF execution conflicts.
 
 
 ## Usage
