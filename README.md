@@ -1,5 +1,5 @@
 <p align="center">
-    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.11.8" width="180" />
+    <img alt="Lynx Logo" src="/assets/img/logo.png?v=0.11.9" width="180" />
     <h3 align="center">Lynx</h3>
     <p align="center">A Fast, Secure and Reliable Terraform Backend, Set up in Minutes.</p>
     <p align="center">
@@ -7,10 +7,10 @@
             <img src="https://github.com/Clivern/Lynx/actions/workflows/server_ci.yml/badge.svg"/>
         </a>
         <a href="https://github.com/Clivern/Lynx/releases">
-            <img src="https://img.shields.io/badge/Version-0.11.8-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Version-0.11.9-1abc9c.svg">
         </a>
         <a href="https://hub.docker.com/r/clivern/lynx/tags">
-            <img src="https://img.shields.io/badge/Docker-0.11.8-1abc9c.svg">
+            <img src="https://img.shields.io/badge/Docker-0.11.9-1abc9c.svg">
         </a>
         <a href="https://github.com/Clivern/terraform-provider-lynx">
             <img src="https://img.shields.io/badge/Terraform-Provider-yellow.svg">
@@ -52,8 +52,12 @@ Lynx is a Fast, Secure and Reliable Terraform Backend. It is built in Elixir wit
 1. To run with docker and docker-compose. Make sure you update `server_name` in `nginx.conf` file.
 
 ```zsh
-$ git clone https://github.com/Clivern/Lynx.git app
+$ mkdir app
 $ cd app
+
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/docker-compose.yml
+$ wget https://raw.githubusercontent.com/Clivern/Lynx/main/nginx.conf
+
 $ docker-compose up -d
 ```
 

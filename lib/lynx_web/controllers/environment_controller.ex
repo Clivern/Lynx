@@ -155,7 +155,7 @@ defmodule LynxWeb.EnvironmentController do
     case validate_update_request(params, params["p_uuid"], params["e_uuid"]) do
       {:ok, ""} ->
         result =
-          EnvironmentModule.create_environment(%{
+          EnvironmentModule.update_environment(%{
             uuid: params["e_uuid"],
             name: params["name"],
             slug: params["slug"],

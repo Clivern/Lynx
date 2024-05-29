@@ -2,7 +2,7 @@ terraform {
   required_providers {
     time = {
       source  = "hashicorp/time"
-      version = "0.11.1"
+      version = "0.11.2"
     }
   }
    required_version = "1.8.4"
