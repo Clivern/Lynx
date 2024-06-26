@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: clivern-lynx
+  labels:
+    app: clivern-lynx
+spec:
+  selector:
+    matchLabels:
+      app: clivern-lynx
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: clivern-lynx
+    spec:
+      containers:
+        - name: clivern-lynx
+          image: clivern/lynx:latest
+          ports:
+            - containerPort: 4000
