@@ -25,7 +25,7 @@ jobs:
           images: clivern/lynx
 
       - name: Build and push Docker image
-        uses: docker/build-push-action@f23fb2a7cbf316a4a4fb482ed83e91a500062b1e
+        uses: docker/build-push-action@a254f8ca60a858f3136a2f1f23a60969f2c402dd
         with:
           context: .
           file: ./Dockerfile
