@@ -46,7 +46,7 @@ services:
       retries: 3
     restart: unless-stopped
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./nginx-cluster.conf:/etc/nginx/nginx.conf
       - nginx_logs:/var/log/nginx
 
 volumes:
