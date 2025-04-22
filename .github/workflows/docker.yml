@@ -20,7 +20,7 @@ jobs:
 
       - name: Extract metadata (tags, labels) for Docker
         id: meta
-        uses: docker/metadata-action@902fa8ec7d6ecbf8d84d538b9b233a880e428804
+        uses: docker/metadata-action@12d9b9a905eda64a7255fe54e5dd14b7f0624941
         with:
           images: clivern/lynx
 
