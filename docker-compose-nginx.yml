@@ -27,7 +27,7 @@ services:
       - db
 
   db:
-    image: postgres:16.8
+    image: postgres:16.9
     environment:
       POSTGRES_DB: lynx
       POSTGRES_USER: root
