@@ -5,12 +5,6 @@
 defmodule LynxWeb.Endpoint do
   use Phoenix.Endpoint, otp_app: :lynx
 
-  @max_body_length Application.compile_env(
-                     :lynx,
-                     [__MODULE__, :http_max_body_length],
-                     8_000_000
-                   )
-
   # The session will be stored in the cookie and signed,
   # this means its contents can be read but not tampered with.
   # Set :encryption_salt if you would also like to encrypt it.
@@ -54,10 +48,9 @@ defmodule LynxWeb.Endpoint do
 
   plug Plug.Telemetry, event_prefix: [:phoenix, :endpoint]
 
-  plug Plug.Parsers,
+  plug LynxWeb.Plug.RuntimeParsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    length: @max_body_length,
     json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride
