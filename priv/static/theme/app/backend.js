@@ -70,7 +70,7 @@ function snapshot_restore_followup(id) {
 lynx_app.install_screen = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#app_install',
         data() {
             return {
@@ -112,7 +112,7 @@ lynx_app.install_screen = (Vue, axios, $) => {
 lynx_app.login_screen = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#app_login',
         data() {
             return {
@@ -154,7 +154,7 @@ lynx_app.login_screen = (Vue, axios, $) => {
 lynx_app.settings_screen = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#app_settings',
         data() {
             return {
@@ -195,7 +195,7 @@ lynx_app.settings_screen = (Vue, axios, $) => {
 lynx_app.profile_screen = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#app_profile',
         data() {
             return {
@@ -236,7 +236,7 @@ lynx_app.profile_screen = (Vue, axios, $) => {
 lynx_app.profile_api_screen = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#app_api_key',
         data() {
             return {
@@ -297,7 +297,7 @@ lynx_app.profile_api_screen = (Vue, axios, $) => {
 lynx_app.add_user_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#add_user_modal',
         data() {
             return {
@@ -341,7 +341,7 @@ lynx_app.add_user_modal = (Vue, axios, $) => {
 lynx_app.add_team_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#add_team_modal',
         data() {
             return {
@@ -412,7 +412,7 @@ lynx_app.add_team_modal = (Vue, axios, $) => {
 lynx_app.teams_list = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#teams_list',
         data() {
             return {
@@ -526,7 +526,7 @@ lynx_app.teams_list = (Vue, axios, $) => {
 lynx_app.edit_team_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#edit_team_modal',
         data() {
             return {
@@ -592,7 +592,7 @@ lynx_app.edit_team_modal = (Vue, axios, $) => {
 lynx_app.users_list = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#users_list',
         data() {
             return {
@@ -703,7 +703,7 @@ lynx_app.users_list = (Vue, axios, $) => {
 lynx_app.edit_user_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#edit_user_modal',
         data() {
             return {
@@ -747,7 +747,7 @@ lynx_app.edit_user_modal = (Vue, axios, $) => {
 lynx_app.projects_list = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#projects_list',
         data() {
             return {
@@ -867,7 +867,7 @@ lynx_app.projects_list = (Vue, axios, $) => {
 lynx_app.edit_project_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#edit_project_modal',
         data() {
             return {
@@ -931,7 +931,7 @@ lynx_app.edit_project_modal = (Vue, axios, $) => {
 lynx_app.add_project_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#add_project_modal',
         data() {
             return {
@@ -1000,7 +1000,7 @@ lynx_app.add_project_modal = (Vue, axios, $) => {
 lynx_app.add_environment_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#add_environment_modal',
         data() {
             return {
@@ -1061,7 +1061,7 @@ lynx_app.add_environment_modal = (Vue, axios, $) => {
 lynx_app.environments_list = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#environments_list',
         data() {
             return {
@@ -1188,7 +1188,7 @@ lynx_app.environments_list = (Vue, axios, $) => {
 lynx_app.edit_environment_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#edit_environment_modal',
         data() {
             return {
@@ -1232,7 +1232,7 @@ lynx_app.edit_environment_modal = (Vue, axios, $) => {
 lynx_app.snapshots_list = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#snapshots_list',
         data() {
             return {
@@ -1362,7 +1362,7 @@ lynx_app.snapshots_list = (Vue, axios, $) => {
 lynx_app.edit_snapshot_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#edit_snapshot_modal',
         data() {
             return {
@@ -1426,7 +1426,7 @@ lynx_app.edit_snapshot_modal = (Vue, axios, $) => {
 lynx_app.add_snapshot_modal = (Vue, axios, $) => {
 
     return new Vue({
-        delimiters: ['${', '}'],
+        delimiters: ['[[', ']]'],
         el: '#add_snapshot_modal',
         data() {
             return {

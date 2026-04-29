@@ -5,7 +5,7 @@
 defmodule Lynx.MixProject do
   use Mix.Project
 
-  @version "0.12.11"
+  @version "0.13.0"
 
   def get_version, do: @version
 
@@ -13,9 +13,10 @@ defmodule Lynx.MixProject do
     [
       app: :lynx,
       version: @version,
-      elixir: "~> 1.12",
+      elixir: "~> 1.16",
       elixirc_paths: elixirc_paths(Mix.env()),
       compilers: [] ++ Mix.compilers(),
+      listeners: [Phoenix.CodeReloader],
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
       deps: deps()
@@ -41,24 +42,26 @@ defmodule Lynx.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
-      {:phoenix, "~> 1.6.13"},
-      {:phoenix_ecto, "~> 4.4"},
-      {:ecto_sql, "~> 3.6"},
-      {:postgrex, ">= 0.0.0"},
-      {:phoenix_html, "~> 3.0"},
-      {:phoenix_live_reload, "~> 1.2", only: :dev},
-      {:phoenix_live_view, "~> 0.17.5"},
-      {:floki, ">= 0.30.0", only: :test},
-      {:phoenix_live_dashboard, "~> 0.6"},
+      {:phoenix, "~> 1.8.5"},
+      {:phoenix_ecto, "~> 4.7"},
+      {:ecto_sql, "~> 3.13"},
+      {:postgrex, "~> 0.22.0"},
+      {:phoenix_html, "~> 4.3"},
+      {:phoenix_html_helpers, "~> 1.0"},
+      {:phoenix_view, "~> 2.0"},
+      {:phoenix_live_reload, "~> 1.6", only: :dev},
+      {:phoenix_live_view, "~> 1.1"},
+      {:floki, "~> 0.38.1", only: :test},
+      {:phoenix_live_dashboard, "~> 0.8.7"},
       {:esbuild, "~> 0.10", runtime: Mix.env() == :dev},
-      {:swoosh, "~> 1.3"},
-      {:telemetry_metrics, "~> 0.6"},
+      {:swoosh, "~> 1.25"},
+      {:telemetry_metrics, "~> 1.1"},
       {:telemetry_poller, "~> 1.0"},
-      {:gettext, "~> 0.25"},
+      {:gettext, "~> 1.0"},
       {:jason, "~> 1.4"},
-      {:plug_cowboy, "~> 2.5"},
-      {:bcrypt_elixir, "~> 3.0"},
-      {:sleeplocks, "~> 1.0"}
+      {:plug_cowboy, "~> 2.8"},
+      {:bcrypt_elixir, "~> 3.3"},
+      {:sleeplocks, "~> 1.1"}
     ]
   end
 

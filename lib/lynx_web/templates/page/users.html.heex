@@ -285,10 +285,10 @@
                                             </div>
                                           </a>
                                         </td>
-                                        <td style="text-align: center">${user.name}</td>
-                                        <td style="text-align: center">${user.email}</td>
-                                        <td style="text-align: center">${user.role}</td>
-                                        <td style="text-align: center">${formatDatetime(user.createdAt)}</td>
+                                        <td style="text-align: center">[[user.name]]</td>
+                                        <td style="text-align: center">[[user.email]]</td>
+                                        <td style="text-align: center">[[user.role]]</td>
+                                        <td style="text-align: center">[[formatDatetime(user.createdAt)]]</td>
                                         <td>
                                           <button @click="editUserAction(user.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#edit_user_modal"><%= gettext "Edit" %></button>
                                           <button @click="deleteUserAction(user.id)" class="btn btn-dashed btn-sm text-danger border-danger hp-hover-text-color-danger-2 hp-hover-border-color-danger-2"><%= gettext "Delete" %></button>
@@ -312,7 +312,7 @@
                                     </li>
 
                                     <li class="page-item">
-                                        <button class="page-link">${currentPage}</button>
+                                        <button class="page-link">[[currentPage]]</button>
                                     </li>
 
                                     <li class="page-item">
@@ -379,7 +379,10 @@
 
                             <div class="modal-footer pt-0 px-24 pb-24">
                                 <div class="divider"></div>
-                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                                <button type="submit" class="m-0 btn btn-primary w-100" v-bind:disabled="isInProgress">
+                                    <span v-if="isInProgress"><%= gettext "Submitting..." %></span>
+                                    <span v-else><%= gettext "Submit" %></span>
+                                </button>
                             </div>
                         </form>
                     </div>
@@ -437,7 +440,10 @@
 
                             <div class="modal-footer pt-0 px-24 pb-24">
                                 <div class="divider"></div>
-                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                                <button type="submit" class="m-0 btn btn-primary w-100" v-bind:disabled="isInProgress">
+                                    <span v-if="isInProgress"><%= gettext "Submitting..." %></span>
+                                    <span v-else><%= gettext "Submit" %></span>
+                                </button>
                             </div>
                         </form>
                     </div>
