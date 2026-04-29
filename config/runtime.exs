@@ -24,6 +24,11 @@ if System.get_env("PHX_SERVER") do
   config :lynx, LynxWeb.Endpoint, server: true
 end
 
+if max_body_length = System.get_env("APP_HTTP_MAX_BODY_LENGTH") do
+  config :lynx, LynxWeb.Endpoint,
+    http_max_body_length: String.to_integer(max_body_length)
+end
+
 if config_env() == :prod do
   maybe_ipv6 = if System.get_env("ECTO_IPV6"), do: [:inet6], else: []
 

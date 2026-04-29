@@ -10,6 +10,11 @@ import Config
 config :lynx,
   ecto_repos: [Lynx.Repo]
 
+# Initialize endpoint plugs at runtime so options sourced from
+# config/runtime.exs (e.g. http_max_body_length) take effect without
+# rebuilding the release.
+config :phoenix, :plug_init_mode, :runtime
+
 # Configures the endpoint
 config :lynx, LynxWeb.Endpoint,
   url: [host: System.get_env("APP_HOST") || "localhost"],
