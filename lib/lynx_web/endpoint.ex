@@ -51,7 +51,7 @@ defmodule LynxWeb.Endpoint do
   plug Plug.Parsers,
     parsers: [:urlencoded, :multipart, :json],
     pass: ["*/*"],
-    length: String.to_integer(System.get_env("APP_HTTP_MAX_BODY_LENGTH") || "8000000"),
+    length: LynxWeb.EndpointConfig.max_body_length(),
     json_decoder: Phoenix.json_library()
 
   plug Plug.MethodOverride
