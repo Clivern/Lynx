@@ -80,7 +80,7 @@ defmodule LynxWeb.EnvironmentController do
     count = EnvironmentModule.count_project_environments(params["p_uuid"])
 
     case result do
-      {:error, msg} ->
+      {:not_found, msg} ->
         conn
         |> put_status(:not_found)
         |> render("error.json", %{message: msg})

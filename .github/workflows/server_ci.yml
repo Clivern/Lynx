@@ -13,15 +13,18 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        otp: ['25.1']
-        elixir: [
-          '1.14.3',
-          '1.14.4',
-          '1.14.5',
-          '1.15.0',
-          '1.16.0',
-          '1.16.2'
-        ]
+        include:
+          # Minimum supported (per mix.exs: "~> 1.16")
+          - otp: '26.2'
+            elixir: '1.16.0'
+          - otp: '26.2'
+            elixir: '1.16.2'
+          - otp: '26.2'
+            elixir: '1.16.3'
+
+          # Latest stable on latest OTP
+          - otp: '28.2'
+            elixir: '1.19.3'
     services:
       db:
         image: postgres:latest
