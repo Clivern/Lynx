@@ -173,20 +173,18 @@ defmodule Lynx.Module.SnapshotModule do
           case EnvironmentContext.get_env_by_uuid(environment["uuid"]) do
             nil ->
               recreate_environment(environment)
-              {:ok, ""}
 
             env ->
               EnvironmentContext.delete_env(env)
               recreate_environment(environment)
-              {:ok, ""}
           end
         end
+
+        {:ok, ""}
 
       {:not_found, msg} ->
         {:error, msg}
     end
-
-    {:ok, ""}
   end
 
   defp recreate_environment(new_environment) do

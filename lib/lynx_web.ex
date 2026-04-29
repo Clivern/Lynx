@@ -23,10 +23,12 @@ defmodule LynxWeb do
 
   def controller do
     quote do
-      use Phoenix.Controller, namespace: LynxWeb
+      use Phoenix.Controller,
+        formats: [html: "View", json: "View"],
+        layouts: [html: LynxWeb.LayoutView]
 
       import Plug.Conn
-      import LynxWeb.Gettext
+      use Gettext, backend: LynxWeb.Gettext
       alias LynxWeb.Router.Helpers, as: Routes
     end
   end
@@ -84,7 +86,7 @@ defmodule LynxWeb do
   def channel do
     quote do
       use Phoenix.Channel
-      import LynxWeb.Gettext
+      use Gettext, backend: LynxWeb.Gettext
     end
   end
 
@@ -95,6 +97,8 @@ defmodule LynxWeb do
       import Phoenix.HTML.Form
       use PhoenixHTMLHelpers
 
+      import Phoenix.Component
+
       # Import LiveView and .heex helpers (live_render, live_patch, <.form>, etc)
       import Phoenix.LiveView.Helpers
 
@@ -102,7 +106,7 @@ defmodule LynxWeb do
       import Phoenix.View
 
       import LynxWeb.ErrorHelpers
-      import LynxWeb.Gettext
+      use Gettext, backend: LynxWeb.Gettext
       alias LynxWeb.Router.Helpers, as: Routes
     end
   end
