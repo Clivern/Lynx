@@ -285,10 +285,10 @@
                                             </div>
                                           </a>
                                         </td>
-                                        <td style="text-align: center">${team.name}</td>
-                                        <td style="text-align: center">${team.usersCount}</td>
-                                        <td style="text-align: center">${team.projectsCount}</td>
-                                        <td style="text-align: center">${formatDatetime(team.createdAt)}</td>
+                                        <td style="text-align: center">[[team.name]]</td>
+                                        <td style="text-align: center">[[team.usersCount]]</td>
+                                        <td style="text-align: center">[[team.projectsCount]]</td>
+                                        <td style="text-align: center">[[formatDatetime(team.createdAt)]]</td>
                                         <td>
                                             <button @click="showTeamInfoAction(team.description)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#show_team_info_modal"><%= gettext "Info" %></button>
                                             <button @click="editTeamAction(team.id)" class="btn btn-dashed btn-sm text-black-100 border-black-100 hp-hover-text-color-black-80 hp-hover-border-color-black-80" data-bs-toggle="modal" data-bs-target="#edit_team_modal"><%= gettext "Edit" %></button>
@@ -313,7 +313,7 @@
                                     </li>
 
                                     <li class="page-item">
-                                        <button class="page-link">${currentPage}</button>
+                                        <button class="page-link">[[currentPage]]</button>
                                     </li>
 
                                     <li class="page-item">
@@ -395,7 +395,7 @@
                                             <label class="form-label"><%= gettext "Members" %></label>
                                             <select class="form-select" multiple name="members" required="required">
                                                 <template v-for="user in users">
-                                                    <option :value="user.id">${user.name} (${user.email})</option>
+                                                    <option v-bind:value="user.id">[[user.name]] ([[user.email]])</option>
                                                 </template>
                                             </select>
                                         </div>
@@ -405,7 +405,7 @@
 
                             <div class="modal-footer pt-0 px-24 pb-24">
                                 <div class="divider"></div>
-                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                                <button type="submit" class="m-0 btn btn-primary w-100" phx-disable-with={gettext("Submitting...")}><%= gettext "Submit" %></button>
                             </div>
                         </form>
                     </div>
@@ -454,7 +454,7 @@
                                             <label class="form-label"><%= gettext "Members" %></label>
                                             <select class="form-select" multiple name="members" required="required">
                                                 <template v-for="user in users">
-                                                    <option :value="user.id">${user.name} (${user.email})</option>
+                                                    <option v-bind:value="user.id">[[user.name]] ([[user.email]])</option>
                                                 </template>
                                             </select>
                                         </div>
@@ -464,7 +464,7 @@
 
                             <div class="modal-footer pt-0 px-24 pb-24">
                                 <div class="divider"></div>
-                                <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                                <button type="submit" class="m-0 btn btn-primary w-100" phx-disable-with={gettext("Submitting...")}><%= gettext "Submit" %></button>
                             </div>
                         </form>
                     </div>

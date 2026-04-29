@@ -288,7 +288,7 @@
                                             </div>
                                           </a>
                                         </td>
-                                        <td style="text-align: center">${environment.name}</td>
+                                        <td style="text-align: center">[[environment.name]]</td>
                                         <template v-if="environment.isLocked">
                                             <td style="text-align: center">
                                                 <div class="badge bg-danger-4 hp-bg-dark-danger text-danger border-danger">Locked</div>
@@ -299,8 +299,8 @@
                                                 <div class="badge bg-success-4 hp-bg-dark-success text-success border-success">Not Locked</div>
                                             </td>
                                         </template>
-                                        <td style="text-align: center">${environment.stateVersion}</td>
-                                        <td style="text-align: center">${formatDatetime(environment.createdAt)}</td>
+                                        <td style="text-align: center">[[environment.stateVersion]]</td>
+                                        <td style="text-align: center">[[formatDatetime(environment.createdAt)]]</td>
                                         <td style="text-align: center">
                                             <button @click="viewEnvironmentAction(environment.id)" class="btn btn-dashed btn-sm text-warning-100 border-warning-100 hp-hover-text-color-warning-80 hp-hover-border-color-warning-80"><%= gettext "View" %></button>
                                             <template v-if="environment.stateVersion != 'v0'">
@@ -366,7 +366,7 @@
                         </div>
                         <div class="modal-footer pt-0 px-24 pb-24">
                             <div class="divider"></div>
-                            <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                            <button type="submit" class="m-0 btn btn-primary w-100" phx-disable-with={gettext("Submitting...")}><%= gettext "Submit" %></button>
                         </div>
                     </form>
                 </div>
@@ -418,7 +418,7 @@
                         </div>
                         <div class="modal-footer pt-0 px-24 pb-24">
                             <div class="divider"></div>
-                            <button type="submit" class="m-0 btn btn-primary w-100" :disabled="isInProgress"><%= gettext "Submit" %></button>
+                            <button type="submit" class="m-0 btn btn-primary w-100" phx-disable-with={gettext("Submitting...")}><%= gettext "Submit" %></button>
                         </div>
                     </form>
                 </div>
@@ -438,10 +438,10 @@
                     <br/>
                     <pre id="env_data"></pre>
                     <pre id="proto_env_data" style="display:none;">
-    terraform {
-      // required_providers {}
+    terraform &lbrace;
+      // required_providers &lbrace;&rbrace;
 
-      backend "http" {
+      backend "http" &lbrace;
         // Best to define as environment variable $ export TF_HTTP_USERNAME=$username
         username = "$username"
         // Best to define as environment variable $ export TF_HTTP_PASSWORD=$secret
@@ -451,10 +451,10 @@
         unlock_address = "<%= @data.app_url %>/client/$team/$project/$env/unlock"
         lock_method = "POST"
         unlock_method = "POST"
-      }
+      &rbrace;
 
       // required_version = "1.3.7"
-    }
+    &rbrace;
                     </pre>
                 </div>
             </div>
