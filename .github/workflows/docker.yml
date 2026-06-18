@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out the repo
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Log in to Docker Hub
         uses: docker/login-action@6862ffc5ab2cdb4405cf318a62a6f4c066e2298b
